@@ -78,6 +78,10 @@ pip install mysql-python   ------没有python3.0以上的版本   具体不知�
     | --- veiws.py ：视图文件，用于编写功能的主要处理逻辑。
 
 
+CBV和FBV
+我们之前写过的都是基于函数的view，就叫FBV。还可以把view写成基于类的  叫CBV。
+
+
 
 
 '''

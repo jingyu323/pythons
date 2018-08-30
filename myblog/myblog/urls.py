@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog import views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', views.blog_index),
+    # url(r'', views.index),
+    url(r'^$', views.index), #设置默认的主页
 ]
