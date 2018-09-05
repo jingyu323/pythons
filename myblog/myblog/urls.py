@@ -21,6 +21,12 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', views.blog_index),
+    path('blog/blog_list', views.blog_list),
     # url(r'', views.index),
     url(r'^$', views.index), #设置默认的主页
+    url(r'^add/$', views.add, name='add'),
+    path('add/<int:a>/<int:b>/', views.add2, name='add2'),
+    url(r'^addform', views.addform),
+    url(r'^addpostform', views.addpostform),
+    url(r'^addpost', views.addpost),
 ]
