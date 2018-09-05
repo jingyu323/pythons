@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from blog.tools.addform import AddForm
+from  django.http import JsonResponse
 
 # Create your views here.
 from blog.models import BlogsPost
@@ -57,4 +58,10 @@ def addpost(request):
     else:  # 当正常访问时
         form = AddForm()
     return render(request, 'addpost.html', {'form': form})
+
+
+
+def addpostJson(request):
+    name_dict = {'twz': 'Love python and Django', 'zqxt': 'I am teaching Django'}
+    return JsonResponse(name_dict)
 

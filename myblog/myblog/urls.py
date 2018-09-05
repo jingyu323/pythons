@@ -28,5 +28,6 @@ urlpatterns = [
     path('add/<int:a>/<int:b>/', views.add2, name='add2'),
     url(r'^addform', views.addform),
     url(r'^addpostform', views.addpostform),
-    url(r'^addpost', views.addpost),
+    url(r'^addpost$', views.addpost),
+    url(r'^addpostJson', views.addpostJson),
 ]
