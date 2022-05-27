@@ -1,5 +1,7 @@
 
 # 数组 list
+from tensorflow import string
+
 list_data  = [1, 2, 3, 4]
 
 list_data.append(9)
@@ -21,3 +23,14 @@ print(a)
 print(c)
 
 
+# 字符串
+
+str="3435ohooret"
+print("len is:%d", len(str))
+
+str1='555'
+print(int(str1)+88)
+str_test="88"+"44"
+print(str_test)
+
+## for 循环
