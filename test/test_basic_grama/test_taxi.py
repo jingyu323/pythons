@@ -50,5 +50,20 @@
 # 表示实际产生的费用其实只有81块钱
 
 
-str = input("请输入：")
-  ans = N, temp = 0, k = 0, j = 1
+N = input("请输入：")
+N = int(N)
+ans,temp,k,j=N,0,0,1
+# temp 计算的是 多的钱数
+while (N >0) :
+    if(N %10 > 4) :  # 跳了9次
+        temp += (N %10 -1) *k +j
+    else:
+        temp += (N % 10 ) * k
+
+    k = k *9 + j
+    j *= 10
+    N = N // 10
+
+print(ans -temp)
+
+
