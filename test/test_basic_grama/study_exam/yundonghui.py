@@ -118,7 +118,7 @@ def exam():
         student_arr.append(student)
 
     # student_arr.sort()
-    sorted(student_arr,key=cmp_to_key(cmp) )
+    student_arr.sort(key=cmp_to_key(cmp))
     res = ""
     for st in student_arr:
         res = res+ str(st.id) + " "

@@ -137,3 +137,9 @@ print(x)
 
 for i in range(9):
     print(i)
+
+
+sss="sjjsjsjjs"
+sarr=list(sss)
+for ss in sarr:
+    print(ss)
