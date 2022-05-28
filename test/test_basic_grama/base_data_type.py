@@ -134,3 +134,6 @@ y = str(2)    # y 输出结果为 '2'
 z = str(3.0)  # z 输出结果为 '3.0'
 
 print(x)
+
+for i in range(9):
+    print(i)
