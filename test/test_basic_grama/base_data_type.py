@@ -2,12 +2,27 @@
 # 数组 list
 from tensorflow import string
 
-list_data  = [1, 2, 3, 4]
+list_data  = [1, 2,44,66,77,0,1, 3, 4]
+print(list_data)
+list_data.sort()
+print(list_data)
 
 list_data.append(9)
 
 print(list_data)
 
+# 列表
+vowels = ['e', 'a', 'u', 'o', 'i']
+for ch in vowels :
+    print(ch)
+
+for index in  range(len(vowels)):
+    print("vv index ["+str(index)+"] is :" + vowels[index])
+
+# 降序
+vowels.sort(reverse=True)
+
+print(vowels)
 
 list_data.insert(4,8)
 
@@ -21,12 +36,16 @@ print(list_data)
 a, b, c = 1, 2, "john"
 print(a)
 print(c)
-
+num =99
+num='{}'.format(num)
+print(num)
+string = '10'
+a = int(string)
 
 # 字符串
 
-str="3435ohooret"
-print("len is:%d", len(str))
+str222="3435ohooret"
+print("len is:%d", len(str222))
 
 str1='555'
 print(int(str1)+88)
@@ -38,10 +57,12 @@ for letter in 'Python':  # 第一个实例
     print("当前字母: %s" % letter)
 
 fruits = ['banana', 'apple', 'mango']
+# 元素直接遍历
 for fruit in fruits:  # 第二个实例
     print('当前水果: %s' % fruit)
 print("index =====================")
 fruits = ['banana', 'apple', 'mango']
+# 按照index 遍历
 for index in range(len(fruits)):
     print('当前水果 : %s' % fruits[index])
 
@@ -50,6 +71,7 @@ print("Good bye!")
 
 print(abs(-4.5))
 # while 循环
+index =0
 max_loop = 9
 while  max_loop >0:
     if max_loop ==3:
@@ -58,6 +80,13 @@ while  max_loop >0:
     max_loop =max_loop -1
     if max_loop == 6 :
         print(" this is six")
+    index = index +1
+
+    print("indesi:",index)
+    print("indesi:%s"%index)
+    print("indesi777:{}".format(index) )
+
+ # 逗号拼接的空格
 # if else
 
 # 类型定义
@@ -76,11 +105,32 @@ a, b, c = 1, 2, "john"
 # float（浮点型）
 # complex（复数）
 
-str = 'Hello World!'
+str111 = 'Hello World!'
 
-print(str)    # 输出完整字符串
-print(str[0])
+print(str111)    # 输出完整字符串
+print(str111[0])
   # 输出字符串中的第一个字符
-print(str[2:5])
+print(str111[2:5])
   # 输出字符串中第三个至第六个之间的字符串
-print(str[2:])  # 输出字符串两次
+print(str111[2:])  # 输出字符串两次
+list = []
+list.append(str111[2:])
+
+print(len(list))
+
+print(list)
+
+sites = {'Google', 'Taobao', 'Runoob', 'Facebook', 'Zhihu', 'Baidu'}
+
+num_int = 123
+num_str = "456"
+
+print("Data type of num_int:",type(num_int))
+print("Data type of num_str:",type(num_str))
+
+print(num_int+int(num_str))
+x = str("s1") # x 输出结果为 's1'
+y = str(2)    # y 输出结果为 '2'
+z = str(3.0)  # z 输出结果为 '3.0'
+
+print(x)

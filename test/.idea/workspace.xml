@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_basic_grama/base_data_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/base_data_type.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_basic_grama/test_taxi.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_taxi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/总结.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +172,7 @@
       <workItem from="1651926386899" duration="673000" />
       <workItem from="1653054999655" duration="6386000" />
       <workItem from="1653314532687" duration="1688000" />
-      <workItem from="1653661473595" duration="8545000" />
+      <workItem from="1653661473595" duration="12456000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -264,7 +265,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653699249223</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="基本类型 复习">
+      <created>1653708785346</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708785346</updated>
+    </task>
+    <task id="LOCAL-00015" summary="基本类型 复习">
+      <created>1653708915053</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708915053</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,37 +291,38 @@
     <MESSAGE value="test input" />
     <MESSAGE value="修改为python3的语法" />
     <MESSAGE value="字符串拼接" />
-    <option name="LAST_COMMIT_MESSAGE" value="字符串拼接" />
+    <MESSAGE value="基本类型 复习" />
+    <option name="LAST_COMMIT_MESSAGE" value="基本类型 复习" />
   </component>
   <component name="WindowStateProjectService">
     <state x="811" y="401" key="#Notifications" timestamp="1653121280322">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653699248588">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653708914504">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653699248588" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653708914504" />
     <state x="709" y="294" key="FileChooserDialogImpl" timestamp="1651679276543">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1651679276543" />
-    <state width="1798" height="292" key="GridCell.Tab.0.bottom" timestamp="1653708533462">
+    <state width="1815" height="490" key="GridCell.Tab.0.bottom" timestamp="1653712563131">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
-    <state width="1798" height="292" key="GridCell.Tab.0.center" timestamp="1653708533462">
+    <state width="1815" height="490" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653712563131" />
+    <state width="1815" height="490" key="GridCell.Tab.0.center" timestamp="1653712563131">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
-    <state width="1798" height="292" key="GridCell.Tab.0.left" timestamp="1653708533461">
+    <state width="1815" height="490" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653712563131" />
+    <state width="1815" height="490" key="GridCell.Tab.0.left" timestamp="1653712563131">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533461" />
-    <state width="1798" height="292" key="GridCell.Tab.0.right" timestamp="1653708533462">
+    <state width="1815" height="490" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653712563131" />
+    <state width="1815" height="490" key="GridCell.Tab.0.right" timestamp="1653712563131">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="292" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
+    <state width="1815" height="490" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653712563131" />
     <state width="1815" height="364" key="GridCell.Tab.1.bottom" timestamp="1653665346544">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -331,6 +347,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="722" y="439" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1651926440021" />
+    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1653709680295">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1653709680295" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test$test_turtle.coverage" NAME="test_turtle Coverage Results" MODIFIED="1651755457897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
@@ -338,7 +358,7 @@
     <SUITE FILE_PATH="coverage/test$test_taxi.coverage" NAME="test_taxi Coverage Results" MODIFIED="1653707933889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_read_input.coverage" NAME="test_read_input Coverage Results" MODIFIED="1651754061595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_cions.coverage" NAME="test_cions Coverage Results" MODIFIED="1653121238007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
-    <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653708891125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653712563125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_range.coverage" NAME="test_range Coverage Results" MODIFIED="1653058216823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
   </component>
 </project>
