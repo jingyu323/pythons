@@ -69,9 +69,18 @@ name = "John" # 字符串
 a = b = c = 1
 a, b, c = 1, 2, "john"
 
-Python支持四种不同的数字类型：
+# Python支持四种不同的数字类型：
+#
+# int（有符号整型）
+# long（长整型，也可以代表八进制和十六进制）
+# float（浮点型）
+# complex（复数）
 
-int（有符号整型）
-long（长整型，也可以代表八进制和十六进制）
-float（浮点型）
-complex（复数）
+str = 'Hello World!'
+
+print(str)    # 输出完整字符串
+print(str[0])
+  # 输出字符串中的第一个字符
+print(str[2:5])
+  # 输出字符串中第三个至第六个之间的字符串
+print(str[2:])  # 输出字符串两次
