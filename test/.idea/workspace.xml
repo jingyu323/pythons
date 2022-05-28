@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="基本类型 复习">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/exam_77.py" afterDir="false" />
+    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/exam_80.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/总结.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +31,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
     </key>
@@ -175,7 +179,7 @@
       <workItem from="1651926386899" duration="673000" />
       <workItem from="1653054999655" duration="6386000" />
       <workItem from="1653314532687" duration="1688000" />
-      <workItem from="1653661473595" duration="36004000" />
+      <workItem from="1653661473595" duration="36613000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -331,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653750158804</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="基本类型 复习 77 练习题">
+      <created>1653751084093</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1653751084093</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,17 +357,18 @@
     <MESSAGE value="基本类型 复习" />
     <MESSAGE value="基本类型  题目76" />
     <MESSAGE value="基本类型  比较" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本类型  比较" />
+    <MESSAGE value="基本类型 复习 77 练习题" />
+    <option name="LAST_COMMIT_MESSAGE" value="基本类型 复习 77 练习题" />
   </component>
   <component name="WindowStateProjectService">
     <state x="811" y="401" key="#Notifications" timestamp="1653121280322">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653750158280">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653751083552">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653750158280" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653751083552" />
     <state width="1454" height="466" key="DebuggerActiveHint" timestamp="1653739241203">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -365,22 +377,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1651679276543" />
-    <state width="1815" height="250" key="GridCell.Tab.0.bottom" timestamp="1653750988911">
+    <state width="1798" height="247" key="GridCell.Tab.0.bottom" timestamp="1653751062862">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="250" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653750988911" />
-    <state width="1815" height="250" key="GridCell.Tab.0.center" timestamp="1653750988911">
+    <state width="1798" height="247" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653751062862" />
+    <state width="1798" height="247" key="GridCell.Tab.0.center" timestamp="1653751062862">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="250" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653750988911" />
-    <state width="1815" height="250" key="GridCell.Tab.0.left" timestamp="1653750988911">
+    <state width="1798" height="247" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653751062862" />
+    <state width="1798" height="247" key="GridCell.Tab.0.left" timestamp="1653751062862">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="250" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653750988911" />
-    <state width="1815" height="250" key="GridCell.Tab.0.right" timestamp="1653750988911">
+    <state width="1798" height="247" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653751062862" />
+    <state width="1798" height="247" key="GridCell.Tab.0.right" timestamp="1653751062862">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="250" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653750988911" />
+    <state width="1798" height="247" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653751062862" />
     <state width="1815" height="364" key="GridCell.Tab.1.bottom" timestamp="1653741223412">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
