@@ -34,3 +34,15 @@ str_test="88"+"44"
 print(str_test)
 
 ## for 循环
+for letter in 'Python':  # 第一个实例
+    print("当前字母: %s" % letter)
+
+fruits = ['banana', 'apple', 'mango']
+for fruit in fruits:  # 第二个实例
+    print('当前水果: %s' % fruit)
+print("index =====================")
+fruits = ['banana', 'apple', 'mango']
+for index in range(len(fruits)):
+    print('当前水果 : %s' % fruits[index])
+
+print("Good bye!")
