@@ -46,3 +46,32 @@ for index in range(len(fruits)):
     print('当前水果 : %s' % fruits[index])
 
 print("Good bye!")
+
+
+print(abs(-4.5))
+# while 循环
+max_loop = 9
+while  max_loop >0:
+    if max_loop ==3:
+
+        print( max_loop)
+    max_loop =max_loop -1
+    if max_loop == 6 :
+        print(" this is six")
+# if else
+
+# 类型定义
+counter = 100 # 直接是整型
+miles = 1000.0 # 浮点型
+name = "John" # 字符串
+
+# 多个变量赋值
+a = b = c = 1
+a, b, c = 1, 2, "john"
+
+Python支持四种不同的数字类型：
+
+int（有符号整型）
+long（长整型，也可以代表八进制和十六进制）
+float（浮点型）
+complex（复数）

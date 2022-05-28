@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/base_data_type.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/test_taxi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/base_data_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/base_data_type.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/test_taxi.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_taxi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,28 +81,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_open_file" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/test_open_file.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_range" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -117,6 +95,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/test_range.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_taxi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/test_taxi.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,10 +150,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.base_data_type" />
+        <item itemvalue="Python.test_taxi" />
         <item itemvalue="Python.test_cions" />
         <item itemvalue="Python.test_range" />
         <item itemvalue="Python.test_turtle" />
-        <item itemvalue="Python.test_open_file" />
       </list>
     </recent_temporary>
   </component>
@@ -171,7 +171,7 @@
       <workItem from="1651926386899" duration="673000" />
       <workItem from="1653054999655" duration="6386000" />
       <workItem from="1653314532687" duration="1688000" />
-      <workItem from="1653661473595" duration="1862000" />
+      <workItem from="1653661473595" duration="8545000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -236,7 +236,35 @@
       <option name="project" value="LOCAL" />
       <updated>1653121268905</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="修改为python3的语法">
+      <created>1653663680134</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1653663680134</updated>
+    </task>
+    <task id="LOCAL-00011" summary="修改为python3的语法">
+      <created>1653664744808</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1653664744808</updated>
+    </task>
+    <task id="LOCAL-00012" summary="字符串拼接">
+      <created>1653665491951</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1653665491951</updated>
+    </task>
+    <task id="LOCAL-00013" summary="字符串拼接">
+      <created>1653699249223</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653699249223</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,37 +275,54 @@
     <MESSAGE value="添加 cion teest" />
     <MESSAGE value="test input" />
     <MESSAGE value="修改为python3的语法" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改为python3的语法" />
+    <MESSAGE value="字符串拼接" />
+    <option name="LAST_COMMIT_MESSAGE" value="字符串拼接" />
   </component>
   <component name="WindowStateProjectService">
     <state x="811" y="401" key="#Notifications" timestamp="1653121280322">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="527" y="106" key="CommitChangelistDialog2" timestamp="1653121268402">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653699248588">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="527" y="106" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653121268402" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653699248588" />
     <state x="709" y="294" key="FileChooserDialogImpl" timestamp="1651679276543">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1651679276543" />
-    <state width="1815" height="295" key="GridCell.Tab.0.bottom" timestamp="1653121342638">
+    <state width="1798" height="292" key="GridCell.Tab.0.bottom" timestamp="1653708533462">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="295" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653121342638" />
-    <state width="1815" height="295" key="GridCell.Tab.0.center" timestamp="1653121342638">
+    <state width="1798" height="292" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
+    <state width="1798" height="292" key="GridCell.Tab.0.center" timestamp="1653708533462">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="295" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653121342638" />
-    <state width="1815" height="295" key="GridCell.Tab.0.left" timestamp="1653121342638">
+    <state width="1798" height="292" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
+    <state width="1798" height="292" key="GridCell.Tab.0.left" timestamp="1653708533461">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="295" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653121342638" />
-    <state width="1815" height="295" key="GridCell.Tab.0.right" timestamp="1653121342638">
+    <state width="1798" height="292" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533461" />
+    <state width="1798" height="292" key="GridCell.Tab.0.right" timestamp="1653708533462">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="295" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653121342638" />
+    <state width="1798" height="292" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653708533462" />
+    <state width="1815" height="364" key="GridCell.Tab.1.bottom" timestamp="1653665346544">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="364" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653665346544" />
+    <state width="1815" height="364" key="GridCell.Tab.1.center" timestamp="1653665346544">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="364" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653665346544" />
+    <state width="1815" height="364" key="GridCell.Tab.1.left" timestamp="1653665346544">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="364" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653665346544" />
+    <state width="1815" height="364" key="GridCell.Tab.1.right" timestamp="1653665346544">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="364" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653665346544" />
     <state x="430" y="184" key="SettingsEditor" timestamp="1651679610785">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -290,9 +335,10 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test$test_turtle.coverage" NAME="test_turtle Coverage Results" MODIFIED="1651755457897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_open_file.coverage" NAME="test_open_file Coverage Results" MODIFIED="1651754754872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$test_taxi.coverage" NAME="test_taxi Coverage Results" MODIFIED="1653707933889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_read_input.coverage" NAME="test_read_input Coverage Results" MODIFIED="1651754061595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_cions.coverage" NAME="test_cions Coverage Results" MODIFIED="1653121238007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
-    <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653663662877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653708533455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_range.coverage" NAME="test_range Coverage Results" MODIFIED="1653058216823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
   </component>
 </project>
