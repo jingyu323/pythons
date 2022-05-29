@@ -25,13 +25,13 @@ quguan()
 countsss = "ssssss" #麦叔粉丝数
 
 # 关注
-def guanzhu3333():
+def guanzhu3333(cou):
     global countsss
     countsss = countsss + "------"
     print('----{}'.format(countsss))
 
 
-guanzhu3333()
+guanzhu3333(countsss)
 
 print("countsss："+countsss)
 
