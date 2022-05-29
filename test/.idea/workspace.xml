@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/exam_65.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_basic_grama/test_ddd.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_ddd.py" afterDir="false" />
     </list>
@@ -44,7 +43,7 @@
       <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.exam_65">
+  <component name="RunManager" selected="Python.test_ddd">
     <configuration name="exam_65" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,8 +156,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.exam_65" />
         <item itemvalue="Python.test_ddd" />
+        <item itemvalue="Python.exam_65" />
         <item itemvalue="Python.exam_85_需要检查全局变量" />
         <item itemvalue="Python.exam_85" />
         <item itemvalue="Python.exam_77" />
@@ -181,7 +180,7 @@
       <workItem from="1653314532687" duration="1688000" />
       <workItem from="1653661473595" duration="43756000" />
       <workItem from="1653788181377" duration="1706000" />
-      <workItem from="1653800236741" duration="606000" />
+      <workItem from="1653800236741" duration="1749000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -365,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653785089740</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="方法内部传参数修改内部变量">
+      <created>1653833875682</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1653833875683</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,10 +395,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653785089269">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653833875003">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653785089269" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653833875003" />
     <state width="1454" height="466" key="DebuggerActiveHint" timestamp="1653739241203">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -509,7 +515,7 @@
     <SUITE FILE_PATH="coverage/test$child_height.coverage" NAME="child_height Coverage Results" MODIFIED="1653736039004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$exam_85.coverage" NAME="exam_85 Coverage Results" MODIFIED="1653782872395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$yundonghui.coverage" NAME="yundonghui Coverage Results" MODIFIED="1653742356021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
-    <SUITE FILE_PATH="coverage/test$test_ddd.coverage" NAME="test_ddd Coverage Results" MODIFIED="1653785294498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$test_ddd.coverage" NAME="test_ddd Coverage Results" MODIFIED="1653838125345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$exam_65.coverage" NAME="exam_65 Coverage Results" MODIFIED="1653788830962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$exam_77.coverage" NAME="exam_77 Coverage Results" MODIFIED="1653751062857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$test_84.coverage" NAME="test_84 Coverage Results" MODIFIED="1653750084637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
