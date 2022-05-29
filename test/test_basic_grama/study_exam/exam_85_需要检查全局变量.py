@@ -45,52 +45,50 @@ python 中 没有 switch 语句 就只能用 if else 代替
 """
 
 
-def reset(builder1,choose):
-    global  builder
+def reset(builder1, choose):
+    global builder
     if choose != "":
         builder = builder1[len(choose):]
         choose = ""
-    return  choose
+    return choose
 
+"""
+估计是因为在方法内部 所以如果需要改变的话也需要添加为globle
+"""
 
 def exam():
-    ops =input()
-
+    ops = input()
     ops_arr = ops.split()
-    choose=""
-    tab=""
-    global  builder
+    choose = ""
+    tab = ""
+    global builder
     builder = ""
-    for  op in ops_arr:
+    for op in ops_arr:
 
-        if op == "1" :
-            choose =reset(builder,choose)
+        if op == "1":
+            choose = reset(builder, choose)
             builder = builder + "A"
 
-
-        if op == "2"  :
+        if op == "2":
             if choose != "":
                 tab = choose
 
-        if op == "3" :
+        if op == "3":
             if choose != "":
                 tab = choose
                 choose = ""
-                builder =""
+                builder = ""
 
-
-        if op == "4" :
-            choose =reset(builder,choose)
+        if op == "4":
+            choose = reset(builder, choose)
             builder = builder + tab
 
-        if op == "5" :
+        if op == "5":
             if len(builder) != 0:
                 choose = builder
 
-        print(builder)
-        print(len(builder))
-
     print(len(builder))
+
 
 if __name__ == '__main__':
     exam()
