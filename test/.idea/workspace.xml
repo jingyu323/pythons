@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/char_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/char_count.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +43,7 @@
       <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.char_count">
+  <component name="RunManager" selected="Python.zhishuyinzi">
     <configuration name="char_count" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,28 +80,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/study_exam/exam_65.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="exam_85" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/study_exam/exam_85.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,13 +132,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="zhishuyinzi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.zhishuyinzi" />
         <item itemvalue="Python.char_count" />
         <item itemvalue="Python.test_ddd" />
         <item itemvalue="Python.exam_65" />
         <item itemvalue="Python.exam_85_需要检查全局变量" />
-        <item itemvalue="Python.exam_85" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +181,7 @@
       <workItem from="1653661473595" duration="43756000" />
       <workItem from="1653788181377" duration="1706000" />
       <workItem from="1653800236741" duration="2170000" />
-      <workItem from="1653922005445" duration="2980000" />
+      <workItem from="1653922005445" duration="5743000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -394,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653922518065</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="方法内部传参数修改内部变量">
+      <created>1654004278038</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1654004278038</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,10 +424,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1653922517545">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1654004277455">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1653922517545" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1654004277455" />
     <state width="1454" height="466" key="DebuggerActiveHint" timestamp="1653739241203">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -430,38 +436,38 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1651679276543" />
-    <state width="1815" height="403" key="GridCell.Tab.0.bottom" timestamp="1653922519967">
+    <state width="1815" height="403" key="GridCell.Tab.0.bottom" timestamp="1654005953298">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="403" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653922519967" />
-    <state width="1815" height="403" key="GridCell.Tab.0.center" timestamp="1653922519967">
+    <state width="1815" height="403" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1654005953298" />
+    <state width="1815" height="403" key="GridCell.Tab.0.center" timestamp="1654005953298">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="403" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653922519967" />
-    <state width="1815" height="403" key="GridCell.Tab.0.left" timestamp="1653922519966">
+    <state width="1815" height="403" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1654005953298" />
+    <state width="1815" height="403" key="GridCell.Tab.0.left" timestamp="1654005953298">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="403" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653922519966" />
-    <state width="1815" height="403" key="GridCell.Tab.0.right" timestamp="1653922519967">
+    <state width="1815" height="403" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1654005953298" />
+    <state width="1815" height="403" key="GridCell.Tab.0.right" timestamp="1654005953298">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="403" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653922519967" />
-    <state width="1798" height="360" key="GridCell.Tab.1.bottom" timestamp="1653782563040">
+    <state width="1815" height="403" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1654005953298" />
+    <state width="1815" height="363" key="GridCell.Tab.1.bottom" timestamp="1654005760961">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="360" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1653782563040" />
-    <state width="1798" height="360" key="GridCell.Tab.1.center" timestamp="1653782563040">
+    <state width="1815" height="363" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1654005760961" />
+    <state width="1815" height="363" key="GridCell.Tab.1.center" timestamp="1654005760960">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="360" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1653782563040" />
-    <state width="1798" height="360" key="GridCell.Tab.1.left" timestamp="1653782563040">
+    <state width="1815" height="363" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1654005760960" />
+    <state width="1815" height="363" key="GridCell.Tab.1.left" timestamp="1654005760960">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="360" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1653782563040" />
-    <state width="1798" height="360" key="GridCell.Tab.1.right" timestamp="1653782563040">
+    <state width="1815" height="363" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1654005760960" />
+    <state width="1815" height="363" key="GridCell.Tab.1.right" timestamp="1654005760960">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1798" height="360" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1653782563040" />
+    <state width="1815" height="363" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1654005760960" />
     <state x="430" y="184" key="SettingsEditor" timestamp="1653734600395">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -539,6 +545,16 @@
           <line>50</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_basic_grama/study_exam/zhishuyinzi.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -556,6 +572,7 @@
     <SUITE FILE_PATH="coverage/test$test_taxi.coverage" NAME="test_taxi Coverage Results" MODIFIED="1653722686115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$paidui.coverage" NAME="paidui Coverage Results" MODIFIED="1653743999902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$test_read_input.coverage" NAME="test_read_input Coverage Results" MODIFIED="1651754061595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$zhishuyinzi.coverage" NAME="zhishuyinzi Coverage Results" MODIFIED="1654005953291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$test_cions.coverage" NAME="test_cions Coverage Results" MODIFIED="1653121238007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653745004445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$exam_85_.coverage" NAME="exam_85_需要检查全局变量 Coverage Results" MODIFIED="1653784704998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
