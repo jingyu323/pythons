@@ -21,13 +21,16 @@ res=""
 # print(res[0:len(res)-1])
 # # 只要能除尽说明是因子说明不是质数
 # print(10%5)
-num1 = 180
+num1 = int(input())
 res=""
-num =  int(math.sqrt( num1))+1
 
-for i in range( 2,num):
+for i in range( 2, int(math.sqrt( num1)+1)):
     while num1 % i == 0:
         res = res + str(i)+" "
-        num1 = num1 / i
+        num1 = num1 // i
+if num1 >1:
+    res = res + str(num1) + " "
+
+print(res)
 
 print(res)
