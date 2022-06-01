@@ -32,5 +32,3 @@ if num1 >1:
     res = res + str(num1) + " "
 
 print(res)
-
-print(res)
