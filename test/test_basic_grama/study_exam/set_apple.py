@@ -17,23 +17,19 @@
 复制
 输出：
 8
+
+
 """
 
-def baoli():
-    print("sss")
 
-    input = input()
-    input_arr = input.split()
-    n = input_arr[0]
-    m = input_arr[1]
-
-    sum =0
-    for nn in range(n):
-        for mm in  range(m):
-            sum = sum +1
-
-    print(sum)
+def putApple(m, n):
+    if m == 0 or n == 1:
+        return 1
+    elif n > m:
+        return putApple(m, m)
+    else:
+        return putApple(m, n - 1) + putApple(m - n, n)
 
 
-if __name__ == '__main__':
-    baoli()
+n, m = map(int, input().split())
+print(putApple(n, m))
