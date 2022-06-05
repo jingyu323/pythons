@@ -21,7 +21,7 @@ def BFS(graph,s):
     seen.append(s)
 
     while (len(queue) > 0):
-        vertex = queue.pop(0)
+        vertex = queue.pop(0) # 弹出第一位 先进先出
         nodes=graph[vertex]
         for node in nodes:
             if node not  in seen:
