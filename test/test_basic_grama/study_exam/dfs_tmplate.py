@@ -38,7 +38,7 @@ def dFS(graph,s):
     seek.append(s)
 
     while(len(stack) >0):
-        node = stack.pop();
+        node = stack.pop(); # 弹出最后一位
         nibers = graph[node]
         for nd in nibers:
             if nd not  in seek:

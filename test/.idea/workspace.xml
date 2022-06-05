@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/dfs_tmplate.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/dfs_tmplate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +181,7 @@
       <workItem from="1653788181377" duration="1706000" />
       <workItem from="1653800236741" duration="2170000" />
       <workItem from="1653922005445" duration="14799000" />
-      <workItem from="1654250619479" duration="21494000" />
+      <workItem from="1654250619479" duration="21996000" />
     </task>
     <task id="LOCAL-00001" summary="test input">
       <created>1651679673181</created>
@@ -478,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654471694323</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="方法内部传参数修改内部变量">
+      <created>1654471941013</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1654471941013</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,10 +518,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1654471693862">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1654471940538">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1654471693862" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1654471940538" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654389966742">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
