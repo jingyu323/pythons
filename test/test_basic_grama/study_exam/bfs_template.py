@@ -19,7 +19,7 @@ def BFS(graph,s):
     queue.append(s)
     seen = [] #保存访问过的节点
     seen.append(s)
-
+    parent = {s: None}  # 字典
     while (len(queue) > 0):
         vertex = queue.pop(0) # 弹出第一位 先进先出
         nodes=graph[vertex]
@@ -27,5 +27,7 @@ def BFS(graph,s):
             if node not  in seen:
                 queue.append(node)
                 seen.append(node)
+                parent[node] = vertex
         print(vertex)
+    print(parent)
 BFS(graph,"A")

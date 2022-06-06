@@ -36,6 +36,7 @@ def dFS(graph,s):
     seek = []
     stack.append(s)
     seek.append(s)
+    parent = {s: None}  # 字典
 
     while(len(stack) >0):
         node = stack.pop(); # 弹出最后一位
@@ -47,4 +48,4 @@ def dFS(graph,s):
         print(node)
         result.append(node)
     print(result)
-dFS(G,"A")
+dFS(graph,"A")
