@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import xlwings as xw
+import sqlite3
+from bs4 import BeautifulSoup
 
 import requests
 cookies="Hm_lvt_740e2ff15c1b3cd6b1101df9015e2ddf=1652844442,1654478388; wxy_ssid=86FE0C6F7C3E6C2AB6BD4E8F1D7A852F; Hm_lpvt_740e2ff15c1b3cd6b1101df9015e2ddf=1654572702; JSESSIONID=25324A7B342468B728C1D364594ECC85"
@@ -19,7 +21,9 @@ s.headers = {
         'Cookie': 'Hm_lvt_740e2ff15c1b3cd6b1101df9015e2ddf=1652844442,1654478388; wxy_ssid=86FE0C6F7C3E6C2AB6BD4E8F1D7A852F; Hm_lpvt_740e2ff15c1b3cd6b1101df9015e2ddf=1654572702; JSESSIONID=25324A7B342468B728C1D364594ECC85',
     }
 
-r = s.post('https://www.wanxiangyun.net/service/search/list?q=尔滨市科佳通用机电股份有限公司&sort=1&type=2&trk=index&page=1')
+current_page=1
+url='https://www.wanxiangyun.net/service/search/list?q=IP网络物理&sort=1&type=2&trk=index&page=' + str(current_page)
+r = s.post(url)
 
 cookie = r.cookies
 
@@ -32,21 +36,22 @@ total_count=int(data2["total_count"])
 print(data2["total_count"])
 print(data2["patents"])
 total_page= (total_count-1)//page_size +1
-current_page=1
+
 
 workbook = xw.Book("d:\\专利.xlsx") #连接excel文件
 
 #
 # workbook.save('专利.xlsx')
 # workbook.close()
-titles = ["专利名称", "摘要", "申请号", "公开号", "最早公开日", "申请日期", "申请人"]
+titles = ["专利名称", "摘要", "申请号", "公开号", "最早公开日", "申请日期", "申请人","状态","代理机构"]
 
-sheet1 = workbook.sheets["Sheet1"]
+sheet1 = workbook.sheets["IP网络物理"]
 print(sheet1.name)
 sheet1.range("A1").value=titles
 index=2
 while current_page <= total_page:
-    r = s.post('https://www.wanxiangyun.net/service/search/list?q=尔滨市科佳通用机电股份有限公司&sort=1&type=2&trk=index&page=' + str(current_page))
+    r = s.post(url)
+    print(r.text)
     data2 = json.loads(r.text)
     for iten   in data2["patents"]:
         row=[]
@@ -54,8 +59,14 @@ while current_page <= total_page:
         title = iten['title']['original']
         row.append(title)
         # 摘要
-        abstract = iten['abstract']['original']
-        row.append(abstract)
+        if iten['abstract']['original'] == "en":
+            abstract = iten['abstract']['zh-cn']
+            if abstract == "":
+                abstract = iten['abstract']['original']
+            row.append(abstract)
+        else:
+            abstract = iten['abstract']['original']
+            row.append(abstract)
         #申请号 application_number
         application_number = iten['application_number']
         row.append(application_number)
@@ -70,8 +81,39 @@ while current_page <= total_page:
         application_date = iten['application_date']
         row.append(application_date)
         # 公司名称
-        com_name=iten['applicants'][0]['name']['original']
-        row.append(com_name)
+        if  len(iten['applicants']) > 0:
+            com_name=iten['applicants'][0]['name']['original']
+            print(com_name)
+            row.append(com_name)
+        else:
+            row.append("")
+
+        # 状态
+        status =iten['legal_status']
+        pls =int(iten['pls'])
+        prl =iten['prl']
+        free_to_operate =iten['free_to_operate']
+        status_str=""
+        if status !="":
+            if status != "3" and status != "1" and  pls > 0  and prl > 0:
+                status_str= status_str + "有效:剩余"+str(prl)+"年"
+            else:
+                status_str = status_str + "失效"
+
+        if free_to_operate == 1:
+            status_str = status_str +  " 非公用"
+        elif free_to_operate == 2:
+            status_str = status_str + " 公用"
+        else:
+            status_str = status_str + " 未知公用"
+        row.append(status_str)
+        # 代理机构
+
+        agencies=iten.get("agencies","")
+        if agencies != "":
+            row.append(agencies[0])
+        else:
+            row.append("")
         rownum  = "A"+str(index)
 
         sheet1.range(rownum).value = row
