@@ -19,3 +19,9 @@ for key in d:
 # 上下两种方式等价 d.items() <=> dict.items(d)
 for key, value in dict.items(d):
     print(key, value)
+
+
+try:
+    print(2)
+except Exception:
+    print()
