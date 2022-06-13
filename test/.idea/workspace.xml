@@ -42,7 +42,7 @@
       <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hechangdui">
+  <component name="RunManager" selected="Python.test_range">
     <configuration name="bei_bao" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,7 +131,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_permutations" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_range" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,7 +144,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/test_permutations.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_basic_grama/test_range.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_range" />
         <item itemvalue="Python.hechangdui" />
         <item itemvalue="Python.test_arr" />
         <item itemvalue="Python.test_list" />
         <item itemvalue="Python.bei_bao" />
-        <item itemvalue="Python.test_permutations" />
       </list>
     </recent_temporary>
   </component>
@@ -185,21 +185,8 @@
       <workItem from="1654636962774" duration="575000" />
       <workItem from="1654774701690" duration="6019000" />
       <workItem from="1654900463246" duration="15404000" />
-      <workItem from="1655032514637" duration="305000" />
-    </task>
-    <task id="LOCAL-00005" summary="添加 cion teest">
-      <created>1653057293899</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1653057293899</updated>
-    </task>
-    <task id="LOCAL-00006" summary="test input">
-      <created>1653059916947</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1653059916947</updated>
+      <workItem from="1655032514637" duration="608000" />
+      <workItem from="1655131460266" duration="1565000" />
     </task>
     <task id="LOCAL-00007" summary="test input">
       <created>1653120252979</created>
@@ -530,7 +517,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654871745456</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="方法内部传参数修改内部变量">
+      <created>1655032885412</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1655032885412</updated>
+    </task>
+    <task id="LOCAL-00055" summary="方法内部传参数修改内部变量">
+      <created>1655033082354</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1655033082355</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,10 +565,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1654871744931">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655033081827">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1654871744931" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655033081827" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -576,22 +577,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1654782916136" />
-    <state width="1815" height="372" key="GridCell.Tab.0.bottom" timestamp="1654943666547">
+    <state width="1815" height="372" key="GridCell.Tab.0.bottom" timestamp="1655033114485">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="372" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1654943666547" />
-    <state width="1815" height="372" key="GridCell.Tab.0.center" timestamp="1654943666547">
+    <state width="1815" height="372" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1655033114485" />
+    <state width="1815" height="372" key="GridCell.Tab.0.center" timestamp="1655033114484">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="372" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1654943666547" />
-    <state width="1815" height="372" key="GridCell.Tab.0.left" timestamp="1654943666547">
+    <state width="1815" height="372" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1655033114484" />
+    <state width="1815" height="372" key="GridCell.Tab.0.left" timestamp="1655033114484">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="372" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1654943666547" />
-    <state width="1815" height="372" key="GridCell.Tab.0.right" timestamp="1654943666547">
+    <state width="1815" height="372" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1655033114484" />
+    <state width="1815" height="372" key="GridCell.Tab.0.right" timestamp="1655033114484">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="372" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1654943666547" />
+    <state width="1815" height="372" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1655033114484" />
     <state width="1815" height="366" key="GridCell.Tab.1.bottom" timestamp="1654941806545">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -732,6 +733,6 @@
     <SUITE FILE_PATH="coverage/test$zhishuyinzi.coverage" NAME="zhishuyinzi Coverage Results" MODIFIED="1654040202736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$base_data_type.coverage" NAME="base_data_type Coverage Results" MODIFIED="1653745004445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$exam_85_.coverage" NAME="exam_85_需要检查全局变量 Coverage Results" MODIFIED="1654318390978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
-    <SUITE FILE_PATH="coverage/test$test_range.coverage" NAME="test_range Coverage Results" MODIFIED="1653058216823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$test_range.coverage" NAME="test_range Coverage Results" MODIFIED="1655134924109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
   </component>
 </project>
