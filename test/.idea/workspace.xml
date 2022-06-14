@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/hechangdui2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/hechangdui.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/hechangdui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,14 +188,7 @@
       <workItem from="1654900463246" duration="15404000" />
       <workItem from="1655032514637" duration="608000" />
       <workItem from="1655131460266" duration="2264000" />
-      <workItem from="1655166315736" duration="2878000" />
-    </task>
-    <task id="LOCAL-00009" summary="修改为python3的语法">
-      <created>1653121268905</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1653121268905</updated>
+      <workItem from="1655166315736" duration="4698000" />
     </task>
     <task id="LOCAL-00010" summary="修改为python3的语法">
       <created>1653663680134</created>
@@ -533,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655214248335</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="方法内部传参数修改内部变量">
+      <created>1655215758800</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1655215758800</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,10 +567,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655214247614">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655215758302">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655214247614" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655215758302" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -579,22 +579,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1654782916136" />
-    <state width="1815" height="394" key="GridCell.Tab.0.bottom" timestamp="1655215222521">
+    <state width="1815" height="394" key="GridCell.Tab.0.bottom" timestamp="1655215677679">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1655215222521" />
-    <state width="1815" height="394" key="GridCell.Tab.0.center" timestamp="1655215222521">
+    <state width="1815" height="394" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
+    <state width="1815" height="394" key="GridCell.Tab.0.center" timestamp="1655215677679">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1655215222521" />
-    <state width="1815" height="394" key="GridCell.Tab.0.left" timestamp="1655215222521">
+    <state width="1815" height="394" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
+    <state width="1815" height="394" key="GridCell.Tab.0.left" timestamp="1655215677679">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1655215222521" />
-    <state width="1815" height="394" key="GridCell.Tab.0.right" timestamp="1655215222521">
+    <state width="1815" height="394" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
+    <state width="1815" height="394" key="GridCell.Tab.0.right" timestamp="1655215677679">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1655215222521" />
+    <state width="1815" height="394" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
     <state width="1815" height="366" key="GridCell.Tab.1.bottom" timestamp="1654941806545">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
