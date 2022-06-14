@@ -41,18 +41,24 @@ def mo(h1):
 S = max(h)
 print(S)
 tm_h=[ x for x in h]
+sun_index=0
 while True:
     try:
         x = tm_h.index(S)
+        sun_index = sun_index + x
     except Exception:
         break
     if x > 0:
-        int_max_index_arr.append(x)
+        int_max_index_arr.append(sun_index)
         tm_h = tm_h[x+1:]
     else:
         break
+print(int_max_index_arr)
+print("--------------")
 renshu=10001
 for index in  int_max_index_arr:
+
+    print("index =",index)
 
 
     hy = h[:index]
@@ -60,6 +66,7 @@ for index in  int_max_index_arr:
     my = h[index + 1:]
     print(my)
     left = N - int(shi(hy)) - int(mo(my)) - 1
+    print("left =",left)
     renshu =  min(renshu,left)
     print(renshu)
 print(renshu)
