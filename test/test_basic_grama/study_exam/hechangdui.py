@@ -56,12 +56,14 @@ while True:
 print(int_max_index_arr)
 print("--------------")
 renshu=10001
+lop_index=0
 for index in  int_max_index_arr:
 
     print("index =",index)
-
-
+    print("lop_index =",lop_index)
     hy = h[:index]
+    if lop_index -1 >=0:
+        hy = h[int_max_index_arr[lop_index-1]:index]
     print(hy)
     my = h[index + 1:]
     print(my)
@@ -69,6 +71,7 @@ for index in  int_max_index_arr:
     print("left =",left)
     renshu =  min(renshu,left)
     print(renshu)
+    lop_index = lop_index +1
 print(renshu)
 
 
