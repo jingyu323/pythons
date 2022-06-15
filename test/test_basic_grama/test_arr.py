@@ -6,3 +6,8 @@ tem = list
 tem[0]=3
 
 print(list)
+
+
+dp = [1] * len(list)
+
+print(dp)

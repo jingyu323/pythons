@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/hechangdui2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +42,7 @@
       <recent name="E:\git_project\pythons\test\test_basic_grama\study_exam" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hechangdui">
+  <component name="RunManager" selected="Python.test_arr">
     <configuration name="bei_bao" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,9 +155,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_arr" />
         <item itemvalue="Python.hechangdui" />
         <item itemvalue="Python.test_range" />
-        <item itemvalue="Python.test_arr" />
         <item itemvalue="Python.test_list" />
         <item itemvalue="Python.bei_bao" />
       </list>
@@ -188,21 +187,7 @@
       <workItem from="1654900463246" duration="15404000" />
       <workItem from="1655032514637" duration="608000" />
       <workItem from="1655131460266" duration="2264000" />
-      <workItem from="1655166315736" duration="4698000" />
-    </task>
-    <task id="LOCAL-00010" summary="修改为python3的语法">
-      <created>1653663680134</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1653663680134</updated>
-    </task>
-    <task id="LOCAL-00011" summary="修改为python3的语法">
-      <created>1653664744808</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1653664744808</updated>
+      <workItem from="1655166315736" duration="7606000" />
     </task>
     <task id="LOCAL-00012" summary="字符串拼接">
       <created>1653665491951</created>
@@ -533,7 +518,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655215758800</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="方法内部传参数修改内部变量">
+      <created>1655219699616</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1655219699616</updated>
+    </task>
+    <task id="LOCAL-00060" summary="方法内部传参数修改内部变量">
+      <created>1655219755369</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1655219755369</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,10 +566,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655215758302">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655219754939">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655215758302" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655219754939" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -579,22 +578,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="294" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1654782916136" />
-    <state width="1815" height="394" key="GridCell.Tab.0.bottom" timestamp="1655215677679">
+    <state width="1815" height="434" key="GridCell.Tab.0.bottom" timestamp="1655219703455">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
-    <state width="1815" height="394" key="GridCell.Tab.0.center" timestamp="1655215677679">
+    <state width="1815" height="434" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1655219703455" />
+    <state width="1815" height="434" key="GridCell.Tab.0.center" timestamp="1655219703455">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
-    <state width="1815" height="394" key="GridCell.Tab.0.left" timestamp="1655215677679">
+    <state width="1815" height="434" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1655219703455" />
+    <state width="1815" height="434" key="GridCell.Tab.0.left" timestamp="1655219703455">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
-    <state width="1815" height="394" key="GridCell.Tab.0.right" timestamp="1655215677679">
+    <state width="1815" height="434" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1655219703455" />
+    <state width="1815" height="434" key="GridCell.Tab.0.right" timestamp="1655219703455">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1815" height="394" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1655215677679" />
+    <state width="1815" height="434" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1655219703455" />
     <state width="1815" height="366" key="GridCell.Tab.1.bottom" timestamp="1654941806545">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -715,7 +714,7 @@
     <SUITE FILE_PATH="coverage/test$exam_65.coverage" NAME="exam_65 Coverage Results" MODIFIED="1653788830962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$set_apple.coverage" NAME="set_apple Coverage Results" MODIFIED="1654307264112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$char_count.coverage" NAME="char_count Coverage Results" MODIFIED="1653922454748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
-    <SUITE FILE_PATH="coverage/test$test_arr.coverage" NAME="test_arr Coverage Results" MODIFIED="1654943293886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$test_arr.coverage" NAME="test_arr Coverage Results" MODIFIED="1655304128958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$exam_77.coverage" NAME="exam_77 Coverage Results" MODIFIED="1653751062857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$test_turtle.coverage" NAME="test_turtle Coverage Results" MODIFIED="1651755457897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_list.coverage" NAME="test_list Coverage Results" MODIFIED="1654937578977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
