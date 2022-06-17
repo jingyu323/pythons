@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/test_arr.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_arr.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +29,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../python/pythons/wordclound/sfsd.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -211,14 +212,8 @@
       <workItem from="1655032514637" duration="608000" />
       <workItem from="1655131460266" duration="2264000" />
       <workItem from="1655166315736" duration="7916000" />
-      <workItem from="1655330229114" duration="1232000" />
-    </task>
-    <task id="LOCAL-00014" summary="基本类型 复习">
-      <created>1653708785346</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1653708785346</updated>
+      <workItem from="1655330229114" duration="1828000" />
+      <workItem from="1655479883927" duration="353000" />
     </task>
     <task id="LOCAL-00015" summary="基本类型 复习">
       <created>1653708915053</created>
@@ -556,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655337625359</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="方法内部传参数修改内部变量">
+      <created>1655394440350</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1655394440350</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,10 +592,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655337624254">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655394439794">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655337624254" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655394439794" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>

@@ -21,3 +21,6 @@ mylist = [1,2,3]
 print(tuple(mylist))
 iarray = np.array(tuple(mylist))
 print( iarray)
+
+names = ['a', 'b', 'c', 'd', 'b']
+names.remove('b')
