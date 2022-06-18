@@ -24,3 +24,5 @@ print( iarray)
 
 names = ['a', 'b', 'c', 'd', 'b']
 names.remove('b')
+
+import   bs4
