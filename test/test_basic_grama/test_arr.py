@@ -25,4 +25,10 @@ print( iarray)
 names = ['a', 'b', 'c', 'd', 'b']
 names.remove('b')
 
-import   bs4
+import numpy as np
+
+# 将列表转换为numpy的数组
+a = np.array(["a", "b", "c", "a", "d", "a"])
+# 获取元素的下标位置
+eq_letter = np.where(a == "a")
+print(eq_letter[0])  # [0 3 5]
