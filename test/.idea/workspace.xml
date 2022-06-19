@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/test_arr.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_arr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,14 +212,7 @@
       <workItem from="1655131460266" duration="2264000" />
       <workItem from="1655166315736" duration="7916000" />
       <workItem from="1655330229114" duration="1828000" />
-      <workItem from="1655479883927" duration="1948000" />
-    </task>
-    <task id="LOCAL-00017" summary="基本类型 复习">
-      <created>1653723383873</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1653723383873</updated>
+      <workItem from="1655479883927" duration="3141000" />
     </task>
     <task id="LOCAL-00018" summary="基本类型 复习">
       <created>1653726281162</created>
@@ -557,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655563807952</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="方法内部传参数修改内部变量">
+      <created>1655564280831</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1655564280831</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,10 +591,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655563807302">
+    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655564280307">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655563807302" />
+    <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655564280307" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -739,7 +739,7 @@
     <SUITE FILE_PATH="coverage/test$exam_65.coverage" NAME="exam_65 Coverage Results" MODIFIED="1653788830962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$set_apple.coverage" NAME="set_apple Coverage Results" MODIFIED="1654307264112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$char_count.coverage" NAME="char_count Coverage Results" MODIFIED="1653922454748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
-    <SUITE FILE_PATH="coverage/test$test_arr.coverage" NAME="test_arr Coverage Results" MODIFIED="1655564270828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
+    <SUITE FILE_PATH="coverage/test$test_arr.coverage" NAME="test_arr Coverage Results" MODIFIED="1655653123763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$exam_77.coverage" NAME="exam_77 Coverage Results" MODIFIED="1653751062857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/study_exam" />
     <SUITE FILE_PATH="coverage/test$test_turtle.coverage" NAME="test_turtle Coverage Results" MODIFIED="1651755457897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama" />
     <SUITE FILE_PATH="coverage/test$test_list.coverage" NAME="test_list Coverage Results" MODIFIED="1654937578977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

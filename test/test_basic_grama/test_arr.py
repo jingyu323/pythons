@@ -32,3 +32,17 @@ a = np.array(["a", "b", "c", "a", "d", "a"])
 # 获取元素的下标位置
 eq_letter = np.where(a == "a")
 print(eq_letter[0])  # [0 3 5]
+
+
+nums = [1,5,7,8,9,6,3,11,20,17]
+n, sum = len(nums), sum(nums)
+isOK = [[False]*(sum//2+1) for _ in range(n//2+1)]
+isOK[0][0]=True
+for k in range(1,n+1):
+    for i in range(min(k,n//2),0,-1):
+        for v in range(1,sum//2+1):
+            if v >= nums[k-1] and isOK[i-1][v-nums[k-1]]:
+                isOK[i][v] = True
+for i in range(n//2+1):
+    for j in range(sum//2+1):
+        print(isOK[i][j],end=' ')
