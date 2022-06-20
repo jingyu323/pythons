@@ -1,8 +1,8 @@
 import bisect
 import csv
 import http
+import random
 from datetime import time
-from random import random
 from socket import socket
 
 import requests
