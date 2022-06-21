@@ -143,6 +143,8 @@ def write_data(data, name):
             f_csv = csv.writer(f)
             f_csv.writerows(data)
 
+
+
 if __name__ == '__main__':
     url ='http://www.weather.com.cn/weather/101190401.shtml'
     html = get_content(url)
