@@ -17,6 +17,9 @@ def get_max_sub(arr):  # 定义获取最长子序列函数
     return dp
 
 
+
+
+
 while True:
     try:
         n = int(input())
