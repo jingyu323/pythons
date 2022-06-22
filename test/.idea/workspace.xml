@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/test_arr.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/test_arr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/hechang3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/hechang3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,14 +214,7 @@
       <workItem from="1655166315736" duration="7916000" />
       <workItem from="1655330229114" duration="1828000" />
       <workItem from="1655479883927" duration="4730000" />
-      <workItem from="1655813321532" duration="1926000" />
-    </task>
-    <task id="LOCAL-00020" summary="基本类型 复习">
-      <created>1653742514736</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1653742514736</updated>
+      <workItem from="1655813321532" duration="4794000" />
     </task>
     <task id="LOCAL-00021" summary="基本类型  题目76">
       <created>1653744045583</created>
@@ -559,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655653733430</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="方法内部传参数修改内部变量">
+      <created>1655825886531</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1655825886532</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,9 +593,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="683" y="5" key="CommitChangelistDialog2" timestamp="1655653732943">
-      <screen x="0" y="0" width="1858" height="1080" />
+    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1655825885692">
+      <screen x="0" y="0" width="1842" height="1080" />
     </state>
+    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1655825885692" />
     <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655653732943" />
     <state width="1461" height="466" key="DebuggerActiveHint" timestamp="1654940319628">
       <screen x="0" y="0" width="1858" height="1080" />

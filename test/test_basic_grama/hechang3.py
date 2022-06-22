@@ -1,5 +1,7 @@
 import bisect  # 导入查找模块
-
+""""
+https://www.nowcoder.com/practice/6d9d69e3898f45169a441632b325c7b4
+"""
 
 def get_max_sub(arr):  # 定义获取最长子序列函数
     res = [arr[0]]  # 将传入的列表第一个参数放入res
