@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="" />
+    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/总结.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,6 +215,7 @@
       <workItem from="1655330229114" duration="1828000" />
       <workItem from="1655479883927" duration="4730000" />
       <workItem from="1655813321532" duration="4854000" />
+      <workItem from="1655919161815" duration="755000" />
     </task>
     <task id="LOCAL-00022" summary="基本类型  比较">
       <created>1653750158804</created>
