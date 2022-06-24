@@ -7,6 +7,21 @@ b = dict(Counter(a))
 print ([key for key,value in b.items()if value > 1]) #只展示重复元素
 print ({key:value for key,value in b.items()if value > 1}) #展现重复元素和重复次数
 
+
+a = {'device_type': 'cisco_ios', 'username': 'admin', 'password': 'cisco'}
+
+
+
+b = {'name': 'r1'}
+
+b.update(a)
+
+print(b)
+
+dp = [[0 for i in range(V+1)] for j in range(n+1)]
+
+
+
 N =int(input())
 input_res=set()
 for i in  range(N):
@@ -15,6 +30,5 @@ for i in  range(N):
 lee =sorted(input_res)
 for i in lee:
     print(i)
-
 
 
