@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/ttt.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/ttt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +70,9 @@
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -157,6 +158,9 @@
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -211,6 +215,7 @@
       <workItem from="1655479883927" duration="4730000" />
       <workItem from="1655813321532" duration="4854000" />
       <workItem from="1655919161815" duration="6579000" />
+      <workItem from="1656106857842" duration="1866000" />
     </task>
     <task id="LOCAL-00026" summary="方法内部传参数修改内部变量">
       <created>1653785089740</created>
