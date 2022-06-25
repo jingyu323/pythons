@@ -6,8 +6,13 @@ b = dict(Counter(a))
 
 print ([key for key,value in b.items()if value > 1]) #只展示重复元素
 print ({key:value for key,value in b.items()if value > 1}) #展现重复元素和重复次数
+V =10
+n=16
+# [0 for j in range(V + 1)]  一维数组的内容
+# for i in range(n + 1) 元素的  二维数组的个使用
+dp = [[0 for j in range(V + 1)] for i in range(n + 1)]
 
-
+print(dp)
 a = {'device_type': 'cisco_ios', 'username': 'admin', 'password': 'cisco'}
 
 

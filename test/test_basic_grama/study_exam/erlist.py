@@ -45,7 +45,9 @@ i
 # 计算01背包问题的结果
 # @param V int整型 背包的体积
 # @param n int整型 物品的个数
-# @param vw int整型二维数组 第一维度为n,第二维度为2的二维数组,vw[i][0],vw[i][1]分别描述i+1个物品的vi,wi
+# @param vw int整型二维数组 第一维度为n,
+第二维度为2的二维数组,vw[i][0],
+vw[i][1]分别描述i+1个物品的vi,wi
 # @return int整型
 """
 
@@ -59,9 +61,15 @@ class Solution:
         vw.insert(0,[0,0])
         '''对每一行进行遍历，注意，行的index就是代表考虑最近的index件物品'''
         for row in range(1,n+1):
-            for col in range(V+1):
+            for col in range(V+1):  # 所以添加V+1 是初始化0数据表示开始
                 if vw[row][0]> col:
                     dp[row][col] = dp[row-1][col]
                 else:
                     dp[row][col] = max(dp[row-1][col], dp[row-1][col-vw[row][0]] + vw[row][1])
         return dp[n][V]
+
+
+ss = Solution()
+
+res= ss.knapsack(10,2,[[1,3],[9,8]])
+print(res)
