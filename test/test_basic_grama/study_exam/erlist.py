@@ -64,8 +64,14 @@ class Solution:
             for col in range(V+1):  # 所以添加V+1 是初始化0数据表示开始
                 if vw[row][0]> col:
                     dp[row][col] = dp[row-1][col]
+                    print(
+                        dp[row][col]
+                    )
                 else:
                     dp[row][col] = max(dp[row-1][col], dp[row-1][col-vw[row][0]] + vw[row][1])
+                    print(
+                        dp[row][col]
+                    )
         return dp[n][V]
 
 
