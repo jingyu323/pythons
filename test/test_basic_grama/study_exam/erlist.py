@@ -10,7 +10,7 @@ https://www.nowcoder.com/practice/2820ea076d144b30806e72de5e5d4bbf?tpId=196
 返回值：4
 已知一个背包最多能容纳体积之和为v的物品
 
-现有 n 个物品，第 i 个物品的体积为 vi , 重量为 wi
+现有 n 个物品，第 i 个物品的体积为 vi , 重量为 wix
 
 求当前背包最多能装多大重量的物品?
 
@@ -28,8 +28,7 @@ i
 10,2,[[1,3],[10,4]]
 复制
 返回值：
-4
-复制
+
 说明：
 第一个物品的体积为1，重量为3，第二个物品的体积为10，重量为4。只取第二个物品可以达到最优方案，取物重量为4
 示例2
@@ -63,7 +62,7 @@ class Solution:
         for row in range(1,n+1):
             for col in range(V+1):  # 所以添加V+1 是初始化0数据表示开始
                 if vw[row][0]> col:
-                    dp[row][col] = dp[row-1][col]
+                    dp[row][col] = dp[row-1][col] # 判断当前体积是否能装进背包，现在的体积就是这么打
                     print(
                         dp[row][col]
                     )
@@ -72,7 +71,6 @@ class Solution:
                     print(
                         dp[row][col]
                     )
-
                     print("===========")
         return dp[n][V]
 
