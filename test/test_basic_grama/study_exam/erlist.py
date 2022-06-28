@@ -71,7 +71,6 @@ class Solution:
                     print(
                         dp[row][col]
                     )
-                    print("===========")
         return dp[n][V]
 
 
