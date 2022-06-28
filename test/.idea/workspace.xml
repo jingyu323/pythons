@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,14 +220,8 @@
       <workItem from="1656257482251" duration="799000" />
       <workItem from="1656269854316" duration="3765000" />
       <workItem from="1656338731026" duration="1216000" />
-      <workItem from="1656376998860" duration="74000" />
-    </task>
-    <task id="LOCAL-00030" summary="方法内部传参数修改内部变量">
-      <created>1653922518065</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1653922518065</updated>
+      <workItem from="1656376998860" duration="1194000" />
+      <workItem from="1656448936864" duration="426000" />
     </task>
     <task id="LOCAL-00031" summary="方法内部传参数修改内部变量">
       <created>1654004278038</created>
@@ -564,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656341437149</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="方法内部传参数修改内部变量">
+      <created>1656429881967</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1656429881967</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,10 +600,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1656341436380">
+    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1656429881152">
       <screen x="0" y="0" width="1842" height="1080" />
     </state>
-    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1656341436380" />
+    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1656429881152" />
     <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655653732943" />
     <state width="1449" height="466" key="DebuggerActiveHint" timestamp="1656288204651">
       <screen x="0" y="0" width="1842" height="1080" />
@@ -746,7 +748,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py</url>
-          <line>77</line>
+          <line>74</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
