@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/erlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/总结.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +93,9 @@
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -218,14 +221,8 @@
       <workItem from="1656269854316" duration="3765000" />
       <workItem from="1656338731026" duration="1216000" />
       <workItem from="1656376998860" duration="1194000" />
-      <workItem from="1656448936864" duration="1816000" />
-    </task>
-    <task id="LOCAL-00032" summary="方法内部传参数修改内部变量">
-      <created>1654007239201</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1654007239201</updated>
+      <workItem from="1656448936864" duration="2428000" />
+      <workItem from="1656598523694" duration="1905000" />
     </task>
     <task id="LOCAL-00033" summary="方法内部传参数修改内部变量">
       <created>1654095022640</created>
@@ -563,7 +560,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656459060626</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="方法内部传参数修改内部变量">
+      <created>1656460744081</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1656460744081</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,10 +601,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1656459059946">
+    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1656460743474">
       <screen x="0" y="0" width="1842" height="1080" />
     </state>
-    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1656459059946" />
+    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1656460743474" />
     <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655653732943" />
     <state width="1449" height="466" key="DebuggerActiveHint" timestamp="1656288204651">
       <screen x="0" y="0" width="1842" height="1080" />
