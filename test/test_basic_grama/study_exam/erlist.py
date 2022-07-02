@@ -79,7 +79,7 @@ class Solution:
                     dp[row][col] = dp[row-1][col] # 判断当前体积是否能装进背包，现在的体积就是这么打
 
                 else:
-                    dp[row][col] = max(dp[row-1][col],   dp[row-1][col-vw[row][0]] + vw[row][1]) #  比较体积 加上价值
+                    dp[row][col] = max(dp[row-1][col],   dp[row-1][col-vw[row][0]] + vw[row][1]) #  比较体积 加上价值 col-vw[row][0]
 
         return dp[n][V]
 
