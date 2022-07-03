@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="" />
+    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/sushu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,6 +224,7 @@
       <workItem from="1656448936864" duration="2428000" />
       <workItem from="1656598523694" duration="2981000" />
       <workItem from="1656776628356" duration="569000" />
+      <workItem from="1656860761428" duration="1094000" />
     </task>
     <task id="LOCAL-00035" summary="方法内部传参数修改内部变量">
       <created>1654097488092</created>
