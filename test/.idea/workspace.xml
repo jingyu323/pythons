@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/sushu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/test_bag002.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,13 +224,7 @@
       <workItem from="1656598523694" duration="2981000" />
       <workItem from="1656776628356" duration="569000" />
       <workItem from="1656860761428" duration="1094000" />
-    </task>
-    <task id="LOCAL-00035" summary="方法内部传参数修改内部变量">
-      <created>1654097488092</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1654097488092</updated>
+      <workItem from="1656945342934" duration="302000" />
     </task>
     <task id="LOCAL-00036" summary="方法内部传参数修改内部变量">
       <created>1654178878372</created>
@@ -569,7 +562,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656776667249</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="方法内部传参数修改内部变量">
+      <created>1656945548359</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1656945548359</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
