@@ -8,7 +8,7 @@ def test_2_wei_bag_problem1(bag_size, weight, value) -> int:
         dp[i][0] = 1
         print(dp[i])
     first_item_weight, first_item_value = weight[0], value[0]
-# 初始化第一行数组
+# 初始化第一行数组，其实也就是初始化  动态规划的起始值，先初始化列，后在初始化第一行的值，因为这个是可以直接确定的
     for j in range(1, cols):
         if first_item_weight <= j:
             dp[0][j] = first_item_value
