@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:gitee" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
+    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="方法内部传参数修改内部变量">
+      <change afterPath="$PROJECT_DIR$/test_basic_grama/weather.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/test_bag002.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/test_bag002.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +160,9 @@
       <module name="test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_basic_grama/study_exam" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -223,6 +249,9 @@
       <workItem from="1656776628356" duration="569000" />
       <workItem from="1656860761428" duration="1094000" />
       <workItem from="1656945342934" duration="1521000" />
+      <workItem from="1657034145350" duration="227000" />
+      <workItem from="1657034385212" duration="826000" />
+      <workItem from="1657035248141" duration="743000" />
     </task>
     <task id="LOCAL-00038" summary="方法内部传参数修改内部变量">
       <created>1654318253622</created>
@@ -583,6 +612,17 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test  tuple" />
     <MESSAGE value="添加 cion teest" />
@@ -601,10 +641,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="811" y="401" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1653121280322" />
-    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1656979912672">
+    <state x="677" y="5" key="CommitChangelistDialog2" timestamp="1657034361767">
       <screen x="0" y="0" width="1842" height="1080" />
     </state>
-    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1656979912672" />
+    <state x="677" y="5" key="CommitChangelistDialog2/0.0.1842.1080@0.0.1842.1080" timestamp="1657034361767" />
     <state x="683" y="5" key="CommitChangelistDialog2/0.0.1858.1080@0.0.1858.1080" timestamp="1655653732943" />
     <state width="1449" height="466" key="DebuggerActiveHint" timestamp="1656288204651">
       <screen x="0" y="0" width="1842" height="1080" />
@@ -659,9 +699,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="430" y="184" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1653734600395" />
-    <state x="723" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1655304133389">
-      <screen x="0" y="0" width="1858" height="1080" />
+    <state x="717" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1657035503804">
+      <screen x="0" y="0" width="1842" height="1080" />
     </state>
+    <state x="717" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1842.1080@0.0.1842.1080" timestamp="1657035503804" />
     <state x="723" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1858.1080@0.0.1858.1080" timestamp="1655304133389" />
     <state x="92" y="92" width="1674" height="896" key="dock-window-1" timestamp="1653922463290">
       <screen x="0" y="0" width="1858" height="1080" />
@@ -675,9 +716,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="1141" y="163" width="598" height="798" key="find.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1654782142967" />
-    <state x="722" y="439" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1651926440021">
-      <screen x="0" y="0" width="1858" height="1080" />
+    <state x="716" y="439" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1657034547587">
+      <screen x="0" y="0" width="1842" height="1080" />
     </state>
+    <state x="716" y="439" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1842.1080@0.0.1842.1080" timestamp="1657034547587" />
     <state x="722" y="439" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1651926440021" />
     <state x="592" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1654387659975">
       <screen x="0" y="0" width="1858" height="1080" />
