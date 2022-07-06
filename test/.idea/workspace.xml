@@ -25,8 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="方法内部传参数修改内部变量">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/weather.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/test_bag002.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/test_bag002.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,14 +251,8 @@
       <workItem from="1656945342934" duration="1521000" />
       <workItem from="1657034145350" duration="227000" />
       <workItem from="1657034385212" duration="826000" />
-      <workItem from="1657035248141" duration="743000" />
-    </task>
-    <task id="LOCAL-00038" summary="方法内部传参数修改内部变量">
-      <created>1654318253622</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1654318253622</updated>
+      <workItem from="1657035248141" duration="1453000" />
+      <workItem from="1657114849489" duration="394000" />
     </task>
     <task id="LOCAL-00039" summary="方法内部传参数修改内部变量">
       <created>1654395218989</created>
@@ -596,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656979913193</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="方法内部传参数修改内部变量">
+      <created>1657036002947</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1657036002947</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,6 +623,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test  tuple" />
