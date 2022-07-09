@@ -25,8 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="方法内部传参数修改内部变量">
-      <change afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/test_for.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_basic_grama/study_exam/lasttones.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/study_exam/lasttones.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,14 +248,7 @@
       <workItem from="1657114849489" duration="1162000" />
       <workItem from="1657207396357" duration="1822000" />
       <workItem from="1657285815445" duration="2460000" />
-      <workItem from="1657319491540" duration="7857000" />
-    </task>
-    <task id="LOCAL-00043" summary="方法内部传参数修改内部变量">
-      <created>1654471941013</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1654471941013</updated>
+      <workItem from="1657319491540" duration="8580000" />
     </task>
     <task id="LOCAL-00044" summary="方法内部传参数修改内部变量">
       <created>1654472389045</created>
@@ -595,7 +586,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657294470191</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="方法内部传参数修改内部变量">
+      <created>1657355694434</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1657355694435</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +790,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test_basic_grama/study_exam/lasttones.py</url>
-          <line>17</line>
+          <line>26</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>

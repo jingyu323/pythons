@@ -6,6 +6,15 @@ targetSum =  sum // 2 ; 整除
 array = [  0 for j in range (targetSum+1)]  初始化数据
   dp = [[0 for j in range(V+1)] for i in range(n+1)]
 
+
+m[i-1][j-w[i]]+v[i]
+
+if(j>=w[i])
+    m[i][j]=max(m[i-1][j],m[i-1][j-w[i]]+v[i]);
+else
+    m[i][j]=m[i-1][j];
+
+
 """
 
 def lastStoneWeightII(stones):
