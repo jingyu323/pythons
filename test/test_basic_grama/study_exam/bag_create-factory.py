@@ -4,7 +4,7 @@
 某工厂预计明年有A、B、C、D四个新建项目，每个项目的投资额Wk及其投资后的收益Vk如下表所示，投资总额为30万元，如何选择项目才能使总收益最大？
 """
 
-dp = []
+
 item = []
 w = [0, 15, 10, 12, 8];
 v = [0, 12, 8, 9, 5]
@@ -31,6 +31,7 @@ def findWaht(i, j):
 
 
 def findMin():
+    global  dp
     for row in range(1, n + 1):
         for col in range(c + 1):
             print(row ,col)
@@ -38,14 +39,22 @@ def findMin():
                 res  = max(dp[row-1][col],dp[row -1][col -w[row] ]+ v[row])
                 dp[row][col] = res
 
+
+
                 print("res =",res)
+                print("dp =",dp)
+                print(" dp[row][col] =", dp[row][col])
             else:
                 print("sss else:", dp[row][col])
                 dp[row][col]= dp[row-1][col]
 
+print(dp)
 
+
+
+
+findMin()
 
 print(dp)
-findMin()
 # findWaht(4, 30)
 
