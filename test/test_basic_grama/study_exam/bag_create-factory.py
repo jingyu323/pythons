@@ -10,7 +10,7 @@ v = [0, 12, 8, 9, 5]
 c = 30;
 n = 4;
 v_len = len(v)
-
+# 数组必须初始化才能使用
 dp = [[0 for j in range(c+1)] for i in range(n+1)]
 item = [0 for j in range (5)]
 def findWaht(i, j):
