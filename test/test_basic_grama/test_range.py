@@ -1,4 +1,22 @@
+"""
+python 遍历数组主要有两种：
+1.借助于 range
 
+people = ["李白","杜甫","我"]
+for i in range(0, len(people)):
+    print(people[i])
+
+2. for in：
+
+for i in range(10):
+    print(i)
+
+
+3.倒序： 借助于for in range
+
+for j in range(结束, 0, -1):
+
+"""
 for i in range(10):
     print(i)
 
