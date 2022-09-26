@@ -2,6 +2,14 @@
 
 import difflib
 
+"""
+比较文件大小，
+
+总结 ：
+
+ with open  再发生异常的时候能自动调用文件关闭
+ open 需要try catch来特殊处理
+"""
 
 
 
