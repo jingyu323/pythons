@@ -130,6 +130,10 @@ def crawl_everyone_wiki_urls():
         with open('work/' + 'stars_info.json', 'w', encoding='UTF-8') as f:
             json.dump(json_data, f, ensure_ascii=False)
 
+
+
+
+
 def down_save_pic(name,pic_urls):
     '''
     根据图片链接列表pic_urls, 下载所有图片，保存在以name命名的文件夹中,
