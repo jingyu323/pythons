@@ -82,6 +82,24 @@ CBV和FBV
 我们之前写过的都是基于函数的view，就叫FBV。还可以把view写成基于类的  叫CBV。
 
 
+=================
+
+
+##1、安装方法   https://github.com/twz915/DjangoUeditor3/
+
+* 方法一：将github整个源码包下载回家，在命令行运行：
+	python setup.py install
+* 方法二：使用pip工具在命令行运行(推荐)：
+    pip install DjangoUeditor
+##2、在Django中安装DjangoUeditor 在INSTALL_APPS里面增加DjangoUeditor app，如下： INSTALLED_APPS = ( #........ 'DjangoUeditor', ) ##3、配置urls url(r'^ueditor/',include('DjangoUeditor.urls' )),
+
+##4、在models中的使用
+from DjangoUeditor.models import UEditorField
+class Blog(models.Model):
+	Name=models.CharField(,max_length=100,blank=True)
+	Content=UEditorField(u'内容	',width=600, height=300, toolbars="full", imagePath="", filePath="", upload_settings={"imageMaxSize":1204000},
+             settings={},command=None,event_handler=myEventHander(),blank=True)
+
 
 
 '''
