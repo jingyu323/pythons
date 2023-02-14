@@ -1,7 +1,4 @@
 import random
-
-import paho.mqtt.client as mqtt
-
 import paho.mqtt.client as mqtt
 
 # The callback function of connection
