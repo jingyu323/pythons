@@ -11,7 +11,7 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
 
-client_id = f'python-mqtt-{random.randint(0, 1000)}'
+client_id = f'python_mqtt_{random.randint(0, 1000)}'
 client = mqtt.Client(client_id)
 client.on_connect = on_connect
 client.on_message = on_message
