@@ -9,7 +9,7 @@ shell = win32com.client.Dispatch("WScript.Shell")
 
 with open('dict_pass.txt', 'r') as f:
     while True:
-        pwd = f.readline(end="")
+        pwd = f.readline()
         pwd=pwd.strip("\n")
         if not pwd:
             break
