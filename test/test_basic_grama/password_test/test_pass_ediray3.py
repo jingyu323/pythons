@@ -38,8 +38,7 @@ def unpwdfile(pwd):
          print("ff:" + wnd.GetWindowText())
          return  False
     except  IOError as e:
-        print(e)9
-        7s8
+        print(e)
         return True
     except  win32ui.error as e:
         print(e)
