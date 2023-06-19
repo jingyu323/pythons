@@ -17,8 +17,7 @@ for i in range(10):
 for j in range(结束, 0, -1):
 
 """
-for i in range(10):
-    print(i)
+
 
 
 for i in range(1, 20, 2):
