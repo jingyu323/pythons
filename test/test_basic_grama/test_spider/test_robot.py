@@ -64,5 +64,31 @@ def ssl_test():
     print(response)
     print(response.status_code)
 
+
+def test_auth():
+    r = requests.get("http://localhost:1081/#/login",auth=('admin','test'))
+    print(r.text)
+    print(r.status_code)
+# Prepared Request
+from requests import Request, Session
+
+def Preparedreq_test():
+    url="http://httpbin.org/post"
+
+    data = { 'name':'germey '}
+    headers1 = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+    s = Session()
+    req = Request("POST",  url, data = data, headers=headers1)
+
+    prepped = s.prepare_request(req)
+    r = s.send(prepped)
+    print(r.text)
+
+
+
+
+
 if __name__=='__main__':
-    ssl_test()
+    Preparedreq_test()
