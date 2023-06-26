@@ -1,3 +1,4 @@
+import re
 from urllib.robotparser import RobotFileParser
 
 
@@ -86,9 +87,14 @@ def Preparedreq_test():
     r = s.send(prepped)
     print(r.text)
 
+def re_test():
+    content = 'http://weibo.com/comment/kEraCN'
+    result1 = re.match('http.*?comment/(.*?)', content)
+    result2 = re.match('http.*?comment/(.*)', content)
 
-
+    print('result1', result1.group(1))
+    print('result2', result2.group(1))
 
 
 if __name__=='__main__':
-    Preparedreq_test()
+    re_test()
