@@ -96,16 +96,14 @@ def create_table():
 def insert_data( conn):
 
     cur = conn.cursor()
-    SQL = 'create table if not exists info(' \
-          'id int primary key,' \
-          'title char not null,' \
-          'photo_src char not null)'
+    item={"title":"raintest","photo_src":"pho312312"}
+    SQL = 'insert into info (title, photo_src) values(%s, %s)'
 
     try:
         # 开启一个事务
         conn.begin()
         # 设置将执行的SQL语句
-        cur.execute(SQL)
+        cur.execute(SQL, [item['title'], item['photo_src']])
         # 提交事务
         conn.commit()
     except Exception:
