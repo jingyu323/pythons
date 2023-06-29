@@ -48,6 +48,20 @@ def  pymysql_conn():
     else:
         print('Not connected.')
     conn.close()
+def  get_pymysql_conn():
+
+    conn = pymysql.connect(
+        user=DBUSER,
+        password=DBPASS,
+        # MySQL的默认端口为3306
+        port=3306,
+        # 本机地址为127.0.0.1或localhost
+        host=DBHOST,
+        # 指定使用的数据库
+        init_command='use  '+DBNAME
+    )
+    return conn
+
 
 
 def create_table():
@@ -79,9 +93,29 @@ def create_table():
         # 打印错误信息
         print('    ', traceback.print_exc())
 
+def insert_data( conn):
+
+    cur = conn.cursor()
+    SQL = 'create table if not exists info(' \
+          'id int primary key,' \
+          'title char not null,' \
+          'photo_src char not null)'
+
+    try:
+        # 开启一个事务
+        conn.begin()
+        # 设置将执行的SQL语句
+        cur.execute(SQL)
+        # 提交事务
+        conn.commit()
+    except Exception:
+        print('【初始化失败（表）】')
+        # 打印错误信息
+        print('  ', traceback.print_exc())
 
 
 
 
 if "__main__" == __name__ :
-    create_table()
+    conn = get_pymysql_conn()
+    insert_data(conn)
