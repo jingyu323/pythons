@@ -19,7 +19,7 @@ with open('test.txt', 'r') as f:
 
 
 
-print("======================================")
+print("==========单行读取==========readline==================")
 
 file1 = open('test.txt', 'r')
 count = 0
@@ -34,3 +34,15 @@ while True:
     break
   print("Statement{}: {}".format(count, s.strip()))
 file1.close()
+
+
+print("==========多行读取======readlines======================")
+
+
+file = open('test.txt', 'r')
+Statements = file.readlines()
+count = 0
+# Strips the newline character
+for line in Statements:                                     # Using for loop to print the data of the file
+  count = count + 1
+  print("Statement{}: {}".format(count, line.strip()))
