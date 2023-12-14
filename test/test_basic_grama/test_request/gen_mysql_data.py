@@ -8,7 +8,7 @@ def inser_data():
         print(response.text+" "+str(i))
 
 def get_all_data():
-    response = requests.request('GET', 'http://localhost:8080/all')
+    response = requests.request('GET', 'http://localhost:8080/all') 
     print(response.text )
 
 
