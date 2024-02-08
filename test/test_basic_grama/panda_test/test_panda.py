@@ -26,3 +26,6 @@ print(df2)
 print(df2['a'])
 
 
+ts.get_k_data(code='600519')
+
+
