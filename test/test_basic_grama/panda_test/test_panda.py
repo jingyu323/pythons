@@ -26,6 +26,8 @@ print(df2)
 print(df2['a'])
 
 
-ts.get_k_data(code='600519')
+df3 = ts.get_k_data(code='600519',start='2007-01-01')
+
+print(df3)
 
 
