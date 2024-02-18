@@ -29,5 +29,10 @@ print(df2['a'])
 df3 = ts.get_k_data(code='600519',start='2007-01-01')
 
 print(df3)
+print("====------")
+print()
+print(df3.loc[(df3['open']-df3['close'])/df3['open'] > 0.03] )
+print("====")
+print(df3.loc[(df3['open']-df3['close'])/df3['open'] > 0.03]['date'])
 
 
