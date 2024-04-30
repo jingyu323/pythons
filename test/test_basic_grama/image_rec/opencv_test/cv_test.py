@@ -71,7 +71,24 @@ def extrac_img():
     # 保存特征点标注后的图像
     cv2.imwrite('sift_features.jpg', res_img)
 
+## cv2.VideoCapture(0) 获取摄像头
+
+### cv2.VideoCapture("./")
 def video_test():
+    cv2.namedWindow("window",cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("window",600,480)
+    cap = cv2.VideoCapture("./daoyou.mp4")
+
+
+    while cap.isOpened():
+        open, fram = cap.read()
+        if not open:
+            break
+        cv2.imshow('window', fram)
+        key = cv2.waitKey(1000//30)  # 不添加wait key 看不到视频
+
+    cap.release()
+
 
 
 
