@@ -88,9 +88,28 @@ def video_test():
         key = cv2.waitKey(1000//30)  # 不添加wait key 看不到视频
 
     cap.release()
+    cv2.destroyAllWindows()
 
+def video_wirte_test():
+    cap = cv2.VideoCapture("./daoyou.mp4")
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    # wr = cv2.VideoWriter("test.mp4",cv2.VideoWriter.fourcc(*'mp4v'),30,(640,480))
+    wr = cv2.VideoWriter("test.mp4",fourcc,30,(640,480))
+
+    while cap.isOpened():
+        open, fram = cap.read()
+        if not open:
+            break
+
+        wr.write(fram)
+        cv2.imshow('window', fram)
+        key = cv2.waitKey(1000 // 30)  # 不添加wait key 看不到视频
+
+    cap.release()
+    wr.release()
+    cv2.destroyAllWindows()
 
 
 
 if __name__ == '__main__':
-    video_test()
+    video_wirte_test()
