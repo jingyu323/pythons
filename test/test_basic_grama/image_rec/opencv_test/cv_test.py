@@ -2,6 +2,9 @@ import cv2
 
 
 # https://blog.csdn.net/u010349629/article/details/130663640
+from tqdm import tqdm
+
+
 def read_image():
     # 读取图像
     img = cv2.imread('../chepai.png')
@@ -92,18 +95,68 @@ def video_test():
 
 def video_wirte_test():
     cap = cv2.VideoCapture("./daoyou.mp4")
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    # fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     # wr = cv2.VideoWriter("test.mp4",cv2.VideoWriter.fourcc(*'mp4v'),30,(640,480))
-    wr = cv2.VideoWriter("test.mp4",fourcc,30,(640,480))
+
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fourcc = cv2.VideoWriter.fourcc(*'mp4v')
+
+    out = cv2.VideoWriter("output_video.mp4",fourcc ,fps,(width, height))
+    idx = 0
 
     while cap.isOpened():
-        open, fram = cap.read()
-        if not open:
+
+
+        ret, frame = cap.read()
+        if not ret:
             break
 
-        wr.write(fram)
-        cv2.imshow('window', fram)
-        key = cv2.waitKey(1000 // 30)  # 不添加wait key 看不到视频
+        # 写入帧到输出视频
+        out.write(frame)
+
+        # 显示帧（可选）
+        cv2.imshow('frame', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
+
+
+
+
+def video_wirte_test2():
+    cap = cv2.VideoCapture("./daoyou.mp4")
+    # fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    # wr = cv2.VideoWriter("test.mp4",cv2.VideoWriter.fourcc(*'mp4v'),30,(640,480))
+
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fourcc = cv2.VideoWriter.fourcc(*'mp4v')
+
+    # out = cv2.VideoWriter("output_video.mp4",fourcc ,fps,(width, height))
+
+    wr = cv2.VideoWriter("test.mp4",fourcc,30,(1070, height))
+
+    idx = 0
+
+    while cap.isOpened():
+
+
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        # 写入帧到输出视频
+        wr.write(frame)
+
+        # 显示帧（可选）
+        cv2.imshow('frame', frame)
+        key = cv2.waitKey(1000 // 30)
 
     cap.release()
     wr.release()
@@ -111,5 +164,6 @@ def video_wirte_test():
 
 
 
+
 if __name__ == '__main__':
-    video_wirte_test()
+    video_wirte_test2()
