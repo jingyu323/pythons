@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/convert_imagelist_to_video.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/cat.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/dabai.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/dasheng.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/naozhong.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/ss.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/xiaohong.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opencv_test/cv_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/cv_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/convert_imagelist_to_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/convert_imagelist_to_video.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

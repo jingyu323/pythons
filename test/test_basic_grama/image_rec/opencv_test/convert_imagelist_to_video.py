@@ -1,17 +1,56 @@
 import os
+from io import BytesIO
+from tkinter import Image
 
 import cv2
 import numpy as np
+import requests
 
+
+def cut_img1(images, scale):
+    imglist = []
+    filelists = []
+    for i in images:
+        img_url = i
+        file_name = img_url.split('/')[-1]
+        path_new = f'./images_new/{file_name}'
+        try:
+            res = requests.get(img_url)
+        except:
+            continue
+        if 'RIFF' in str(res.content)[:500] or 'GIF' in str(res.content)[:500]:
+            file_name = file_name.split('.')[0] + '.jpg'
+            path_new1 = f'./images_new/{file_name}'
+            img = Image.open(BytesIO(res.content)).convert('RGB')
+            img.save(path_new1)
+            img = cv2.imdecode(np.fromfile(path_new1, dtype=np.uint8), cv2.IMREAD_COLOR)
+        else:
+            image = np.asarray(bytearray(res.content), dtype="uint8")
+            img = cv2.imdecode(image, cv2.IMREAD_COLOR)
+        size = img.shape
+        h, w = size[0], size[1]
+        rate1 = scale.split(':')
+        w1 = int((w - w * int(rate1[0]) / int(rate1[1])) / 2)
+        w2 = int(w - (w - w * int(rate1[0]) / int(rate1[1])) / 2)
+        resize_img = img[0:h, w1:w2]
+        imglist.append(resize_img)
+        filelists.append(resize_img.shape)
+    return filelists, imglist
 
 def resize_img():
-    target_size = (900, 800)  # 所有图片缩放设置一致尺寸，目标尺寸
+    target_size = (540, 960)  # 所有图片缩放设置一致尺寸，目标尺寸
     path = './image'
     path_new = './images_new'
     if not os.path.exists(path_new):
         os.makedirs(path_new)
     filelists = []
     imglist = []
+    img = cv2.imread('./image/cat.jpg')
+    img_h=img.shape[0]
+    img_w=img.shape[1]
+
+    print(img.shape)
+
     for i in os.listdir(path):
         file_path = os.path.join(path, i)
         print(file_path)
@@ -40,8 +79,14 @@ def resize_img():
         cv2.imwrite(os.path.join(path_new, f'new_{i}'), resize_img)  # 写入本地文件
         # 填充至 target_w * target_h
         pad_img = cv2.copyMakeBorder(resize_img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=[0, 0, 0])
-        # cv2.imshow('img', pad_img)
-        # cv2.waitKey(1000)
+        cv2.imshow("Original Image", resize_img)
+        cv2.imshow("Bordered Image", pad_img)
+        # target = cv2.resize(pad_img, (target_w, target_h))
+
+
+
+        cv2.imshow('img', pad_img)
+        cv2.waitKey(1000)
         filelists.append(os.path.join(path_new, f'new_{i}'))
         imglist.append(pad_img)
     return filelists, imglist
@@ -71,13 +116,14 @@ def cut_img(scale):
 
 def image_to_video():
     scale = '1:1'  # 裁剪比例,并保持高度不变
-    # scale = '3:4'
+    scale = '3:4'
     # scale = '9:16'
     # filelists, imglist = cut_img(scale)  # 裁剪
 
     filelists, imglist = resize_img() # 缩放
     fourcc = cv2.VideoWriter.fourcc(*'mp4v')
     im = cv2.imread(filelists[0])
+    im = imglist[0]
     print(im.shape)
     shape1 = (im.shape[1], im.shape[0])  # 需要转为视频的图片的尺寸, 视频的分辨率
     print('shape1:', shape1)
