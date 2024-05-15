@@ -1,3 +1,5 @@
+import os
+
 import cv2
 
 
@@ -140,12 +142,12 @@ def video_wirte_test2():
 
     # out = cv2.VideoWriter("output_video.mp4",fourcc ,fps,(width, height))
 
-    wr = cv2.VideoWriter("test.mp4",fourcc,30,(1070, height))
 
-    idx = 0
+    print(height)
+    print(width)
+    wr = cv2.VideoWriter("test.mp4",fourcc,30,(width, height))
 
     while cap.isOpened():
-
 
         ret, frame = cap.read()
         if not ret:
@@ -162,8 +164,50 @@ def video_wirte_test2():
     wr.release()
     cv2.destroyAllWindows()
 
+def crop_video_by_width(input_video_path,out_video_path):
+    # 判断视频是否存在
+    if not os.path.exists(input_video_path):
+        print('输入的视频文件不存在')
+
+    video_read_cap = cv2.VideoCapture(input_video_path)
+    input_video_height  = int(video_read_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    input_video_width = int(video_read_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    input_video_fps  = int(video_read_cap.get(cv2.CAP_PROP_FPS))
+
+    input_video_fourcc = cv2.VideoWriter.fourcc(*'mp4v')
+
+    out_video_width = 512;
+    out_video_height = 512;
+    out_video_size = (int(out_video_width), int(out_video_height))
+
+    video_write_cap = cv2.VideoWriter(out_video_path, input_video_fourcc, input_video_fps, out_video_size)
+    while video_read_cap.isOpened():
+        result, frame = video_read_cap.read()
+        if not result:
+            break
+
+        # 裁剪到与原视频高度等宽的视频
+
+        diff = int(input_video_height / 7)
+        crop_start_index = int(diff)
+        crop_end_index = int(diff + int(input_video_height / 7)*5)
+
+        # 参数1 是高度的范围，参数2是宽度的范围
+        target = frame[crop_start_index:crop_end_index,  0:int(input_video_width) ]
+
+        # 再resize到512x512
+        target = cv2.resize(target, (out_video_width, out_video_height))
+        video_write_cap.write(target)
+        cv2.imshow('target', target)
+        cv2.waitKey(10)
+
+    video_read_cap.release()
+    video_write_cap.release()
+
+    cv2.destroyAllWindows()
 
 
 
 if __name__ == '__main__':
-    video_wirte_test2()
+    # 判断视频是否存在
+    crop_video_by_width(r'./daoyou.mp4','result.mp4')
