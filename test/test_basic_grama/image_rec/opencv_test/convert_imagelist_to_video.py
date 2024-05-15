@@ -114,6 +114,10 @@ def cut_img(scale):
         imglist.append(resize_img)
     return filelists, imglist
 
+"""
+总结视频的宽高需要和图片内容的宽高一致，才能正确保存图片
+
+"""
 def image_to_video():
     scale = '1:1'  # 裁剪比例,并保持高度不变
     scale = '3:4'
@@ -122,7 +126,7 @@ def image_to_video():
 
     filelists, imglist = resize_img() # 缩放
     fourcc = cv2.VideoWriter.fourcc(*'mp4v')
-    im = cv2.imread(filelists[0])
+    im = cv2.imread(filelists[0])  # 原始图片未增加 top等 与增加top等之后的大小不匹配导致生成视频保存不了
     im = imglist[0]
     print(im.shape)
     shape1 = (im.shape[1], im.shape[0])  # 需要转为视频的图片的尺寸, 视频的分辨率
