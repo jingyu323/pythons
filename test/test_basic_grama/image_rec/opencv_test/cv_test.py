@@ -174,7 +174,8 @@ def crop_video_by_width(input_video_path,out_video_path):
     input_video_width = int(video_read_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     input_video_fps  = int(video_read_cap.get(cv2.CAP_PROP_FPS))
 
-    input_video_fourcc = cv2.VideoWriter.fourcc(*'mp4v')
+    input_video_fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter.fourcc(*'mp4v')
 
     out_video_width = 512;
     out_video_height = 512;
@@ -206,8 +207,31 @@ def crop_video_by_width(input_video_path,out_video_path):
 
     cv2.destroyAllWindows()
 
+def videocapture():
+    # cap = cv2.VideoCapture(0) # 获取本地摄像头
+    # 获取网络摄像头
+    cap = cv2.VideoCapture('rtsp://admin:xxx@192.168.1.63:554/snl/live/1/1')
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = cap.get(cv2.CAP_PROP_FPS)  # 获取视频的帧率
+    fourcc = int(cap.get(cv2.CAP_PROP_FOURCC))
+    # 定义视频对象输出
+    writer = cv2.VideoWriter("video_result.mp4", fourcc, fps, (width, height))
+    while cap.isOpened():
+        ret, frame = cap.read()
+        cv2.imshow('teswell', frame)
+        # 调整帧数
+        key = cv2.waitKey(24)
+        writer.write(frame)
+        # 按Q退出
+        if key == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+
 
 
 if __name__ == '__main__':
     # 判断视频是否存在
-    crop_video_by_width(r'./daoyou.mp4','result.mp4')
+    # crop_video_by_width(r'./daoyou.mp4','result.mp4')
+    videocapture()
