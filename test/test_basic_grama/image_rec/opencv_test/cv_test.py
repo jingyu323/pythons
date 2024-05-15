@@ -31,7 +31,7 @@ def change_color():
         cv2.waitKey(0)
 
         # 保存灰度图
-        cv2.imwrite('gray_image.jpg', gray_img)
+        cv2.imwrite('image/gray_image.jpg', gray_img)
 
 def resize_img():
     # 读取图像
@@ -206,10 +206,15 @@ def crop_video_by_width(input_video_path,out_video_path):
     video_write_cap.release()
 
     cv2.destroyAllWindows()
+"""
+
+获取摄像头数据
+
+"""
 
 def videocapture():
     # cap = cv2.VideoCapture(0) # 获取本地摄像头
-    # 获取网络摄像头
+    # 获取网络摄像头 http://192.168.1.63/ISAPI/Streaming/channels/103/picture  海康
     cap = cv2.VideoCapture('rtsp://admin:xxx@192.168.1.63:554/snl/live/1/1')
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -229,7 +234,9 @@ def videocapture():
     cap.release()
     cv2.destroyAllWindows()
 
-
+"""
+把本地图片保存为视频
+"""
 
 if __name__ == '__main__':
     # 判断视频是否存在
