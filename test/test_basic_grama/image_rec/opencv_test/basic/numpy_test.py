@@ -200,22 +200,15 @@ def scharr():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    # 只能是3X3 的kenel 比较擅长比较细的边缘
-    def scharr():
-        cat = cv2.imread('../image/paper.png')
-        # cv2.imshow("cat", cat)
-        dx = cv2.Scharr(cat, cv2.CV_64F, dx=1, dy=0)
-        dy = cv2.Scharr(cat, cv2.CV_64F, dx=0, dy=1)
-        # 高斯只是进行模糊 但是去噪点效果不行
-        #     ds = cv2.add(dy,dx)
-        ds = cv2.addWeighted(dx, 0.5, dy, 0.5, gamma=0)
-        #
-        cv2.imshow("cat", cat)
-        cv2.imshow("new", dx)
-        cv2.imshow("dy", dy)
-        cv2.imshow("ds", ds)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+#  拉普拉斯算子  很容易受噪声影响 效果比
+def lapS():
+    cat = cv2.imread('../image/qipan.png')
+    # cv2.imshow("cat", cat)
+    dx = cv2.Laplacian(cat, -1,ksize=3)
+
+    cv2.imshow("dx", np.hstack((dx,cat)) )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    scharr()
+    lapS()
