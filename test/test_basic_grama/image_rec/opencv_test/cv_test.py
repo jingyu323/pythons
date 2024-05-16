@@ -235,10 +235,31 @@ def videocapture():
     cv2.destroyAllWindows()
 
 """
-把本地图片保存为视频
+把本地图片 缩小
+
+fourcc编码类型不合适
+fourcc编码类型与系统安装的编码器有关。一般设置’MJPG’，或者直接用-1采用默认的参数。
+frameSize设置不一致
+设置frameSize与frame的分辨率一致
 """
+
+
+def scal_img():
+    img = cv2.imread('./image/cat.jpg', cv2.IMREAD_UNCHANGED)
+
+    # 缩小图像
+    scale_percent = 25  # 设置缩小比例（例如50表示缩小到原来的一半）
+    width = int(img.shape[1] * scale_percent / 100)
+    height = int(img.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    resized_image = cv2.resize(img, dim)
+    cv2.imshow('test', resized_image)
+    cv2.waitKey(0)
+
+
+
 
 if __name__ == '__main__':
     # 判断视频是否存在
     # crop_video_by_width(r'./daoyou.mp4','result.mp4')
-    videocapture()
+    scal_img()
