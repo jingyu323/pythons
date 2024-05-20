@@ -210,5 +210,75 @@ def lapS():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+#  canny 最优的边缘检测的方法
+#  1. 去噪  2. sobel 计算梯度
+def canny():
+    cat = cv2.imread('../image/paper.png')
+    # cv2.imshow("cat", cat)
+    lin1 = cv2.Canny(cat,100,200)
+    lin2 = cv2.Canny(cat, 80, 140)
+    lin3 = cv2.Canny(cat,64,128)
+
+    cv2.imshow("lin1", np.hstack(( lin1,lin2,lin3)) )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+
+def two_vlaue():
+    cat = cv2.imread('../image/paper.png')
+    # 二值化是对灰度图片做操作
+    # cv2.imshow("cat", cat)
+    gray = cv2.cvtColor(cat,cv2.COLOR_BGR2GRAY)
+    # 返回两个值  一个是阈值 一个是图片
+    thread,dst = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
+
+    # cv2.imshow("dst", np.hstack((gray ,cat)) )
+    # cv2.imshow("dst",  gray )
+
+    cv2.imshow("lin1", np.hstack((gray,dst )))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+# 自适应 阈值二值化 更精细反馈图片细节
+def two_vlaue_auto():
+    cat = cv2.imread('../image/paper.png')
+    # 二值化是对灰度图片做操作
+    # cv2.imshow("cat", cat)
+    gray = cv2.cvtColor(cat,cv2.COLOR_BGR2GRAY)
+    # 返回两个值  一个是阈值 一个是图片
+    dst = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,7,0)
+
+    # cv2.imshow("dst", np.hstack((gray ,cat)) )
+    # cv2.imshow("dst",  gray )
+
+    cv2.imshow("lin1", np.hstack((gray,dst )))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+# 腐蚀
+def fushi():
+    cat = cv2.imread('../image/fushi.png')
+
+    kenel = np.ones((3,3),np.uint8)
+    dst = cv2.erode(cat,kenel,iterations=2)
+
+
+    cv2.imshow("lin1", np.hstack((cat,dst )))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+#  形态卷积
+def strcture():
+    cat = cv2.imread('../image/fushi.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+
+    dst = cv2.erode(cat, kenel )
+
+    cv2.imshow("dst", np.hstack((cat, dst)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 if __name__ == '__main__':
-    lapS()
+    strcture()
