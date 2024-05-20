@@ -280,5 +280,35 @@ def strcture():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+#  开运算= 腐蚀+ 膨胀
+# 去除噪声 效果比较好
+def open():
+    cat = cv2.imread('../image/fushi.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+    dst = cv2.erode(cat, kenel )
+    dst = cv2.dilate(dst,kenel)
+
+    # 开
+    dts = cv2.morphologyEx(cat,cv2.MORPH_OPEN,kenel )
+
+    cv2.imshow("dst", np.hstack((cat, dst,dts)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def close():
+    cat = cv2.imread('../image/dotj.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+    dst = cv2.dilate(cat, kenel,iterations=2)
+    dst = cv2.erode(dst, kenel,iterations=2 )
+
+
+    # 闭
+    dts = cv2.morphologyEx(cat,cv2.MORPH_CLOSE,kenel,iterations=2 )
+
+    cv2.imshow("dst", np.hstack((cat, dst,dts)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
-    strcture()
+    close()
