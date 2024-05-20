@@ -295,6 +295,7 @@ def open():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+# 闭运算
 def close():
     cat = cv2.imread('../image/dotj.png')
     kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
@@ -309,6 +310,20 @@ def close():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+# 形态学梯度 = 原图- 腐蚀
+def xingtaixue():
+    cat = cv2.imread('../image/j.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+    dst = cv2.dilate(cat, kenel )
+    dst = cv2.erode(dst, kenel  )
+
+
+    # 形态学梯度
+    dts = cv2.morphologyEx(cat,cv2.MORPH_GRADIENT,kenel  )
+
+    cv2.imshow("dst", np.hstack((cat, dst,dts)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    close()
+    xingtaixue()
