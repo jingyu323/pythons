@@ -325,5 +325,30 @@ def xingtaixue():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+#  顶帽操作= 原图- 开运算  得到图形外的噪声
+def top_hat():
+    cat = cv2.imread('../image/jdot.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
+    # 形态学梯度
+    dts = cv2.morphologyEx(cat,cv2.MORPH_TOPHAT,kenel  )
+
+    cv2.imshow("dst", np.hstack((cat,dts)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+#  黑帽操作= 原图- 闭运算  得到图形内部的噪声
+def balck_hat():
+    cat = cv2.imread('../image/dotj.png')
+    kenel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
+    dst = cv2.dilate(cat, kenel )
+    dst = cv2.erode(dst, kenel  )
+
+
+    # 形态学梯度
+    dts = cv2.morphologyEx(cat,cv2.MORPH_BLACKHAT,kenel  )
+
+    cv2.imshow("dst", np.hstack((cat, dst,dts)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 if __name__ == '__main__':
-    xingtaixue()
+    top_hat()
