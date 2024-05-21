@@ -2,6 +2,7 @@
 ## 图像轮廓
 import cv2
 import numpy as np
+import  matplotlib.pyplot as plt
 
 
 def count_find():
@@ -94,5 +95,55 @@ def max_rec():
 
 
 
+# 金字塔
+def pyramid():
+    cat = cv2.imread('../image/paper.png')
+    dst= cv2.pyrDown(cat)
+    cv2.imshow("dst",  dst)
+    cv2.imshow("cat",  cat)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+def pyramid_up():
+    cat = cv2.imread('../image/paper.png')
+    dst= cv2.pyrUp(cat)
+    cv2.imshow("dst",  dst)
+    cv2.imshow("cat",  cat)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+#  拉普拉斯金字塔用于图片压缩
+
+
+#  直方图
+def hits():
+    cat = cv2.imread('../image/paper.png')
+
+    gray = cv2.cvtColor(cat,cv2.COLOR_BGR2GRAY)
+
+    print(gray)
+    plt.hist(gray.ravel(),bins=256,range=[0,255])
+    plt.show()
+    # hits = cv2.calcHist([cat],[0],None,[256],[0,255])
+
+    #
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+#  直方图
+def calsc_ts():
+    cat = cv2.imread('../image/paper.png')
+
+
+
+    hitb = cv2.calcHist([cat],[0],None,[256],[0,255])
+    hitg = cv2.calcHist([cat],[1],None,[256],[0,255])
+    hitr = cv2.calcHist([cat],[2],None,[256],[0,255])
+
+    plt.plot(hitb,color='b',label='blue')
+    plt.plot(hitg,color='g',label='green')
+    plt.plot(hitr,color='r',label='red')
+
+
+    plt.show()
 if __name__ == '__main__':
-    max_rec()
+    calsc_ts()
