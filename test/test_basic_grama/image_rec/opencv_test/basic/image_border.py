@@ -142,8 +142,28 @@ def calsc_ts():
     plt.plot(hitb,color='b',label='blue')
     plt.plot(hitg,color='g',label='green')
     plt.plot(hitr,color='r',label='red')
-
-
     plt.show()
+
+
+#  直方图
+def yanmo():
+    cat = cv2.imread('../image/paper.png')
+    gray = cv2.cvtColor(cat, cv2.COLOR_BGR2GRAY)
+    mask = np.zeros(gray.shape,np.uint8)
+
+    #  设置抠图区域
+    mask[200:400,200:400] = 255
+
+    hist_mask = cv2.calcHist([cat], [0], mask, [256], [0, 255])
+    hist_gray = cv2.calcHist([cat], [0], None, [256], [0, 255])
+    plt.plot(hist_mask, color='b', label='hist_mask')
+    plt.plot(hist_gray, color='g', label='hist_gray')
+    # plt.show()
+    cv2.imshow("mask",  mask)
+    cv2.imshow("gray",  gray)
+    cv2.imshow("mask_gray",  cv2.bitwise_and(gray,gray,mask=mask))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 if __name__ == '__main__':
-    calsc_ts()
+    yanmo()
