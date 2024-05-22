@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/opencv_test/basic/car_calc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opencv_test/basic/image_border.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/image_border.py" afterDir="false" />
     </list>
@@ -29,15 +30,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/image&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/video"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\video" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\basic" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test" />
@@ -46,7 +48,28 @@
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.image_border">
+  <component name="RunManager" selected="Python.car_calc">
+    <configuration name="car_calc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_rec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/opencv_test/basic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/car_calc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="convert_imagelist_to_video" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,6 +156,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.car_calc" />
         <item itemvalue="Python.image_border" />
         <item itemvalue="Python.numpy_test" />
         <item itemvalue="Python.cv_test" />
