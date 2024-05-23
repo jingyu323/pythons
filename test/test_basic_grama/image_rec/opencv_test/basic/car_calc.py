@@ -30,11 +30,11 @@ def cal_car_remove_background():
     cap  = cv2.VideoCapture("../video/gaosu.mp4")
 
     mog =cv2.createBackgroundSubtractorMOG2()
-    kenel = cv2.getStructuringElement(cv2.MORPH_RECT,(9,9))
+    kenel = cv2.getStructuringElement(cv2.MORPH_RECT,(7,7))
     min_w = 90
     min_h = 80
     line_h = 450
-    offset = 16
+    offset = 20
     cars=[]
     carcount=0
     while True:
@@ -42,7 +42,7 @@ def cal_car_remove_background():
         if ret ==True:
             # 去噪
             gray = cv2.cvtColor(fram,cv2.COLOR_BGR2GRAY)
-            blur = cv2.GaussianBlur(gray,(5,5),5)
+            blur = cv2.GaussianBlur(gray,(7,7),5)
             fgmsk =mog.apply(blur)
             # 腐蚀
             ercode = cv2.erode(fgmsk,kenel)
