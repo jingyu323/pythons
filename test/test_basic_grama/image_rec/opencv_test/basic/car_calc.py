@@ -29,7 +29,7 @@ def cal_car_remove_background():
 
     cap  = cv2.VideoCapture("../video/gaosu.mp4")
 
-    mog =cv2.createBackgroundSubtractorMOG2(history=100, detectShadows=True)
+    mog =cv2.createBackgroundSubtractorMOG2(history=100, detectShadows=False)
     kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
 
 
