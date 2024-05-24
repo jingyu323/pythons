@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/bao.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/han.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/hezhao.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/nvpai.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/star.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/xml/haarcascade_frontalface_alt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" afterDir="false" />
     </list>
@@ -67,6 +71,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
+      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\xml" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\video" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\basic" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test" />
@@ -225,7 +230,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
-      <workItem from="1716515365433" duration="7071000" />
+      <workItem from="1716515365433" duration="12375000" />
     </task>
     <servers />
   </component>
@@ -244,7 +249,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716536459503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716541375183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$numpy_test.coverage" NAME="numpy_test Coverage Results" MODIFIED="1716517649419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
 </project>
