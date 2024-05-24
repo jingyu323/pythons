@@ -87,5 +87,48 @@ def auto_face_removebg():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def dog_replace():
+    cat = cv2.imread('../image/han.jpg')
+    print(cat.shape)
+    #  对于一个图片的二维数组，一个是高宽
+    # 所以对一个图片的截取 也是先从高度中取出一部分
+
+    #  人脸特征详细说明
+    face_detector = cv2.CascadeClassifier("../xml/haarcascade_frontalface_alt.xml")
+    gray = cv2.cvtColor(cat,cv2.COLOR_BGR2GRAY)
+
+    thre,binary =  cv2.threshold(gray,150,255,cv2.THRESH_OTSU)
+
+    faces = face_detector.detectMultiScale(gray, scaleFactor=1.14, minNeighbors=3)
+    dog = cv2.imread('../image/goutou.png')
+    dog_gray = cv2.cvtColor(dog, cv2.COLOR_BGR2GRAY)
+    dog_thre,dog_binary =  cv2.threshold(dog_gray,150,255,cv2.THRESH_OTSU)
+
+    dog_couters,dog_her =cv2.findContours(dog_binary,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    areas=[]
+    for cou in dog_couters:
+        areas.append(cv2.contourArea(cou))
+
+    areas = np.array(areas)
+    index = areas.argsort()
+    mask = np.zeros_like(dog_binary,dtype=np.uint8)
+    # 最后移问-1 会将整个轮廓内部填充为白色
+    mask=cv2.drawContours(mask,dog_couters,index[-2],(255,255,255),-1)
+    cv2.imshow("mask", mask)
+    for (x,y,w,h) in faces:
+        mask2 = cv2.resize(mask,(w,h))
+        dog_gray2 = cv2.resize(dog_gray,(w,h))
+        dog2 = cv2.resize(dog,(w,h))
+        for  i in range(h):
+            for j in range(w):
+                if((mask2[i,j])==255).all():
+                    cat[i+y,j+x]=dog2[i,j]
+
+
+    cv2.imshow("cat", cat)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
-    auto_face_removebg()
+    dog_replace()
