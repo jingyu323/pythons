@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/image_rec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image_rec.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/bao.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +49,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.corlor_test.executor": "Run",
     "Python.numpy_test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec",
+    "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/image",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,8 +66,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\video" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
+      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\video" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\basic" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test" />
     </key>
@@ -73,7 +75,7 @@
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.numpy_test">
+  <component name="RunManager" selected="Python.corlor_test">
     <configuration name="car_calc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
@@ -97,7 +99,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="image_border" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="corlor_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,7 +113,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/image_border.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,19 +192,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.corlor_test" />
       <item itemvalue="Python.car_calc" />
-      <item itemvalue="Python.image_border" />
       <item itemvalue="Python.numpy_test" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.youhuasuanfa" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.corlor_test" />
         <item itemvalue="Python.numpy_test" />
         <item itemvalue="Python.youhuasuanfa" />
         <item itemvalue="Python.car_calc" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.image_border" />
       </list>
     </recent_temporary>
   </component>
@@ -223,7 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
-      <workItem from="1716515365433" duration="4750000" />
+      <workItem from="1716515365433" duration="7071000" />
     </task>
     <servers />
   </component>
@@ -242,6 +244,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716536459503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$numpy_test.coverage" NAME="numpy_test Coverage Results" MODIFIED="1716517649419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
 </project>
