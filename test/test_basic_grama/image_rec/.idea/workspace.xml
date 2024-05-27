@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/goutou.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/corlor_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +224,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
-      <workItem from="1716515365433" duration="16621000" />
+      <workItem from="1716515365433" duration="17583000" />
     </task>
     <servers />
   </component>
@@ -245,7 +243,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716547452786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716547803190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$numpy_test.coverage" NAME="numpy_test Coverage Results" MODIFIED="1716517649419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
 </project>
