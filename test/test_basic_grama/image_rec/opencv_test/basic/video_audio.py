@@ -14,6 +14,13 @@ def audio_video_merge():
     c = subprocess.call(cmd, shell=True)
     print(c)
 
+def video_counters_replace():
+    pass
+#     1. 找到轮廓
+# 创建mask 填充mask  根据填充的不同值替换像素
+#  形态学运算 就是 腐蚀 膨胀 sobo算子
+
+
 
 
 
