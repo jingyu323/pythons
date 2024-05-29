@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/opencv_test/basic/fuliye.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/image_rec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image_rec.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/opencv_test/basic/video_audio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/mp3/wobuyuanniyigeren.mp3" afterDir="false" />
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,34 +58,40 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.corlor_test.executor": "Run",
     "Python.numpy_test.executor": "Run",
+    "Python.video_audio.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+<<<<<<< HEAD
     "last_opened_file_path": "/Users/Shared/rainfile/Security/project/git_project/pythons/test/test_basic_grama/image_rec",
+=======
+    "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/mp3",
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.updates",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\mp3" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\xml" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\video" />
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\basic" />
-      <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.corlor_test">
+  <component name="RunManager" selected="Python.video_audio">
     <configuration name="car_calc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
@@ -150,7 +161,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="video_audio" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -164,7 +175,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/video_audio.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,19 +208,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.video_audio" />
       <item itemvalue="Python.corlor_test" />
       <item itemvalue="Python.car_calc" />
       <item itemvalue="Python.numpy_test" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.youhuasuanfa" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.video_audio" />
         <item itemvalue="Python.corlor_test" />
         <item itemvalue="Python.numpy_test" />
         <item itemvalue="Python.youhuasuanfa" />
         <item itemvalue="Python.car_calc" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -231,7 +242,11 @@
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
       <workItem from="1716515365433" duration="17583000" />
+<<<<<<< HEAD
       <workItem from="1716903882499" duration="765000" />
+=======
+      <workItem from="1716780248035" duration="14237000" />
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
     </task>
     <servers />
   </component>
@@ -250,6 +265,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/image_rec$video_audio.coverage" NAME="video_audio Coverage Results" MODIFIED="1716968602041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716547803190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$numpy_test.coverage" NAME="numpy_test Coverage Results" MODIFIED="1716517649419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
