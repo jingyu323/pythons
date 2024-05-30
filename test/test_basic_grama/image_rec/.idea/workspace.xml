@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/xml/haarcascade_car_plate.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opencv_test/basic/car_number_detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/car_number_detect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +230,7 @@
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
       <workItem from="1716515365433" duration="17583000" />
-      <workItem from="1716780248035" duration="25622000" />
+      <workItem from="1716780248035" duration="26190000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,17 @@ pip uninstall opencv-python
 
 pip install opencv-python
 
+## 去除噪声
+
+### 双边滤波
+
+###  均值滤波
+### 高斯滤波
+###  中值滤波
+### 形态学
+#### 腐蚀  
+####  膨胀
+### 
 
 ## 识别库
 ### 光学字符识别 pytesseract  
