@@ -1,4 +1,5 @@
-# EasyOCR
+# 图像识别
+## EasyOCR
 ## 简介
 EasyOCR 是一个用于从图像中提取文本的 python 模块, 它是一种通用的 OCR，既可以读取自然场景文本，也可以读取文档中的密集文本。
 利用cpu 识别文本
@@ -33,9 +34,11 @@ borderType:用于推断图像外部像素的某种边界模式，有默认值BOR
 ### 形态学
 #### 腐蚀  
 ####  膨胀
+#### 开运算
+#### 闭运算
 ### 
 
-## 识别库
+## 文字识别库
 ### 光学字符识别 pytesseract  
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
 

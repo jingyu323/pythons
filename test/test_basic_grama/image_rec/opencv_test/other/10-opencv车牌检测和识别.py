@@ -1,5 +1,7 @@
 import numpy as np
 import cv2
+from easyocr import Reader
+
 # import pytesseract
 # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # 1、加载图片
@@ -22,8 +24,37 @@ for c in cnts:
             NumberPlateCnt = approx #这就是车牌索引
             break
 # 4、绘制轮廓
-print(NumberPlateCnt)
-cv2.drawContours(image, [NumberPlateCnt], -1, (0,255,0), 3)
-cv2.imshow("result", image)
+
+(x, y, w, h) = cv2.boundingRect(NumberPlateCnt)
+license_plate = gray[y:y + h, x:x + w]
+
+
+reader = Reader(['en'])
+# detect the text from the license plate
+detection = reader.readtext(license_plate)
+print(detection)
+image12 = image.copy()
+cv2.imshow('image12', image12)
+if len(detection) == 0:
+    # if the text couldn't be read, show a custom message
+    text = "Impossible to read the text from the license plate"
+    cv2.putText(image, text, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 3)
+    cv2.imshow('Image', image)
+    cv2.waitKey(0)
+else:
+    # draw the contour and write the detected text on the image
+    cv2.drawContours(image, [NumberPlateCnt], -1, (0, 255, 0), 3)
+    textlist=[]
+    for dec in detection:
+        textlist.append(dec[1])
+
+    text = " ".join(textlist)
+
+    print(text)
+    cv2.putText(image, text, (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    # display the license plate and the output image
+    cv2.imshow('license plate', license_plate)
+    cv2.imshow('Image', image)
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
