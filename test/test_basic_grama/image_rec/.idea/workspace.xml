@@ -5,6 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a79f28f-8f1f-45c5-b553-d019664bcba4" name="变更" comment="">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/opencv_test/basic/fuliye.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/image_rec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image_rec.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/opencv_test/basic/video_audio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/mp3/wobuyuanniyigeren.mp3" afterDir="false" />
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
+>>>>>>> 60f77cf2f115b040e635a151cfe58393d517a171
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
@@ -57,7 +71,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+<<<<<<< HEAD
     "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/xml",
+=======
+<<<<<<< HEAD
+    "last_opened_file_path": "/Users/Shared/rainfile/Security/project/git_project/pythons/test/test_basic_grama/image_rec",
+=======
+    "last_opened_file_path": "E:/study/git/pythons/test/test_basic_grama/image_rec/opencv_test/mp3",
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
+>>>>>>> 60f77cf2f115b040e635a151cfe58393d517a171
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -215,8 +237,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
-        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -230,7 +252,15 @@
       <updated>1687689429330</updated>
       <workItem from="1716515081009" duration="44000" />
       <workItem from="1716515365433" duration="17583000" />
+<<<<<<< HEAD
       <workItem from="1716780248035" duration="26190000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1716903882499" duration="765000" />
+=======
+      <workItem from="1716780248035" duration="14237000" />
+>>>>>>> 8b9cf5d1d63be4719f3af801a11b66aec9fb7744
+>>>>>>> 60f77cf2f115b040e635a151cfe58393d517a171
     </task>
     <servers />
   </component>
