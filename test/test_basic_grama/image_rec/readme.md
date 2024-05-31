@@ -69,3 +69,37 @@ https://www.jaided.ai/easyocr/
 # 学习地址
 ## 各种识别方法
 https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is-convex-or-not-in-opencv-python.html
+
+
+
+
+# 机器学习
+
+## 特征数据提取
+
+## 特征工程
+
+## 算法分类
+### 监督学习 -有特征值 有目标值
+目标连续-- 回归算法
+目标离散--分类
+
+### 半监督学习  - 一部分有目标值 一部分没有
+
+### 无监督学习 仅有特征值
+###  强化学习
+马尔科夫决策 动态规划
+
+## 模型评估
+
+- 准确吕
+- 精确率
+- 召回率
+- F1-score
+- AUC指标
+
+### 回归模型评估
+
+- 均方根误差
+- 相对平方根误差
+- 平均绝对值误差
