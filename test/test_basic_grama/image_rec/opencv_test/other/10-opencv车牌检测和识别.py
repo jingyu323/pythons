@@ -33,8 +33,7 @@ reader = Reader(['en'])
 # detect the text from the license plate
 detection = reader.readtext(license_plate)
 print(detection)
-image12 = image.copy()
-cv2.imshow('image12', image12)
+
 if len(detection) == 0:
     # if the text couldn't be read, show a custom message
     text = "Impossible to read the text from the license plate"
