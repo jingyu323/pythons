@@ -1,5 +1,5 @@
 # 图像识别
-## EasyOCR
+## EasyOCR 文字识别
 ## 简介
 EasyOCR 是一个用于从图像中提取文本的 python 模块, 它是一种通用的 OCR，既可以读取自然场景文本，也可以读取文档中的密集文本。
 利用cpu 识别文本
@@ -28,19 +28,40 @@ borderType:用于推断图像外部像素的某种边界模式，有默认值BOR
 ```
 双边滤波器可以很好的保存图像边缘细节而滤除掉低频分量的噪音，但是双边滤波器的效率不是太高，花费的时间相较于其他滤波器而言也比较长。
 对于简单的滤波而言，可以将两个sigma值设置成相同的值，如果值<10，则对滤波器影响很小，如果值>150则会对滤波器产生较大的影
+## 图像平滑处理 去除噪点
 ###  均值滤波
+对核中的取平均值
 ### 高斯滤波
 ###  中值滤波
+去除噪点比高斯滤波效果好
+##  边缘检测
+###  canny  边缘检测
+
 ### 形态学
 #### 腐蚀  
 ####  膨胀
-#### 开运算
+#### 开运算 
+#### sobel 算子
+查找梯度 检测边缘
+
+#### 礼帽  黑帽
+礼帽：
+原始输入-开运算结果
+ 黑帽：闭运算- 原始输入
+去除图像外较小明亮的噪点
+
 #### 闭运算
+去除图像内部较小明亮的噪点
+
 ### 
 
 ## 文字识别库
 ### 光学字符识别 pytesseract  
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
+ pip install flask  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+
+可以查看支持那些语言
+https://www.jaided.ai/easyocr/
 
 
 # open-CV2
@@ -48,3 +69,41 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
 # 学习地址
 ## 各种识别方法
 https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is-convex-or-not-in-opencv-python.html
+
+
+
+
+# 机器学习
+
+## 特征数据提取
+
+## 特征工程
+
+## 算法分类
+### 监督学习 -有特征值 有目标值
+目标连续-- 回归算法
+目标离散--分类
+
+### 半监督学习  - 一部分有目标值 一部分没有
+
+### 无监督学习 仅有特征值
+###  强化学习
+马尔科夫决策 动态规划
+
+## 模型评估
+
+- 准确吕
+- 精确率
+- 召回率
+- F1-score
+- AUC指标
+
+### 回归模型评估
+
+- 均方根误差
+- 相对平方根误差
+- 平均绝对值误差
+
+
+## matplotlib 
+主要用于2D图绘制 

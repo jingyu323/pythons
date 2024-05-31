@@ -165,5 +165,69 @@ def yanmo():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+# 一个函数来计算两张图片之间的均方误差
+def mse(img1, img2):
+   h, w = img1.shape
+   diff = cv2.subtract(img1, img2)
+   err = np.sum(diff**2)
+   mse = err/(float(h*w))
+   return mse
+#  用方差来比较图片是否一致
+def comapare_image():
+    # 加载输入图片
+    img1 = cv2.imread('panda.jpg')
+    img2 = cv2.imread('panda1.jpg')
+    img3 = cv2.imread('panda1.jpg')
+
+    # 将图片转换为灰度图
+    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+
+
+    # 计算三幅图片之间的MSE误差
+    error1, diff1 = mse(img1, img2)
+    error2, diff2 = mse(img2, img3)
+    error3, diff3 = mse(img1, img3)
+
+    # 输出MSE误差值
+    print("Image matching Error between the two images:", error1, error2, error3)
+
+    # 展示三幅图片间的区别
+    cv2.imshow("difference between image 1 and 2", diff1)
+    cv2.imshow("difference between image 2 and 3", diff2)
+    cv2.imshow("difference between image 1 and 3", diff3)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def zhifang():
+    # 读取输入图像
+    img = cv2.imread('../image/')
+
+    # 将图像分割成各自的蓝色、绿色和红色通道
+    blue, green, red = cv2.split(img)
+
+    # 绿色和蓝色通道的2D颜色直方图
+    plt.subplot(131)
+    hist1 = cv2.calcHist([green, blue], [0, 1], None, [32, 32], [0, 256, 0, 256])
+    p = plt.imshow(hist1, interpolation="nearest")
+    plt.title("G和B的2D直方图", fontsize=8)
+    plt.colorbar(p)
+
+    # 红色和绿色通道的2D颜色直方图
+    plt.subplot(132)
+    hist2 = cv2.calcHist([red, green], [0, 1], None, [32, 32], [0, 256, 0, 256])
+    p = plt.imshow(hist2, interpolation="nearest")
+    plt.title("R和G的2D直方图", fontsize=8)
+    plt.colorbar(p)
+
+    # 蓝色和红色通道的2D颜色直方图
+    plt.subplot(133)
+    hist3 = cv2.calcHist([blue, red], [0, 1], None, [32, 32], [0, 256, 0, 256])
+    p = plt.imshow(hist3, interpolation="nearest")
+    plt.title("B和R的2D直方图", fontsize=8)
+    plt.colorbar(p)
+    plt.show()
+
 if __name__ == '__main__':
-    yanmo()
+    zhifang()

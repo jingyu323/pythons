@@ -1,5 +1,7 @@
 import cv2
+import easyocr
 import numpy as np
+from pytesseract import pytesseract
 
 
 def car_number_detect(img):
@@ -66,9 +68,67 @@ def lpr(filename): # Licence Plate recognize 车牌识别
 # 主程序
 
 
+#  识别精度有问题 还需要继续解决
+def car_number_detect_2(img):
+    img = cv2.imread(img)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    print(img.shape)
+    HSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  # 转换到hsv空间
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))  # 形态学结构元
+
+    LowerBlue = np.array([100, 90, 90])  # 检测hsv的上下限（蓝色车牌）
+    UpperBlue = np.array([140, 220, 90])
+
+    # inRange 函数将颜色的值设置为 1，如果颜色存在于给定的颜色范围内，则设置为白色，如果颜色不存在于指定的颜色范围内，则设置为 0
+    mask = cv2.inRange(HSV, LowerBlue, UpperBlue)  # 车牌mask
+
+    dilate = cv2.morphologyEx(mask, cv2.MORPH_DILATE, kernel, iterations=2)  # 形态学膨胀和开操作把提取的蓝色点连接起来
+    morph = cv2.morphologyEx(dilate, cv2.MORPH_CLOSE, kernel, iterations=5)
+
+
+    contours, _ = cv2.findContours(morph, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)  # 找车牌的轮廓，只找外轮廓就行
+
+    print(len(contours))
+    img_copy = img.copy()
+    cv2.drawContours(img_copy, contours, -1, [0, 0, 255], 2)  # 把轮廓画出来
+
+    roi_img= gray.copy()
+    for contour in contours:
+        x, y, w, h = cv2.boundingRect(contour)
+        print( x, y, w, h)
+        if w > 100 :
+            rect = cv2.boundingRect(contour)  # 用矩形把轮廓框出来（轮廓外接矩形）
+            (x, y, w, h) = rect
+            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            cv2.imshow('car', img)
+
+            roi_img = gray[y:y + h, x:x + w]  # 提取车牌区域进行ocr识别
+
+    _,roi_thresh = cv2.threshold(roi_img,10,255,cv2.THRESH_BINARY )
+    cv2.imshow('roi', roi_img)
+    open_img = cv2.morphologyEx(roi_thresh,cv2.MORPH_OPEN,kernel,iterations=2)  #适当的形态学操作提高识别率
+    cv2.imshow('open_img',open_img)
+
+
+    print(pytesseract.image_to_string(roi_img,  lang='chi_sim+eng', config='--psm 6 --oem 3 '))  # ocr识别
+
+    reader = easyocr.Reader(['ch_sim', 'en'], gpu=False)
+
+    result = reader.readtext(roi_img)
+    print(result)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+
+
+
 
 if __name__ == '__main__':
     image = "../../chepai.png"
     # car_number_detect(image);
 
-    lpr(image)
+    car_number_detect_2(image)
