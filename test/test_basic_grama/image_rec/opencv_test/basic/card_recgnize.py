@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+from imutils import contours
 
 def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     dim = None
@@ -37,7 +37,12 @@ def sort_contours(cnts, method="left-to-right"):
     return cnts, boundingBoxes
 def card_recgnize():
     tmplate = cv2.imread('../image/tmplate.jpg')
-
+    FIRST_NUMBER = {
+        "3": "American Express",
+        "4": "Visa",
+        "5": "MasterCard",
+        "6": "Discover Card"
+    }
     tm_gray = cv2.cvtColor(tmplate, cv2.COLOR_BGR2GRAY)
     # 二值化 灰度化之后
     tm_ref = cv2.threshold(tm_gray, 10, 255, cv2.THRESH_BINARY_INV)[1]
@@ -80,7 +85,7 @@ def card_recgnize():
                       ksize=-1)
 
     gradX = np.absolute(gradX)
-
+    (minVal, maxVal) = (np.min(gradX), np.max(gradX))
     gradX = (255 * ((gradX - minVal) / (maxVal - minVal)))
     gradX = gradX.astype("uint8")
 
@@ -182,10 +187,6 @@ def card_recgnize():
     print("Credit Card #: {}".format("".join(output)))
     cv2.imshow("Image", image)
     cv2.waitKey(0)
-
-
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
 
 
 
