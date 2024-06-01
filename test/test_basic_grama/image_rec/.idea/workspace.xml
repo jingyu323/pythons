@@ -165,6 +165,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.car_number_detect" />
+      <item itemvalue="Python.easyocr_demo" />
+      <item itemvalue="Python.easyocr_demo (1)" />
+      <item itemvalue="Python.image_border" />
+      <item itemvalue="Python.matplotlib_demo" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.matplotlib_demo" />
