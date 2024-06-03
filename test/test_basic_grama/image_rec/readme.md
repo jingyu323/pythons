@@ -59,6 +59,12 @@ borderType:用于推断图像外部像素的某种边界模式，有默认值BOR
 ### 光学字符识别 pytesseract  
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install flask  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install pytesseract  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install easyocr  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+
+
+
 
 可以查看支持那些语言
 https://www.jaided.ai/easyocr/

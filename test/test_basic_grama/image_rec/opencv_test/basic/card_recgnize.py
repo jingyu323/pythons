@@ -74,7 +74,7 @@ def card_recgnize():
     card = cv2.imread('../image/card.png')
     card_gray = cv2.cvtColor(card, cv2.COLOR_BGR2GRAY)
 
-    image =  resize(card_gray, width=300)
+    image = resize(card_gray, width=300)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 礼帽操作，突出更明亮的区域
