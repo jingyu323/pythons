@@ -76,8 +76,13 @@ https://www.jaided.ai/easyocr/
 ## 各种识别方法
 https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is-convex-or-not-in-opencv-python.html
 
+## 图像识别
 
+- easyocr  对数字  中文 识别好 在gpu 下效率 高  输出小写
+- Tesseract 对字母 识别好 在 cpu 下效率高 大写 
 
+- opencv 用于图像识别 
+- pytorch  深度学习
 
 # 机器学习
 
