@@ -229,5 +229,27 @@ def zhifang():
     plt.colorbar(p)
     plt.show()
 
+# 模板匹配方法 识别图像
+def template_match():
+    img_rgb = cv2.imread('../image/jin_zhen.png')
+    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+    template = cv2.imread('../image/jinc.png', 0)
+    h, w = template.shape[:2]
+
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+    threshold = 0.8
+    # 取匹配程度大于%80的坐标
+    loc = np.where(res >= threshold)
+    print(loc)
+    # np.where返回的坐标值(x,y)是(h,w)，注意h,w的顺序
+    for pt in zip(*loc[::-1]):
+        print(pt)
+        bottom_right = (pt[0] + w, pt[1] + h)
+        cv2.rectangle(img_rgb, pt, bottom_right, (0, 0, 255), 2)
+
+    cv2.imshow('img_rgb', img_rgb)
+    cv2.waitKey(0)
+
+
 if __name__ == '__main__':
-    zhifang()
+    template_match()
