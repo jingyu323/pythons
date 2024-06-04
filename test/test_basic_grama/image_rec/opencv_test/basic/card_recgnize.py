@@ -71,7 +71,7 @@ def card_recgnize():
     rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 3))
     sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 
-    card = cv2.imread('../image/card2.png')
+    card = cv2.imread('../image/card3.png')
     card_gray = cv2.cvtColor(card, cv2.COLOR_BGR2GRAY)
 
     image = resize(card_gray, width=300)
