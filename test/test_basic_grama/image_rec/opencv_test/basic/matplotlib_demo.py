@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from pylab import mpl
 
 
@@ -73,5 +74,14 @@ def plot_draw_sub():
     axes[1].legend( loc="upper left")
     plt.show()
 
+def plot_draw_math():
+    x= np.linspace(-10,10,1000)
+    y = np.sin(x)
+
+    plt.figure()
+    plt.plot(x,y)
+    plt.grid(True,linestyle='--',alpha=0.2)
+    plt.show()
+
 if __name__ == '__main__':
-    plot_draw_sub()
+    plot_draw_math()
