@@ -75,10 +75,10 @@ def card_recgnize():
     card_gray = cv2.cvtColor(card, cv2.COLOR_BGR2GRAY)
 
     image = resize(card_gray, width=300)
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 礼帽操作，突出更明亮的区域
-    tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, rectKernel)
+    tophat = cv2.morphologyEx(image, cv2.MORPH_TOPHAT, rectKernel)
     show_img('tophat', tophat)
     #
     gradX = cv2.Sobel(tophat, ddepth=cv2.CV_32F, dx=1, dy=0,  # ksize=-1相当于用3*3的
@@ -139,7 +139,7 @@ def card_recgnize():
         groupOutput = []
 
         # 根据坐标提取每一个组
-        group = gray[gY - 5:gY + gH + 5, gX - 5:gX + gW + 5]
+        group = image[gY - 5:gY + gH + 5, gX - 5:gX + gW + 5]
         show_img('group', group)
         # 预处理
         group = cv2.threshold(group, 0, 255,

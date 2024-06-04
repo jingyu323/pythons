@@ -250,6 +250,20 @@ def template_match():
     cv2.imshow('img_rgb', img_rgb)
     cv2.waitKey(0)
 
+# 均衡器
+def  junheng():
+    img = cv2.imread('../image/nvpai.jpeg',0)
+    # 均衡化
+    equ = cv2.equalizeHist(img)
+    plt.hist(equ.ravel(), bins=256, range=[0, 255])
+    # 自适应均衡化
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+    res_clahe = clahe.apply(img)
+    res = np.hstack((img,res_clahe,equ))
+    cv2.imshow('img', res)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 
 if __name__ == '__main__':
-    template_match()
+    junheng()
