@@ -71,7 +71,7 @@ def card_recgnize():
     rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 3))
     sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 
-    card = cv2.imread('../image/card.png')
+    card = cv2.imread('../image/card2.png')
     card_gray = cv2.cvtColor(card, cv2.COLOR_BGR2GRAY)
 
     image = resize(card_gray, width=300)
@@ -101,7 +101,6 @@ def card_recgnize():
     show_img('thresh', thresh)
 
     # 再来一个闭操作
-
     thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, sqKernel)  # 再来一个闭操作
     show_img('thresh', thresh)
 
@@ -109,7 +108,6 @@ def card_recgnize():
 
     threshCnts, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                                              cv2.CHAIN_APPROX_SIMPLE)
-
     cnts = threshCnts
     cur_img = image.copy()
     cv2.drawContours(cur_img, cnts, -1, (0, 0, 255), 3)
