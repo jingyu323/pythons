@@ -234,6 +234,8 @@ def tmp_match():
 
     cv_show('img', resoult_img)
 
+# 详细介绍
+# https://blog.csdn.net/m0_50317149/article/details/130160067
 def mul_tm_match():
     template = cv2.imread('../image/start.png' )  # 读取灰度图目标
     img = cv2.imread('../image/stars.png')
@@ -242,7 +244,7 @@ def mul_tm_match():
     # 获取小图像的高和宽
     h, w = template.shape[:2]
     method = cv2.TM_CCOEFF_NORMED
-
+    # 调用cv2.matchTemplate()函数进行图像匹配，比较完成的结果存储在res中，是一个ndarray类型的。具体来说就是原图中每一块区域所有像素点的比较结果，都存储在这个矩阵里。
     res = cv2.matchTemplate(img, template, method)
     # 与之前直接读取最大最小值不同，此次我们需要的是res中多个目标的结果，所以在此设置一个阈值
     threshold = 0.8
