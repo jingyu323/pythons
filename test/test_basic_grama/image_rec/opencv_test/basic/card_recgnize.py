@@ -234,5 +234,26 @@ def tmp_match():
 
     cv_show('img', resoult_img)
 
+def mul_tm_match():
+    template = cv2.imread('../image/start.png' )  # 读取灰度图目标
+    img = cv2.imread('../image/stars.png')
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # 获取小图像的高和宽
+    h, w = template.shape[:2]
+    method = cv2.TM_CCOEFF_NORMED
+
+    res = cv2.matchTemplate(img, template, method)
+    # 与之前直接读取最大最小值不同，此次我们需要的是res中多个目标的结果，所以在此设置一个阈值
+    threshold = 0.8
+    loc = np.where(res >= threshold)  # 阈值为0.8，即取百分之80匹配的
+
+
+    for loc in zip(*loc[::-1]):
+        bottom_right = (loc[0] + w, loc[1] + h)
+        cv2.rectangle(img, loc, bottom_right, (0,0,255), 2)
+
+    cv_show('resoult', img)
+
 if __name__ == '__main__':
-    tmp_match()
+    mul_tm_match()
