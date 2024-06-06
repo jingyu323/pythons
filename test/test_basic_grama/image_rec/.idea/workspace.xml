@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74285c7b-df60-4e63-89fe-a42a86cf99cb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/bird.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/the_bird.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/card_recgnize.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/card_recgnize.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.pytest in test_easyocr.py.executor": "Run",
+    "Python.8-车牌检测.executor": "Run",
     "Python.car_number_detect.executor": "Run",
     "Python.card_recgnize.executor": "Run",
     "Python.easyocr.executor": "Run",
@@ -59,7 +62,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.card_recgnize">
-    <configuration name="car_number_detect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="8-车牌检测" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -68,12 +71,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/opencv_test/basic" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/opencv_test/other" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/car_number_detect.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/other/8-车牌检测.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -175,19 +178,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.8-车牌检测" />
       <item itemvalue="Python.card_recgnize" />
       <item itemvalue="Python.image_border" />
       <item itemvalue="Python.numpy_study" />
-      <item itemvalue="Python.car_number_detect" />
       <item itemvalue="Python.matplotlib_demo" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.card_recgnize" />
+        <item itemvalue="Python.8-车牌检测" />
         <item itemvalue="Python.image_border" />
         <item itemvalue="Python.numpy_study" />
         <item itemvalue="Python.matplotlib_demo" />
-        <item itemvalue="Python.car_number_detect" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +223,8 @@
     <SUITE FILE_PATH="coverage/image_rec$pytest_in_test_easyocr_py.coverage" NAME="pytest in test_easyocr.py Coverage Results" MODIFIED="1717135289051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/image_rec$matplotlib_demo.coverage" NAME="matplotlib_demo Coverage Results" MODIFIED="1717393835001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$numpy_study.coverage" NAME="numpy_study Coverage Results" MODIFIED="1717401295110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
-    <SUITE FILE_PATH="coverage/image_rec$card_recgnize.coverage" NAME="card_recgnize Coverage Results" MODIFIED="1717490873229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$card_recgnize.coverage" NAME="card_recgnize Coverage Results" MODIFIED="1717657629169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$8_.coverage" NAME="8-车牌检测 Coverage Results" MODIFIED="1717643411199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/other" />
     <SUITE FILE_PATH="coverage/image_rec$image_border.coverage" NAME="image_border Coverage Results" MODIFIED="1717487822354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$easyocr_demo__1_.coverage" NAME="easyocr_demo (1) Coverage Results" MODIFIED="1717136320250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
