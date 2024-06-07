@@ -257,5 +257,126 @@ def mul_tm_match():
 
     cv_show('resoult', img)
 
+def  conor_dec():
+    # 读取待检测的图像
+    img = cv2.imread('../image/gezi.png')
+    # 转换为灰度图像
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = np.float32(gray)
+    # 调用函数 cornerHarris，检测角点，其中参数 2 表示 Sobel 算子的孔径大小，23 表示 Sobel 算子的孔径大小，0.04 表示 Harris 角点检测方程中的 k 值
+    dst = cv2.cornerHarris(gray, 2, 23, 0.05)
+
+    dst = cv2.dilate(dst, None)
+    # 将检测到的角点标记出来
+    img[dst > 0.01 * dst.max()] = [0, 0, 255]
+
+    cv2.imshow('dst', img)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def sift_dec():
+
+
+    img1 = cv2.imread('../image/book.png', 0)
+    img2 = cv2.imread('../image/books.png', 0)
+    cv_show('img1', img1)
+    cv_show('img2', img2)
+    sift = cv2.SIFT_create()
+    kp1, des1 = sift.detectAndCompute(img1, None)
+    kp2, des2 = sift.detectAndCompute(img2, None)
+    # crossCheck表示两个特征点要互相匹，例如A中的第i个特征点与B中的第j个特征点最近的，并且B中的第j个特征点到A中的第i个特征点也是
+    # NORM_L2: 归一化数组的(欧几里德距离)，如果其他特征计算方法需要考虑不同的匹配计算方式
+    bf = cv2.BFMatcher(crossCheck=True)
+    matches = bf.match(des1, des2)
+    matches = sorted(matches, key=lambda x: x.distance)
+    img3 = cv2.drawMatches(img1, kp1, img2, kp2, matches[:10], None, flags=2)
+    cv_show('img3', img3)
+
+#  每进行特征点匹配 导致图像不能完全匹配
+def img_concat():
+    # 读取两张图片
+    img1 = cv2.imread('../image/left.png')
+    img2 = cv2.imread('../image/right.png')
+
+    # 初始化ORB检测器
+    orb = cv2.ORB_create()
+
+    # 检测ORB特征点并计算描述符
+    kp1, des1 = orb.detectAndCompute(img1, None)
+    kp2, des2 = orb.detectAndCompute(img2, None)
+
+    # 创建暴力匹配器
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # 进行匹配
+    matches = bf.match(des1, des2)
+
+    # 根据距离排序，距离小的是更好的匹配点
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # 绘制前N个匹配点
+    N = 10  # 可以调整这个值来看到不同的拼接效果
+    matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:N], None, flags=2)
+
+    # 展示结果
+    cv2.imshow('Matches', matched_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+# 我们的全景拼接算法将包含以下四个步骤
+  # 1：检测关键点（DoG，Harris等），并从两个输入图像中提取局部不变描述符（SIFT，SURF等）。
+  # 2：在两个图像之间匹配描述符。
+   # 3：使用RANSAC算法通过匹配的特征向量估计单应矩阵（或者叫变换矩阵）（homography matrix ）。
+  # 4：用 step #3 中的单应矩阵进行透视变
+def img_concat2():
+    # 读取两张图片
+    img1 = cv2.imread('../image/left.png')
+    img2 = cv2.imread('../image/right.png')
+
+    # 初始化ORB检测器
+    orb = cv2.ORB_create()
+
+    # 检测ORB特征点并计算描述符
+    kp1, des1 = orb.detectAndCompute(img1, None)
+    kp2, des2 = orb.detectAndCompute(img2, None)
+
+    # 创建暴力匹配器
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # 进行匹配
+    matches = bf.match(des1, des2)
+
+    # 根据距离排序，距离小的是更好的匹配点
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # 绘制前N个匹配点
+    N = 10  # 可以调整这个值来看到不同的拼接效果
+    matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:N], None, flags=2)
+
+    # 展示结果
+    cv2.imshow('Matches', matched_img)
+
+
+    # 使用RANSAC算法计算单应性矩阵
+    src_pts = np.float32([kp1[m.queryIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
+    dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
+    H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+
+    print(img1.shape)
+    # 获取图像形状
+    h1, w1,_ = img1.shape
+    h2, w2,_ = img2.shape
+
+    # 使用homography矩阵进行图像拼接
+    warped_img = cv2.warpPerspective(img2, H, (w1 + w2, max(h1, h2)))
+    warped_img[:h1, :w1] = img1
+
+    # 显示拼接图像
+    cv2.imshow('Warped Image', warped_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 if __name__ == '__main__':
-    mul_tm_match()
+    img_concat2()
