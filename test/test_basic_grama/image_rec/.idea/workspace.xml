@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74285c7b-df60-4e63-89fe-a42a86cf99cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/basic/exzam_detect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/exam.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/exzam_detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/exzam_detect.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,27 +32,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest in test_easyocr.py.executor": "Run",
-    "Python.car_number_detect.executor": "Run",
-    "Python.card_recgnize.executor": "Run",
-    "Python.easyocr.executor": "Run",
-    "Python.easyocr_demo (1).executor": "Run",
-    "Python.exzam_detect.executor": "Run",
-    "Python.image_border.executor": "Run",
-    "Python.matplotlib_demo.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/Shared/rainfile/Security/project/git_project/pythons/test/test_basic_grama/image_rec/opencv_test/image",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest in test_easyocr.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.car_number_detect.executor&quot;: &quot;Run&quot;,
+    &quot;Python.card_recgnize.executor&quot;: &quot;Run&quot;,
+    &quot;Python.easyocr.executor&quot;: &quot;Run&quot;,
+    &quot;Python.easyocr_demo (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.exzam_detect.executor&quot;: &quot;Run&quot;,
+    &quot;Python.image_border.executor&quot;: &quot;Run&quot;,
+    &quot;Python.matplotlib_demo.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Shared/rainfile/Security/project/git_project/pythons/test/test_basic_grama/image_rec/opencv_test/image&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/opencv_test/image" />
@@ -195,8 +194,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
-        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -209,6 +208,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717122554529</updated>
       <workItem from="1717122561249" duration="12920000" />
+      <workItem from="1717675184300" duration="374000" />
     </task>
     <servers />
   </component>
@@ -218,7 +218,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/image_rec$image_border.coverage" NAME="image_border Coverage Results" MODIFIED="1716989155092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$corlor_test.coverage" NAME="corlor_test Coverage Results" MODIFIED="1716989894015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
-    <SUITE FILE_PATH="coverage/image_rec$exzam_detect.coverage" NAME="exzam_detect Coverage Results" MODIFIED="1717505507239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$exzam_detect.coverage" NAME="exzam_detect Coverage Results" MODIFIED="1717505688543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$car_number_detect.coverage" NAME="car_number_detect Coverage Results" MODIFIED="1717139289802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$pytest_in_test_easyocr_py.coverage" NAME="pytest in test_easyocr.py Coverage Results" MODIFIED="1717135289051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/image_rec$easyocr_demo__1_.coverage" NAME="easyocr_demo (1) Coverage Results" MODIFIED="1717136320250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

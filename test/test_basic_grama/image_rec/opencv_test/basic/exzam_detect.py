@@ -38,10 +38,6 @@ def getCnts(img):
     cnts, hier = cv2.findContours(img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     cv2.drawContours(img, cnts, -1, (0, 0, 255), 3)
-
-
-
-
     print(len(cnts))
     docCnts = None
     # 确保有轮廓
