@@ -71,14 +71,14 @@ def card_recgnize():
     rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 3))
     sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 
-    card = cv2.imread('../image/card.png')
+    card = cv2.imread('../image/card3.png')
     card_gray = cv2.cvtColor(card, cv2.COLOR_BGR2GRAY)
 
     image = resize(card_gray, width=300)
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 礼帽操作，突出更明亮的区域
-    tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, rectKernel)
+    tophat = cv2.morphologyEx(image, cv2.MORPH_TOPHAT, rectKernel)
     show_img('tophat', tophat)
     #
     gradX = cv2.Sobel(tophat, ddepth=cv2.CV_32F, dx=1, dy=0,  # ksize=-1相当于用3*3的
@@ -101,7 +101,6 @@ def card_recgnize():
     show_img('thresh', thresh)
 
     # 再来一个闭操作
-
     thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, sqKernel)  # 再来一个闭操作
     show_img('thresh', thresh)
 
@@ -109,7 +108,6 @@ def card_recgnize():
 
     threshCnts, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                                              cv2.CHAIN_APPROX_SIMPLE)
-
     cnts = threshCnts
     cur_img = image.copy()
     cv2.drawContours(cur_img, cnts, -1, (0, 0, 255), 3)
@@ -139,7 +137,7 @@ def card_recgnize():
         groupOutput = []
 
         # 根据坐标提取每一个组
-        group = gray[gY - 5:gY + gH + 5, gX - 5:gX + gW + 5]
+        group = image[gY - 5:gY + gH + 5, gX - 5:gX + gW + 5]
         show_img('group', group)
         # 预处理
         group = cv2.threshold(group, 0, 255,
@@ -189,6 +187,196 @@ def card_recgnize():
     cv2.waitKey(0)
 
 
+def cv_show(title,img):
+    cv2.imshow(title,img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    return
+def tmp_match():
+    template = cv2.imread('../image/bird.png')  # 读取灰度图
+    cv_show('img', template)  # 展示图象
+    img = cv2.imread('../image/the_bird.png')
+    cv_show('img', img)
+
+    # 获取小图像的高和宽
+    h, w = template.shape[:2]
+
+    # 不同的方法模板匹配的方式不同
+    methodology = [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR, cv2.TM_CCORR_NORMED, cv2.TM_SQDIFF,
+                   cv2.TM_SQDIFF_NORMED]
+
+    # cv2.TM_CCOEFF：相关系数匹配。该方法计算输入图像和模板图像之间的相关系数，值越大表示匹配程度越好。
+    # cv2.TM_CCOEFF_NORMED：标准归一化相关系数匹配。该方法计算输入图像和模板图像之间的标准归一化相关系数，也就是相关系数除以两个图像各自的标准差的乘积。值越大表示匹配程度越好。
+    # cv2.TM_CCORR：相关性匹配。该方法计算输入图像和模板图像之间的相关性，值越大表示匹配程度越好。
+    # cv2.TM_CCORR_NORMED：标准归一化相关性匹配。该方法计算输入图像和模板图像之间的标准归一化相关性，也就是相关性除以两个图像各自的标准差的乘积。值越大表示匹配程度越好。
+    # cv2.TM_SQDIFF：平方差匹配。该方法计算输入图像和模板图像之间的平方差，值越小表示匹配程度越好。
+    # cv2.TM_SQDIFF_NORMED：标准归一化平方差匹配。该方法计算输入图像和模板图像之间的标准归一化平方差，也就是平方差除以两个图像各自的标准差的乘积。值越小表示匹配程度越好。
+
+
+    method = methodology[1]  # 选了一个cv2.TM_CCOEFF_NORMED方法进行图像匹配，匹配方式为比较模板和图像中各个区域的标准归一化相关系数
+    res = cv2.matchTemplate(img, template, method)  # 比较完成的结果存储在res中，是一个ndarray类型的
+
+    # 获取匹配结果中的最大值和最小值
+    # 通过左上角点的位置，加上之前获取的小图像的宽和高h,w，就可以把图像在原图中的那个位置框出来了
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)  # 最主要的是知道图像位置_loc
+
+    # 不同的匹配算法，计算匹配到的位置的方式不同
+    if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        top_left = min_loc
+    else:
+        top_left = max_loc
+
+    # 通过左上角点的坐标和h，w计算右下角点的坐标
+    bottom_right = (top_left[0] + w, top_left[1] + h)  # [0]为横坐标，[1]为纵坐标，横加宽纵加高就是右下角的点坐标
+
+    # 绘制矩形
+    resoult_img = cv2.rectangle(img.copy(), top_left, bottom_right, 255, 1)
+
+    cv_show('img', resoult_img)
+
+# 详细介绍
+# https://blog.csdn.net/m0_50317149/article/details/130160067
+def mul_tm_match():
+    template = cv2.imread('../image/start.png' )  # 读取灰度图目标
+    img = cv2.imread('../image/stars.png')
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # 获取小图像的高和宽
+    h, w = template.shape[:2]
+    method = cv2.TM_CCOEFF_NORMED
+    # 调用cv2.matchTemplate()函数进行图像匹配，比较完成的结果存储在res中，是一个ndarray类型的。具体来说就是原图中每一块区域所有像素点的比较结果，都存储在这个矩阵里。
+    res = cv2.matchTemplate(img, template, method)
+    # 与之前直接读取最大最小值不同，此次我们需要的是res中多个目标的结果，所以在此设置一个阈值
+    threshold = 0.8
+    loc = np.where(res >= threshold)  # 阈值为0.8，即取百分之80匹配的
+
+
+    for loc in zip(*loc[::-1]):
+        bottom_right = (loc[0] + w, loc[1] + h)
+        cv2.rectangle(img, loc, bottom_right, (0,0,255), 2)
+
+    cv_show('resoult', img)
+
+def  conor_dec():
+    # 读取待检测的图像
+    img = cv2.imread('../image/gezi.png')
+    # 转换为灰度图像
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = np.float32(gray)
+    # 调用函数 cornerHarris，检测角点，其中参数 2 表示 Sobel 算子的孔径大小，23 表示 Sobel 算子的孔径大小，0.04 表示 Harris 角点检测方程中的 k 值
+    dst = cv2.cornerHarris(gray, 2, 23, 0.05)
+
+    dst = cv2.dilate(dst, None)
+    # 将检测到的角点标记出来
+    img[dst > 0.01 * dst.max()] = [0, 0, 255]
+
+    cv2.imshow('dst', img)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def sift_dec():
+
+
+    img1 = cv2.imread('../image/book.png', 0)
+    img2 = cv2.imread('../image/books.png', 0)
+    cv_show('img1', img1)
+    cv_show('img2', img2)
+    sift = cv2.SIFT_create()
+    kp1, des1 = sift.detectAndCompute(img1, None)
+    kp2, des2 = sift.detectAndCompute(img2, None)
+    # crossCheck表示两个特征点要互相匹，例如A中的第i个特征点与B中的第j个特征点最近的，并且B中的第j个特征点到A中的第i个特征点也是
+    # NORM_L2: 归一化数组的(欧几里德距离)，如果其他特征计算方法需要考虑不同的匹配计算方式
+    bf = cv2.BFMatcher(crossCheck=True)
+    matches = bf.match(des1, des2)
+    matches = sorted(matches, key=lambda x: x.distance)
+    img3 = cv2.drawMatches(img1, kp1, img2, kp2, matches[:10], None, flags=2)
+    cv_show('img3', img3)
+
+#  每进行特征点匹配 导致图像不能完全匹配
+def img_concat():
+    # 读取两张图片
+    img1 = cv2.imread('../image/left.png')
+    img2 = cv2.imread('../image/right.png')
+
+    # 初始化ORB检测器
+    orb = cv2.ORB_create()
+
+    # 检测ORB特征点并计算描述符
+    kp1, des1 = orb.detectAndCompute(img1, None)
+    kp2, des2 = orb.detectAndCompute(img2, None)
+
+    # 创建暴力匹配器
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # 进行匹配
+    matches = bf.match(des1, des2)
+
+    # 根据距离排序，距离小的是更好的匹配点
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # 绘制前N个匹配点
+    N = 10  # 可以调整这个值来看到不同的拼接效果
+    matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:N], None, flags=2)
+
+    # 展示结果
+    cv2.imshow('Matches', matched_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+# 我们的全景拼接算法将包含以下四个步骤
+  # 1：检测关键点（DoG，Harris等），并从两个输入图像中提取局部不变描述符（SIFT，SURF等）。
+  # 2：在两个图像之间匹配描述符。
+   # 3：使用RANSAC算法通过匹配的特征向量估计单应矩阵（或者叫变换矩阵）（homography matrix ）。
+  # 4：用 step #3 中的单应矩阵进行透视变
+def img_concat2():
+    # 读取两张图片
+    img1 = cv2.imread('../image/left.png')
+    img2 = cv2.imread('../image/right.png')
+
+    # 初始化ORB检测器
+    orb = cv2.ORB_create()
+
+    # 检测ORB特征点并计算描述符
+    kp1, des1 = orb.detectAndCompute(img1, None)
+    kp2, des2 = orb.detectAndCompute(img2, None)
+
+    # 创建暴力匹配器
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # 进行匹配
+    matches = bf.match(des1, des2)
+
+    # 根据距离排序，距离小的是更好的匹配点
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # 绘制前N个匹配点
+    N = 10  # 可以调整这个值来看到不同的拼接效果
+    matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:N], None, flags=2)
+
+    # 展示结果
+    cv2.imshow('Matches', matched_img)
+
+
+    # 使用RANSAC算法计算单应性矩阵
+    src_pts = np.float32([kp1[m.queryIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
+    dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
+    H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+
+    print(img1.shape)
+    # 获取图像形状
+    h1, w1,_ = img1.shape
+    h2, w2,_ = img2.shape
+
+    # 使用homography矩阵进行图像拼接
+    warped_img = cv2.warpPerspective(img2, H, (w1 + w2, max(h1, h2)))
+    warped_img[:h1, :w1] = img1
+
+    # 显示拼接图像
+    cv2.imshow('Warped Image', warped_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 
 if __name__ == '__main__':
-    card_recgnize()
+    img_concat2()
