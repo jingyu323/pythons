@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74285c7b-df60-4e63-89fe-a42a86cf99cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/basic/hough.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/basic/park_detect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/basic/parking.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/park.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/park2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/image/opencv-logo-small.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/hough.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/hough.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +211,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717122554529</updated>
       <workItem from="1717122561249" duration="33308000" />
-      <workItem from="1718067828503" duration="6402000" />
+      <workItem from="1718067828503" duration="10061000" />
     </task>
     <servers />
   </component>
@@ -232,6 +228,6 @@
     <SUITE FILE_PATH="coverage/image_rec$8_.coverage" NAME="8-车牌检测 Coverage Results" MODIFIED="1717643411199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/other" />
     <SUITE FILE_PATH="coverage/image_rec$image_border.coverage" NAME="image_border Coverage Results" MODIFIED="1717487822354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$easyocr_demo__1_.coverage" NAME="easyocr_demo (1) Coverage Results" MODIFIED="1717136320250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/image_rec$hough.coverage" NAME="hough Coverage Results" MODIFIED="1718088398117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
+    <SUITE FILE_PATH="coverage/image_rec$hough.coverage" NAME="hough Coverage Results" MODIFIED="1718092175062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
 </project>

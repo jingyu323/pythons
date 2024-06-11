@@ -89,6 +89,29 @@ def houghp_test():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
+# minRadius：表示圆半径的最小值。   画出来的园的直径可以条件 圆形的匹配程度
+def houghCircles_test():
+    img = cv2.imread('../image/opencv-logo-small.png', cv2.IMREAD_GRAYSCALE)
+    img = cv2.medianBlur(img, 3)
+    cimg = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+
+    circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 20, param1=511, param2=9, minRadius=13, maxRadius=33)
+
+    print(circles)
+    circles = np.uint16(circles)
+    print(circles)
+
+    for i in circles[0, :]:
+        cv2.circle(cimg, (i[0], i[1]), i[2], (0, 255, 0), 2)
+        cv2.circle(cimg, (i[0], i[1]), 2, (0, 0, 255), 3)
+
+    cv2.imshow('detected circles', cimg)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+
 if __name__ == '__main__':
 
-    houghp_test()
+    houghCircles_test()
