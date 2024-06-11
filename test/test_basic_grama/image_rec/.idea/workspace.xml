@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74285c7b-df60-4e63-89fe-a42a86cf99cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/image/opencv-logo-small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/opencv_test/basic/exam_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opencv_test/basic/hough.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/hough.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/parking.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/parking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +212,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717122554529</updated>
       <workItem from="1717122561249" duration="33308000" />
-      <workItem from="1718067828503" duration="10061000" />
+      <workItem from="1718067828503" duration="13734000" />
     </task>
     <servers />
   </component>
