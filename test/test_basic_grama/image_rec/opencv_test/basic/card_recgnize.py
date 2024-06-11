@@ -2,6 +2,9 @@ import cv2
 import numpy as np
 from imutils import contours
 
+from opencv_test.basic.Stitcher import Stitcher
+
+
 def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     dim = None
     (h, w) = image.shape[:2]
@@ -329,53 +332,53 @@ def img_concat():
   # 2：在两个图像之间匹配描述符。
    # 3：使用RANSAC算法通过匹配的特征向量估计单应矩阵（或者叫变换矩阵）（homography matrix ）。
   # 4：用 step #3 中的单应矩阵进行透视变
+"""
+  （1）特征点检测与图像匹配（stitching_match：Features Finding and Images Matching）
+（2）计算图像间的变换矩阵（stitching_rotation：Rotation Estimation
+（3）自动校准（stitching_autocalib Autocalibration）
+（4）图像变形（stitching_warp Images Warping）
+（5）计算接缝（stitching_seam：Seam Estimation）
+（6）补偿曝光（stitching_exposure：Exposure Compensation）
+（7）图像融合（stitching_blend：Image Blenders）
+"""
 def img_concat2():
     # 读取两张图片
+    imageA = cv2.imread('../image/left.png')
+    imageB = cv2.imread('../image/right.png')
+    # 把图片拼接成全景图
+    stitcher = Stitcher()
+    print(imageA.shape,imageB.shape)
+    (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+    # 显示所有图片
+    cv2.imshow("Image A", imageA)
+    cv2.imshow("Image B", imageB)
+    cv2.imshow("Keypoint Matches", vis)
+    cv2.imshow("Result", result)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def swicher_concat_img():
     img1 = cv2.imread('../image/left.png')
     img2 = cv2.imread('../image/right.png')
 
-    # 初始化ORB检测器
-    orb = cv2.ORB_create()
-
-    # 检测ORB特征点并计算描述符
-    kp1, des1 = orb.detectAndCompute(img1, None)
-    kp2, des2 = orb.detectAndCompute(img2, None)
-
-    # 创建暴力匹配器
-    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-
-    # 进行匹配
-    matches = bf.match(des1, des2)
-
-    # 根据距离排序，距离小的是更好的匹配点
-    matches = sorted(matches, key=lambda x: x.distance)
-
-    # 绘制前N个匹配点
-    N = 10  # 可以调整这个值来看到不同的拼接效果
-    matched_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:N], None, flags=2)
-
-    # 展示结果
-    cv2.imshow('Matches', matched_img)
-
-
-    # 使用RANSAC算法计算单应性矩阵
-    src_pts = np.float32([kp1[m.queryIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
-    dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches[:N]]).reshape(-1, 1, 2)
-    H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
-
     print(img1.shape)
-    # 获取图像形状
-    h1, w1,_ = img1.shape
-    h2, w2,_ = img2.shape
+    print(img2.shape)
 
-    # 使用homography矩阵进行图像拼接
-    warped_img = cv2.warpPerspective(img2, H, (w1 + w2, max(h1, h2)))
-    warped_img[:h1, :w1] = img1
+    # 创建 Stitcher 对象
+    stitcher = cv2.Stitcher.create(cv2.Stitcher_PANORAMA)
+    # 调用 stitch 方法进行拼接
+    result, stitched_image = stitcher.stitch([img1, img2])
+    print(result)
+    if result == cv2.Stitcher_OK:
+        # 拼接成功，将结果保存到文件
+        cv2.imshow('result.jpg', stitched_image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    else:
+        # 拼接失败
+        print("拼接失败")
 
-    # 显示拼接图像
-    cv2.imshow('Warped Image', warped_img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
