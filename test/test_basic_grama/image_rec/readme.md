@@ -84,6 +84,7 @@ https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is
 
 - opencv 用于图像识别 
 - pytorch  深度学习
+###  图像拼接
 
 # 机器学习
 
