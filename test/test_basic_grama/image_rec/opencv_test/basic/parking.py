@@ -59,17 +59,17 @@ class Parking:
         # 输入的图像需要是边缘检测后的结果
         # minLineLengh(线的最短长度，比这个短的都被忽略)和MaxLineCap（两条直线之间的最大间隔，小于此值，认为是一条直线）
         # rho距离精度,theta角度精度,threshod超过设定阈值才被检测出线段
-        return cv2.HoughLinesP(image, rho=0.1, theta=np.pi / 10, threshold=15, minLineLength=9, maxLineGap=4)
+        return cv2.HoughLinesP(image, rho=0.1, theta=np.pi / 10, threshold=15, minLineLength=6, maxLineGap=3)
 
 
-    def draw_lines(self, image, lines, color=[255, 0, 0], thickness=2, make_copy=True):
+    def draw_lines(self, image, lines, color=[255, 0, 0], thickness=1, make_copy=True):
         # 过滤霍夫变换检测到直线
         if make_copy:
             image = np.copy(image)
         cleaned = []
         for line in lines:
             for x1, y1, x2, y2 in line:
-                if abs(y2 - y1) <= 1 and abs(x2 - x1) >= 25 and abs(x2 - x1) <= 55:
+                if abs(y2 - y1) <= 1 and abs(x2 - x1) >= 10 and abs(x2 - x1) <= 35:
                     cleaned.append((x1, y1, x2, y2))
                     cv2.line(image, (x1, y1), (x2, y2), color, thickness)
         print(" No lines detected: ", len(cleaned))
