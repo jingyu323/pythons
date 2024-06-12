@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 from opencv_test.basic.parking import Parking
 
@@ -9,10 +10,16 @@ def park_detect():
     gray_img = parking.convert_gray_scale(img)
 
     masked = parking.select_rgb_white_yellow(img)
-    parking.cv_show("masked",masked)
+
 
     edged = parking.detect_edges(masked)
-    parking.select_region(gray_img)
+    selectRegion= parking.select_region(gray_img)
+    parking.cv_show("edged", edged)
+    parking.cv_show("selectRegion", selectRegion)
+    parking_lines = parking.hough_lines(selectRegion)
+    print(parking_lines)
+    new_img,spot_dict=parking.draw_parking(selectRegion,parking_lines)
+    parking.cv_show("new_img", new_img)
 
 if __name__ == '__main__':
     park_detect()
