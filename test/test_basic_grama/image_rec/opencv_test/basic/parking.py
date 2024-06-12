@@ -22,6 +22,17 @@ class Parking:
         masked = cv2.bitwise_and(image, image, mask=white_mask)
         self.cv_show('masked', masked)
         return masked
+
+    def filter_region(self, image, vertices):
+        """
+                剔除掉不需要的地方
+        """
+        mask = np.zeros_like(image)
+        if len(mask.shape) == 2:
+            cv2.fillPoly(mask, vertices, 255)
+            self.cv_show('mask', mask)
+        return cv2.bitwise_and(image, mask)
+
     def detect_edges(self,image, low_threshold=50, high_threshold=200):
         return cv2.Canny(image, low_threshold, high_threshold)
 

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74285c7b-df60-4e63-89fe-a42a86cf99cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/opencv_test/basic/exam_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opencv_test/basic/park_detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/park_detect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/opencv_test/basic/parking.py" beforeDir="false" afterPath="$PROJECT_DIR$/opencv_test/basic/parking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +44,7 @@
     "Python.image_border.executor": "Run",
     "Python.matplotlib_demo.executor": "Run",
     "Python.numpy_study.executor": "Run",
+    "Python.park_detect.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -62,7 +62,7 @@
       <recent name="E:\study\git\pythons\test\test_basic_grama\image_rec\opencv_test\image" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hough">
+  <component name="RunManager" selected="Python.park_detect">
     <configuration name="8-车牌检测" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
@@ -155,7 +155,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="numpy_study" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="park_detect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="image_rec" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -169,7 +169,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/numpy_study.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/opencv_test/basic/park_detect.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -180,18 +180,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.hough" />
+      <item itemvalue="Python.park_detect" />
       <item itemvalue="Python.8-车牌检测" />
       <item itemvalue="Python.card_recgnize" />
       <item itemvalue="Python.image_border" />
-      <item itemvalue="Python.numpy_study" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.park_detect" />
         <item itemvalue="Python.hough" />
         <item itemvalue="Python.card_recgnize" />
         <item itemvalue="Python.8-车牌检测" />
         <item itemvalue="Python.image_border" />
-        <item itemvalue="Python.numpy_study" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +212,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717122554529</updated>
       <workItem from="1717122561249" duration="33308000" />
-      <workItem from="1718067828503" duration="13734000" />
+      <workItem from="1718067828503" duration="15290000" />
     </task>
     <servers />
   </component>
@@ -229,6 +229,7 @@
     <SUITE FILE_PATH="coverage/image_rec$8_.coverage" NAME="8-车牌检测 Coverage Results" MODIFIED="1717643411199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/other" />
     <SUITE FILE_PATH="coverage/image_rec$image_border.coverage" NAME="image_border Coverage Results" MODIFIED="1717487822354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$easyocr_demo__1_.coverage" NAME="easyocr_demo (1) Coverage Results" MODIFIED="1717136320250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_rec$park_detect.coverage" NAME="park_detect Coverage Results" MODIFIED="1718100405633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/image_rec$hough.coverage" NAME="hough Coverage Results" MODIFIED="1718092175062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencv_test/basic" />
   </component>
 </project>
