@@ -84,6 +84,7 @@ https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is
 
 - opencv 用于图像识别 
 - pytorch  深度学习
+###  图像拼接
 
 # 机器学习
 
@@ -119,3 +120,12 @@ https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is
 
 ## matplotlib 
 主要用于2D图绘制 
+
+
+## 待做
+### 停车场
+ 主要学习如何定位指定区域
+ 
+### 答题卡
+- 如何识别选中的
+- 如何指出来错误的
