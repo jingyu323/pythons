@@ -39,9 +39,9 @@ class Parking:
     def select_region(self,image):
         rows, cols = image.shape[:2]
         # h，w
-        pt_1  = [cols*0.05, rows*0.90]
-        pt_2 = [cols*0.05, rows*0.70]
-        pt_3 = [cols*0.30, rows*0.51]
+        pt_1  = [cols*0.07, rows*0.90]
+        pt_2 = [cols*0.07, rows*0.65]
+        pt_3 = [cols*0.31, rows*0.50]
         pt_4 = [cols*0.6, rows*0.10]
         pt_5 = [cols*0.90, rows*0.11]
         pt_6 = [cols*0.90, rows*0.97]

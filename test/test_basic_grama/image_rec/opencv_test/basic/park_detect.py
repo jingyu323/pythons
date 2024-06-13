@@ -24,7 +24,9 @@ def park_detect():
     block_images,rects =parking.identify_blocks(img,lines=parking_lines)
     parking.cv_show("block_images", block_images)
 
-    new_image, spot_dict=parking.draw_parking(selectRegion,rects=rects,thickness=1)
+    new_image, spot_dict=parking.draw_parking(img,rects=rects,thickness=1)
+
+
     parking.cv_show("new_image", new_image)
 
 if __name__ == '__main__':
