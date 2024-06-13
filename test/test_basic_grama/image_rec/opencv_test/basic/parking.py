@@ -209,6 +209,8 @@ class Parking:
             filename = 'spot' + str(spot_id) + '.jpg'
 
             print(os.path.join(folder_name, filename))
+            if not os.path.exists(os.path.join(folder_name)) :
+                os.mkdir(os.path.join(folder_name))
 
             cv2.imwrite(os.path.join(folder_name, filename), spot_img)
 
