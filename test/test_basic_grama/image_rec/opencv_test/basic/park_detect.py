@@ -12,7 +12,7 @@ def park_detect():
 
     masked = parking.select_rgb_white_yellow(img)
 
-
+    parking.cv_show("masked22", masked)
     selectRegion= parking.select_region(gray_img)
     edged = parking.detect_edges(selectRegion)
     parking.cv_show("selectRegion", selectRegion)
