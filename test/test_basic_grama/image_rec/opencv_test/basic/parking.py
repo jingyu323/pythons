@@ -33,7 +33,7 @@ class Parking:
             self.cv_show('mask', mask)
         return cv2.bitwise_and(image, mask)
 
-    def detect_edges(self,image, low_threshold=50, high_threshold=200):
+    def detect_edges(self,image, low_threshold=30, high_threshold=105):
         return cv2.Canny(image, low_threshold, high_threshold)
 
     def select_region(self,image):
@@ -44,7 +44,7 @@ class Parking:
         pt_3 = [cols*0.30, rows*0.51]
         pt_4 = [cols*0.6, rows*0.10]
         pt_5 = [cols*0.90, rows*0.11]
-        pt_6 = [cols*0.90, rows*0.92]
+        pt_6 = [cols*0.90, rows*0.97]
 
         vertices = np.array([[pt_1, pt_2, pt_3, pt_4, pt_5, pt_6]], dtype=np.int32)
         point_img = image.copy()
@@ -59,10 +59,10 @@ class Parking:
         # 输入的图像需要是边缘检测后的结果
         # minLineLengh(线的最短长度，比这个短的都被忽略)和MaxLineCap（两条直线之间的最大间隔，小于此值，认为是一条直线）
         # rho距离精度,theta角度精度,threshod超过设定阈值才被检测出线段
-        return cv2.HoughLinesP(image, rho=0.1, theta=np.pi / 10, threshold=15, minLineLength=9, maxLineGap=4)
+        return cv2.HoughLinesP(image, rho=0.1, theta=np.pi / 10, threshold=15, minLineLength=4, maxLineGap=2)
 
 
-    def draw_lines(self, image, lines, color=[255, 0, 0], thickness=2, make_copy=True):
+    def draw_lines(self, image, lines, color=[255, 0, 0], thickness=1, make_copy=True):
         # 过滤霍夫变换检测到直线
         if make_copy:
             image = np.copy(image)
@@ -82,7 +82,7 @@ class Parking:
         cleaned = []
         for line in lines:
             for x1, y1, x2, y2 in line:
-                if abs(y2 - y1) <= 1 and abs(x2 - x1) >= 25 and abs(x2 - x1) <= 55:
+                if abs(y2 - y1) <= 1 and abs(x2 - x1) >= 20 and abs(x2 - x1) <= 55:
                     cleaned.append((x1, y1, x2, y2))
 
         # Step 2: 对直线按照x1进行排序
@@ -130,13 +130,13 @@ class Parking:
         for key in rects:
             tup_topLeft = (int(rects[key][0] - buff), int(rects[key][1]))
             tup_botRight = (int(rects[key][2] + buff), int(rects[key][3]))
-            cv2.rectangle(new_image, tup_topLeft, tup_botRight, (0, 255, 0), 3)
+            cv2.rectangle(new_image, tup_topLeft, tup_botRight, (0, 255, 0), 2)
         return new_image, rects
 
     def draw_parking(self, image, rects, make_copy=True, color=[255, 0, 0], thickness=2, save=True):
         if make_copy:
             new_image = np.copy(image)
-        gap = 15.5
+        gap = 8.5
         spot_dict = {}  # 字典：一个车位对应一个位置
         tot_spots = 0
         # 微调
