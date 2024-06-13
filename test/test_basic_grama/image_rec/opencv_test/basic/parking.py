@@ -204,14 +204,10 @@ class Parking:
             spot_id = spot_dict[spot]
             print("spot_img data:",spot_img,spot_id,spot)
             spot_img = cv2.resize(spot_img, (0, 0), fx=2.0, fy=2.0)
-
-
             filename = 'spot' + str(spot_id) + '.jpg'
-
             print(os.path.join(folder_name, filename))
-            if not os.path.exists(os.path.join(folder_name)) :
+            if not os.path.exists(os.path.join(folder_name)):
                 os.mkdir(os.path.join(folder_name))
-
             cv2.imwrite(os.path.join(folder_name, filename), spot_img)
 
     def make_prediction(self, image, model, class_dictionary):
