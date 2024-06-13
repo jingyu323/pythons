@@ -1,3 +1,4 @@
+import os
 import unittest
 
 import cv2
@@ -39,9 +40,9 @@ class Parking:
     def select_region(self,image):
         rows, cols = image.shape[:2]
         # h，w
-        pt_1  = [cols*0.07, rows*0.90]
-        pt_2 = [cols*0.07, rows*0.65]
-        pt_3 = [cols*0.31, rows*0.50]
+        pt_1  = [cols*0.06, rows*0.90]
+        pt_2 = [cols*0.06, rows*0.65]
+        pt_3 = [cols*0.31, rows*0.49]
         pt_4 = [cols*0.6, rows*0.10]
         pt_5 = [cols*0.90, rows*0.11]
         pt_6 = [cols*0.90, rows*0.97]
@@ -140,11 +141,11 @@ class Parking:
         spot_dict = {}  # 字典：一个车位对应一个位置
         tot_spots = 0
         # 微调
-        adj_y1 = {0: 20, 1: -10, 2: 0, 3: -11, 4: 28, 5: 5, 6: -15, 7: -15, 8: -10, 9: -30, 10: 9, 11: -32}
-        adj_y2 = {0: 30, 1: 50, 2: 15, 3: 10, 4: -15, 5: 15, 6: 15, 7: -20, 8: 15, 9: 15, 10: 0, 11: 30}
+        adj_y1 = {0: -10, 1: -5, 2: 20, 3: 0, 4: -18, 5: 0, 6: 0, 7: 20, 8: 20, 9: 5, 10: 48, 11: -90}
+        adj_y2 = {0: -10, 1: -10, 2: -15, 3: 10, 4: 30, 5: -20, 6: -25, 7: -25, 8: -25, 9: -30, 10: -30, 11: -10}
 
-        adj_x1 = {0: -8, 1: -15, 2: -15, 3: -15, 4: -15, 5: -15, 6: -15, 7: -15, 8: -10, 9: -10, 10: -10, 11: 0}
-        adj_x2 = {0: 0, 1: 15, 2: 15, 3: 15, 4: 15, 5: 15, 6: 15, 7: 15, 8: 10, 9: 10, 10: 10, 11: 0}
+        adj_x1 = {0: 0, 1: -5, 2: -5, 3: -5, 4: -5, 5: -5, 6: -5, 7: -5, 8: 0, 9: 0, 10: 0, 11: 5}
+        adj_x2 = {0: 0, 1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5, 8: 10, 9: 5, 10: 5, 11: 0}
         for key in rects:
             tup = rects[key]
             x1 = int(tup[0] + adj_x1[key])
@@ -186,7 +187,7 @@ class Parking:
             cv2.imwrite(filename, new_image)
         return new_image, spot_dict
 
-    def assign_spots_map(self, image, spot_dict, make_copy=True, color=[255, 0, 0], thickness=2):
+    def assign_spots_map(self, image, spot_dict, make_copy=True, color=[255, 0, 0], thickness=1):
         if make_copy:
             new_image = np.copy(image)
         for spot in spot_dict.keys():
@@ -200,11 +201,14 @@ class Parking:
             (x1, y1, x2, y2) = (int(x1), int(y1), int(x2), int(y2))
             # 裁剪
             spot_img = image[y1:y2, x1:x2]
-            spot_img = cv2.resize(spot_img, (0, 0), fx=2.0, fy=2.0)
             spot_id = spot_dict[spot]
+            print("spot_img data:",spot_img,spot_id,spot)
+            spot_img = cv2.resize(spot_img, (0, 0), fx=2.0, fy=2.0)
+
 
             filename = 'spot' + str(spot_id) + '.jpg'
-            print(spot_img.shape, filename, (x1, x2, y1, y2))
+
+            print(os.path.join(folder_name, filename))
 
             cv2.imwrite(os.path.join(folder_name, filename), spot_img)
 

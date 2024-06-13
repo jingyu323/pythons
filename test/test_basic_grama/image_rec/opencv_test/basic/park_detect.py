@@ -26,8 +26,13 @@ def park_detect():
 
     new_image, spot_dict=parking.draw_parking(img,rects=rects,thickness=1)
 
-
     parking.cv_show("new_image", new_image)
+
+    spot_map_img=parking.assign_spots_map(new_image,spot_dict)
+
+    parking.cv_show("spot_map_img", spot_map_img)
+
+    parking.save_images_for_cnn(img,spot_dict)
 
 if __name__ == '__main__':
     park_detect()
