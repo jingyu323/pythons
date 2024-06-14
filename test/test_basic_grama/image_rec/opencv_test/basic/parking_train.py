@@ -96,7 +96,7 @@ early = EarlyStopping(monitor='val_acc', min_delta=0, patience=10, verbose=1, mo
 history_object = model_final.fit_generator(
 train_generator,
 epochs = epochs,
-    steps_per_epoch=32,
+steps_per_epoch=32,
 
 validation_data = validation_generator,
 validation_steps = 52,
