@@ -96,10 +96,10 @@ early = EarlyStopping(monitor='val_acc', min_delta=0, patience=10, verbose=1, mo
 history_object = model_final.fit_generator(
 train_generator,
 epochs = epochs,
-    steps_per_epoch=nb_train_samples,
+steps_per_epoch=32,
 
 validation_data = validation_generator,
-validation_steps = nb_validation_samples,
+validation_steps = 52,
 callbacks = [checkpoint, early])
 
 # history_object = model_final.fit_generator(
@@ -109,3 +109,20 @@ callbacks = [checkpoint, early])
 #     validation_data=validation_generator,
 #     nb_val_samples=nb_validation_samples,
 #     callbacks=[checkpoint, early])
+"""
+generator：生成器函数，生成器的输出应该为：
+steps_per_epoch：整数，当生成器返回steps_per_epoch次数据时计一个epoch结束，执行下一个epoch
+
+epochs：整数，数据迭代的轮数
+生成验证集的生成器
+
+一个形如（inputs,targets）的tuple
+
+一个形如（inputs,targets，sample_weights）的tuple
+
+validation_steps: 当validation_data为生成器时，本参数指定验证集的生成器返回次数
+
+eps_per_epoch来实现的，每次生产的数据就是一个batch，因此steps_per_epoch的值我们通过会设为（样本数/batch_size）
+。如果我们的generator是sequence类型，那么这个参数是可选的，默认使用len(generator) 。
+
+"""
