@@ -8,8 +8,7 @@ from PIL import ImageFont, ImageDraw, Image
 
 def plt_show0(img):
     # cv2与plt的图像通道不同：cv2为[b,g,r];plt为[r, g, b]
-    b, g, r = cv2.split(img)
-    img = cv2.merge([r, g, b])
+
     cv2.imshow("res", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -21,10 +20,13 @@ def plt_show(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-
+def plt_show2(img,name):
+    cv2.imshow(name,img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 # 图像去噪灰度处理
 def gray_guss(image):
-    image = cv2.GaussianBlur(image, (3, 3), 0)
+    image = cv2.GaussianBlur(image, (3,3), 0)
     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     return gray_image
 
@@ -156,11 +158,12 @@ def car_plate_rec():
     image = cv2.dilate(image, kernelY)
     # 中值滤波（去噪）
     image = cv2.medianBlur(image, 21)
-    # 显示灰度图像
-    plt_show(image)
+
     # 获得轮廓
     contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    copy=origin_image.copy()
 
+    chepai_img =copy
     for item in contours:
         rect = cv2.boundingRect(item)
         x = rect[0]
@@ -168,22 +171,29 @@ def car_plate_rec():
         weight = rect[2]
         height = rect[3]
         # 根据轮廓的形状特点，确定车牌的轮廓位置并截取图像
-        if (weight > (height * 3.5)) and (weight < (height * 4)):
+        if (weight > (height * 3)) and (weight <= (height * 4.2)):
             image = origin_image[y:y + height, x:x + weight]
-            plt_show0(image)
+            chepai_img= image
 
-
+    plt_show2(chepai_img,"chepai_img")
 
     # 图像阈值化操作——获得二值化图
-    ret, image = cv2.threshold(gray_image, 0, 255, cv2.THRESH_OTSU)
-    plt_show(image)
+
+    gray_chepai_img = gray_guss(chepai_img)
+    plt_show2(gray_chepai_img, "gray_chepai_img")
+    ret, image = cv2.threshold(gray_chepai_img, 0, 255, cv2.THRESH_OTSU)
+
 
     # 膨胀操作，使“苏”字膨胀为一个近似的整体，为分割做准备
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
     image = cv2.dilate(image, kernel)
-    plt_show(image)
+    plt_show2(image,"image")
     # 查找轮廓
-    contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cp_copy=chepai_img.copy()
+    cv2.drawContours(cp_copy, contours, -1, (0, 0, 255), 2)
+    plt_show2(cp_copy,"cp_copy")
+
     words = []
     word_images = []
     # 对所有轮廓逐一操作
@@ -201,17 +211,19 @@ def car_plate_rec():
         words.append(word)
     # 排序，车牌号有顺序。words是一个嵌套列表
     words = sorted(words, key=lambda s: s[0], reverse=False)
-    print("words words is:", words)
+
     i = 0
     # word中存放轮廓的起始点和宽高
     for word in words:
         # 筛选字符的轮廓
-        if (word[3] > (word[2] * 1.5)) and (word[3] < (word[2] * 3.5)) and (word[2] > 25):
+        # if (word[3] > (word[2] * 1.5)) and (word[3] < (word[2] * 3.5)) and (word[2] > 25):
+        if   word[2] > 6  and word[3] <50  and ((word[2] * 1.5) < word[3]  and word[1] < 10 )  :
+            print(str(i)+"words:",word)
             i = i + 1
             splite_image = image[word[1]:word[1] + word[3], word[0]:word[0] + word[2]]
             word_images.append(splite_image)
             print(i)
-            plt_show0(splite_image)
+            plt_show2(splite_image,"44444splite_image")
     print("word image is:",word_images)
 
     for i, j in enumerate(word_images):
@@ -282,7 +294,7 @@ def car_plate_rec():
     bk_img = np.array(img_pil)
     print(result)
     print("".join(result))
-    plt_show0(bk_img)
+
 
 
 if __name__ == '__main__':
