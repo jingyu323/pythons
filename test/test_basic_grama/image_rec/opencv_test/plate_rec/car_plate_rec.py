@@ -90,7 +90,8 @@ def template_matching(word_images,template,chinese_words_list,eng_words_list,eng
                 for chinese_word in chinese_words:
                     result = template_score(chinese_word, word_image)
                     score.append(result)
-                best_score.append(max(score))
+                if len(score) >0:
+                    best_score.append(max(score))
             i = best_score.index(max(best_score))
             # print(template[34+i])
             r = template[34 + i]
@@ -216,16 +217,13 @@ def car_plate_rec():
     # word中存放轮廓的起始点和宽高
     for word in words:
         # 筛选字符的轮廓
-        # if (word[3] > (word[2] * 1.5)) and (word[3] < (word[2] * 3.5)) and (word[2] > 25):
         if   word[2] > 6  and word[3] <50  and ((word[2] * 1.5) < word[3]  and word[1] < 10 )  :
             print(str(i)+"words:",word)
             i = i + 1
             splite_image = image[word[1]:word[1] + word[3], word[0]:word[0] + word[2]]
             word_images.append(splite_image)
             print(i)
-            plt_show2(splite_image,"44444splite_image")
-    print("word image is:",word_images)
-
+    # 显示 截取的图片
     for i, j in enumerate(word_images):
         plt.subplot(1, 7, i + 1)
         plt.imshow(word_images[i], cmap='gray')
@@ -241,31 +239,15 @@ def car_plate_rec():
                 '青', '琼', '陕', '苏', '皖', '湘', '新', '渝', '豫', '粤', '云', '浙']
 
     # 读取一个文件夹下的所有图片，输入参数是文件名，返回模板文件地址列表
-
-
     # 获得中文模板列表（只匹配车牌的第一个字符）
-
-
     chinese_words_list = get_chinese_words_list(template)
-
     # 获得英文模板列表（只匹配车牌的第二个字符）
-
-
     eng_words_list = get_eng_words_list(template)
-
-    print(chinese_words_list )
-
     # 获得英文和数字模板列表（匹配车牌后面的字符）
-
-
     eng_num_words_list = get_eng_num_words_list(template)
-
+    print("eng_num_words_list",eng_num_words_list)
     # 读取一个模板地址与图片进行匹配，返回得分
-
-
     # 对分割得到的字符逐一匹配
-
-
     word_images_ = word_images.copy()
     # 调用函数获得结果
     result = template_matching(word_images_,template,chinese_words_list,eng_words_list,eng_num_words_list)

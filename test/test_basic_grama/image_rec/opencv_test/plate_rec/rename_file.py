@@ -30,8 +30,11 @@ for chinese_words in chinese_words_list:
     for wordd in chinese_words:
 
         if wordd.find("ԥ_") >=0:
-            print(wordd.replace("��_","津_"))
+            print(wordd.replace("ԥ_","豫_"))
             os.rename(wordd, wordd.replace("��_","津_"))
         if wordd.find("��_") >=0:
             print(wordd.replace("��_","津_"))
             os.rename(wordd, wordd.replace("��_","津_"))
+        if wordd.find("³_") >=0:
+            print(wordd.replace("³_","鲁_"))
+            os.rename(wordd, wordd.replace("³_","鲁_"))
