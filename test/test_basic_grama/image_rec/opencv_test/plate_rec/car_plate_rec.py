@@ -201,6 +201,7 @@ def car_plate_rec():
         words.append(word)
     # 排序，车牌号有顺序。words是一个嵌套列表
     words = sorted(words, key=lambda s: s[0], reverse=False)
+    print("words words is:", words)
     i = 0
     # word中存放轮廓的起始点和宽高
     for word in words:
@@ -210,7 +211,8 @@ def car_plate_rec():
             splite_image = image[word[1]:word[1] + word[3], word[0]:word[0] + word[2]]
             word_images.append(splite_image)
             print(i)
-    print(words)
+            plt_show0(splite_image)
+    print("word image is:",word_images)
 
     for i, j in enumerate(word_images):
         plt.subplot(1, 7, i + 1)
@@ -239,6 +241,8 @@ def car_plate_rec():
 
     eng_words_list = get_eng_words_list(template)
 
+    print(chinese_words_list )
+
     # 获得英文和数字模板列表（匹配车牌后面的字符）
 
 
@@ -253,6 +257,7 @@ def car_plate_rec():
     word_images_ = word_images.copy()
     # 调用函数获得结果
     result = template_matching(word_images_,template,chinese_words_list,eng_words_list,eng_num_words_list)
+    print("=====================================================")
     print(result)
     # "".join(result)函数将列表转换为拼接好的字符串，方便结果显示
     print("".join(result))
