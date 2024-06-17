@@ -1,7 +1,11 @@
-from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
+# from keras.api.applications.vgg16 import VGG16, preprocess_input, decode_predictions
+# from keras.api.preprocessing.image import load_img, img_to_array
 
-from keras.preprocessing.image import load_img, img_to_array
+from keras.api.applications.vgg16 import VGG16, preprocess_input, decode_predictions
+from keras.api.preprocessing.image import load_img, img_to_array
+
 import numpy as np
+
 # VGG-16 instance
 model = VGG16(weights='imagenet', include_top=True)
 

@@ -63,6 +63,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install pytesseract  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install easyocr  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install keras  -i https://pypi.tuna.tsinghua.edu.cn/simple 
 
 
 
@@ -76,6 +77,8 @@ https://www.jaided.ai/easyocr/
 # 学习地址
 ## 各种识别方法
 https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is-convex-or-not-in-opencv-python.html
+keras
+https://keras-zh.readthedocs.io/applications/#vgg16
 
 ## 图像识别
 
@@ -129,3 +132,8 @@ https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is
 ### 答题卡
 - 如何识别选中的
 - 如何指出来错误的
+
+ln -s  /Library/Frameworks/Python.framework/Versions/3.11/bin/pip /usr/local/bin/pip
+
+
+path = " ~/.keras/models/vgg16_weights_tf_dim_ordering_tf_kernels.h5"
