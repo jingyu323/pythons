@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 
 def cv_show(name,img):
@@ -66,7 +67,7 @@ def  img_yuzhi(img):
     # 超过阈值部分取maxval(最大值)，否则取0
     ret,thresh1 = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)
     cv_show('thresh1', thresh1)
-    # 上面的反转
+    #   大于阈值的使用0表示，小于阈值的使用最大值表示
     ret,thresh2 = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY_INV)  # INV为inverse
 
     cv_show('thresh2', thresh2)
@@ -80,6 +81,69 @@ def  img_yuzhi(img):
     ret,thresh5 = cv2.threshold(img_gray, 127, 255, cv2.THRESH_TOZERO_INV)
     # 127为阈值，255为最大值
     cv_show('thresh5', thresh5)
+
+def img_quzao(img):
+    # 均值滤波，简单的平均卷积操作
+    blur = cv2.blur(img, (3, 3))  # 用3*3的单位矩阵卷积(一般都是奇数矩阵)
+    # 方框滤波,类似均值滤波，可以选择归一化
+    box = cv2.boxFilter(img, -1, (3, 3), normalize=True)  # normalize=False容易越界
+    # 高斯滤波，高斯模糊的卷积核数值满足高斯分布，相当于更重视
+    aussian = cv2.GaussianBlur(img, 1)
+    # 中值滤波,用中间值代替
+    median = cv2.medianBlur(img, 5)
+
+    # 显示所有
+    res = np.hstack((blur, aussian, median))  # 水平显示三张图像
+    res = np.vstack((blur, aussian, median))  # 垂直显示三张图像
+
+def clos_open(img):
+    # 开运算：先腐蚀后膨胀
+    kernel = np.ones((5, 5), np.uint8)
+    opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+
+    # 闭运算：先膨胀后腐蚀
+    kernel = np.ones((5, 5), np.uint8)
+    closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+
+    # 礼帽=原始输入-开运算结果
+    tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
+
+    # 黑帽=闭运算-原始输入
+    blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)
+
+    # 梯度=膨胀-腐蚀
+    gradient = cv2.morphologyEx(img,cv2.MORPH_GARDIENT.kernel)
+    # dst = cv2.Sobel(src, ddepth, dx, dy, ksize)
+
+    # ddepth:图像深度
+    # dx和dy分别表示水平和竖直方向
+    # ksize是Sobel算子大小
+
+    sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+    sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+    sobelx = cv2.convertScaleAbs(sobelx)
+    sobely = cv2.convertScaleAbs(sobely)
+    sobelxy = cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
+
+    v = cv2.Canny(img, 50, 100)
+
+    img = cv2.imread('car.png')
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    cv_show(thresh, 'thresh')
+    # 轮廓特征
+    contours=[0]
+    cnt = contours[0]
+    epsilon = 0.1*cv2.arcLength(cnt,True)
+    approx = cv2.apporxPolyDP(cnt,epsilon,True)
+    # 边界矩形
+    cnt = contours[3]
+    x, y, w, h = cv2.boundingRect(cnt)
+    img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    # 外接圆
+    (x, y), radius = cv2.minEnclosingCircle(cnt)
+    center = (int(x), int(y))
+    radius = int(radius)
 
 
 if __name__ == '__main__':
