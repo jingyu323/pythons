@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
 
-
+imgOriginal = cv2.imread('../image/examp.png')
+imgOriginal = cv2.resize(imgOriginal, (500, 600))
 def four_point_transfrom(img, pts):
     newPoints = []
     sumPoints = []
@@ -34,26 +35,73 @@ def preprocess(img):
 	#返回预处理的结果
     return imgEdge
 
-def getCnts(img):
+def getCnts2(img):
     cnts, hier = cv2.findContours(img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    cv2.drawContours(img, cnts, -1, (0, 0, 255), 3)
-    print(len(cnts))
+    cv2.drawContours(img, cnts, -1, (0, 0, 255), 8)
+
+    cv2.imshow('drawContours', img)
+    cv2.waitKey()
+
+    print("len",len(cnts))
     docCnts = None
     # 确保有轮廓
     if len(cnts) > 0:
         cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
         for c in cnts:
-            print(c)
             # 轮廓近似
             peri = cv2.arcLength(c, True)
             approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+            print("cv2.approxPolyDP:",approx)
+            print("cv2.approxPolyDP len:",len(approx))
+            if len(approx) == 4:
+                print("=============================================================")
+                docCnts = approx
+                break
+
+        return docCnts
+
+
+
+
+
+
+def getCnts(img):
+    cnts  = cv2.findContours(img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+    print("cnts len:", len(cnts))
+
+    copy = imgOriginal.copy()
+    cv2.drawContours(copy, cnts, -1, (0, 0, 255), 8)
+
+    cv2.imshow('drawContours', copy)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+    docCnts = None
+    # make sure detected
+    if len(cnts) > 0:
+        cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
+
+
+        for c in cnts:
+            # appro
+            peri = cv2.arcLength(c, True)
+
+            print(peri)
+            approx = cv2.approxPolyDP(c, 0.01 * peri, True)
+
 
             if len(approx) == 4:
                 docCnts = approx
                 break
 
         return docCnts
+
+
+
+
+
+
 def getWrap(img, wraped, w, h):
     src = np.array(wraped, dtype="float32")
     dst = np.array([[0, 0],
@@ -83,7 +131,7 @@ def sort_contours(cnts, method="left-to-right"):
 def main():
     ANSWER_KEY = {0: 1, 1: 4, 2: 0, 3: 3, 4: 1}
     # read img
-    imgOriginal = cv2.imread('../image/exam.jpg')
+    imgOriginal = cv2.imread('../image/examp.png')
     imgOriginal = cv2.resize(imgOriginal, (500, 600))
     w = imgOriginal.shape[0]
     h = imgOriginal.shape[1]
@@ -92,26 +140,25 @@ def main():
     drawImg = imgOriginal.copy()
 
     # preprocess
-    imgPre = preprocess(drawImg)
+    # imgPre = preprocess(drawImg)
 
-    # contours
-    cur_cnts = getCnts(imgPre)
+    # contours 获取四方形 获取答题纸 外边缘，但是提供的图片没有只有圆形部分
+    # cur_cnts = getCnts(imgPre)
 
     # imgPerspective
-    wraped = four_point_transfrom(imgPre, cur_cnts.reshape(4, 2))
-    imgWrap = getWrap(imgOriginal, wraped, w, h)
-    cv2.imshow('imgWrap', imgWrap)
-    cv2.waitKey()
+    # wraped = four_point_transfrom(imgPre, cur_cnts.reshape(4, 2))
+    # imgWrap = getWrap(imgOriginal, wraped, w, h)
+    # cv2.imshow('imgWrap', imgWrap)
+    # cv2.waitKey()
 
     # threshold
-    imgWrapGray = cv2.cvtColor(imgWrap, cv2.COLOR_BGR2GRAY)
+    imgWrapGray = cv2.cvtColor(drawImg, cv2.COLOR_BGR2GRAY)
     imgThreshold = cv2.threshold(imgWrapGray, 20, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
     cv2.imshow("Wraped and threshold", imgThreshold)
     cv2.waitKey()
 
-    # find Contours2
-
-    draw_cnts = imgWrap.copy()
+    # find Contours2  在二值化基础上寻找Contours
+    draw_cnts = drawImg.copy()
     thresh_cnts,hers = cv2.findContours(imgThreshold.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(draw_cnts, thresh_cnts, -1, (0, 0, 255), 3)
 
@@ -126,7 +173,6 @@ def main():
         # 计算比例和大小
         (x, y, w, h) = cv2.boundingRect(c)
         ar = w / float(h)
-
 
         # 根据实际情况指定标准
         if w >= 50 and h >= 40 and ar >= 0.9 and ar <= 1.6:
@@ -180,14 +226,14 @@ def main():
             correct += 1
 
         # 绘图
-        cv2.drawContours(imgWrap, [cnts[k]], -1, color, 3)
+        cv2.drawContours(drawImg, [cnts[k]], -1, color, 3)
 
     score = (correct / 5.0) * 100
     print("[INFO] score: {:.2f}%".format(score))
-    cv2.putText(imgWrap, "{:.2f}%".format(score), (10, 30),
+    cv2.putText(drawImg, "{:.2f}%".format(score), (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
     cv2.imshow("Original", imgOriginal)
-    cv2.imshow("Exam", imgWrap)
+    cv2.imshow("Exam", drawImg)
     cv2.waitKey()
 if __name__ == '__main__':
     main()

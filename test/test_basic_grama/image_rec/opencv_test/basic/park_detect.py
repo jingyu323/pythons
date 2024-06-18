@@ -1,4 +1,5 @@
 import cv2
+import keras
 import numpy as np
 
 from opencv_test.basic.parking import Parking
@@ -33,6 +34,17 @@ def park_detect():
     parking.cv_show("spot_map_img", spot_map_img)
 
     parking.save_images_for_cnn(img,spot_dict)
+    class_dictionary={}
+    class_dictionary[0]="empty"
+    class_dictionary[1]="occupied"
+
+    weifgts_path="car.h5"
+
+    model= keras.models.load_model(weifgts_path)
+
+
+
+    parking.predict_on_image(img, spot_dict, model, class_dictionary,)
 
 if __name__ == '__main__':
     park_detect()

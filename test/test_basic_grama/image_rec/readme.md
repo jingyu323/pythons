@@ -128,6 +128,7 @@ https://keras-zh.readthedocs.io/applications/#vgg16
 ## 待做
 ### 停车场
  主要学习如何定位指定区域
+    - 根据坐标点用mask 反选
  
 ### 答题卡
 - 如何识别选中的

@@ -1,15 +1,11 @@
 import numpy
 import os
 
-from keras import applications
-from keras.preprocessing.image import ImageDataGenerator
-from keras import optimizers
-from keras.models import  Model
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-
-from keras.layers.core import Flatten
-from keras.layers.core import Dense
-
+from keras import applications, Model
+from keras.api import optimizers
+from keras.src.callbacks import ModelCheckpoint, EarlyStopping
+from keras.src.layers import Flatten, Dense
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
 
 files_train = 0
 files_validation = 0
