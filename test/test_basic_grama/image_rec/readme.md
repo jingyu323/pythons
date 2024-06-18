@@ -151,3 +151,7 @@ cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
 - method：轮廓近似方法，可以是以下值之一： 
   - cv2.CHAIN_APPROX_NONE：存储所有轮廓点的信息。 
   - cv2.CHAIN_APPROX_SIMPLE：仅存储轮廓的端点。
+
+图像切割： 开始坐标 x+宽 y+高
+ image[word[1]:word[1] + word[3], word[0]:word[0] + word[2]]
+ cv2.imwrite(str(i)+'.jpg', splite_image)

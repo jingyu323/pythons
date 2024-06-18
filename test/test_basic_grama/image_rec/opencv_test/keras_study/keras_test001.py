@@ -3,7 +3,7 @@
 from PIL import Image
 import numpy as np
 from keras import Sequential
-from keras.layers import Dense
+from keras.src.layers import Dense
 
 
 def process_x(path):
