@@ -197,11 +197,12 @@ def main():
         for (j, c) in enumerate(cnts):
             # 使用mask来判断结果
             mask = np.zeros(imgThreshold.shape, dtype="uint8")
-
             cv2.drawContours(mask, [c], -1, 255, -1)  # -1表示填充，[c]表示当前选项的位置
-
             # 通过计算非零点数量来算是否选择这个答案
             mask = cv2.bitwise_and(imgThreshold, imgThreshold, mask=mask)#相当于只保留了白色的部分
+            cv2.imshow('mask', mask)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
             total = cv2.countNonZero(mask)
             print('total=',total)
             #判断一下，如果他涂了两个选项，应该另外处理
