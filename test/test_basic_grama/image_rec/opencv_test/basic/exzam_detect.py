@@ -197,6 +197,7 @@ def main():
         for (j, c) in enumerate(cnts):
             # 使用mask来判断结果
             mask = np.zeros(imgThreshold.shape, dtype="uint8")
+
             cv2.drawContours(mask, [c], -1, 255, -1)  # -1表示填充，[c]表示当前选项的位置
 
             # 通过计算非零点数量来算是否选择这个答案

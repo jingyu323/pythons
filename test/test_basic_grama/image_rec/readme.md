@@ -131,8 +131,10 @@ https://keras-zh.readthedocs.io/applications/#vgg16
     - 根据坐标点用mask 反选
  
 ### 答题卡
-- 如何识别选中的
-- 如何指出来错误的
+- 如何识别选中的   
+  - 根据二值化之后对选中的颜色进行阈值选中 检测器中的像素点的多少
+- 如何指出来错误的 
+  - 根据 识别出来正确的就识别出来错误的 再把正确的答案的位置画上轮廓
 
 ln -s  /Library/Frameworks/Python.framework/Versions/3.11/bin/pip /usr/local/bin/pip
 
