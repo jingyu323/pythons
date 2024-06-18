@@ -155,3 +155,12 @@ cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
 图像切割： 开始坐标 x+宽 y+高
  image[word[1]:word[1] + word[3], word[0]:word[0] + word[2]]
  cv2.imwrite(str(i)+'.jpg', splite_image)
+
+1. 找到匹配程度最小的位置，即最佳匹配位置
+```python
+min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+2. 在源图像上绘制匹配结果
+top_left = max_loc
+bottom_right = (top_left[0] + templ.shape[1], top_left[1] + templ.shape[0])
+cv2.rectangle(image, top_left, bottom_right, 255, 2) 
+```
