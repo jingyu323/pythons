@@ -137,3 +137,17 @@ ln -s  /Library/Frameworks/Python.framework/Versions/3.11/bin/pip /usr/local/bin
 
 
 path = " ~/.keras/models/vgg16_weights_tf_dim_ordering_tf_kernels.h5"
+
+
+# 关键命令
+
+## 绘制轮廓
+cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
+- mode：轮廓检索模式，可以是以下值之一：
+  - cv2.RETR_EXTERNAL：只检索最外层的轮廓。 
+  - cv2.RETR_LIST：检索所有轮廓，并保存到列表中。 
+  - cv2.RETR_CCOMP：检索所有轮廓，并组织成两层结构。外层轮廓和内层轮廓（如果存在的话）。 
+  - cv2.RETR_TREE：检索所有轮廓，并组织成层次结构。
+- method：轮廓近似方法，可以是以下值之一： 
+  - cv2.CHAIN_APPROX_NONE：存储所有轮廓点的信息。 
+  - cv2.CHAIN_APPROX_SIMPLE：仅存储轮廓的端点。
