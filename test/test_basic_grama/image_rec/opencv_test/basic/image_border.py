@@ -275,10 +275,12 @@ def bonder_test():
     bye_gray = cv2.cvtColor(bye, cv2.COLOR_BGR2GRAY)  # 转换为灰度图
     ret, bye_binary = cv2.threshold(bye_gray, 100, 255, cv2.THRESH_BINARY)  # 二值化，高于100的为255，低于100的为0
     contours, hierarchy = cv2.findContours(bye_binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    # 获取轮廓，使用RETR_EXTERNAL方法只获取外轮廓
+    # 获取轮廓，使用RETR_EXTERNAL方法只获取外轮廓  通过计算弧度
     epsilon = 0.001 * cv2.arcLength(contours[1], True)  # 设置近似精度，此处选取第一条轮廓，设为其周长的0.01倍  精度越小轮廓约精细 越准确
     approx = cv2.approxPolyDP(contours[1], epsilon, True)  # 对轮廓进行近似
     bye_new = bye.copy()  # 复制一份，不破坏原图
+
+    print(len(approx))
 
     image_contours = cv2.drawContours(bye_new, [approx], contourIdx=-1, color=(0, 255, 0), thickness=3)  # 绘制轮廓
     cv2.imshow('bye', bye)

@@ -1,4 +1,5 @@
 import cv2
+import imutils
 import numpy as np
 
 
@@ -146,8 +147,31 @@ def clos_open(img):
     radius = int(radius)
 
 
+def check_rec(img):
+    bye_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # 转换为灰度图
+    ret, bye_binary = cv2.threshold(bye_gray, 100, 255, cv2.THRESH_BINARY)  # 二值化，高于100的为255，低于100的为0
+    # 只能用二值化
+    cnts = cv2.findContours(bye_binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = imutils.grab_contours(cnts)
+    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+    # loop over the contours
+    for c in cnts:
+        # approximate the contour
+        peri = cv2.arcLength(c, True)
+        approx = cv2.approxPolyDP(c, 0.01 * peri, True)
+        # if our approximated contour has four points, then we
+        # can assume that we have found our screen
+        if len(approx) == 4:
+            screenCnt = approx
+            print(screenCnt)
+            image_contours = cv2.drawContours(img, [screenCnt], contourIdx=-1, color=(0, 255, 0), thickness=3)  # 绘制轮廓
+            cv_show('image_contours', image_contours)
+
+
+
+
 if __name__ == '__main__':
-    img = cv2.imread("../image/jinmao.jpg")
+    img = cv2.imread("../image/lunkuo.png")
     # img_extract(img)
 
-    img_yuzhi(img)
+    check_rec(img)
