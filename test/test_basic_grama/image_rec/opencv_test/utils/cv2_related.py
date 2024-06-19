@@ -170,6 +170,9 @@ def check_rec(img):
 
 
 
+
+
+
 if __name__ == '__main__':
     img = cv2.imread("../image/lunkuo.png")
     # img_extract(img)
