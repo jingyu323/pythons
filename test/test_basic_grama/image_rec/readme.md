@@ -64,6 +64,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install easyocr  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install keras  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install openpyxl  -i https://pypi.tuna.tsinghua.edu.cn/simple 
 
 
 
