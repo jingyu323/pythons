@@ -3,6 +3,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+from opencv_test.utils.cv2_related import cv_show
+
 
 def count_find():
     cat = cv2.imread('../image/lunkuo.png')
@@ -288,6 +290,66 @@ def bonder_test():
     cv2.imshow('image_contours', image_contours)
     cv2.waitKey(100000)
 
+#  图片相加 add weight
+def image_merge_addwight():
+    img1 = cv2.imread(r'../image/zly.jpg')
+    img2 = cv2.imread(r'../image/bj.jpg')
+    res = cv2.addWeighted(img1, 0.8, img2, 0.2, 0)
+    # 保存
+
+    cv_show("res",res);
+
+def image_merge_bitwise_and():
+    img1 = cv2.imread(r'../image/zly.jpg')
+    img2 = cv2.imread(r'../image/bj.jpg')
+    # 此处可以控制合成的位置（哪些位置进行改变）
+    # 这里两幅图一样大，不起作用
+    rows, cols, channels = img2.shape
+    roi = img1[0:rows, 0:cols]
+
+    img2gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 将图片灰度化
+    cv2.imshow('img2gray', img2gray)
+    # 灰度图 把 大于175（不感兴趣）的值改为 255 ，也就是变为白色
+    ret, mask = cv2.threshold(img2gray, 175, 255, cv2.THRESH_BINARY)
+    cv2.imshow('mask', mask)
+    # 把mask取反，兴趣区域-->白色   无兴趣区域-->黑色
+    mask_not = cv2.bitwise_not(mask)
+    cv2.imshow('mask_not', mask_not)
+    # 对张靓颖图片和mask进行取与操作，作用相当于把mask中为黑色的部分，
+    # 在张靓颖图片中也附黑，白色部分不变。
+    img1_bg = cv2.bitwise_and(roi, roi, mask=mask)
+    cv2.imshow('img1_bg', img1_bg)
+    # 对风景图片和mask_not进行取与操作，作用相当于把mask中为黑色的部分，
+    # 在风景图片中也附黑，白色部分不变。
+    img2_fg = cv2.bitwise_and(img2, img2, mask=mask_not)
+    cv2.imshow('img2_fg', img2_fg)
+    # 相加即可
+    dst = cv2.add(img1_bg, img2_fg)
+    img1[0:rows, 0:cols] = dst
+    # 保存
+
+    cv2.imshow('dst', dst)
+    cv2.waitKey(0)
+
+# 无缝合成（Seamless Cloning）是opencv3的新特性。
+#
+# 利用这个新特性，我们可以从一个图像复制对象，将其粘贴到另一个图像中，同时使组合看起来无缝和自然
+def image_merge_seamlessClone():
+    src = cv2.imread(r'../image/zly.jpg')
+    dst = cv2.imread(r'../image/bj.jpg')
+
+    cv2.imshow('dst', dst)
+    # 修改150的值，可以有不同的效果，这是为 一般可以设置为全白，也就是255
+    src_mask = 255 * np.ones(src.shape, src.dtype)
+    # 位置 此处图片不能偏移出去，大小控制好
+    center = (201, 295)
+    # Clone seamlessly.  提供了两种方式 cv2.MIXED_CLONE 和 cv2.NORMAL_CLONE 结果不同的
+    output = cv2.seamlessClone(src, dst, src_mask, center, cv2.MIXED_CLONE)
+
+    # 保存
+    cv2.imshow('output', output)
+    cv2.waitKey(0)
+
 
 if __name__ == '__main__':
-    bonder_test()
+    image_merge_seamlessClone()
