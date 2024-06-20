@@ -98,7 +98,7 @@ def cal_car_remove_background():
 def cal_car_remove_background2():
 
     cap  = cv2.VideoCapture("../video/video.mp4")
-
+    #  动态识别
     mog =cv2.createBackgroundSubtractorMOG2(history=100, detectShadows=True)
     kenel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
     min_w = 100

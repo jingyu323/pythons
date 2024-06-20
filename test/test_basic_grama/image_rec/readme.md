@@ -168,3 +168,9 @@ top_left = max_loc
 bottom_right = (top_left[0] + templ.shape[1], top_left[1] + templ.shape[0])
 cv2.rectangle(image, top_left, bottom_right, 255, 2) 
 ```
+
+##  光流估计
+
+dib ssd 
+
+
