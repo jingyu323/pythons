@@ -270,6 +270,7 @@ def junheng():
     cv2.destroyAllWindows()
 
 
+# 多边形近似逼近
 def bonder_test():
     bye1 = cv2.imread('../image/bye.png')
     bye = cv2.resize(bye1, (400, 500))

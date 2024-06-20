@@ -1,6 +1,7 @@
 import cv2  # 答题卡识别
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 
 from opencv_test.utils.cv2_related import cv_show
 
@@ -263,7 +264,7 @@ def red_img():
 
 
 
-
+# 把斜了的图片转正
 def hellotransform():
     image = cv2.imread('../image/hello01.png')
 
@@ -298,8 +299,20 @@ def hellotransform():
     cv2.imshow("Original", image)
     cv2.imshow("Warped", warped)
     cv2.waitKey(0)
+# 逆变换把正常转换为不正常
+def transform_reverse():
+    img = cv2.imread("../image/imgB2.png")  # 读取彩色图像(BGR)
+    rows, cols, ch = img.shape
 
+    pts1 = np.float32([[50, 50], [200, 50], [50, 200]])  # 初始位置
+    pts2 = np.float32([[50, 100], [200, 50], [100, 250]])  # 终止位置
+    MA = cv2.getAffineTransform(pts1, pts2)  # 计算 2x3 变换矩阵 MA
+    dst = cv2.warpAffine(img, MA, (cols, rows))  # 实现仿射变换
 
+    plt.figure(figsize=(9, 6))
+    plt.subplot(121), plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)), plt.title("Original")
+    plt.subplot(122), plt.imshow(cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)), plt.title("warpAffine")
+    plt.show()
 
 if __name__ == '__main__':
-    red_img()
+    transform_reverse()
