@@ -54,21 +54,21 @@ def mul_tracker_test():
 def createTypeTracker(trackerType):
     trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
     if trackerType == trackerTypes[0]:
-        tracker = cv2.legacy.TrackerBoosting_create()
+        tracker = cv2.legacy.TrackerBoosting()
     elif trackerType == trackerTypes[1]:
-        tracker = cv2.TrackerMIL_create()
+        tracker = cv2.TrackerMIL()
     elif trackerType == trackerTypes[2]:
         tracker = cv2.TrackerKCF()
     elif trackerType == trackerTypes[3]:
-        tracker = cv2.legacy.TrackerTLD_create()
+        tracker = cv2.legacy.TrackerTLD()
     elif trackerType == trackerTypes[4]:
-        tracker = cv2.legacy.TrackerMedianFlow_create()
+        tracker = cv2.legacy.TrackerMedianFlow()
     elif trackerType == trackerTypes[5]:  # 暂时存在问题
-        tracker = cv2.TrackerGOTURN_create()
+        tracker = cv2.TrackerGOTURN()
     elif trackerType == trackerTypes[6]:
-        tracker = cv2.legacy.TrackerMOSSE_create()
+        tracker = cv2.legacy.TrackerMOSSE()
     elif trackerType == trackerTypes[7]:
-        tracker = cv2.legacy.TrackerCSRT_create()
+        tracker = cv2.legacy.TrackerCSRT()
     else:
         tracker = None
 
@@ -84,7 +84,6 @@ def tracker_test():
 
     # 如果视频没有打开，退出。
     if not video.isOpened():
-        print
         "Could not open video"
         sys.exit()
 
