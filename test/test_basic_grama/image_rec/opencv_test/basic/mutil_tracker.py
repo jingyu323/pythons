@@ -54,21 +54,21 @@ def mul_tracker_test():
 def createTypeTracker(trackerType):
     trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
     if trackerType == trackerTypes[0]:
-        tracker = cv2.legacy.TrackerBoosting()
+        tracker = cv2.legacy.TrackerBoosting().create()
     elif trackerType == trackerTypes[1]:
-        tracker = cv2.TrackerMIL()
+        tracker = cv2.TrackerMIL().create()
     elif trackerType == trackerTypes[2]:
-        tracker = cv2.TrackerKCF()
+        tracker = cv2.TrackerKCF().create()
     elif trackerType == trackerTypes[3]:
-        tracker = cv2.legacy.TrackerTLD()
+        tracker = cv2.legacy.TrackerTLD().create()
     elif trackerType == trackerTypes[4]:
-        tracker = cv2.legacy.TrackerMedianFlow()
+        tracker = cv2.legacy.TrackerMedianFlow().create()
     elif trackerType == trackerTypes[5]:  # 暂时存在问题
-        tracker = cv2.TrackerGOTURN()
+        tracker = cv2.TrackerGOTURN().create()
     elif trackerType == trackerTypes[6]:
-        tracker = cv2.legacy.TrackerMOSSE()
+        tracker = cv2.legacy.TrackerMOSSE().create()
     elif trackerType == trackerTypes[7]:
-        tracker = cv2.legacy.TrackerCSRT()
+        tracker = cv2.TrackerCSRT().create()
     else:
         tracker = None
 
@@ -79,7 +79,7 @@ def tracker_test():
 
     video = cv2.VideoCapture("../video/gaosu.mp4")
     # 创建一个跟踪器，algorithm: KCF、CSRT、DaSiamRPN、GOTURM、MIL
-    tracker_type = 'KCF'
+    tracker_type = 'CSRT'
     tracker = createTypeTracker(tracker_type)
 
     # 如果视频没有打开，退出。
