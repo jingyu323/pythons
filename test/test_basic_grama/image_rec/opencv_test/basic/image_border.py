@@ -351,7 +351,7 @@ def image_merge_seamlessClone():
     cv2.imshow('output', output)
     cv2.waitKey(0)
 
-
+# 拉普拉斯金字塔在图像增强、压缩、图像融合等方面有用
 def primay_demo():
     A = cv2.imread('../image/apple.png')
     B = cv2.imread('../image/orange.png')
