@@ -68,7 +68,7 @@ def createTypeTracker(trackerType):
     elif trackerType == trackerTypes[6]:
         tracker = cv2.legacy.TrackerMOSSE()
     elif trackerType == trackerTypes[7]:
-        tracker = cv2.legacy.TrackerCSRT()
+        tracker = cv2.TrackerCSRT()
     else:
         tracker = None
 
