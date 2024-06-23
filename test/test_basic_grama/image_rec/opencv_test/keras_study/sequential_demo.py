@@ -5,6 +5,8 @@ from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embe
 from keras.src.optimizers import SGD
 
 
+
+
 # 对于具有 2 个类的单输入模型（二进制分类）：
 def single_layer_model():
     model = Sequential()
@@ -197,7 +199,7 @@ def  seq_multi_model_stateful():
     # 第 k 批数据的第 i 个样本是第 k-1 批数据的第 i 个样本的后续。
     model = Sequential()
     model.add(LSTM(32, return_sequences=True, stateful=True,
-                   batch_input_shape=(batch_size, timesteps, data_dim)))
+                   input_shape=( timesteps, data_dim)))
     model.add(LSTM(32, return_sequences=True, stateful=True))
     model.add(LSTM(32, stateful=True))
     model.add(Dense(10, activation='softmax'))
@@ -223,4 +225,4 @@ def  seq_multi_model_stateful():
     print(score)
 
 if __name__ == '__main__':
-    seq_multi_model_lstm2()
+    seq_multi_model_stateful()
