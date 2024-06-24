@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 from keras import Sequential
 from keras.src.layers import Dense
+from keras.src.optimizers import SGD
 
 
 def process_x(path):
@@ -36,7 +37,8 @@ def generate_arrays_from_file(x_y):
 model = Sequential()
 model.add(Dense(units=1000, activation='relu', input_dim=2))
 model.add(Dense(units=2, activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+sgd = SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 count = 1
-x_y = []
-model.fit_generator(generate_arrays_from_file(x_y), steps_per_epoch=10, epochs=2, max_queue_size=1, workers=1)
+x_y = ["../image/train/*.jpg", "../image/test/*.jpg"]
+model.fit(generate_arrays_from_file(x_y), steps_per_epoch=10, epochs=2)

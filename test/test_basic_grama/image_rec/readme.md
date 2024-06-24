@@ -65,6 +65,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install keras  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install openpyxl  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+ pip install opencv-contrib-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
 
 
 
@@ -174,3 +175,51 @@ cv2.rectangle(image, top_left, bottom_right, 255, 2)
 dib ssd 
 
 
+## keras
+
+### 模型训练步骤
+#### equential模型如下 
+1.   定义模型
+```
+from keras.models import Sequential
+
+model = Sequential()
+```
+2.  添加网络层
+```python
+model.add(Dense(units=64, input_dim=100))
+model.add(Activation("relu"))
+model.add(Dense(units=10))
+model.add(Activation("softmax"))
+```
+3. .compile()方法来编译模型
+```python
+model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+```
+自己定制损失函数
+
+```python
+from keras.optimizers import SGD
+model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01, momentum=0.9, nesterov=True))
+```
+
+4. 训练网络
+```python
+
+model.fit(x_train, y_train, epochs=5, batch_size=32)
+
+```
+
+单批次训练
+```python
+model.train_on_batch(x_batch, y_batch)
+```
+5. 模型进行评估
+```python
+
+oss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
+```
+6. 进行预测
+```python
+classes = model.predict(x_test, batch_size=128)
+```
