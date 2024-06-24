@@ -52,7 +52,7 @@ def mul_tracker_test():
     cv2.destroyAllWindows()
 
 def createTypeTracker(trackerType):
-    trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
+    trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT','VIT']
     if trackerType == trackerTypes[0]:
         tracker = cv2.legacy.TrackerBoosting().create()
     elif trackerType == trackerTypes[1]:
@@ -69,6 +69,8 @@ def createTypeTracker(trackerType):
         tracker = cv2.legacy.TrackerMOSSE().create()
     elif trackerType == trackerTypes[7]:
         tracker = cv2.TrackerCSRT().create()
+    elif trackerType == trackerTypes[8]:
+        tracker = cv2.TrackerVit().create()
     else:
         tracker = None
 
@@ -79,7 +81,7 @@ def tracker_test():
 
     video = cv2.VideoCapture("../video/gaosu.mp4")
     # 创建一个跟踪器，algorithm: KCF、CSRT、DaSiamRPN、GOTURM、MIL
-    tracker_type = 'CSRT'
+    tracker_type = 'VIT'
     tracker = createTypeTracker(tracker_type)
 
     # 如果视频没有打开，退出。

@@ -90,7 +90,7 @@ def houghp_test():
     cv2.destroyAllWindows()
 
 
-# minRadius：表示圆半径的最小值。   画出来的园的直径可以条件 圆形的匹配程度
+# minRadius：表示圆半径的最小值。   画出来的园的直径可以条件 圆形的匹配程度  maxRadius 最大半径   检测的圆需要在最大半径和最小半径之间
 def houghCircles_test():
     img = cv2.imread('../image/opencv-logo-small.png', cv2.IMREAD_GRAYSCALE)
     img = cv2.medianBlur(img, 3)
@@ -114,4 +114,4 @@ def houghCircles_test():
 
 if __name__ == '__main__':
 
-    houghCircles_test()
+    hough_test()
