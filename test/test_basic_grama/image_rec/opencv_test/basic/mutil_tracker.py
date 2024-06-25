@@ -149,8 +149,6 @@ def multi_tracker():
             break
 
         timer = cv2.getTickCount()
-
-
         if len(trackers) >0:
             for tracker in trackers:
                 success, bbox = tracker.update(frame)
