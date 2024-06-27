@@ -50,7 +50,14 @@ def bitwise_and_test():
 
 
 
+def ones_demo():
+    a = np.ones((10,10))
+    print(a)
+    print(a.dtype)
+
+
+
 
 
 if __name__ == '__main__':
-    bitwise_and_test()
+    ones_demo()

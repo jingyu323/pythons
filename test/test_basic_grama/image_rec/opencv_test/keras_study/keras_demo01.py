@@ -24,5 +24,27 @@ def create_model():
     print('Test loss:', score[0])
     print('Test accuracy:', score[1])
 
+# 序列模型（Sequential类）
+def create_seq_model():
+    model = Sequential()
+    model.add(Dense(units=10, activation='relu', input_dim=784))
+    model.add(Dense(units=10, activation='softmax'))
+    model.compile(optimizer='SGD', loss='mse', metrics=['accuracy'])
+    x = np.random.random((784, 32))
+    y = np.random.randint(10, size=(784, 1))
+
+    model.fit(x,y,batch_size=32, epochs=3, validation_split=0.3)
+
+# 通用模型（Model类）
+def create_gen_model():
+    x_input = keras.layers.Input(shape=(784,))
+    dense_1 = Dense(units=32, activation='relu')(x_input)
+    output = Dense(units=10, activation='softmax')(dense_1)
+    model = keras.models.Model(inputs=x_input, outputs=output)
+    model.compile(optimizer='SGD', loss='mse', metrics=['accuracy'])
+    x = np.random.random((784, 32))
+    y = np.random.randint(10, size=(784, 1))
+    model.fit(x,y,batch_size=32, epochs=3, validation_split=0.3)
+
 if __name__ == '__main__':
-    create_model()
+    create_seq_model()
