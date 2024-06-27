@@ -460,6 +460,7 @@ def knn_demo():
 
 
 
+#  flann 最终都是用knn 处理
 def flnn_demo():
     img1 = cv2.imread('../image/bird.png')  # 读取灰度图
     img2 = cv2.imread('../image/the_bird.png')
@@ -517,6 +518,7 @@ def flnn_demo():
         src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
+        #  计算单性适应性矩阵
         M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
         matchesMask = mask.ravel().tolist()
         print(img1.shape)
