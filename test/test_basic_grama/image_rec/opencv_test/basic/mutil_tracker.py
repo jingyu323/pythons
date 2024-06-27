@@ -176,5 +176,51 @@ def multi_tracker():
     video.release()
     cv2.destroyAllWindows()
 
+
+#  同时选中多个目标   没弄成功
+def multi_tracker2():
+    # 初始化视频源
+    video = cv2.VideoCapture("../video/gaosu.mp4")
+    # 初始化目标的边框
+    trackers=[]
+
+    # 重复运行
+    while True:
+        ret, frame = video.read()
+        if not ret:
+            break
+
+        timer = cv2.getTickCount()
+        if len(trackers) >0:
+            for tracker in trackers:
+                success, bbox = tracker.update(frame)
+
+                if success:
+                    # 跟踪成功
+                    p1 = (int(bbox[0]), int(bbox[1]))
+                    p2 = (int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3]))
+                    cv2.rectangle(frame, p1, p2, (255, 0, 0), 2, 1)
+                cv2.putText(frame, tracker.Params.__name__+ " Tracker", (100, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50),
+                            2);
+                cv2.imshow('MultiTracker', frame)
+        fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer);
+        cv2.putText(frame, "FPS : " + str(int(fps)), (100, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50),
+                    2);
+        cv2.imshow('MultiTracker', frame)
+        k = cv2.waitKey(100) & 0xFF
+        if k == ord('s'):
+            ROIs = cv2.selectROIs("Frame", frame, fromCenter=False, showCrosshair=True)
+
+            for ROI in ROIs:
+                x, y, w, h = ROI
+                roi = frame[int(y):int(y + h), int(x):int(x + w)]
+
+                tracker = cv2.TrackerCSRT().create()
+                # tracker.init(frame, roi)
+                trackers.append(tracker)
+
+    video.release()
+    cv2.destroyAllWindows()
+
 if __name__ == '__main__':
-    multi_tracker()
+    multi_tracker2()

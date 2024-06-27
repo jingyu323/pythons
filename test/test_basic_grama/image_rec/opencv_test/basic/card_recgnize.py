@@ -4,6 +4,21 @@ from imutils import contours
 
 from opencv_test.basic.Stitcher import Stitcher
 
+"""
+1.暴力匹配
+
+2.bf.knnMatch()
+ bf.knnMatch() , knn匹配过程中很可能发生错误的匹配，错误的匹配主要有两种：  匹配的特征点事错误的;图像上的特征点无法匹配。
+ KNNMatch()：暴力法的基础上添加比率测试。
+ 
+ 
+ 3. FLANN匹配法
+ 快速最近邻搜索算法寻找的简称，它包含一组算法，这些算法针对大型数据集中的快速最近邻搜索和高维特征进行了优化。对于大型数据集，它的运行速度比BFMatcher快。
+ 
+ 
+特征匹配：FLANN效果更好一些。
+"""
+
 
 def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     dim = None
@@ -19,10 +34,12 @@ def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     resized = cv2.resize(image, dim, interpolation=inter)
     return resized
 
-def  show_img(name,img):
-    cv2.imshow(name,img)
+
+def show_img(name, img):
+    cv2.imshow(name, img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 def sort_contours(cnts, method="left-to-right"):
     reverse = False
@@ -33,11 +50,13 @@ def sort_contours(cnts, method="left-to-right"):
 
     if method == "top-to-bottom" or method == "bottom-to-top":
         i = 1
-    boundingBoxes = [cv2.boundingRect(c) for c in cnts] #用一个最小的矩形，把找到的形状包起来x,y,h,w
+    boundingBoxes = [cv2.boundingRect(c) for c in cnts]  #用一个最小的矩形，把找到的形状包起来x,y,h,w
     (cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),
                                         key=lambda b: b[1][i], reverse=reverse))
 
     return cnts, boundingBoxes
+
+
 def card_recgnize():
     tmplate = cv2.imread('../image/tmplate.jpg')
     FIRST_NUMBER = {
@@ -50,14 +69,14 @@ def card_recgnize():
     # 二值化 灰度化之后
     tm_ref = cv2.threshold(tm_gray, 10, 255, cv2.THRESH_BINARY_INV)[1]
 
-    counters,her =cv2.findContours(tm_ref,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    counters, her = cv2.findContours(tm_ref, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     for count in counters:
-        cv2.drawContours(tmplate,[count],-1,(0,0,255),-1)
+        cv2.drawContours(tmplate, [count], -1, (0, 0, 255), -1)
 
     show_img("tmplate", tmplate)
 
-    refCnts =  sort_contours(counters, method="left-to-right")[0]  # 排序，从左到右，从上到下
+    refCnts = sort_contours(counters, method="left-to-right")[0]  # 排序，从左到右，从上到下
     digits = {}
 
     # 遍历每一个轮廓
@@ -190,11 +209,13 @@ def card_recgnize():
     cv2.waitKey(0)
 
 
-def cv_show(title,img):
-    cv2.imshow(title,img)
+def cv_show(title, img):
+    cv2.imshow(title, img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
+
+
 def tmp_match():
     template = cv2.imread('../image/bird.png')  # 读取灰度图
     cv_show('img', template)  # 展示图象
@@ -214,7 +235,6 @@ def tmp_match():
     # cv2.TM_CCORR_NORMED：标准归一化相关性匹配。该方法计算输入图像和模板图像之间的标准归一化相关性，也就是相关性除以两个图像各自的标准差的乘积。值越大表示匹配程度越好。
     # cv2.TM_SQDIFF：平方差匹配。该方法计算输入图像和模板图像之间的平方差，值越小表示匹配程度越好。
     # cv2.TM_SQDIFF_NORMED：标准归一化平方差匹配。该方法计算输入图像和模板图像之间的标准归一化平方差，也就是平方差除以两个图像各自的标准差的乘积。值越小表示匹配程度越好。
-
 
     method = methodology[1]  # 选了一个cv2.TM_CCOEFF_NORMED方法进行图像匹配，匹配方式为比较模板和图像中各个区域的标准归一化相关系数
     res = cv2.matchTemplate(img, template, method)  # 比较完成的结果存储在res中，是一个ndarray类型的
@@ -237,10 +257,11 @@ def tmp_match():
 
     cv_show('img', resoult_img)
 
+
 # 详细介绍
 # https://blog.csdn.net/m0_50317149/article/details/130160067
 def mul_tm_match():
-    template = cv2.imread('../image/start.png' )  # 读取灰度图目标
+    template = cv2.imread('../image/start.png')  # 读取灰度图目标
     img = cv2.imread('../image/stars.png')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -253,14 +274,14 @@ def mul_tm_match():
     threshold = 0.8
     loc = np.where(res >= threshold)  # 阈值为0.8，即取百分之80匹配的
 
-
     for loc in zip(*loc[::-1]):
         bottom_right = (loc[0] + w, loc[1] + h)
-        cv2.rectangle(img, loc, bottom_right, (0,0,255), 2)
+        cv2.rectangle(img, loc, bottom_right, (0, 0, 255), 2)
 
     cv_show('resoult', img)
 
-def  conor_dec():
+
+def conor_dec():
     # 读取待检测的图像
     img = cv2.imread('../image/gezi.png')
     # 转换为灰度图像
@@ -278,9 +299,8 @@ def  conor_dec():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
 def sift_dec():
-
-
     img1 = cv2.imread('../image/book.png', 0)
     img2 = cv2.imread('../image/books.png', 0)
     cv_show('img1', img1)
@@ -295,6 +315,7 @@ def sift_dec():
     matches = sorted(matches, key=lambda x: x.distance)
     img3 = cv2.drawMatches(img1, kp1, img2, kp2, matches[:10], None, flags=2)
     cv_show('img3', img3)
+
 
 #  每进行特征点匹配 导致图像不能完全匹配
 def img_concat():
@@ -327,11 +348,12 @@ def img_concat():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
 # 我们的全景拼接算法将包含以下四个步骤
-  # 1：检测关键点（DoG，Harris等），并从两个输入图像中提取局部不变描述符（SIFT，SURF等）。
-  # 2：在两个图像之间匹配描述符。
-   # 3：使用RANSAC算法通过匹配的特征向量估计单应矩阵（或者叫变换矩阵）（homography matrix ）。
-  # 4：用 step #3 中的单应矩阵进行透视变
+# 1：检测关键点（DoG，Harris等），并从两个输入图像中提取局部不变描述符（SIFT，SURF等）。
+# 2：在两个图像之间匹配描述符。
+# 3：使用RANSAC算法通过匹配的特征向量估计单应矩阵（或者叫变换矩阵）（homography matrix ）。
+# 4：用 step #3 中的单应矩阵进行透视变
 """
   （1）特征点检测与图像匹配（stitching_match：Features Finding and Images Matching）
 （2）计算图像间的变换矩阵（stitching_rotation：Rotation Estimation
@@ -341,13 +363,15 @@ def img_concat():
 （6）补偿曝光（stitching_exposure：Exposure Compensation）
 （7）图像融合（stitching_blend：Image Blenders）
 """
+
+
 def img_concat2():
     # 读取两张图片
     imageA = cv2.imread('../image/left.png')
     imageB = cv2.imread('../image/right.png')
     # 把图片拼接成全景图
     stitcher = Stitcher()
-    print(imageA.shape,imageB.shape)
+    print(imageA.shape, imageB.shape)
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
 
     # 显示所有图片
@@ -357,6 +381,7 @@ def img_concat2():
     cv2.imshow("Result", result)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 def swicher_concat_img():
     img1 = cv2.imread('../image/left.png')
@@ -380,6 +405,140 @@ def swicher_concat_img():
         print("拼接失败")
 
 
+def knn_demo():
+    img1 = cv2.imread('../image/bird.png')  # 读取灰度图
+    img2 = cv2.imread('../image/the_bird.png')
+
+    detector = cv2.ORB.create()  # Oriented FAST and Rotated BRIEF
+    kp1 = detector.detect(img1, None)
+    kp2 = detector.detect(img2, None)
+    kp1, des1 = detector.compute(img1, kp1)  # keypoint 是关键点的列表,desc 检测到的特征的局部图的列表
+    kp2, des2 = detector.compute(img2, kp2)
+
+    # 创建BFMatcher对象
+    # bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    bf = cv2.BFMatcher()
+
+    matches = bf.knnMatch(des1, des2, k=2)
+
+    MIN_MATCH_COUNT = 4
+    # 将距离从小到大排序
+    # matches = sorted(matches, key=lambda x: x.distance)
+    # store all the good matches as per Lowe's ratio test.
+    good = []
+    for m, n in matches:
+        if m.distance < 0.7 * n.distance:
+            good.append(m)
+    img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2,[ good], None, flags=2)
+    cv_show('img3', img3)
+    if len(good) > MIN_MATCH_COUNT:
+        src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+        dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+
+        M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+        matchesMask = mask.ravel().tolist()
+        print(img1.shape)
+
+        h,w= img1.shape[:2]
+        pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+        dst = cv2.perspectiveTransform(pts, M)
+
+        img2 = cv2.polylines(img2, [np.int32(dst)], True, 255, 3, cv2.LINE_AA)
+        cv_show('img2', img2)
+    else:
+        print("Not enough matches are found - {}/{}".format(len(good), MIN_MATCH_COUNT))
+        matchesMask = None
+
+    draw_params = dict(matchColor=(0, 255, 0),  # 画出绿色匹配线
+                       singlePointColor=None,
+                       matchesMask=matchesMask,  # 只画内点
+                       flags=2)
+
+    img3 = cv2.drawMatches(img1, kp1, img2, kp2, good, None, **draw_params)
+    cv_show('img33', img3)
+
+
+
+def flnn_demo():
+    img1 = cv2.imread('../image/bird.png')  # 读取灰度图
+    img2 = cv2.imread('../image/the_bird.png')
+
+
+    sift = cv2.xfeatures2d.SIFT_create()
+    # 查找监测点和匹配符
+    kp1, des1 = sift.detectAndCompute(img1, None)
+    kp2, des2 = sift.detectAndCompute(img2, None)
+    """
+    keypoint是检测到的特征点的列表
+    descriptor是检测到特征的局部图像的列表
+    """
+
+    FLANN_INDEX_KDTREE = 0
+    # 参数1：indexParams
+    #    对于SIFT和SURF，可以传入参数index_params=dict(algorithm=FLANN_INDEX_KDTREE, trees=5)。
+    #    对于ORB，可以传入参数index_params=dict(algorithm=FLANN_INDEX_LSH, table_number=6, key_size=12）。
+    indexParams = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
+
+    # 参数2：searchParams 指定递归遍历的次数，值越高结果越准确，但是消耗的时间也越多。
+    searchParams = dict(checks=50)
+
+    # 使用FlannBasedMatcher 寻找最近邻近似匹配
+    flann = cv2.FlannBasedMatcher(indexParams, searchParams)
+    # 使用knnMatch匹配处理，并返回匹配matches
+    matches = flann.knnMatch(des1, des2, k=2)
+    # 通过掩码方式计算有用的点
+    matchesMask = [[0, 0] for i in range(len(matches))]
+
+    # 通过描述符的距离进行选择需要的点
+    for i, (m, n) in enumerate(matches):
+        if m.distance < 0.7 * n.distance:  # 通过0.7系数来决定匹配的有效关键点数量
+            matchesMask[i] = [1, 0]
+
+    drawPrams = dict(matchColor=(0, 255, 0),
+                     singlePointColor=(255, 0, 0),
+                     matchesMask=matchesMask,
+                     flags=0)
+    # 匹配结果图片
+    img33 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, matches, None, **drawPrams)
+    cv_show('img33', img33)
+
+    MIN_MATCH_COUNT = 4
+    # 将距离从小到大排序
+    # matches = sorted(matches, key=lambda x: x.distance)
+    # store all the good matches as per Lowe's ratio test.
+    good = []
+    for m, n in matches:
+        if m.distance < 0.7 * n.distance:
+            good.append(m)
+    img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2,[ good], None, flags=2)
+    cv_show('img3', img3)
+    if len(good) > MIN_MATCH_COUNT:
+        src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+        dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+
+        M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+        matchesMask = mask.ravel().tolist()
+        print(img1.shape)
+
+        h,w= img1.shape[:2]
+        pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+        dst = cv2.perspectiveTransform(pts, M)
+
+        img2 = cv2.polylines(img2, [np.int32(dst)], True, 255, 3, cv2.LINE_AA)
+        cv_show('img2', img2)
+    else:
+        print("Not enough matches are found - {}/{}".format(len(good), MIN_MATCH_COUNT))
+        matchesMask = None
+
+    draw_params = dict(matchColor=(0, 255, 0),  # 画出绿色匹配线
+                       singlePointColor=None,
+                       matchesMask=matchesMask,  # 只画内点
+                       flags=2)
+
+    img3 = cv2.drawMatches(img1, kp1, img2, kp2, good, None, **draw_params)
+    cv_show('img33', img3)
+
 
 if __name__ == '__main__':
-    img_concat2()
+    flnn_demo()
