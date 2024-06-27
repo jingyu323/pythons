@@ -52,8 +52,13 @@ def bitwise_and_test():
 
 def ones_demo():
     a = np.ones((10,10))
+    a = np.random.randint(10, 1000, (100, 100))
     print(a)
     print(a.dtype)
+
+    print(a.T)
+    ra = np.random.randint(10,1000,(3,5))
+    print(ra)
 
 
 
