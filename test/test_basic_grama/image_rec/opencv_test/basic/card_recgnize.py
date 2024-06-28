@@ -543,4 +543,7 @@ def flnn_demo():
 
 
 if __name__ == '__main__':
-    flnn_demo()
+    # flnn_demo()
+    # img_concat()
+    img_concat2()
+    # swicher_concat_img()

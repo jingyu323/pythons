@@ -28,7 +28,7 @@ class Stitcher:
         # # 将图片B传入result图片最左端
         result[0:imageA.shape[0], 0:imageB.shape[1]] = imageB
 
-
+        # M = cv2.getPerspectiveTransform(pts1, pts2)
         self.cv_show('result', result)
         # 检测是否需要显示图片匹配
         if showMatches:
@@ -52,10 +52,11 @@ class Stitcher:
 #
     def detectAndDescribe(self, image):
         # 将彩色图片转换成灰度图
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         # 建立SIFT生成器
-        descriptor = cv2.SIFT_create()
+        # descriptor = cv2.SIFT_create()
+        descriptor = cv2.xfeatures2d.SIFT_create()
         # 检测SIFT特征点，并计算描述子
         (kps, features) = descriptor.detectAndCompute(image, None)
 
@@ -80,7 +81,7 @@ class Stitcher:
                 matches.append((m[0].trainIdx, m[0].queryIdx))
 
         # 当筛选后的匹配对大于4时，计算视角变换矩阵
-        if len(matches) > 4:
+        if len(matches) >= 4:
             # 获取匹配对的点坐标
             ptsA = np.float32([kpsA[i] for (_, i) in matches])
             ptsB = np.float32([kpsB[i] for (i, _) in matches])
