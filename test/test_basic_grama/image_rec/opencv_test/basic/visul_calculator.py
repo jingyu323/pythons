@@ -3,7 +3,8 @@ from cvzone.HandTrackingModule import HandDetector
 
 from opencv_test.basic.visul_cal_button import Button
 
-
+# 详细介绍
+# https://blog.csdn.net/dgvv4/article/details/122082894
 def calculate():
     cap = cv2.VideoCapture(0)
     cap.set(3, 1280)  # set：设置窗口大小
