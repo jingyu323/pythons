@@ -65,8 +65,10 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install keras  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install openpyxl  -i https://pypi.tuna.tsinghua.edu.cn/simple 
- pip install opencv-contrib-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
-
+ pip install opencv-contrib-python  -i https://pypi.tuna.tsinghua.edu.cn/simple
+ pip install mediapipe  # 安装mediapipe
+# pip install mediapipe --user  #有user报错的话试试这个
+ pip install cvzone  # 安装cvzone 
 
 
 
@@ -245,7 +247,3 @@ classes = model.predict(x_test, batch_size=128)
 ## 手势 识别
 
 # 安装工具包
-pip install opencv-contrib-python  # 安装opencv
-pip install mediapipe  # 安装mediapipe
-# pip install mediapipe --user  #有user报错的话试试这个
-pip install cvzone  # 安装cvzone 
