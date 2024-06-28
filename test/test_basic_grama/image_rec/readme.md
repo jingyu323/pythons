@@ -65,8 +65,10 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  pytesseract
  pip install opencv-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install keras  -i https://pypi.tuna.tsinghua.edu.cn/simple 
  pip install openpyxl  -i https://pypi.tuna.tsinghua.edu.cn/simple 
- pip install opencv-contrib-python  -i https://pypi.tuna.tsinghua.edu.cn/simple 
-
+ pip install opencv-contrib-python  -i https://pypi.tuna.tsinghua.edu.cn/simple
+ pip install mediapipe  # 安装mediapipe
+# pip install mediapipe --user  #有user报错的话试试这个
+ pip install cvzone  # 安装cvzone 
 
 
 
@@ -107,6 +109,13 @@ https://keras-zh.readthedocs.io/applications/#vgg16
 6. 对图片进行透视变换
 7. 创建一个大图.
 8. 放入两张图
+
+
+解决不同大小的图片拼接： 
+1. 先计算放射变换矩阵 进行放射变换
+2. 平移
+3. 拼接
+
 
 ## 算法分类
 ### 监督学习 -有特征值 有目标值
@@ -234,3 +243,7 @@ oss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
 ```python
 classes = model.predict(x_test, batch_size=128)
 ```
+
+## 手势 识别
+
+# 安装工具包

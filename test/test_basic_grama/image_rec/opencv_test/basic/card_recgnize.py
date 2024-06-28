@@ -482,7 +482,7 @@ def flnn_demo():
     indexParams = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
 
     # 参数2：searchParams 指定递归遍历的次数，值越高结果越准确，但是消耗的时间也越多。
-    searchParams = dict(checks=100)
+    searchParams = dict(checks=50)
 
     # 使用FlannBasedMatcher 寻找最近邻近似匹配
     flann = cv2.FlannBasedMatcher(indexParams, searchParams)
@@ -544,5 +544,7 @@ def flnn_demo():
 
 if __name__ == '__main__':
     flnn_demo()
-
-    # knn_demo()
+    # img_concat()
+    # img_concat()
+    # img_concat2()
+    # swicher_concat_img()
