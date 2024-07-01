@@ -3,11 +3,13 @@ import numpy as np
 
 
 class Stitcher:
-    def stitch(self, images, ratio=0.75, reprojThresh=4.0,showMatches=False):
-        (imageB, imageA) = images
+    def stitch(self, images, ratio=0.75, reprojThresh=5.0,showMatches=False):
+        (imageA, imageB) = images
         # 检测A、B图片的SIFT关键特征点，并计算特征描述子
         (kpsA, featuresA) = self.detectAndDescribe(imageA)
         (kpsB, featuresB) = self.detectAndDescribe(imageB)
+        print("A shape:",imageA.shape)
+        print("imageB shape:",imageB.shape)
 
         # 匹配两张图片的所有特征点，返回匹配结果
         M = self.matchKeypoints(kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh)
@@ -19,17 +21,26 @@ class Stitcher:
         # 否则，提取匹配结果
         # H是3x3视角变换矩阵
         (matches, H, status) = M
+
+        self.cv_show('imageAAAAAAAAAAAAAAA', imageA)
+        print("H:", H)
+
         # 将图片A进行视角变换，result是变换后图片
         result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
-        self.cv_show('result222', result)
-        print(imageB.shape[0])
-        print(result.shape)
-        imageB = cv2.resize(imageB, ( imageB.shape[1],imageA.shape[0]))
-        # # 将图片B传入result图片最左端
-        result[0:imageA.shape[0], 0:imageB.shape[1]] = imageB
+        self.cv_show('resul555555', result)
+        M = np.float32([[1, 0, 30], [0, 1, 10]])
+        result = cv2.warpAffine(result, M, dsize=(result.shape[1], result.shape[0]))
+        self.cv_show('resul6666666666', result)
 
-        # M = cv2.getPerspectiveTransform(pts1, pts2)
-        self.cv_show('result', result)
+
+        imageB = cv2.resize(imageB, (imageB.shape[1], imageA.shape[0]))
+        print("resul555555 shape:",result.shape)
+
+
+        # # 将图片B传入result图片最左端
+        result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageB
+        # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
+        self.cv_show('result2332', result)
         # 检测是否需要显示图片匹配
         if showMatches:
             # 生成匹配图片
@@ -56,12 +67,13 @@ class Stitcher:
 
         # 建立SIFT生成器
         # descriptor = cv2.SIFT_create()
-        descriptor = cv2.xfeatures2d.SIFT_create()
+        descriptor = cv2.SIFT_create()
         # 检测SIFT特征点，并计算描述子
         (kps, features) = descriptor.detectAndCompute(image, None)
 
         # 将结果转换成NumPy数组
         kps = np.float32([kp.pt for kp in kps])
+        print("kps:", kps)
 
         # 返回特征点集，及对应的描述特征
         return (kps, features)
@@ -76,7 +88,8 @@ class Stitcher:
         matches = []
         for m in rawMatches:
             # 当最近距离跟次近距离的比值小于ratio值时，保留此匹配对
-            if len(m) == 2 and m[0].distance < m[1].distance * ratio:
+            if  m[0].distance < m[1].distance * ratio:
+                print(m[0].distance, m[1].distance)
                 # 存储两个点在featuresA, featuresB中的索引值
                 matches.append((m[0].trainIdx, m[0].queryIdx))
 

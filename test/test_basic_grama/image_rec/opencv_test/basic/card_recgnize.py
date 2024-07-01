@@ -372,7 +372,10 @@ def img_concat2():
     # 把图片拼接成全景图
     stitcher = Stitcher()
     print(imageA.shape, imageB.shape)
+
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+
 
     # 显示所有图片
     cv2.imshow("Image A", imageA)
@@ -465,8 +468,8 @@ def flnn_demo():
     img1 = cv2.imread('../image/bird.png')  # 读取灰度图
     img2 = cv2.imread('../image/the_bird.png')
 
-
-    sift = cv2.xfeatures2d.SIFT_create()
+    #  新版本直接使用 cv2.SIFT_create() 无需cv2.xfeatures2d.SIFT_create()
+    sift = cv2.SIFT_create()
     # 查找监测点和匹配符
     kp1, des1 = sift.detectAndCompute(img1, None)
     kp2, des2 = sift.detectAndCompute(img2, None)
@@ -543,8 +546,8 @@ def flnn_demo():
 
 
 if __name__ == '__main__':
-    flnn_demo()
+    # flnn_demo()
     # img_concat()
     # img_concat()
-    # img_concat2()
+    img_concat2()
     # swicher_concat_img()
