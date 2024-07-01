@@ -131,4 +131,4 @@ def dog_replace():
 
 
 if __name__ == '__main__':
-    dog_replace()
+    auto_face_masike()
