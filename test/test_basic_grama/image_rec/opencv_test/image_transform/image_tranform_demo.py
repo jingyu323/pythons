@@ -50,6 +50,7 @@ def book_trans_form():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+#  根据最终图片大小 计算变换矩阵，变换完成之后 将嵌入区域替换成黑色 再执行图片相加
 def change_ad_img():
     img2 = cv2.imread('../image/house.png')
     img1 = cv2.imread('../image/guagnb.jpg')
@@ -62,14 +63,17 @@ def change_ad_img():
     h2, w2, c2 = img2.shape
     new_img1 = cv2.warpPerspective(img1, M, (w2, h2))  # 透视变换  二维平面获得接近三维物体的视觉效果的算法
     dst = dst.astype(int)  # 多边形的坐标需要整型
-
+    cv2.imshow('new_img1', new_img1)
     cv2.fillConvexPoly(img2, dst, [0, 0, 0])  # 用多边形填充的办法把嵌入区域的像素全部变成0
     new_img = cv2.add(img2, new_img1)  # 把变换后的图片插入到广告牌的位置
     cv2.imshow('img1', img1)
-    cv2.imshow('new_img1', new_img1)
+
     cv2.imshow('new_img', new_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+#      试一下像素替换   因为图片不规则不好进行替换 所以放弃
+
 
 
 
