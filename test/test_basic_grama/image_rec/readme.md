@@ -81,12 +81,12 @@ https://www.jaided.ai/easyocr/
 # 学习地址
 ## 各种识别方法
 https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is-convex-or-not-in-opencv-python.html
-keras
-https://keras-zh.readthedocs.io/applications/#vgg16
+- keras
+ 1. https://keras-zh.readthedocs.io/applications/#vgg16
 
-图像拼接
-https://www.jianshu.com/p/3402f2703ffd
-https://www.cnblogs.com/libai123456/p/17618061.html
+- 图像拼接
+1. https://www.jianshu.com/p/3402f2703ffd
+2. https://www.cnblogs.com/libai123456/p/17618061.html
 
 ## 图像识别
 
