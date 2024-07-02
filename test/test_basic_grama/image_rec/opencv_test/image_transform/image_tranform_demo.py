@@ -169,8 +169,8 @@ def img_cpncat():
         H, mask = cv2.findHomography(src_points, des_points, cv2.RANSAC, 5)  # 参数5表示：允许有5个关键点的误差
 
     #     #利用H矩阵的逆求解视角和img1特征匹配的点的img2图，并且img1没有像素
-    #     warpimg = cv2.warpPerspective(img2,np.linalg.inv(H),(img1.shape[1]+img2.shape[1],img1.shape[0]+img2.shape[0]))
-    #     direct = warpimg.copy()
+    #     result = cv2.warpPerspective(img2,np.linalg.inv(H),(img1.shape[1]+img2.shape[1],img1.shape[0]+img2.shape[0]))
+    #     direct = result.copy()
     #     direct[0:img1.shape[0],0:img1.shape[1]] = img1 #将左边的img1的部分重新赋值
     else:
         exit()
@@ -197,21 +197,56 @@ def img_cpncat():
 
     # 手动构造平移矩阵
     M = np.array([[1, 0, -x_min], [0, 1, -y_min], [0, 0, 1]])
-    result = cv2.warpPerspective(img1, M.dot(H), (x_max - x_min, y_max - y_min))  # 对img1进行平移和透视操作
+    result = cv2.warpPerspective(img1, M.dot(H), (x_max - x_min, y_max - y_min) )  # 对img1进行平移和透视操作
 
     print("res shape:",result.shape)
     print("img1 shape:",img1.shape)
     print("img2 shape:",img2.shape)
 
     result[-y_min:-y_min + h2, -x_min:-x_min + w2] = img2  # 把img2放进来(因为img1变换后的矩阵也平移了，所以img2也要做对应的平移)
+    cv2.imshow('result222222', result)
+    top, bot, left, right = 100, 100, 0, 500
+    rows, cols = img1.shape[:2]
+    print("img1:",img1.shape)
+    for col in range(cols):
+        if img1[:, col].any() and result[:, col].any():
+            left = col
+            break
+    for col in range(cols - 1, 0, -1):
+        if img1[:, col].any() and result[:, col].any():
+            right = col
+            break
+
+    print("left:",left)
+    print("right:",right)
+    res = np.zeros([rows, cols, 3], np.uint8)
+    for row in range(rows):
+        for col in range(cols):
+            if not img1[row, col].any():
+                res[row, col] = result[row, col]
+            elif not result[row, col].any():
+                res[row, col] = img1[row, col]
+            else:
+                img1Len = float(abs(col - left))
+                testImgLen = float(abs(col - right))
+                alpha = img1Len / (img1Len + testImgLen)
+                res[row, col] = np.clip(img1[row, col] * (1 - alpha) + result[row, col] * alpha, 0, 255)
 
     # result[0:h2,0:w2] = img2
     # cv2.imshow('direct',direct)
-    # cv2.imshow('warpimg',warpimg)
+    # cv2.imshow('result',result)
     # cv2.imshow('ret',ret)
-    cv2.imshow('result', result)
+    cv2.imshow('res', res)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
+
+
+def optimize_seam(self,img1,img2):
+     pass
+
+
 
 
 

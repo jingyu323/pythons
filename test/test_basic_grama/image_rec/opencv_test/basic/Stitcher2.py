@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-class Stitcher:
+class Stitcher2:
     def stitch(self, images, ratio=0.75, reprojThresh=5.0,showMatches=False):
         (imageA, imageB) = images
         # 检测A、B图片的SIFT关键特征点，并计算特征描述子

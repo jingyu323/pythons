@@ -3,6 +3,7 @@ import numpy as np
 from imutils import contours
 
 from opencv_test.basic.Stitcher import Stitcher
+from opencv_test.basic.Stitcher2 import Stitcher2
 
 """
 1.暴力匹配
@@ -384,7 +385,25 @@ def img_concat2():
     cv2.imshow("Result", result)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+def img_concat3():
+    # 读取两张图片
+    imageA = cv2.imread('../image/sitch/IMG_1786-2.jpg')
+    imageB = cv2.imread('../image/sitch/IMG_1787-2.jpg')
+    # 把图片拼接成全景图
+    stitcher = Stitcher2()
+    print(imageA.shape, imageB.shape)
 
+    (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+
+
+    # 显示所有图片
+    cv2.imshow("Image A", imageA)
+    cv2.imshow("Image B", imageB)
+    cv2.imshow("Keypoint Matches", vis)
+    cv2.imshow("Result", result)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 def swicher_concat_img():
     img1 = cv2.imread('../image/left.png')
@@ -549,5 +568,6 @@ if __name__ == '__main__':
     # flnn_demo()
     # img_concat()
     # img_concat()
-    img_concat2()
+    # img_concat2()
+    img_concat3()
     # swicher_concat_img()
