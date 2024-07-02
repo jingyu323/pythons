@@ -199,6 +199,10 @@ def img_cpncat():
     M = np.array([[1, 0, -x_min], [0, 1, -y_min], [0, 0, 1]])
     result = cv2.warpPerspective(img1, M.dot(H), (x_max - x_min, y_max - y_min))  # 对img1进行平移和透视操作
 
+    print("res shape:",result.shape)
+    print("img1 shape:",img1.shape)
+    print("img2 shape:",img2.shape)
+
     result[-y_min:-y_min + h2, -x_min:-x_min + w2] = img2  # 把img2放进来(因为img1变换后的矩阵也平移了，所以img2也要做对应的平移)
 
     # result[0:h2,0:w2] = img2

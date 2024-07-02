@@ -22,23 +22,56 @@ class Stitcher:
         # H是3x3视角变换矩阵
         (matches, H, status) = M
 
-        self.cv_show('imageAAAAAAAAAAAAAAA', imageA)
+        # 获取原始图像的高宽
+        h1, w1 = imageA.shape[:2]
+        h2, w2 = imageB.shape[:2]
+        # 获取两幅图的边界坐标
+        img1_pts = np.float32([[0, 0], [0, h1 - 1], [w1 - 1, h1 - 1], [w1 - 1, 0]]).reshape(-1, 1, 2)
+        img2_pts = np.float32([[0, 0], [0, h2 - 1], [w2 - 1, h2 - 1], [w2 - 1, 0]]).reshape(-1, 1, 2)
+
+        # 获取img1的边界坐标变换之后的坐标
+        img1_transform = cv2.perspectiveTransform(img1_pts, H)
+        print('img1_pts',img1_pts)
+        print('img2_pts',img2_pts)
+        print('img1_transform',img1_transform)
+        # 把img2和转换后的边界坐标连接起来
+        result_pts = np.concatenate((img2_pts, img1_transform), axis=0)
+        print("result_pts",result_pts)
+        # result_pts.min(axis=0)  #对行聚合，返回每一列的最小值
+        print(np.int32(result_pts.min(axis=0).ravel() - 1))
+        print( np.int32(result_pts.max(axis=0).ravel() + 1))
+        [x_min, y_min] = np.int32(result_pts.min(axis=0).ravel() - 1)
+        [x_max, y_max] = np.int32(result_pts.max(axis=0).ravel() + 1)
+
+        # ret = cv2.drawMatchesKnn(img1,kp1,img2,kp2,[goods],None)
+
+        # 手动构造平移矩阵
+        M = np.array([[1, 0, -x_min], [0, 1, -y_min], [0, 0, 1]])
+
+        print("x_max - x_min :",x_max - x_min)
+        print("y_max - y_min :",y_max - y_min)
+        result = cv2.warpPerspective(imageA, M.dot(H), (x_max - x_min+ w2, y_max - y_min))  # 对img1进行平移和透视操作
+        self.cv_show('imageAAAA999', result)
         print("H:", H)
 
-        # 将图片A进行视角变换，result是变换后图片
-        result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
-        self.cv_show('resul555555', result)
-        M = np.float32([[1, 0, 30], [0, 1, 10]])
-        result = cv2.warpAffine(result, M, dsize=(result.shape[1], result.shape[0]))
-        self.cv_show('resul6666666666', result)
+        # 将图片A进行视角变换，result是变换后图片 ，因为未添加平移变换 导致有被截图的情况
+        # result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
+        # self.cv_show('resul555555', result)
+        # 可以进行平移但是还是未能消除黑边
+        # M = np.float32([[1, 0, 30], [0, 1, 10]])
+        # result = cv2.warpAffine(result, M, dsize=(result.shape[1], result.shape[0]))
+        # self.cv_show('resul6666666666', result)
 
 
-        imageB = cv2.resize(imageB, (imageB.shape[1], imageA.shape[0]))
+        # imageB = cv2.resize(imageB, (imageB.shape[1], result.shape[0]))
         print("resul555555 shape:",result.shape)
 
 
         # # 将图片B传入result图片最左端
-        result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageB
+        # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageB
+
+        # result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
+        result[0-y_min: h2-y_min, w1-10:w1 + w2-10 ] = imageB
         # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
         self.cv_show('result2332', result)
         # 检测是否需要显示图片匹配
@@ -63,44 +96,50 @@ class Stitcher:
 #
     def detectAndDescribe(self, image):
         # 将彩色图片转换成灰度图
-        # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         # 建立SIFT生成器
         # descriptor = cv2.SIFT_create()
         descriptor = cv2.SIFT_create()
         # 检测SIFT特征点，并计算描述子
-        (kps, features) = descriptor.detectAndCompute(image, None)
+        (kps, features) = descriptor.detectAndCompute(gray, None)
 
         # 将结果转换成NumPy数组
         kps = np.float32([kp.pt for kp in kps])
-        print("kps:", kps)
-
         # 返回特征点集，及对应的描述特征
         return (kps, features)
 
     def matchKeypoints(self, kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh):
         # 建立暴力匹配器
-        matcher = cv2.BFMatcher()
+        # matcher = cv2.BFMatcher()
+        #
+        # # 使用KNN检测来自A、B图的SIFT特征匹配对，K=2
+        # rawMatches = matcher.knnMatch(featuresA, featuresB, 2)
 
-        # 使用KNN检测来自A、B图的SIFT特征匹配对，K=2
-        rawMatches = matcher.knnMatch(featuresA, featuresB, 2)
+        index_params = dict(algorithm=1, trees=5)
+        search_params = dict(checks=50)
+        flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+        # 对描述子进行特征匹配
+        rawMatches = flann.knnMatch(featuresA, featuresB, k=2)  # 用的knnmatch匹配
+
 
         matches = []
         for m in rawMatches:
             # 当最近距离跟次近距离的比值小于ratio值时，保留此匹配对
             if  m[0].distance < m[1].distance * ratio:
-                print(m[0].distance, m[1].distance)
+
                 # 存储两个点在featuresA, featuresB中的索引值
                 matches.append((m[0].trainIdx, m[0].queryIdx))
 
         # 当筛选后的匹配对大于4时，计算视角变换矩阵
-        if len(matches) >= 4:
+        if len(matches) > 4:
             # 获取匹配对的点坐标
             ptsA = np.float32([kpsA[i] for (_, i) in matches])
             ptsB = np.float32([kpsB[i] for (i, _) in matches])
 
             # 计算视角变换矩阵
-            (H, status) = cv2.findHomography(ptsA, ptsB, cv2.RANSAC, reprojThresh)
+            (H, status) = cv2.findHomography(ptsA, ptsB, cv2.RANSAC, 5)
 
             # 返回结果
             return (matches, H, status)
