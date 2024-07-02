@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-class Stitcher:
+class Stitcher2:
     def stitch(self, images, ratio=0.75, reprojThresh=5.0,showMatches=False):
         (imageA, imageB) = images
         # 检测A、B图片的SIFT关键特征点，并计算特征描述子
@@ -50,17 +50,14 @@ class Stitcher:
 
         print("x_max - x_min :",x_max - x_min)
         print("y_max - y_min :",y_max - y_min)
-        result = cv2.warpPerspective(imageA, M.dot(H), (x_max - x_min+ w2, y_max - y_min))  # 对img1进行平移和透视操作
+        result = cv2.warpPerspective(imageA, M.dot(H), (x_max,y_max  ))  # 对img1进行平移和透视操作
         self.cv_show('imageAAAA999', result)
         print("H:", H)
 
         # 将图片A进行视角变换，result是变换后图片 ，因为未添加平移变换 导致有被截图的情况
         # result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
         # self.cv_show('resul555555', result)
-        # 可以进行平移但是还是未能消除黑边
-        # M = np.float32([[1, 0, 30], [0, 1, 10]])
-        # result = cv2.warpAffine(result, M, dsize=(result.shape[1], result.shape[0]))
-        # self.cv_show('resul6666666666', result)
+
 
 
         # imageB = cv2.resize(imageB, (imageB.shape[1], result.shape[0]))
@@ -68,10 +65,9 @@ class Stitcher:
 
 
         # # 将图片B传入result图片最左端
-        # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageB
 
-        # result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
-        result[0-y_min: h2-y_min, w1-10:w1 + w2-10 ] = imageB
+        result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
+        # result[0-y_min: h2-y_min, w1:w1 + w2 ] = imageB
         # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
         self.cv_show('result2332', result)
         # 检测是否需要显示图片匹配
