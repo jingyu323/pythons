@@ -50,7 +50,7 @@ class Stitcher2:
 
         print("x_max - x_min :",x_max - x_min)
         print("y_max - y_min :",y_max - y_min)
-        result = cv2.warpPerspective(imageA, M.dot(H), (x_max - x_min+ w2, y_max - y_min))  # 对img1进行平移和透视操作
+        result = cv2.warpPerspective(imageA, M.dot(H), (x_max , y_max ))  # 对img1进行平移和透视操作
         self.cv_show('imageAAAA999', result)
         print("H:", H)
 
@@ -68,10 +68,9 @@ class Stitcher2:
 
 
         # # 将图片B传入result图片最左端
-        # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageB
 
-        # result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
-        result[0-y_min: h2-y_min, w1-10:w1 + w2-10 ] = imageB
+        result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
+        # result[0-y_min: h2-y_min, w1:w1 + w2 ] = imageB
         # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
         self.cv_show('result2332', result)
         # 检测是否需要显示图片匹配
