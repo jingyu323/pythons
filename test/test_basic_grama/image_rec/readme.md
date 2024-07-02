@@ -84,6 +84,10 @@ https://geek-docs.com/opencv/python-opencv/t_how-to-check-if-an-image-contour-is
 keras
 https://keras-zh.readthedocs.io/applications/#vgg16
 
+图像拼接
+https://www.jianshu.com/p/3402f2703ffd
+https://www.cnblogs.com/libai123456/p/17618061.html
+
 ## 图像识别
 
 - easyocr  对数字  中文 识别好 在gpu 下效率 高  输出小写
