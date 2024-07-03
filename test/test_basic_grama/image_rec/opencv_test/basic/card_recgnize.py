@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import pyzjr
 from imutils import contours
 
 from opencv_test.basic.Stitcher import Stitcher
@@ -624,13 +625,31 @@ def remove_word():
             break
     img_inpaint_gray = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
     print("============================")
-    result = cv2.inpaint(img, img_inpaint_gray, 3, cv2.INPAINT_TELEA)
+    result = cv2.inpaint(img, img_inpaint_gray, 3, cv2.INPAINT_NS)
 
     cv2.imshow('img', np.hstack((img, result)))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def girle_repair():
+    cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    img = cv2.imread('../image/girl.png')
 
+    Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+    h_min, h_max, s_min, s_max, v_min, v_max = 58, 60, 73, 255, 36, 255
+    lower = np.array([h_min, s_min, v_min])
+    upper = np.array([h_max, s_max, v_max])
+    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    mask_black = cv2.inRange(imgHSV, lower, upper)
+    imgResult = cv2.bitwise_and(img, img, mask=mask_black)
+    dst = cv2.inpaint(img, mask_black, 10, cv2.INPAINT_TELEA)
+    mask_white = cv2.bitwise_not(mask_black)
+
+    stackimg = pyzjr.stackImages(0.7, ([img, imgResult], [mask_white, dst]))
+    cv2.imshow("repair_img", stackimg)
+    cv2.imwrite("AI2.png", dst)
+    cv2.waitKey(0)
 
 if __name__ == '__main__':
     # flnn_demo()
@@ -640,4 +659,5 @@ if __name__ == '__main__':
     # img_concat3()
     # img_concat_lou()
     # swicher_concat_img()
-    remove_word()
+    # remove_word()
+    girle_repair()
