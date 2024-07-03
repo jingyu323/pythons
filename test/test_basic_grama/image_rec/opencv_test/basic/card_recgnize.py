@@ -614,7 +614,6 @@ def remove_word():
     mask = np.zeros(img.shape, np.uint8)  # 创建一个黑色mask图像
 
     pram=[img,mask]
-
     cv2.setMouseCallback('image', mouse_event,pram)  # 设置鼠标回调
 
     while True:
