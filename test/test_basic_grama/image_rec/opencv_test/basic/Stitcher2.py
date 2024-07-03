@@ -63,8 +63,8 @@ class Stitcher2:
         # self.cv_show('resul555555', result)
 
 
-        res = self.optimize_seam(  imageB, result,-y_min)
-        self.cv_show('res', res)
+        res = self.optimize_seam(  imageB, result,-y_min,-x_min)
+        self.cv_show('res4444444444444444', res)
 
         # imageB = cv2.resize(imageB, (imageB.shape[1], result.shape[0]))
         print("resul555555 shape:",result.shape)
@@ -171,11 +171,13 @@ class Stitcher2:
         return vis
 
 
-    def optimize_seam(self,srcImg,warpImg,y):
+    def optimize_seam(self,srcImg,warpImg,y,x):
 
         print("srcImg.shape:",srcImg.shape)
         rows, cols = srcImg.shape[:2]
+        left=0
 
+        right=0
         for col in range(cols):
             if srcImg[:, col].any() and warpImg[:, col].any():
                 left = col
@@ -189,14 +191,14 @@ class Stitcher2:
         for row in range(rows):
             for col in range(cols):
                 if not srcImg[row, col].any():
-                    res[row, col] = warpImg[row, col]
-                elif not warpImg[row, col].any():
-                    res[row+y, col] = srcImg[row, col]
+                    res[row+y, col+x] = warpImg[row+y, col+x]
+                elif not warpImg[row+y, col+x].any():
+                    res[row+y, col+x] = srcImg[row, col]
                 else:
-                    srcImgLen = float(abs(col+y - left))
+                    srcImgLen = float(abs(col - left))
                     testImgLen = float(abs(col - right))
                     alpha = srcImgLen / (srcImgLen + testImgLen)
-                    res[row+y, col] = np.clip(srcImg[row, col] * (1 - alpha) + warpImg[row+y, col] * alpha, 0, 255)
+                    res[row+y, col+x] = np.clip(srcImg[row, col] * (1 - alpha) + warpImg[row+y, col+x] * alpha, 0, 255)
 
         return  res
 

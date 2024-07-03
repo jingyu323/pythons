@@ -591,6 +591,6 @@ if __name__ == '__main__':
     # img_concat()
     # img_concat()
     # img_concat2()
-    # img_concat3()
-    img_concat_lou()
+    img_concat3()
+    # img_concat_lou()
     # swicher_concat_img()
