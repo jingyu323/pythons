@@ -393,7 +393,7 @@ def img_concat3():
     stitcher = Stitcher2()
     print(imageA.shape, imageB.shape)
 
-    (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+    (result, vis,res) = stitcher.stitch([imageA, imageB], showMatches=True)
 
 
 
@@ -402,6 +402,28 @@ def img_concat3():
     cv2.imshow("Image B", imageB)
     cv2.imshow("Keypoint Matches", vis)
     cv2.imshow("Result", result)
+    cv2.imshow("res", res)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def img_concat_lou():
+    # 读取两张图片
+    imageB = cv2.imread('../image/lou/loul.png')
+    imageA = cv2.imread('../image/lou/lour.png')
+    # 把图片拼接成全景图
+    stitcher = Stitcher2()
+    print(imageA.shape, imageB.shape)
+
+    (result, vis,res) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+
+
+    # 显示所有图片
+    cv2.imshow("Image A", imageA)
+    cv2.imshow("Image B", imageB)
+    cv2.imshow("Keypoint Matches", vis)
+    cv2.imshow("Result", result)
+    cv2.imshow("res", res)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -569,5 +591,6 @@ if __name__ == '__main__':
     # img_concat()
     # img_concat()
     # img_concat2()
-    img_concat3()
+    # img_concat3()
+    img_concat_lou()
     # swicher_concat_img()
