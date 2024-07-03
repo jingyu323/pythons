@@ -172,21 +172,23 @@ class Stitcher2:
 
 
     def optimize_seam(self,srcImg,warpImg,y,x):
-
         print("srcImg.shape:",srcImg.shape)
         rows, cols = srcImg.shape[:2]
         left=0
-
         right=0
+        #  求出重叠区域左右值
         for col in range(cols):
             if srcImg[:, col].any() and warpImg[:, col].any():
+                print("srcImg[:, col] :", srcImg[:, col],col,len(srcImg[:, col]))
+                print("warpImg[:, col]:", warpImg[:, col],col,len(warpImg[:, col]))
                 left = col
                 break
         for col in range(cols - 1, 0, -1):
             if srcImg[:, col].any() and warpImg[:, col].any():
                 right = col
                 break
-
+        print("left:",left)
+        print("right:",right)
         res = warpImg.copy()
         for row in range(rows):
             for col in range(cols):
