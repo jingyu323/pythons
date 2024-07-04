@@ -632,6 +632,72 @@ def remove_word():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
+# https://blog.csdn.net/weixin_64876095/article/details/134484588
+def remove_word2():
+    cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    img_inpaint = cv2.imread('../image/sb.png')
+    img_origin = cv2.imread('../image/sb2.png')
+
+    w,h =img_origin.shape[:2]
+    img_inpaint=cv2.resize(img_inpaint,(h,w))
+
+    print(img_origin.shape,img_inpaint.shape)
+
+    img_origin_gray = cv2.cvtColor(img_origin, cv2.COLOR_BGR2GRAY)
+    img_inpaint_gray = cv2.cvtColor(img_inpaint, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('img_origin_gray', img_origin_gray)
+    mask = img_inpaint_gray - img_origin_gray  # 创建一个黑色mask图像
+
+
+    x_threshold = 510
+    mask[:, x_threshold:] = 0
+    mask[:, 0:75] = 0
+    mask[:160,  :] = 0
+    mask[292:,  :] = 0
+
+
+    cv2.imshow('mask', mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    threshold = 32
+    kernel = np.ones((3, 3), np.uint8)
+    # 图像开运算
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    ret, mask_binary = cv2.threshold(mask, threshold, 225, cv2.THRESH_BINARY)
+
+    ret, mask_binary = cv2.threshold(mask_binary, threshold, 225, cv2.THRESH_BINARY)
+
+    # kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    #
+    # ercode = cv2.erode(mask_binary,kenel,iterations=2)
+    #
+    # # 膨胀
+    # mask_binary = cv2.dilate(ercode, kenel, iterations=2)
+
+
+
+    # 调用 cv2.inpaint()进行图像修补
+    dst_TELEA = cv2.inpaint(img_inpaint, mask_binary, 15, cv2.INPAINT_TELEA)
+    dst_NS = cv2.inpaint(img_inpaint, mask_binary, 15, cv2.INPAINT_NS)
+
+    # 检验修补后的图像与原图的差距（用图像减法）
+    img_diff_TELEA = img_origin - dst_TELEA
+    img_diff_NS = img_origin - dst_NS
+
+    # 显示图像
+    cv2.imshow("origin image ", img_origin)
+    cv2.imshow("inpaint image ", img_inpaint)
+    cv2.imshow("mask ", mask)
+    cv2.imshow("mask_binary ", mask_binary)
+    cv2.imshow("result image of TELEA ", dst_TELEA)
+    cv2.imshow("result image of NS ", dst_NS)
+    cv2.imshow("difference between origin and TELEA images ", img_diff_TELEA)
+    cv2.imshow("difference between origin and NS images ", img_diff_NS)
+    # 等待显示
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 #  调整图片亮度
 def Adjusted_image(img, brightness_factor=1.5):
     image_float = img.astype(np.float32)
@@ -647,7 +713,7 @@ def girle_repair():
 
     # Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     # h_min, h_max, s_min, s_max, v_min, v_max = 58, 60, 73, 255, 36, 255
-    h_min, h_max, s_min, s_max, v_min, v_max = 50, 70, 73, 255, 36, 255
+    h_min, h_max, s_min, s_max, v_min, v_max = 35, 77, 43, 255, 46, 255
     lower = np.array([h_min, s_min, v_min])
     upper = np.array([h_max, s_max, v_max])
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -658,14 +724,13 @@ def girle_repair():
 
     # 图像开运算
     mask_black = cv2.morphologyEx(mask_black, cv2.MORPH_OPEN, kernel)
-
+    # 清理范围外的残余点
     x_threshold = 340
     mask_black[:, x_threshold:] = 0
     mask_black[:, 0:100] = 0
     cv2.imshow("mask_black", mask_black)
     imgResult = cv2.bitwise_and(img, img, mask=mask_black)
-    dst = cv2.inpaint(img, mask_black, 5, cv2.INPAINT_TELEA)
-
+    dst = cv2.inpaint(img, mask_black, 3, cv2.INPAINT_TELEA)
     dst10 = cv2.inpaint(img, mask_black, 13, cv2.INPAINT_NS)
     mask_white = cv2.bitwise_not(mask_black)
 
@@ -674,6 +739,22 @@ def girle_repair():
     cv2.imshow("imgResult", imgResult)
     cv2.imshow("dst", dst)
     cv2.waitKey(0)
+
+
+def girle_repair2():
+    img = cv2.imread('../image/girl.png')
+    Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+    tm_ref = cv2.threshold(Grayimg, 180, 255, cv2.THRESH_BINARY_INV)[1]
+    cous,her = cv2.findContours(tm_ref , cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    copy = img.copy()
+
+    cv2.drawContours(copy,cous,-1, (0, 0, 255), 2)
+
+    cv2.imshow("copy", copy)
+    cv2.waitKey(0)
+
 
 if __name__ == '__main__':
     # flnn_demo()
@@ -684,4 +765,6 @@ if __name__ == '__main__':
     # img_concat_lou()
     # swicher_concat_img()
     # remove_word()
-    girle_repair()
+    # girle_repair()
+    # girle_repair2()
+    remove_word2()
