@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
-import pyzjr
+
 from imutils import contours
+import matplotlib.pyplot as plt
 
 from opencv_test.basic.Stitcher import Stitcher
 from opencv_test.basic.Stitcher2 import Stitcher2
@@ -631,24 +632,47 @@ def remove_word():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+#  调整图片亮度
+def Adjusted_image(img, brightness_factor=1.5):
+    image_float = img.astype(np.float32)
+    adjusted_image = image_float * brightness_factor
+    # 将图像像素值限制在[0, 255]范围内
+    adjusted_image = np.clip(adjusted_image, 0, 255)
+    adjusted_image = adjusted_image.astype(np.uint8)
+    return adjusted_image
+
 def girle_repair():
-    cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    # cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
     img = cv2.imread('../image/girl.png')
 
-    Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
-    h_min, h_max, s_min, s_max, v_min, v_max = 58, 60, 73, 255, 36, 255
+    # Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    # h_min, h_max, s_min, s_max, v_min, v_max = 58, 60, 73, 255, 36, 255
+    h_min, h_max, s_min, s_max, v_min, v_max = 50, 70, 73, 255, 36, 255
     lower = np.array([h_min, s_min, v_min])
     upper = np.array([h_max, s_max, v_max])
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     mask_black = cv2.inRange(imgHSV, lower, upper)
+    kernel = np.ones((3, 3), np.uint8)
+    # 设置膨胀
+    mask_black = cv2.dilate(mask_black, kernel)
+
+    # 图像开运算
+    mask_black = cv2.morphologyEx(mask_black, cv2.MORPH_OPEN, kernel)
+
+    x_threshold = 340
+    mask_black[:, x_threshold:] = 0
+    mask_black[:, 0:100] = 0
+    cv2.imshow("mask_black", mask_black)
     imgResult = cv2.bitwise_and(img, img, mask=mask_black)
-    dst = cv2.inpaint(img, mask_black, 10, cv2.INPAINT_TELEA)
+    dst = cv2.inpaint(img, mask_black, 5, cv2.INPAINT_TELEA)
+
+    dst10 = cv2.inpaint(img, mask_black, 13, cv2.INPAINT_NS)
     mask_white = cv2.bitwise_not(mask_black)
 
-    stackimg = pyzjr.stackImages(0.7, ([img, imgResult], [mask_white, dst]))
-    cv2.imshow("repair_img", stackimg)
-    cv2.imwrite("AI2.png", dst)
+    cv2.imshow("mask_white", mask_white)
+    cv2.imshow("dst10", dst10)
+    cv2.imshow("imgResult", imgResult)
+    cv2.imshow("dst", dst)
     cv2.waitKey(0)
 
 if __name__ == '__main__':
