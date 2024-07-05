@@ -5,6 +5,8 @@ import numpy as np
 
 #  mask image 未找到 效果没是成功
 
+#  智能修复老照片
+# https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life
 def  linea_insert_demo():
 
 
