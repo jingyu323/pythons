@@ -387,16 +387,13 @@ def img_concat2():
     cv2.destroyAllWindows()
 def img_concat3():
     # 读取两张图片
-    imageA = cv2.imread('../image/sitch/IMG_1786-2.jpg')
-    imageB = cv2.imread('../image/sitch/IMG_1787-2.jpg')
+    imageB = cv2.imread('../image/sitch/IMG_1786-2.jpg')
+    imageA = cv2.imread('../image/sitch/IMG_1787-2.jpg')
     # 把图片拼接成全景图
     stitcher = Stitcher2()
     print(imageA.shape, imageB.shape)
 
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
-
-
-
     # 显示所有图片
     cv2.imshow("Image A", imageA)
     cv2.imshow("Image B", imageB)

@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Stitcher2:
-    def stitch(self, images, ratio=0.75, reprojThresh=5.0,showMatches=False):
+    def stitch(self, images, ratio=0.7, reprojThresh=5.0,showMatches=False):
         (imageA, imageB) = images
         # 检测A、B图片的SIFT关键特征点，并计算特征描述子
         (kpsA, featuresA) = self.detectAndDescribe(imageA)
@@ -57,16 +57,13 @@ class Stitcher2:
         # 将图片A进行视角变换，result是变换后图片 ，因为未添加平移变换 导致有被截图的情况
         # result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
         # self.cv_show('resul555555', result)
-
-
-
         # imageB = cv2.resize(imageB, (imageB.shape[1], result.shape[0]))
         print("resul555555 shape:",result.shape)
 
 
         # # 将图片B传入result图片最左端
 
-        result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
+        result[0: h2, 0: + w2] = imageB
         # result[0-y_min: h2-y_min, w1:w1 + w2 ] = imageB
         # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
         self.cv_show('result2332', result)

@@ -89,10 +89,6 @@ if status == 0:
         stitched = stitched[y:y + h, x:x + w]
 
     # write the output stitched image to disk
-
-
-
-
     # display the output stitched image to our screen
     cv2.imshow("Stitched", stitched)
     cv2.waitKey(0)
