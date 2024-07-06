@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
+
 from imutils import contours
+import matplotlib.pyplot as plt
 
 from opencv_test.basic.Stitcher import Stitcher
 from opencv_test.basic.Stitcher2 import Stitcher2
@@ -387,18 +389,43 @@ def img_concat2():
     cv2.destroyAllWindows()
 def img_concat3():
     # 读取两张图片
-    imageB = cv2.imread('../image/sitch/IMG_1786-2.jpg')
-    imageA = cv2.imread('../image/sitch/IMG_1787-2.jpg')
+    imageA = cv2.imread('../image/sitch/IMG_1786-2.jpg')
+    imageB = cv2.imread('../image/sitch/IMG_1787-2.jpg')
     # 把图片拼接成全景图
     stitcher = Stitcher2()
     print(imageA.shape, imageB.shape)
 
-    (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+    (result, vis,res) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+
+
     # 显示所有图片
     cv2.imshow("Image A", imageA)
     cv2.imshow("Image B", imageB)
     cv2.imshow("Keypoint Matches", vis)
     cv2.imshow("Result", result)
+    cv2.imshow("res", res)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def img_concat_lou():
+    # 读取两张图片
+    imageB = cv2.imread('../image/lou/loul.png')
+    imageA = cv2.imread('../image/lou/lour.png')
+    # 把图片拼接成全景图
+    stitcher = Stitcher2()
+    print(imageA.shape, imageB.shape)
+
+    (result, vis,res) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+
+
+    # 显示所有图片
+    cv2.imshow("Image A", imageA)
+    cv2.imshow("Image B", imageB)
+    cv2.imshow("Keypoint Matches", vis)
+    cv2.imshow("Result", result)
+    cv2.imshow("res", res)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -560,11 +587,184 @@ def flnn_demo():
     img3 = cv2.drawMatches(img1, kp1, img2, kp2, good, None, **draw_params)
     cv_show('img33', img3)
 
+start_point=(0,0) #鼠标开始坐标
+lb_down = False #鼠标左键按下的标志，bool型
+def mouse_event(event, x, y, flags, param):
+    img =param[0]
+    mask =param[1]
+    global start_point, end_point, lb_down  # 如果全局变量是int或者str，那么如果想要在函数中对函数变量进行修改，则需要
+    # 先在函数内，声明其为global，再进行修改，如果是list或者dict则可以直接修改
+
+    if event == cv2.EVENT_LBUTTONDOWN:  # 左键按下，更新鼠标坐标，启动按下标志
+        start_point = (x, y)
+        lb_down = True
+
+    elif event == cv2.EVENT_MOUSEMOVE and lb_down:  # 鼠标移动，绘制线
+        cv2.line(img, start_point, (x, y), (255, 255, 255), thickness=5)
+        cv2.line(mask, start_point, (x, y), (255, 255, 255), thickness=5)
+        start_point = (x, y)  # 只要鼠标移动，就更新鼠标的坐标
+
+    elif event == cv2.EVENT_LBUTTONUP:  # 左键释放
+
+        cv2.line(img, start_point, (x, y), (255, 255, 255), thickness=5)  # 鼠标点击后直接释放鼠标的时候也会绘制一个点
+        cv2.line(mask, start_point, (x, y), (255, 255, 255), thickness=5)
+        lb_down = False
+
+def remove_word():
+    cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    img = cv2.imread('../image/sb.png')
+    mask = np.zeros(img.shape, np.uint8)  # 创建一个黑色mask图像
+
+    pram=[img,mask]
+    cv2.setMouseCallback('image', mouse_event,pram)  # 设置鼠标回调
+
+    while True:
+        cv2.imshow('image', img)
+        cv2.imshow('mask', mask)
+
+        if cv2.waitKey(1) == ord('q'):  # waitKey参数不能写0，写0就需要键盘输入才会继续
+            break
+    img_inpaint_gray = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
+    print("============================")
+    result = cv2.inpaint(img, img_inpaint_gray, 3, cv2.INPAINT_NS)
+
+    cv2.imshow('img', np.hstack((img, result)))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+# https://blog.csdn.net/weixin_64876095/article/details/134484588
+def remove_word2():
+    cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    img_inpaint = cv2.imread('../image/sb.png')
+    img_origin = cv2.imread('../image/sb2.png')
+
+    w,h =img_origin.shape[:2]
+    img_inpaint=cv2.resize(img_inpaint,(h,w))
+
+    print(img_origin.shape,img_inpaint.shape)
+
+    img_origin_gray = cv2.cvtColor(img_origin, cv2.COLOR_BGR2GRAY)
+    img_inpaint_gray = cv2.cvtColor(img_inpaint, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('img_origin_gray', img_origin_gray)
+    mask = img_inpaint_gray - img_origin_gray  # 创建一个黑色mask图像
+
+
+    x_threshold = 510
+    mask[:, x_threshold:] = 0
+    mask[:, 0:75] = 0
+    mask[:160,  :] = 0
+    mask[292:,  :] = 0
+
+
+    cv2.imshow('mask', mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    threshold = 32
+    kernel = np.ones((3, 3), np.uint8)
+    # 图像开运算
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    ret, mask_binary = cv2.threshold(mask, threshold, 225, cv2.THRESH_BINARY)
+
+    ret, mask_binary = cv2.threshold(mask_binary, threshold, 225, cv2.THRESH_BINARY)
+
+    # kenel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    #
+    # ercode = cv2.erode(mask_binary,kenel,iterations=2)
+    #
+    # # 膨胀
+    # mask_binary = cv2.dilate(ercode, kenel, iterations=2)
+
+
+
+    # 调用 cv2.inpaint()进行图像修补
+    dst_TELEA = cv2.inpaint(img_inpaint, mask_binary, 15, cv2.INPAINT_TELEA)
+    dst_NS = cv2.inpaint(img_inpaint, mask_binary, 15, cv2.INPAINT_NS)
+
+    # 检验修补后的图像与原图的差距（用图像减法）
+    img_diff_TELEA = img_origin - dst_TELEA
+    img_diff_NS = img_origin - dst_NS
+
+    # 显示图像
+    cv2.imshow("origin image ", img_origin)
+    cv2.imshow("inpaint image ", img_inpaint)
+    cv2.imshow("mask ", mask)
+    cv2.imshow("mask_binary ", mask_binary)
+    cv2.imshow("result image of TELEA ", dst_TELEA)
+    cv2.imshow("result image of NS ", dst_NS)
+    cv2.imshow("difference between origin and TELEA images ", img_diff_TELEA)
+    cv2.imshow("difference between origin and NS images ", img_diff_NS)
+    # 等待显示
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+#  调整图片亮度
+def Adjusted_image(img, brightness_factor=1.5):
+    image_float = img.astype(np.float32)
+    adjusted_image = image_float * brightness_factor
+    # 将图像像素值限制在[0, 255]范围内
+    adjusted_image = np.clip(adjusted_image, 0, 255)
+    adjusted_image = adjusted_image.astype(np.uint8)
+    return adjusted_image
+
+def girle_repair():
+    # cv2.namedWindow('image')  # 新建窗口，用来进行鼠标操作
+    img = cv2.imread('../image/girl.png')
+
+    # Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    # h_min, h_max, s_min, s_max, v_min, v_max = 58, 60, 73, 255, 36, 255
+    h_min, h_max, s_min, s_max, v_min, v_max = 35, 77, 43, 255, 46, 255
+    lower = np.array([h_min, s_min, v_min])
+    upper = np.array([h_max, s_max, v_max])
+    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    mask_black = cv2.inRange(imgHSV, lower, upper)
+    kernel = np.ones((3, 3), np.uint8)
+    # 设置膨胀
+    mask_black = cv2.dilate(mask_black, kernel)
+
+    # 图像开运算
+    mask_black = cv2.morphologyEx(mask_black, cv2.MORPH_OPEN, kernel)
+    # 清理范围外的残余点
+    x_threshold = 340
+    mask_black[:, x_threshold:] = 0
+    mask_black[:, 0:100] = 0
+    cv2.imshow("mask_black", mask_black)
+    imgResult = cv2.bitwise_and(img, img, mask=mask_black)
+    dst = cv2.inpaint(img, mask_black, 3, cv2.INPAINT_TELEA)
+    dst10 = cv2.inpaint(img, mask_black, 13, cv2.INPAINT_NS)
+    mask_white = cv2.bitwise_not(mask_black)
+
+    cv2.imshow("mask_white", mask_white)
+    cv2.imshow("dst10", dst10)
+    cv2.imshow("imgResult", imgResult)
+    cv2.imshow("dst", dst)
+    cv2.waitKey(0)
+
+
+def girle_repair2():
+    img = cv2.imread('../image/girl.png')
+    Grayimg = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+    tm_ref = cv2.threshold(Grayimg, 180, 255, cv2.THRESH_BINARY_INV)[1]
+    cous,her = cv2.findContours(tm_ref , cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    copy = img.copy()
+
+    cv2.drawContours(copy,cous,-1, (0, 0, 255), 2)
+
+    cv2.imshow("copy", copy)
+    cv2.waitKey(0)
+
 
 if __name__ == '__main__':
     # flnn_demo()
     # img_concat()
     # img_concat()
     # img_concat2()
-    img_concat3()
+    # img_concat3()
+    # img_concat_lou()
     # swicher_concat_img()
+    # remove_word()
+    # girle_repair()
+    # girle_repair2()
+    remove_word2()

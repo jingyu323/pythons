@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Stitcher2:
-    def stitch(self, images, ratio=0.7, reprojThresh=5.0,showMatches=False):
+    def stitch(self, images, ratio=0.75, reprojThresh=5.0,showMatches=False):
         (imageA, imageB) = images
         # 检测A、B图片的SIFT关键特征点，并计算特征描述子
         (kpsA, featuresA) = self.detectAndDescribe(imageA)
@@ -49,7 +49,11 @@ class Stitcher2:
         M = np.array([[1, 0, -x_min], [0, 1, -y_min], [0, 0, 1]])
 
         print("x_max - x_min :",x_max - x_min)
+        print("x_max   :",x_max  )
         print("y_max - y_min :",y_max - y_min)
+        print("y_max   :",y_max )
+
+        print("M.dot(H)",M.dot(H))
         result = cv2.warpPerspective(imageA, M.dot(H), (x_max,y_max  ))  # 对img1进行平移和透视操作
         self.cv_show('imageAAAA999', result)
         print("H:", H)
@@ -57,22 +61,28 @@ class Stitcher2:
         # 将图片A进行视角变换，result是变换后图片 ，因为未添加平移变换 导致有被截图的情况
         # result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
         # self.cv_show('resul555555', result)
+
+
+        res = self.optimize_seam(  imageB, result,-y_min,-x_min)
+        self.cv_show('res4444444444444444', res)
+
         # imageB = cv2.resize(imageB, (imageB.shape[1], result.shape[0]))
         print("resul555555 shape:",result.shape)
 
 
         # # 将图片B传入result图片最左端
 
-        result[0: h2, 0: + w2] = imageB
+        result[-y_min:-y_min + h2, -x_min:-x_min + w2] = imageB
         # result[0-y_min: h2-y_min, w1:w1 + w2 ] = imageB
         # result[0:imageA.shape[0], 0+imageA.shape[1]:imageB.shape[1]+imageA.shape[1]] = imageA
         self.cv_show('result2332', result)
+
         # 检测是否需要显示图片匹配
         if showMatches:
             # 生成匹配图片
             vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches, status)
             # 返回结果
-            return (result, vis)
+            return (result, vis,res)
 
         # 返回匹配结果
         return result
@@ -159,6 +169,41 @@ class Stitcher2:
 
         # 返回可视化结果
         return vis
+
+
+    def optimize_seam(self,srcImg,warpImg,y,x):
+        print("srcImg.shape:",srcImg.shape)
+        rows, cols = srcImg.shape[:2]
+        left=0
+        right=0
+        #  求出重叠区域左右值
+        for col in range(cols):
+            if srcImg[:, col].any() and warpImg[:, col].any():
+                print("srcImg[:, col] :", srcImg[:, col],col,len(srcImg[:, col]))
+                print("warpImg[:, col]:", warpImg[:, col],col,len(warpImg[:, col]))
+                left = col
+                break
+        for col in range(cols - 1, 0, -1):
+            if srcImg[:, col].any() and warpImg[:, col].any():
+                right = col
+                break
+        print("left:",left)
+        print("right:",right)
+        res = warpImg.copy()
+        for row in range(rows):
+            for col in range(cols):
+                if not srcImg[row, col].any():
+                    res[row+y, col+x] = warpImg[row+y, col+x]
+                elif not warpImg[row+y, col+x].any():
+                    res[row+y, col+x] = srcImg[row, col]
+                else:
+                    srcImgLen = float(abs(col - left))
+                    testImgLen = float(abs(col - right))
+                    alpha = srcImgLen / (srcImgLen + testImgLen)
+                    res[row+y, col+x] = np.clip(srcImg[row, col] * (1 - alpha) + warpImg[row+y, col+x] * alpha, 0, 255)
+
+        return  res
+
 
 
 
