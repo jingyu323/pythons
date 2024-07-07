@@ -429,6 +429,10 @@ def img_concat_lou():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+# 使用opencv库中的cv2.Stitcher_create()函数创建了一个stitcher对象，并使用stitcher.stitch((img1, img2))函数将两张图像img1和img2拼接在一起。
+#   cv2.Stitcher_create()函数接受一个可选的参数mode，用于指定拼接模式。mode的取值可以是以下两个常量之一：
+# cv2.STITCHER_PANORAMA：全景拼接模式。
+# cv2.STITCHER_SCANS：扫描线拼接模式。
 def swicher_concat_img():
     img1 = cv2.imread('../image/left.png')
     img2 = cv2.imread('../image/right.png')
