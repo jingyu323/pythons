@@ -77,6 +77,7 @@ def study_demo2():
     model.fit(data, one_hot_labels, epochs=10, batch_size=32)
 
 
+# 基于多层感知器 (MLP) 的 softmax 多分类：
 def study_mlp():
     x_train = np.random.random((1000, 20))
     y_train = keras.utils.to_categorical(np.random.randint(10, size=(1000, 1)), num_classes=10)
@@ -105,7 +106,35 @@ def study_mlp():
               batch_size=128)
     score = model.evaluate(x_test, y_test, batch_size=128)
     print( score)
+# 基于多层感知器的二分类：
+def study_binary_crossent():
+    # 生成虚拟数据
+    x_train = np.random.random((1000, 20))
+    y_train = np.random.randint(2, size=(1000, 1))
+    x_test = np.random.random((100, 20))
+    y_test = np.random.randint(2, size=(100, 1))
+
+    model = Sequential()
+    model.add(Dense(64, input_dim=20, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(1, activation='sigmoid'))
+
+    model.compile(loss='binary_crossentropy',
+                  optimizer='rmsprop',
+                  metrics=['accuracy'])
+
+    model.summary()
+
+    history= model.fit(x_train, y_train,
+              epochs=20,
+              batch_size=128)
+    score = model.evaluate(x_test, y_test, batch_size=128)
+    print( score)
+    print(history)
+
 
 if __name__ == '__main__':
     # create_seq_model()
-    study_mlp()
+    study_binary_crossent()
