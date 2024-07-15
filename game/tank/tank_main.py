@@ -22,10 +22,32 @@ def init():
     BACKGROUND_COLOR = pygame.Color(blue, green, red)
     window.fill(BACKGROUND_COLOR)
 
+    # 设置文字内容
+    text = 'Hello Pygame'
 
+    # 初始化字体
+    pygame.font.init()
+    # 设置文字字体和大小
+    fontSize = 16
+    font = pygame.font.SysFont('georgia', fontSize)
+    # 加载文字并设置颜色
+    fontColor = pygame.Color(255, 255, 255)
+    fontObject = font.render(text, True, fontColor)
+    # 设置展示位置
+    position = (50, 50)
+    # 展示文字
+    window.blit(fontObject, position)
     while 1:
         # 获取键盘事件
         getWindowEvent()
+
+        # 加载文字并设置颜色
+        fontColor = pygame.Color(255, 255, 255)
+        fontObject = font.render(text, True, fontColor)
+        # 设置展示位置
+        position = (50, 50)
+        # 展示文字
+        window.blit(fontObject, position)
 
         # 更新窗口
         pygame.display.update()
