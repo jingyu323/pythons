@@ -23,7 +23,7 @@ def init():
     window.fill(BACKGROUND_COLOR)
 
     # 设置文字内容
-    text = 'Hello Pygame'
+    text = 'Hello Pygame1212'
 
     # 初始化字体
     pygame.font.init()
@@ -34,7 +34,7 @@ def init():
     fontColor = pygame.Color(255, 255, 255)
     fontObject = font.render(text, True, fontColor)
     # 设置展示位置
-    position = (50, 50)
+    position = (150, 50)
     # 展示文字
     window.blit(fontObject, position)
     while 1:
@@ -54,6 +54,7 @@ def init():
 
 
 def getWindowEvent():
+    pygame.key.stop_text_input()
     for event in pygame.event.get():
         # 点击窗口右上角的关闭触发的事件
         if event.type == pygame.QUIT:
