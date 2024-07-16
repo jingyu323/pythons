@@ -42,7 +42,7 @@ class PlayerTank(ParentObject):
                 'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT4.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP.png'),
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP5.png'),
                 'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN5.png'),
                 'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT5.png'),
                 'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT5.png')

@@ -12,6 +12,8 @@ PLAYER_TANK_POSITION = (325, 550)
 
 class MainGame:
      window = None
+     # 玩家坦克
+     playerTank = None
 
      def startGame(self):
          # 初始化展示模块
@@ -52,13 +54,20 @@ class MainGame:
              if event.type == pygame.KEYDOWN:
                  print('键盘按键按下')
                  if event.key == pygame.K_w:
-                     print('w按下')
+                     MainGame.playerTank.direction = 'UP'
+                     MainGame.playerTank.stop = False
                  elif event.key == pygame.K_s:
                      print('s按下')
+                     MainGame.playerTank.direction = 'DOWN'
+                     MainGame.playerTank.stop = False
                  elif event.key == pygame.K_a:
                      print('a按下')
+                     MainGame.playerTank.direction = 'LEFT'
+                     MainGame.playerTank.stop = False
                  elif event.key == pygame.K_d:
                      print('d按下')
+                     MainGame.playerTank.direction = 'RIGHT'
+                     MainGame.playerTank.stop = False
                  elif event.key == pygame.K_j:
                      print('j按下')
 
@@ -66,11 +75,15 @@ class MainGame:
                  print('键盘按键抬起')
                  if event.key == pygame.K_w:
                      print('w抬起')
+                     MainGame.playerTank.stop = True
                  elif event.key == pygame.K_s:
+                     MainGame.playerTank.stop = True
                      print('s抬起')
                  elif event.key == pygame.K_a:
+                     MainGame.playerTank.stop = True
                      print('a抬起')
                  elif event.key == pygame.K_d:
+                     MainGame.playerTank.stop = True
                      print('d抬起')
 
 if __name__ == '__main__':
