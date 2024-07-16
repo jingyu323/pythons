@@ -32,18 +32,18 @@ class Bullet(ParentObject):
             self.rect.left = tank.rect.left + 25
             self.rect.top = tank.rect.top + 17.5
 
-            # 速度
-            self.accumulationMax: float = 0
-            self.accumulation = 0.25
-            self.speed = 10
-            # 销毁开关
-            self.isDestroy = False
-            # 发射源
-            self.source = tank
-            # 伤害
-            self.damage = tank.damage
+        # 速度
+        self.accumulationMax: float = 0
+        self.accumulation = 0.25
+        self.speed = 10
+        # 销毁开关
+        self.isDestroy = False
+        # 发射源
+        self.source = tank
+        # 伤害
+        self.damage = tank.damage
 
-    def move(self, explodeList):
+    def move(self):
         if self.accumulation >= 1:
             self.accumulation = 0
             if self.direction == 'LEFT':

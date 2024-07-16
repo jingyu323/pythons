@@ -40,6 +40,9 @@ class MainGame:
              if not MainGame.playerTank.stop:
                  MainGame.playerTank.move()
 
+                 # 显示我方坦克子弹
+             self.drawPlayerBullet(MainGame.playerBulletList)
+
             # 更新窗口
              pygame.display.update()
 
