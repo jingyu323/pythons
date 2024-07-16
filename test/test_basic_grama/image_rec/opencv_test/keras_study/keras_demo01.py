@@ -1,6 +1,7 @@
 import keras
 from keras import Sequential
-from keras.src.layers import Dense, Dropout
+from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embedding, LSTM, Conv1D, MaxPooling1D, \
+    GlobalAveragePooling1D
 import numpy as np
 from keras.src.optimizers import SGD
 
@@ -135,6 +136,95 @@ def study_binary_crossent():
     print(history)
 
 
+def study_vgg_demo():
+    # 生成虚拟数据
+    x_train = np.random.random((100, 100, 100, 3))
+    y_train = keras.utils.to_categorical(np.random.randint(10, size=(100, 1)), num_classes=10)
+    x_test = np.random.random((20, 100, 100, 3))
+    y_test = keras.utils.to_categorical(np.random.randint(10, size=(20, 1)), num_classes=10)
+
+    model = Sequential()
+    # 输入: 3 通道 100x100 像素图像 -> (100, 100, 3) 张量。
+    # 使用 32 个大小为 3x3 的卷积滤波器。
+    model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 3)))
+    model.add(Conv2D(32, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
+    model.add(Flatten())
+    model.add(Dense(256, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(10, activation='softmax'))
+
+    sgd = SGD(learning_rate=0.01, weight_decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(loss='categorical_crossentropy', optimizer=sgd)
+    model.summary()
+
+    model.fit(x_train, y_train, batch_size=32, epochs=10)
+    score = model.evaluate(x_test, y_test, batch_size=32)
+
+    print(score)
+
+
+# 基于 LSTM 的序列分类：
+def LSTM_demo():
+    max_features = 1024
+    x_train = np.random.random((100, 256))
+    y_train = keras.utils.to_categorical(np.random.randint(10, size=(256, 1)), num_classes=10)
+    x_test = np.random.random((20, 256))
+    y_test = keras.utils.to_categorical(np.random.randint(10, size=(256, 1)), num_classes=10)
+
+    model = Sequential()
+    model.add(Embedding(max_features, output_dim=256))
+    model.add(LSTM(128))
+    model.add(Dropout(0.5))
+    model.add(Dense(1, activation='sigmoid'))
+
+    model.compile(loss='binary_crossentropy',
+                  optimizer='rmsprop',
+                  metrics=['accuracy'])
+
+    model.fit(x_train, y_train, batch_size=16, epochs=10)
+    score = model.evaluate(x_test, y_test, batch_size=16)
+
+    print(score)
+
+
+# 基于 1D 卷积的序列分类：
+def  Conv1D_demo():
+    x_train = np.random.random((100, 256))
+    y_train = keras.utils.to_categorical(np.random.randint(10, size=(256, 1)), num_classes=10)
+    x_test = np.random.random((20, 256))
+    y_test = keras.utils.to_categorical(np.random.randint(10, size=(256, 1)), num_classes=10)
+
+    seq_length = 64
+
+    model = Sequential()
+    model.add(Conv1D(64, 3, activation='relu', input_shape=(seq_length, 100)))
+    model.add(Conv1D(64, 3, activation='relu'))
+    model.add(MaxPooling1D(3))
+    model.add(Conv1D(128, 3, activation='relu'))
+    model.add(Conv1D(128, 3, activation='relu'))
+    model.add(GlobalAveragePooling1D())
+    model.add(Dropout(0.5))
+    model.add(Dense(1, activation='sigmoid'))
+
+    model.compile(loss='binary_crossentropy',
+                  optimizer='rmsprop',
+                  metrics=['accuracy'])
+
+    model.fit(x_train, y_train, batch_size=16, epochs=10)
+    score = model.evaluate(x_test, y_test, batch_size=16)
+
+    print(score)
+
+
 if __name__ == '__main__':
     # create_seq_model()
-    study_binary_crossent()
+    # LSTM_demo()
+    Conv1D_demo()
