@@ -14,6 +14,8 @@ class MainGame:
      window = None
      # 玩家坦克
      playerTank = None
+     playerBulletList = []
+     playerBulletNumber = 3
 
      def startGame(self):
          # 初始化展示模块
@@ -40,6 +42,15 @@ class MainGame:
 
             # 更新窗口
              pygame.display.update()
+
+     def drawPlayerBullet(self, playerBulletList):
+         # 遍历整个子弹列表，如果是没有被销毁的状态，就把子弹显示出来，否则从列表中删除
+         for bullet in playerBulletList:
+             if not bullet.isDestroy:
+                 bullet.draw(MainGame.window)
+                 bullet.move()
+             else:
+                 playerBulletList.remove(bullet)
 
      def getPlayingModeEvent(self):
          #
@@ -70,6 +81,10 @@ class MainGame:
                      MainGame.playerTank.stop = False
                  elif event.key == pygame.K_j:
                      print('j按下')
+                     # 判断子弹数量是否超过指定的个数
+                     if len(MainGame.playerBulletList) < MainGame.playerBulletNumber:
+                         bullet = MainGame.playerTank.shot()
+                         MainGame.playerBulletList.append(bullet)
 
              if event.type == pygame.KEYUP:
                  print('键盘按键抬起')

@@ -1,9 +1,8 @@
 import pygame
 
+from demo.Bullet import Bullet
+from demo.ParentObject import ParentObject
 
-class ParentObject(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
 
 class PlayerTank(ParentObject):
     def __init__(self, x, y, order, amour):
@@ -100,7 +99,7 @@ class PlayerTank(ParentObject):
 
 
     def shot(self):
-        pass
+        return Bullet(self)
 
 
     def draw(self,window):
