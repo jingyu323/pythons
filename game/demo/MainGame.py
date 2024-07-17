@@ -103,6 +103,16 @@ class MainGame:
             # 更新窗口
              pygame.display.update()
 
+         # 设置背景颜色
+
+         MainGame.window.fill(BACKGROUND_COLOR)
+
+         # 显示字体
+         self.drawText('Defeated', 200, 200, 50, MainGame.window)
+
+     # 更新窗口
+     pygame.display.update()
+
      def drawPlayerBullet(self, playerBulletList):
          # 遍历整个子弹列表，如果是没有被销毁的状态，就把子弹显示出来，否则从列表中删除
          for bullet in playerBulletList:
