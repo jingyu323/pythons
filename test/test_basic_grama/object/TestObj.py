@@ -16,6 +16,8 @@ def test_pa():
      json_str = json.dumps(stone.__dict__)
      print(json_str)
      print(json.dumps(brick.__dict__))
+     print(brick.__repr__)
+     print(brick.__str__)
 
 
 if __name__ == '__main__':
