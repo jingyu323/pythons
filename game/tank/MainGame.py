@@ -39,10 +39,10 @@ class MainGame:
     explodeList = []
 
     # 坦克移动音效
-    playerTankMoveSound = Sound('../Sound/player.move.wav').setVolume()
+    playerTankMoveSound = Sound('../tank/Sound/player.move.wav').setVolume()
 
     # 游戏开始音效
-    startingSound = Sound('../Sound/intro.wav')
+    startingSound = Sound('../tank/Sound/intro.wav')
 
     # 砖墙
     brickWallList = []
@@ -164,7 +164,7 @@ class MainGame:
                         bullet = MainGame.playerTank.shot()
                         MainGame.playerBulletList.append(bullet)
                         # 添加音效
-                        Sound('../Sound/shoot.wav').play(0)
+                        Sound('../tank/Sound/shoot.wav').play(0)
 
             if event.type == pygame.KEYUP:
                 MainGame.playerTankMoveSound.stop()
@@ -280,7 +280,7 @@ class MainGame:
         # 失败了坦克不能移动了
         MainGame.playerTankMoveSound.stop()
         # 播放失败音乐
-        Sound('../Sound/gameOver.wav').play()
+        Sound('../tank/Sound/gameOver.wav').play()
         print('游戏结束')
         self.isDefeated = True
 

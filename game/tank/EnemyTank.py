@@ -19,23 +19,23 @@ class EnemyTank(ParentObject):
         for i in range(1, self.type[1] + 1):
             up.append(
                 pygame.image.load(
-                    '../Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank'+ str(self.type[0]) + 'Lv' + str(i) + '(UP).png'
+                    '../tank/Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank'+ str(self.type[0]) + 'Lv' + str(i) + '(UP).png'
                 )
             )
             down.append(
                 pygame.image.load(
-                    '../Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank'+ str(self.type[0]) + 'Lv' + str(i) + '(DOWN).png'
+                    '../tank/Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank'+ str(self.type[0]) + 'Lv' + str(i) + '(DOWN).png'
                 )
             )
             left.append(
                 pygame.image.load(
-                    '../Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank' + str(self.type[0]) + 'Lv' + str(
+                    '../tank/Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank' + str(self.type[0]) + 'Lv' + str(
                         i) + '(LEFT).png'
                 )
             )
             right.append(
                 pygame.image.load(
-                    '../Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank' + str(self.type[0]) + 'Lv' + str(
+                    '../tank/Image/Enemy/EnemyTank' + str(self.type[0]) + '/EnemyTank' + str(self.type[0]) + 'Lv' + str(
                         i) + '(RIGHT).png'
                 )
             )

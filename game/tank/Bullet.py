@@ -8,10 +8,10 @@ class Bullet(ParentObject):
     def __init__(self, tank):
         super().__init__()
         self.images = {
-            'UP': pygame.image.load('../Image/Bullet/Bullet(UP).png'),
-            'DOWN': pygame.image.load('../Image/Bullet/Bullet(DOWN).png'),
-            'LEFT': pygame.image.load('../Image/Bullet/Bullet(LEFT).png'),
-            'RIGHT': pygame.image.load('../Image/Bullet/Bullet(RIGHT).png')
+            'UP': pygame.image.load('../tank/Image/Bullet/Bullet(UP).png'),
+            'DOWN': pygame.image.load('../tank/Image/Bullet/Bullet(DOWN).png'),
+            'LEFT': pygame.image.load('../tank/Image/Bullet/Bullet(LEFT).png'),
+            'RIGHT': pygame.image.load('../tank/Image/Bullet/Bullet(RIGHT).png')
         }
         # 方向
         self.direction = tank.direction
@@ -70,7 +70,7 @@ class Bullet(ParentObject):
             explode = Explode(self, 25)
             explodeList.append(explode)
             self.isDestroy = True
-            Sound('../Sound/block.wav').play()
+            Sound('../tank/Sound/block.wav').play()
 
     def draw(self, window):
         window.blit(self.image, self.rect)
@@ -86,9 +86,9 @@ class Bullet(ParentObject):
                     # 增加爆炸效果
                     explode = Explode(tank, 50)
                     explodeList.append(explode)
-                    Sound('../Sound/kill.wav').play()
+                    Sound('../tank/Sound/kill.wav').play()
                 else:
-                    Sound('../Sound/enemy.armor.hit.wav').play()
+                    Sound('../tank/Sound/enemy.armor.hit.wav').play()
 
     def enemyBulletCollidePlayerTank(self, playerTank, explodeList):
         # 玩家坦克生命值为0，不用检测
@@ -100,14 +100,14 @@ class Bullet(ParentObject):
             if playerTank.armor > 0:
                 playerTank.armor -= self.damage
                 playerTank.armor = max(0, playerTank.armor)
-                Sound('../Sound/enemy.armor.hit.wav').play()
+                Sound('../tank/Sound/enemy.armor.hit.wav').play()
             else:
                 playerTank.loseLife(self.damage)
                 # 增加爆炸效果
                 explode = Explode(playerTank, 50)
                 explodeList.append(explode)
                 playerTank.life = max(0, playerTank.life)
-                Sound('../Sound/kill.wav').play()
+                Sound('../tank/Sound/kill.wav').play()
                 if playerTank.life != 0:
                     playerTank.isResurrecting = True
             # 让子弹销毁
@@ -123,7 +123,7 @@ class Bullet(ParentObject):
                 explode = Explode(brickWall, 25)
                 explodeList.append(explode)
                 # 出现爆炸播放音效
-                Sound('../Sound/block.wav').play()
+                Sound('../tank/Sound/block.wav').play()
 
     def bulletCollideStoneWall(self, stoneWallList, explodeList):
         for stoneWall in stoneWallList:
@@ -134,14 +134,14 @@ class Bullet(ParentObject):
                 self.isDestroy = True
                 explode = Explode(stoneWall, 25)
                 explodeList.append(explode)
-                Sound('../Sound/block.wav').play()
+                Sound('../tank/Sound/block.wav').play()
 
     def bulletCollidePlayerHome(self, home, explodeList):
         if pygame.sprite.collide_rect(self, home):
             self.isDestroy = True
             explode = Explode(home, 50)
             explodeList.append(explode)
-            Sound('../Sound/buh.wav').play()
+            Sound('../tank/Sound/buh.wav').play()
             return True
         else:
             return False
