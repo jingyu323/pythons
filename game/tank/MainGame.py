@@ -295,6 +295,9 @@ class MainGame:
         # 展示文字
         window.blit(fontObject, (x, y))
 
+
+
+
 if __name__ == '__main__':
     MainGame().startGame()
 

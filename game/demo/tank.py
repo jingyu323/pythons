@@ -73,6 +73,13 @@ class PlayerTank(ParentObject):
         # 移动开关
         self.stop = True
 
+        # 重生
+        self.isResurrecting = False
+
+        # 碰撞前的坐标
+        self.prvX = self.rect.left
+        self.prvY = self.rect.top
+
         # 等级
         self.level = 1
         # 伤害
@@ -81,6 +88,9 @@ class PlayerTank(ParentObject):
 
     def move(self):
         if self.accumulation >= 1:
+            # 记录上一次的位置
+            self.prvX = self.rect.left
+            self.prvY = self.rect.top
             self.accumulation = 0
             if self.direction == 'LEFT':
                 if self.rect.left > 0:
@@ -102,14 +112,30 @@ class PlayerTank(ParentObject):
         return Bullet(self)
 
 
-    def draw(self,window):
+    def draw(self,window, x, y):
         # window传入主窗口
         # 坦克生命中为0，表示已经死亡，不再展示坦克
         if self.life <= 0:
             return
+
+        # 判断坦克是否复合
+        if self.isResurrecting:
+            # 把坦克位置设置为指定的重生位置
+            self.rect.left = x
+            self.rect.top = y
+            self.isResurrecting = False
+            self.direction = 'UP'
         # 获取展示的对象
         self.image = self.images[max(self.armor - 1, 0)][self.direction]
         window.blit(self.image, self.rect)
 
+    def collideEnemyTank(self, enemyTankList):
+        # 遍历全部敌方坦克，检查有没有碰撞
+        for enemyTank in enemyTankList:
+            if pygame.sprite.collide_rect(self, enemyTank):
+                # 如果碰撞了，就保持原来的位置
+                self.rect.left = self.prvX
+                self.rect.top = self.prvY
 
-
+    def loseLife(self, value=1):
+        self.life -= value

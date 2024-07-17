@@ -72,3 +72,29 @@ class Bullet(ParentObject):
         if toDestroy:
             self.isDestroy = True
 
+    def playerBulletCollideEnemyTank(self, enemyTankList):
+        # 循环遍历坦克列表，检查是否发生了碰撞
+        for tank in enemyTankList:
+            if pygame.sprite.collide_rect(tank, self):
+                # 坦克被击中就扣减生命值
+                tank.loseLife(self.damage)
+                # 把子弹设置为销毁状态
+                self.isDestroy = True
+
+    def enemyBulletCollidePlayerTank(self, playerTank):
+        # 玩家坦克生命值为0，不用检测
+        if playerTank.life <= 0:
+            return
+        # 检测是否发生碰撞
+        if pygame.sprite.collide_rect(playerTank, self):
+            # 发生碰撞先减少护甲，护甲为0时扣减生命值
+            if playerTank.armor > 0:
+                playerTank.armor -= self.damage
+                playerTank.armor = max(0, playerTank.armor)
+            else:
+                playerTank.loseLife(self.damage)
+                playerTank.life = max(0, playerTank.life)
+                if playerTank.life != 0:
+                    playerTank.isResurrecting = True
+            # 让子弹销毁
+            self.isDestroy = True
