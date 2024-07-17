@@ -1,6 +1,7 @@
 
 import pygame
 
+from demo.Explode import Explode
 from demo.ParentObject import ParentObject
 
 
@@ -43,7 +44,7 @@ class Bullet(ParentObject):
         # 伤害
         self.damage = tank.damage
 
-    def move(self):
+    def move(self, explodeList):
         if self.accumulation >= 1:
             self.accumulation = 0
             if self.direction == 'LEFT':
@@ -55,14 +56,14 @@ class Bullet(ParentObject):
             elif self.direction == 'RIGHT':
                 self.rect.left += self.speed
             # 检查子弹是否出界
-            self.checkBullet()
+            self.checkBullet(  explodeList)
         else:
             self.accumulation += 0.20
 
     def draw(self, window):
         window.blit(self.image, self.rect)
 
-    def checkBullet(self):
+    def checkBullet(self, explodeList):
         toDestroy = False
         # 如果出界，就设置为销毁
         if self.rect.top < 0 or self.rect.top > 600:
@@ -70,9 +71,11 @@ class Bullet(ParentObject):
         if self.rect.left < 0 or self.rect.right > 900:
             toDestroy = True
         if toDestroy:
+            explode = Explode(self, 25)
+            explodeList.append(explode)
             self.isDestroy = True
 
-    def playerBulletCollideEnemyTank(self, enemyTankList):
+    def playerBulletCollideEnemyTank(self, enemyTankList, explodeList):
         # 循环遍历坦克列表，检查是否发生了碰撞
         for tank in enemyTankList:
             if pygame.sprite.collide_rect(tank, self):
@@ -80,8 +83,12 @@ class Bullet(ParentObject):
                 tank.loseLife(self.damage)
                 # 把子弹设置为销毁状态
                 self.isDestroy = True
+                if tank.life == 0:
+                    # 增加爆炸效果
+                    explode = Explode(tank, 50)
+                    explodeList.append(explode)
 
-    def enemyBulletCollidePlayerTank(self, playerTank):
+    def enemyBulletCollidePlayerTank(self, playerTank, explodeList):
         # 玩家坦克生命值为0，不用检测
         if playerTank.life <= 0:
             return
@@ -93,6 +100,9 @@ class Bullet(ParentObject):
                 playerTank.armor = max(0, playerTank.armor)
             else:
                 playerTank.loseLife(self.damage)
+                # 增加爆炸效果
+                explode = Explode(playerTank, 50)
+                explodeList.append(explode)
                 playerTank.life = max(0, playerTank.life)
                 if playerTank.life != 0:
                     playerTank.isResurrecting = True

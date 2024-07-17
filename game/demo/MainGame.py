@@ -26,7 +26,8 @@ class MainGame:
      # 敌人坦克子弹
      enemyTankBulletList = []
 
-
+     # 爆炸列表
+     explodeList = []
      def startGame(self):
          # 初始化展示模块
          pygame.display.init()
@@ -52,14 +53,15 @@ class MainGame:
                  MainGame.playerTank.collideEnemyTank(MainGame.enemyTankList)
 
                  # 显示我方坦克子弹
-             self.drawPlayerBullet(MainGame.playerBulletList)
+             self.drawPlayerBullet(MainGame.playerBulletList )
 
              # 展示敌方坦克
              self.drawEnemyTank()
 
              # 展示敌方坦克子弹
              self.drawEnemyBullet()
-
+             # 展示爆炸效果
+             self.drawExplode()
             # 更新窗口
              pygame.display.update()
 
@@ -68,7 +70,7 @@ class MainGame:
          for bullet in playerBulletList:
              if not bullet.isDestroy:
                  bullet.draw(MainGame.window)
-                 bullet.move()
+                 bullet.move(MainGame.explodeList)
                  bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList)
              else:
                  playerBulletList.remove(bullet)
@@ -140,7 +142,7 @@ class MainGame:
             # 坦克还有生命值
             if tank.life > 0:
                 tank.draw(MainGame.window)
-                tank.move()
+                tank.move( )
                 tank.collidePlayerTank(MainGame.playerTank)
                 tank.collideEnemyTank(MainGame.enemyTankList)
 
@@ -167,15 +169,20 @@ class MainGame:
          for bullet in MainGame.enemyTankBulletList:
              if not bullet.isDestroy:
                  bullet.draw(MainGame.window)
-                 bullet.move()
-
-                 bullet.enemyBulletCollidePlayerTank(MainGame.playerTank)
+                 bullet.move(MainGame.explodeList)
+                 bullet.enemyBulletCollidePlayerTank(MainGame.playerTank, MainGame.explodeList)
              else:
                  bullet.source.bulletCount -= 1
                  MainGame.enemyTankBulletList.remove(bullet)
 
 
 
+     def drawExplode(self):
+        for e in MainGame.explodeList:
+            if e.isDestroy:
+                MainGame.explodeList.remove(e)
+            else:
+                e.draw(MainGame.window)
 
 
 
