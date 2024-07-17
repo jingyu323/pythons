@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_basic_grama/object/TestObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_basic_grama/object/TestObj.py" afterDir="false" />
-    </list>
+    <list default="true" id="16a3f77c-a270-4f08-ad11-d7295fd1ffc6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +33,7 @@
   "keyToString": {
     "Python.TestObj.executor": "Run",
     "Python.car_calc.executor": "Run",
+    "Python.clear_size_data.executor": "Run",
     "Python.image_border.executor": "Run",
     "Python.numpy_test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -225,7 +223,7 @@
       <workItem from="1716473677196" duration="634000" />
       <workItem from="1716553829231" duration="647000" />
       <workItem from="1716901581888" duration="1320000" />
-      <workItem from="1721199399593" duration="3250000" />
+      <workItem from="1721199399593" duration="3615000" />
     </task>
     <servers />
   </component>
@@ -256,6 +254,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test$test_main.coverage" NAME="test_main Coverage Results" MODIFIED="1673278859569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test$clear_size_data.coverage" NAME="clear_size_data Coverage Results" MODIFIED="1721203168522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/panda_test" />
     <SUITE FILE_PATH="coverage/test$TestObj.coverage" NAME="TestObj Coverage Results" MODIFIED="1721202515493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/object" />
     <SUITE FILE_PATH="coverage/test$image_border.coverage" NAME="image_border Coverage Results" MODIFIED="1716385551790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_basic_grama/image_rec/opencv_test/basic" />
     <SUITE FILE_PATH="coverage/test$test_class.coverage" NAME="test_class Coverage Results" MODIFIED="1673278997665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
