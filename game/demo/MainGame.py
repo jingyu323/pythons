@@ -71,7 +71,7 @@ class MainGame:
              if not bullet.isDestroy:
                  bullet.draw(MainGame.window)
                  bullet.move(MainGame.explodeList)
-                 bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList)
+                 bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList,MainGame.explodeList)
              else:
                  playerBulletList.remove(bullet)
 
