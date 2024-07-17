@@ -139,3 +139,21 @@ class PlayerTank(ParentObject):
 
     def loseLife(self, value=1):
         self.life -= value
+
+    def collideBrickWall(self, brickWallList):
+        for brickWall in brickWallList:
+            if pygame.sprite.collide_rect(self, brickWall):
+                self.rect.left = self.prvX
+                self.rect.top = self.prvY
+
+
+    def collideStoneWall(self, stoneWallList):
+        for stoneWall in stoneWallList:
+            if pygame.sprite.collide_rect(self, stoneWall):
+                self.rect.left = self.prvX
+                self.rect.top = self.prvY
+
+    def collideHome(self, home):
+        if pygame.sprite.collide_rect(self, home):
+            self.rect.left = self.prvX
+            self.rect.top = self.prvY

@@ -3,6 +3,7 @@ import pygame
 
 from demo.Explode import Explode
 from demo.ParentObject import ParentObject
+from demo.Sound import Sound
 
 
 class Bullet(ParentObject):
@@ -74,6 +75,7 @@ class Bullet(ParentObject):
             explode = Explode(self, 25)
             explodeList.append(explode)
             self.isDestroy = True
+            Sound('../tank/Sound/block.wav').play()
 
     def playerBulletCollideEnemyTank(self, enemyTankList, explodeList):
         # 循环遍历坦克列表，检查是否发生了碰撞
@@ -87,6 +89,9 @@ class Bullet(ParentObject):
                     # 增加爆炸效果
                     explode = Explode(tank, 50)
                     explodeList.append(explode)
+                    Sound('../tank/Sound/kill.wav').play()
+                else:
+                    Sound('../tank/Sound/enemy.armor.hit.wav').play()
 
     def enemyBulletCollidePlayerTank(self, playerTank, explodeList):
         # 玩家坦克生命值为0，不用检测
@@ -98,13 +103,47 @@ class Bullet(ParentObject):
             if playerTank.armor > 0:
                 playerTank.armor -= self.damage
                 playerTank.armor = max(0, playerTank.armor)
+                Sound('../tank/Sound/enemy.armor.hit.wav').play()
             else:
                 playerTank.loseLife(self.damage)
                 # 增加爆炸效果
                 explode = Explode(playerTank, 50)
                 explodeList.append(explode)
                 playerTank.life = max(0, playerTank.life)
+                Sound('../Sound/kill.wav').play()
                 if playerTank.life != 0:
                     playerTank.isResurrecting = True
             # 让子弹销毁
             self.isDestroy = True
+
+    def bulletCollideBrickWall(self, brickWallList, explodeList):
+        for brickWall in brickWallList:
+            if pygame.sprite.collide_rect(self, brickWall):
+                self.isDestroy = True
+                brickWall.isDestroy = True
+                # 碰撞出现爆炸效果
+                explode = Explode(brickWall, 25)
+                explodeList.append(explode)
+                # 出现爆炸播放音效
+                Sound('../tank/Sound/block.wav').play()
+
+    def bulletCollideStoneWall(self, stoneWallList, explodeList):
+        for stoneWall in stoneWallList:
+            if pygame.sprite.collide_rect(self, stoneWall):
+                # 判断坦克的等级，大于等于2时，可以打穿石墙
+                if self.source.level >= 2:
+                    stoneWall.isDestroy = True
+                self.isDestroy = True
+                explode = Explode(stoneWall, 25)
+                explodeList.append(explode)
+                Sound('../tank/Sound/block.wav').play()
+
+    def bulletCollidePlayerHome(self, home, explodeList):
+        if pygame.sprite.collide_rect(self, home):
+            self.isDestroy = True
+            explode = Explode(home, 50)
+            explodeList.append(explode)
+            Sound('../tank/Sound/buh.wav').play()
+            return True
+        else:
+            return False

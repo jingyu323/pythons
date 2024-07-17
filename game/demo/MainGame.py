@@ -2,7 +2,11 @@ import sys
 
 import pygame
 
+from demo.BrickWall import BrickWall
 from demo.EnemyTank import EnemyTank
+from demo.Home import Home
+from demo.Sound import Sound
+from demo.StoneWall import StoneWall
 from demo.tank import PlayerTank
 
 SCREEN_WIDTH = 1100
@@ -25,9 +29,27 @@ class MainGame:
 
      # 敌人坦克子弹
      enemyTankBulletList = []
+     brickWallList = []
+     # 石墙
+     stoneWallList = []
+
 
      # 爆炸列表
      explodeList = []
+
+     # 坦克移动音效
+     playerTankMoveSound = Sound('../tank/Sound/player.move.wav').setVolume()
+
+     # 游戏开始音效
+     startingSound = Sound('../tank/Sound/intro.wav')
+
+     def __init__(self):
+         # 初始化
+         MainGame.home = Home(425, 550)
+
+         # 记录是否输了
+         self.isDefeated = False
+
      def startGame(self):
          # 初始化展示模块
          pygame.display.init()
@@ -39,25 +61,41 @@ class MainGame:
 
          # 初始化我方坦克
          MainGame.playerTank = PlayerTank(PLAYER_TANK_POSITION[0], PLAYER_TANK_POSITION[1], 1, 1)
+         # 播放开始音乐
+         MainGame.startingSound.play()
+         # 初始化场景
+         self.initBrickWall()
 
+         self.initStoneWall()
          while 1:
+
+             if self.isDefeated:
+                 self.defeated()
+                 break
+
              MainGame.window.fill(BACKGROUND_COLOR)
 
              self.getPlayingModeEvent()
 
+             # 显示物体
+             self.drawBrickWall(MainGame.brickWallList)
+             self.drawStoneWall(MainGame.stoneWallList)
+
+             # 展示敌方坦克
+             self.drawEnemyTank()
              # 显示我方坦克
              MainGame.playerTank.draw(MainGame.window,PLAYER_TANK_POSITION[0], PLAYER_TANK_POSITION[1])
              # 我方坦克移动
              if not MainGame.playerTank.stop:
                  MainGame.playerTank.move()
                  MainGame.playerTank.collideEnemyTank(MainGame.enemyTankList)
+                 # 不能撞墙
+                 MainGame.playerTank.collideBrickWall(MainGame.brickWallList)
+                 MainGame.playerTank.collideStoneWall(MainGame.stoneWallList)
+                 MainGame.playerTank.collideHome(MainGame.home)
 
                  # 显示我方坦克子弹
              self.drawPlayerBullet(MainGame.playerBulletList )
-
-             # 展示敌方坦克
-             self.drawEnemyTank()
-
              # 展示敌方坦克子弹
              self.drawEnemyBullet()
              # 展示爆炸效果
@@ -72,6 +110,9 @@ class MainGame:
                  bullet.draw(MainGame.window)
                  bullet.move(MainGame.explodeList)
                  bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList,MainGame.explodeList)
+                 bullet.bulletCollideBrickWall(MainGame.brickWallList, MainGame.explodeList)
+                 bullet.bulletCollideStoneWall(MainGame.stoneWallList, MainGame.explodeList)
+                 bullet.bulletCollidePlayerHome(MainGame.stoneWallList, MainGame.explodeList)
              else:
                  playerBulletList.remove(bullet)
 
@@ -86,6 +127,7 @@ class MainGame:
                  sys.exit()
 
              if event.type == pygame.KEYDOWN:
+                 MainGame.playerTankMoveSound.play(-1)
                  print('键盘按键按下')
                  if event.key == pygame.K_w:
                      MainGame.playerTank.direction = 'UP'
@@ -107,6 +149,7 @@ class MainGame:
                      # 判断子弹数量是否超过指定的个数
                      if len(MainGame.playerBulletList) < MainGame.playerBulletNumber:
                          bullet = MainGame.playerTank.shot()
+                         Sound('../tank/Sound/shoot.wav').play(0)
                          MainGame.playerBulletList.append(bullet)
                  elif event.key == pygame.K_r:
                      print('r按下')
@@ -114,6 +157,7 @@ class MainGame:
                      MainGame.playerTank.isResurrecting=True
 
              if event.type == pygame.KEYUP:
+                 MainGame.playerTankMoveSound.stop()
                  print('键盘按键抬起')
                  if event.key == pygame.K_w:
                      print('w抬起')
@@ -149,7 +193,9 @@ class MainGame:
                 tank.move( )
                 tank.collidePlayerTank(MainGame.playerTank)
                 tank.collideEnemyTank(MainGame.enemyTankList)
-
+                # 不能撞墙
+                tank.collideBrickWall(MainGame.brickWallList)
+                tank.collideStoneWall(MainGame.stoneWallList)
                 bullet = tank.shot()
                 if bullet is not None:
                     MainGame.enemyTankBulletList.append(bullet)
@@ -175,6 +221,8 @@ class MainGame:
                  bullet.draw(MainGame.window)
                  bullet.move(MainGame.explodeList)
                  bullet.enemyBulletCollidePlayerTank(MainGame.playerTank, MainGame.explodeList)
+                 bullet.bulletCollideBrickWall(MainGame.brickWallList, MainGame.explodeList)
+                 bullet.bulletCollideStoneWall(MainGame.stoneWallList, MainGame.explodeList)
              else:
                  bullet.source.bulletCount -= 1
                  MainGame.enemyTankBulletList.remove(bullet)
@@ -189,6 +237,49 @@ class MainGame:
                 e.draw(MainGame.window)
 
 
+     def drawBrickWall(self, brickWallList):
+        for brickWall in brickWallList:
+            if brickWall.isDestroy:
+                brickWallList.remove(brickWall)
+            else:
+                brickWall.draw(MainGame.window)
+
+
+     def initBrickWall(self):
+        for i in range(20):
+            MainGame.brickWallList.append(BrickWall(i * 25, 200))
+
+
+     def initStoneWall(self):
+        for i in range(20):
+            MainGame.stoneWallList.append(StoneWall(i * 25, 400))
+
+
+     def drawStoneWall(self, stoneWallList):
+        for stoneWall in stoneWallList:
+            if stoneWall.isDestroy:
+                stoneWallList.remove(stoneWall)
+            else:
+                stoneWall.draw(MainGame.window)
+
+
+     def defeated(self):
+        # 失败了坦克不能移动了
+        MainGame.playerTankMoveSound.stop()
+        # 播放失败音乐
+        Sound('../tank/Sound/gameOver.wav').play()
+        print('游戏结束')
+        self.isDefeated = True
+
+     def drawText(self, text, x, y, fontSize, window):
+        # 初始化字体
+        pygame.font.init()
+        font = pygame.font.SysFont('georgia', fontSize)
+        # 加载文字并设置颜色
+        fontColor = pygame.Color(255, 255, 255)
+        fontObject = font.render(text, True, fontColor)
+        # 展示文字
+        window.blit(fontObject, (x, y))
 
 
 if __name__ == '__main__':
