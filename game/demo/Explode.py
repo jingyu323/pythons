@@ -30,6 +30,8 @@ class Explode:
     def draw(self, window):
         # 根据索引获取爆炸对象, 添加到主窗口
         # 让图像加载五次，这里可以换成五张大小不一样的爆炸图片，可以实现让爆炸效果从小变大的效果
+
+
         if self.index < len(self.images):
             self.image = self.images[self.mode][self.index]
             self.index += 1

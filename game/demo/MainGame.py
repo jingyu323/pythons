@@ -108,6 +108,10 @@ class MainGame:
                      if len(MainGame.playerBulletList) < MainGame.playerBulletNumber:
                          bullet = MainGame.playerTank.shot()
                          MainGame.playerBulletList.append(bullet)
+                 elif event.key == pygame.K_r:
+                     print('r按下')
+                     # 判断子弹数量是否超过指定的个数
+                     MainGame.playerTank.isResurrecting=True
 
              if event.type == pygame.KEYUP:
                  print('键盘按键抬起')
