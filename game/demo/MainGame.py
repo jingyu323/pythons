@@ -4,6 +4,7 @@ import pygame
 
 from demo.BrickWall import BrickWall
 from demo.EnemyTank import EnemyTank
+from demo.Explode import Explode
 from demo.Home import Home
 from demo.Sound import Sound
 from demo.StoneWall import StoneWall
@@ -42,13 +43,9 @@ class MainGame:
 
      # 游戏开始音效
      startingSound = Sound('../tank/Sound/intro.wav')
+     isDefeated = False
+     home = Home(425, 550)
 
-     def __init__(self):
-         # 初始化
-         MainGame.home = Home(425, 550)
-
-         # 记录是否输了
-         self.isDefeated = False
 
      def startGame(self):
          # 初始化展示模块
@@ -69,9 +66,6 @@ class MainGame:
          self.initStoneWall()
          while 1:
 
-             if self.isDefeated:
-                 self.defeated()
-                 break
 
              MainGame.window.fill(BACKGROUND_COLOR)
 
@@ -80,6 +74,7 @@ class MainGame:
              # 显示物体
              self.drawBrickWall(MainGame.brickWallList)
              self.drawStoneWall(MainGame.stoneWallList)
+             MainGame.home.draw(MainGame.window)
 
              # 展示敌方坦克
              self.drawEnemyTank()
@@ -94,13 +89,18 @@ class MainGame:
                  MainGame.playerTank.collideStoneWall(MainGame.stoneWallList)
                  MainGame.playerTank.collideHome(MainGame.home)
 
+
                  # 显示我方坦克子弹
              self.drawPlayerBullet(MainGame.playerBulletList )
              # 展示敌方坦克子弹
              self.drawEnemyBullet()
              # 展示爆炸效果
              self.drawExplode()
-            # 更新窗口
+             if self.isDefeated:
+                 self.defeated()
+                 break
+
+             # 更新窗口
              pygame.display.update()
 
          # 设置背景颜色
@@ -111,7 +111,7 @@ class MainGame:
          self.drawText('Defeated', 200, 200, 50, MainGame.window)
 
      # 更新窗口
-     pygame.display.update()
+         pygame.display.update()
 
      def drawPlayerBullet(self, playerBulletList):
          # 遍历整个子弹列表，如果是没有被销毁的状态，就把子弹显示出来，否则从列表中删除
@@ -122,7 +122,8 @@ class MainGame:
                  bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList,MainGame.explodeList)
                  bullet.bulletCollideBrickWall(MainGame.brickWallList, MainGame.explodeList)
                  bullet.bulletCollideStoneWall(MainGame.stoneWallList, MainGame.explodeList)
-                 bullet.bulletCollidePlayerHome(MainGame.home, MainGame.explodeList)
+
+
              else:
                  playerBulletList.remove(bullet)
 
@@ -206,6 +207,7 @@ class MainGame:
                 # 不能撞墙
                 tank.collideBrickWall(MainGame.brickWallList)
                 tank.collideStoneWall(MainGame.stoneWallList)
+                tank.collideHome(MainGame.home)
                 bullet = tank.shot()
                 if bullet is not None:
                     MainGame.enemyTankBulletList.append(bullet)
@@ -233,6 +235,12 @@ class MainGame:
                  bullet.enemyBulletCollidePlayerTank(MainGame.playerTank, MainGame.explodeList)
                  bullet.bulletCollideBrickWall(MainGame.brickWallList, MainGame.explodeList)
                  bullet.bulletCollideStoneWall(MainGame.stoneWallList, MainGame.explodeList)
+                 res = bullet.bulletCollidePlayerHome(MainGame.home, MainGame.explodeList)
+
+                 if res :
+                     print(res)
+                     MainGame.isDefeated = True
+                     self.defeated()
              else:
                  bullet.source.bulletCount -= 1
                  MainGame.enemyTankBulletList.remove(bullet)
@@ -279,7 +287,7 @@ class MainGame:
         # 播放失败音乐
         Sound('../tank/Sound/gameOver.wav').play()
         print('游戏结束')
-        self.isDefeated = True
+        MainGame.isDefeated = True
 
      def drawText(self, text, x, y, fontSize, window):
         # 初始化字体
@@ -290,6 +298,9 @@ class MainGame:
         fontObject = font.render(text, True, fontColor)
         # 展示文字
         window.blit(fontObject, (x, y))
+
+
+
 
 
 if __name__ == '__main__':
