@@ -107,7 +107,7 @@ class MainGame:
 
          MainGame.window.fill(BACKGROUND_COLOR)
 
-         # 显示字体
+     # 显示字体
          self.drawText('Defeated', 200, 200, 50, MainGame.window)
 
      # 更新窗口
@@ -126,6 +126,21 @@ class MainGame:
 
              else:
                  playerBulletList.remove(bullet)
+
+     def startGameOverWindow(self):
+         pygame.display.init()
+         size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+         # 初始化窗口
+         self.window = pygame.display.set_mode(size)
+
+         while True:
+             self.getPlayingModeEvent()
+             # 设置窗口标题
+             pygame.display.set_caption('Tank Battle')
+             image = pygame.image.load('../tank/Image/GameOver.png')
+
+             self.window.blit(image, image.get_rect())
+             pygame.display.update()
 
      def getPlayingModeEvent(self):
          #
@@ -288,6 +303,7 @@ class MainGame:
         Sound('../tank/Sound/gameOver.wav').play()
         print('游戏结束')
         MainGame.isDefeated = True
+        self.startGameOverWindow()
 
      def drawText(self, text, x, y, fontSize, window):
         # 初始化字体
