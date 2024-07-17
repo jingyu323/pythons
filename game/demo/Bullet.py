@@ -110,7 +110,7 @@ class Bullet(ParentObject):
                 explode = Explode(playerTank, 50)
                 explodeList.append(explode)
                 playerTank.life = max(0, playerTank.life)
-                Sound('../Sound/kill.wav').play()
+                Sound('../tank/Sound/kill.wav').play()
                 if playerTank.life != 0:
                     playerTank.isResurrecting = True
             # 让子弹销毁

@@ -112,7 +112,7 @@ class MainGame:
                  bullet.playerBulletCollideEnemyTank(MainGame.enemyTankList,MainGame.explodeList)
                  bullet.bulletCollideBrickWall(MainGame.brickWallList, MainGame.explodeList)
                  bullet.bulletCollideStoneWall(MainGame.stoneWallList, MainGame.explodeList)
-                 bullet.bulletCollidePlayerHome(MainGame.stoneWallList, MainGame.explodeList)
+                 bullet.bulletCollidePlayerHome(MainGame.home, MainGame.explodeList)
              else:
                  playerBulletList.remove(bullet)
 
