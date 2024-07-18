@@ -137,7 +137,7 @@ class MainGame:
              self.getPlayingModeEvent()
              # 设置窗口标题
              pygame.display.set_caption('Tank Battle')
-             image = pygame.image.load('../tank/Image/GameOver.png')
+             image = pygame.image.load('../tank/Image/Game/GameOver.png')
 
              self.window.blit(image, image.get_rect())
              pygame.display.update()
