@@ -34,7 +34,7 @@ class MainGame:
      # 石墙
      stoneWallList = []
 
-     stage = 1
+     stage = 2
 
 
      # 爆炸列表
@@ -91,7 +91,8 @@ class MainGame:
              if self.isDefeated:
                  self.defeated()
                  break
-
+              # 更新窗口
+             pygame.display.update()
 
 
      def startGame(self):
@@ -104,13 +105,12 @@ class MainGame:
          pygame.display.set_caption('Tank Battle')
 
          if self.stage == 1:
-             self.startGameOverWindow()
+             self.startGameWindow()
          elif self.stage == 2:
              self.initGame()
 
 
-             # 更新窗口
-         pygame.display.update()
+
 
          # 设置背景颜色
 
@@ -122,7 +122,7 @@ class MainGame:
      # 更新窗口
          pygame.display.update()
 
-     def  startGame(self):
+     def  startGameWindow(self):
 
          MainGame.startGameSound.play()
          pygame.display.init()
