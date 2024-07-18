@@ -34,6 +34,8 @@ class MainGame:
      # 石墙
      stoneWallList = []
 
+     stage = 1
+
 
      # 爆炸列表
      explodeList = []
@@ -43,30 +45,20 @@ class MainGame:
 
      # 游戏开始音效
      startingSound = Sound('../tank/Sound/intro.wav')
+
+     startGameSound = Sound('../tank/Sound/star.wav')
      isDefeated = False
      home = Home(425, 550)
 
-
-     def startGame(self):
-         # 初始化展示模块
-         pygame.display.init()
-         size = (SCREEN_WIDTH, SCREEN_HEIGHT)
-         # 初始化窗口
-         MainGame.window = pygame.display.set_mode(size)
-         # 设置窗口标题
-         pygame.display.set_caption('Tank Battle')
-
+     def initGame(self):
          # 初始化我方坦克
          MainGame.playerTank = PlayerTank(PLAYER_TANK_POSITION[0], PLAYER_TANK_POSITION[1], 1, 1)
          # 播放开始音乐
          MainGame.startingSound.play()
          # 初始化场景
          self.initBrickWall()
-
          self.initStoneWall()
          while 1:
-
-
              MainGame.window.fill(BACKGROUND_COLOR)
 
              self.getPlayingModeEvent()
@@ -100,8 +92,25 @@ class MainGame:
                  self.defeated()
                  break
 
+
+
+     def startGame(self):
+         # 初始化展示模块
+         pygame.display.init()
+         size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+         # 初始化窗口
+         MainGame.window = pygame.display.set_mode(size)
+         # 设置窗口标题
+         pygame.display.set_caption('Tank Battle')
+
+         if self.stage == 1:
+             self.startGameOverWindow()
+         elif self.stage == 2:
+             self.initGame()
+
+
              # 更新窗口
-             pygame.display.update()
+         pygame.display.update()
 
          # 设置背景颜色
 
@@ -112,6 +121,24 @@ class MainGame:
 
      # 更新窗口
          pygame.display.update()
+
+     def  startGame(self):
+
+         MainGame.startGameSound.play()
+         pygame.display.init()
+         size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+
+         self.window = pygame.display.set_mode(size)
+
+         while True:
+             self.getPlayingModeEvent()
+             # 设置窗口标题
+             pygame.display.set_caption('Tank Battle')
+             image = pygame.image.load('../tank/Image/Game/GameStart.png')
+
+             self.window.blit(image, image.get_rect())
+             pygame.display.update()
+
 
      def drawPlayerBullet(self, playerBulletList):
          # 遍历整个子弹列表，如果是没有被销毁的状态，就把子弹显示出来，否则从列表中删除
