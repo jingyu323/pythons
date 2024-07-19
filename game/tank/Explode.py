@@ -7,18 +7,18 @@ class Explode:
         self.rect = object.rect
         self.images = []
         self.images.append([
-            pygame.image.load('../Image/Explode/Explode50x50.png'),
-            pygame.image.load('../Image/Explode/Explode50x50.png'),
-            pygame.image.load('../Image/Explode/Explode50x50.png'),
-            pygame.image.load('../Image/Explode/Explode50x50.png'),
-            pygame.image.load('../Image/Explode/Explode50x50.png')
+            pygame.image.load('../tank/Image/Explode/Explode50x50.png'),
+            pygame.image.load('../tank/Image/Explode/Explode50x50.png'),
+            pygame.image.load('../tank/Image/Explode/Explode50x50.png'),
+            pygame.image.load('../tank/Image/Explode/Explode50x50.png'),
+            pygame.image.load('../tank/Image/Explode/Explode50x50.png')
         ])
         self.images.append([
-            pygame.image.load('../Image/Explode/Explode25x25.png'),
-            pygame.image.load('../Image/Explode/Explode25x25.png'),
-            pygame.image.load('../Image/Explode/Explode25x25.png'),
-            pygame.image.load('../Image/Explode/Explode25x25.png'),
-            pygame.image.load('../Image/Explode/Explode25x25.png')
+            pygame.image.load('../tank/Image/Explode/Explode25x25.png'),
+            pygame.image.load('../tank/Image/Explode/Explode25x25.png'),
+            pygame.image.load('../tank/Image/Explode/Explode25x25.png'),
+            pygame.image.load('../tank/Image/Explode/Explode25x25.png'),
+            pygame.image.load('../tank/Image/Explode/Explode25x25.png')
         ])
         self.mode = 0
         if size == 25:

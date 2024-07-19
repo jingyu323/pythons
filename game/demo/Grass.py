@@ -1,16 +1,15 @@
 import pygame.image
 
-from ParentObject import ParentObject
+from demo.Wall import Wall
 
 
-class Home(ParentObject):
+class Grass(Wall):
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.image.load('../tank/Image/Home/Home.png')
+        self.image = pygame.image.load('../tank/Image/Wall/Grass25x25.png')
         self.rect = self.image.get_rect()
         self.rect.left = x
         self.rect.top = y
         self.isDestroy = False
 
-    def draw(self, window):
-        window.blit(self.image, self.rect)
+

@@ -17,40 +17,40 @@ class PlayerTank(ParentObject):
         self.images = []
         if order == 1:
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP1.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN1.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT1.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT1.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP1.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN1.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT1.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT1.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP2.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN2.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT2.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT2.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP2.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN2.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT2.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT2.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP3.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN3.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT3.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT3.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP3.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN3.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT3.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT3.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP4.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN4.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT4.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT4.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP4.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN4.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT4.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT4.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP5.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN5.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT5.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT5.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP5.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN5.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT5.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT5.png')
             })
             self.images.append({
-                'UP': pygame.image.load('../Image/Player1/45x45/UP6.png'),
-                'DOWN': pygame.image.load('../Image/Player1/45x45/DOWN6.png'),
-                'LEFT': pygame.image.load('../Image/Player1/45x45/LEFT6.png'),
-                'RIGHT': pygame.image.load('../Image/Player1/45x45/RIGHT6.png')
+                'UP': pygame.image.load('../tank/Image/Player1/45x45/UP6.png'),
+                'DOWN': pygame.image.load('../tank/Image/Player1/45x45/DOWN6.png'),
+                'LEFT': pygame.image.load('../tank/Image/Player1/45x45/LEFT6.png'),
+                'RIGHT': pygame.image.load('../tank/Image/Player1/45x45/RIGHT6.png')
             })
 
         # 生命
