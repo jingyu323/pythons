@@ -1,5 +1,6 @@
 import keras
-from keras import Sequential
+from keras import Sequential, Input, Model
+from keras.src import optimizers
 from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embedding, LSTM, Conv1D, MaxPooling1D, \
     GlobalAveragePooling1D
 import numpy as np
@@ -224,7 +225,38 @@ def  Conv1D_demo():
     print(score)
 
 
+def ks_demo():
+    # 创建方式1
+    # model =  Sequential()
+    # model.add( Dense(32, activation='relu', input_shape=(784,)))
+    # model.add(Dense(10, activation='softmax'))
+    # model.compile(optimizer=optimizers.RMSprop(lr=0.001),
+    #               loss='mse',
+    #               metrics=['accuracy'])
+    # model.fit(input_tensor, target_tensor, batch_size=128, epochs=10)
+
+    # 创建方式2
+    model =  Sequential()
+    # 定义一个卷积输入层，卷积核是3*3，共32个，输入是(28, 28, 1)，输出是(26, 26, 32)
+    model.add( Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+
+    # 定义一个2*2的池化层
+    model.add( MaxPooling2D((2, 2)))
+    model.add( Conv2D(64, (3, 3), activation='relu'))
+    model.add( MaxPooling2D((2, 2)))
+    model.add( Conv2D(64, (3, 3), activation='relu'))
+    # 将所有的输出展平
+    model.add( Flatten())
+    # 定义一个全连接层，有64个神经元
+    model.add( Dense(64, activation='relu'))
+    # 多分类问题，将输出在每个分类上的概率
+    model.add( Dense(10, activation='softmax'))
+    model.summary()
+
+
+
+
 if __name__ == '__main__':
     # create_seq_model()
     # LSTM_demo()
-    Conv1D_demo()
+    ks_demo()
