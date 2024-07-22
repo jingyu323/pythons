@@ -10,7 +10,7 @@ class StageMap(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image_list = []
         self.order = order
-        for i in range(1, 9):
+        for i in range(1, 7):
             image = pygame.image.load(os.path.join('image', 'map', 'stage' + str(i) + '.png'))
             rect = image.get_rect()
             image = pygame.transform.scale(image, (rect.width * Constant.MAP_SCALE, rect.height * Constant.MAP_SCALE))
