@@ -1,9 +1,14 @@
+import os
+import shutil
+
 import keras
 from keras import Sequential, Input, Model
+from keras.src import optimizers
 from keras.src.datasets import mnist
 from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embedding, LSTM, Conv1D, MaxPooling1D, \
     GlobalAveragePooling1D
 import numpy as np
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import SGD
 from keras.src.utils import to_categorical
 
@@ -42,7 +47,7 @@ def create_seq_model():
 
 # 通用模型（Model类）
 def create_gen_model():
-    x_input = keras.layers.Input(shape=(784,))
+    x_input = keras.Input(shape=(784,))
     dense_1 = Dense(units=32, activation='relu')(x_input)
     output = Dense(units=10, activation='softmax')(dense_1)
     model = keras.models.Model(inputs=x_input, outputs=output)
@@ -270,7 +275,161 @@ def ks_demo():
     print(test_loss, test_acc)
 
 
+def  clean_data():
+    original_dataset_dir = 'E://data//kreas//train//train'
+
+    # The directory where we will
+    # store our smaller dataset
+    base_dir = 'E://data//kreas//Kaggle//cat-dog-small'
+    new_create_dir=False
+    if  not  os.path.exists(base_dir):
+        new_create_dir= True
+        os.mkdir(base_dir)
+
+    # Directories for our training splits
+    train_dir = os.path.join(base_dir, 'train')
+    if not os.path.exists(train_dir):
+        os.mkdir(train_dir)
+    train_cats_dir = os.path.join(train_dir, 'cats')
+    if not os.path.exists(train_cats_dir):
+        os.mkdir(train_cats_dir)
+    train_dogs_dir = os.path.join(train_dir, 'dogs')
+    if not os.path.exists(train_dogs_dir):
+        os.mkdir(train_dogs_dir)
+
+    # Directories for our validation splits
+    validation_dir = os.path.join(base_dir, 'validation')
+    if not os.path.exists(validation_dir):
+        os.mkdir(validation_dir)
+    validation_cats_dir = os.path.join(validation_dir, 'cats')
+    if not os.path.exists(validation_cats_dir):
+        os.mkdir(validation_cats_dir)
+    validation_dogs_dir = os.path.join(validation_dir, 'dogs')
+    if not os.path.exists(validation_dogs_dir):
+        os.mkdir(validation_dogs_dir)
+
+    # Directories for our test splits
+    test_dir = os.path.join(base_dir, 'test')
+    if not os.path.exists(test_dir):
+        os.mkdir(test_dir)
+    test_cats_dir = os.path.join(test_dir, 'cats')
+    if not os.path.exists(test_cats_dir):
+     os.mkdir(test_cats_dir)
+    test_dogs_dir = os.path.join(test_dir, 'dogs')
+    if not os.path.exists(test_dogs_dir):
+        os.mkdir(test_dogs_dir)
+
+
+    if new_create_dir or  True:
+        # Copy first 1000 cat images to train_cats_dir
+        fnames = ['cat.{}.jpg'.format(i) for i in range(4000)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(train_cats_dir, fname)
+            shutil.copyfile(src, dst)
+
+        # Copy next 500 cat images to validation_cats_dir
+        fnames = ['cat.{}.jpg'.format(i) for i in range(4000, 5000)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(validation_cats_dir, fname)
+            shutil.copyfile(src, dst)
+
+        # Copy next 500 cat images to test_cats_dir
+        fnames = ['cat.{}.jpg'.format(i) for i in range(5000, 5500)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(test_cats_dir, fname)
+            shutil.copyfile(src, dst)
+
+        # Copy first 1000 dog images to train_dogs_dir
+        fnames = ['dog.{}.jpg'.format(i) for i in range(4000)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(train_dogs_dir, fname)
+            shutil.copyfile(src, dst)
+
+        # Copy next 500 dog images to validation_dogs_dir
+        fnames = ['dog.{}.jpg'.format(i) for i in range(4000, 5000)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(validation_dogs_dir, fname)
+            shutil.copyfile(src, dst)
+
+        # Copy next 500 dog images to test_dogs_dir
+        fnames = ['dog.{}.jpg'.format(i) for i in range(5000, 5500)]
+        for fname in fnames:
+            src = os.path.join(original_dataset_dir, fname)
+            dst = os.path.join(test_dogs_dir, fname)
+            shutil.copyfile(src, dst)
+
+
+    return  train_dir,validation_dir,test_dir
+
+
+def CNN_keras_demo():
+    train_dir, validation_dir, test_dir = clean_data()
+
+    # All images will be rescaled by 1./255
+    train_datagen = ImageDataGenerator(rescale=1. / 255)
+    validation_datagen = ImageDataGenerator(rescale=1. / 255)
+    test_datagen = ImageDataGenerator(rescale=1. / 255)
+
+    # 分批次的将数据按目录读取出来，ImageDataGenerator会一直取图片，直到break
+    train_generator = train_datagen.flow_from_directory(
+        # This is the target directory
+        train_dir,
+        # All images will be resized to 150x150
+        target_size=(150, 150),
+        batch_size=20,
+        # Since we use binary_crossentropy loss, we need binary labels
+        class_mode='binary')
+
+    validation_generator = validation_datagen.flow_from_directory(
+        validation_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+    test_generator = test_datagen.flow_from_directory(
+        test_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+    # 四卷积层、四MaxPooling、一展开层、一全连接层、一输出层的基准网络
+    model1 = Sequential()
+    model1.add(Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
+    model1.add(MaxPooling2D((2, 2)))
+    model1.add(Conv2D(64, (3, 3), activation='relu'))
+    model1.add(MaxPooling2D((2, 2)))
+    model1.add(Conv2D(128, (3, 3), activation='relu'))
+    model1.add(MaxPooling2D((2, 2)))
+    model1.add(Conv2D(128, (3, 3), activation='relu'))
+    model1.add(MaxPooling2D((2, 2)))
+    model1.add(Flatten())
+    model1.add(Dense(512, activation='relu'))
+    model1.add(Dense(1, activation='sigmoid'))
+    model1.summary()
+
+    model1.compile(loss='binary_crossentropy',
+                   optimizer=optimizers.RMSprop(learning_rate=1e-4),
+                   metrics=['acc'])
+
+
+    history1 = model1.fit(
+        train_generator,  # 训练数据生成器
+        steps_per_epoch=100,  # 每一个迭代需要读取100次生成器的数据
+        epochs=30,  # 迭代次数
+        validation_data=validation_generator,  # 验证数据生成器
+        validation_steps=50)  # 需要读取50次才能加载全部的验证集数据
+    # loss的波动幅度有点大
+    print(model1.metrics_names)
+    print(model1.evaluate(test_generator, steps=50))
+
+ 
+
+
 if __name__ == '__main__':
     # create_seq_model()
     # LSTM_demo()
-    ks_demo()
+    CNN_keras_demo()
