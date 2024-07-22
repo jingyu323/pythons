@@ -1,10 +1,11 @@
 import keras
 from keras import Sequential, Input, Model
-from keras.src import optimizers
+from keras.src.datasets import mnist
 from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embedding, LSTM, Conv1D, MaxPooling1D, \
     GlobalAveragePooling1D
 import numpy as np
 from keras.src.optimizers import SGD
+from keras.src.utils import to_categorical
 
 
 def create_model():
@@ -226,14 +227,7 @@ def  Conv1D_demo():
 
 
 def ks_demo():
-    # 创建方式1
-    # model =  Sequential()
-    # model.add( Dense(32, activation='relu', input_shape=(784,)))
-    # model.add(Dense(10, activation='softmax'))
-    # model.compile(optimizer=optimizers.RMSprop(lr=0.001),
-    #               loss='mse',
-    #               metrics=['accuracy'])
-    # model.fit(input_tensor, target_tensor, batch_size=128, epochs=10)
+
 
     # 创建方式2
     model =  Sequential()
@@ -253,7 +247,27 @@ def ks_demo():
     model.add( Dense(10, activation='softmax'))
     model.summary()
 
+    (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 
+
+    train_images = train_images.reshape((60000, 28, 28, 1))
+    train_images = train_images.astype('float32') / 255
+
+    test_images = test_images.reshape((10000, 28, 28, 1))
+    test_images = test_images.astype('float32') / 255
+
+    train_labels = to_categorical(train_labels)
+    test_labels = to_categorical(test_labels)
+    print('train data:', train_images.shape, train_labels.shape)
+    print('test data:', test_images.shape, test_labels.shape)
+
+    # 训练数据准确的已经明显优于全连接网络
+    model.compile(optimizer='rmsprop',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    model.fit(train_images, train_labels, epochs=5, batch_size=64)
+    test_loss, test_acc = model.evaluate(test_images, test_labels)
+    print(test_loss, test_acc)
 
 
 if __name__ == '__main__':
