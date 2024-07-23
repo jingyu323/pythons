@@ -4,6 +4,8 @@ import shutil
 import keras
 from keras import Sequential, Input, Model
 from keras.src import optimizers
+from keras.src.applications.vgg16 import VGG16
+
 from keras.src.datasets import mnist
 from keras.src.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, Embedding, LSTM, Conv1D, MaxPooling1D, \
     GlobalAveragePooling1D
@@ -11,6 +13,7 @@ import numpy as np
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import SGD
 from keras.src.utils import to_categorical
+from matplotlib import pyplot as plt
 
 
 def create_model():
@@ -437,10 +440,10 @@ def CNN_keras_demo():
                    metrics=['acc'])
 
 
-    history1 = model1.fit(
+    history = model1.fit(
         train_generator,  # 训练数据生成器
         steps_per_epoch=100,  # 每一个迭代需要读取100次生成器的数据
-        epochs=30,  # 迭代次数
+        epochs=5,  # 迭代次数
         validation_data=validation_generator,  # 验证数据生成器
 
         validation_steps=180)  # 需要读取50次才能加载全部的验证集数据
@@ -450,6 +453,23 @@ def CNN_keras_demo():
     print(model1.evaluate(test_generator, steps=50))
 
 
+    accuracy = history.history["acc"]
+    val_accuracy = history.history["val_acc"]
+    loss = history.history["loss"]
+    val_loss = history.history["val_loss"]
+    epochs = range(1, len(accuracy) + 1)
+    plt.plot(epochs, accuracy, "bo", label="Training accuracy")
+    plt.plot(epochs, val_accuracy, "b", label="Validation accuracy")
+    plt.title("Training and validation accuracy")
+    plt.legend()
+    plt.figure()
+    plt.plot(epochs, loss, "bo", label="Training loss")
+    plt.plot(epochs, val_loss, "b", label="Validation loss")
+    plt.title("Training and validation loss")
+    plt.legend()
+    plt.show()
+
+
 
 '''
 增加图片反转 
@@ -457,6 +477,7 @@ def CNN_keras_demo():
 
 '''
 def CNN_keras_demo2():
+    print("CNN_keras_demo2 .... ")
     train_dir, validation_dir, test_dir = clean_data()
     validation_datagen = ImageDataGenerator(rescale=1. / 255)
     test_datagen = ImageDataGenerator(rescale=1. / 255)
@@ -512,7 +533,7 @@ def CNN_keras_demo2():
     history2 = model2.fit(
         train_augmented_generator,
         steps_per_epoch=100,  # 每一批次读取100轮数据，总共是3200张图片
-        epochs=100,
+        epochs=50,
         validation_data=validation_generator,
         validation_steps=50)
 
@@ -521,8 +542,115 @@ def CNN_keras_demo2():
     print(model2.evaluate(test_generator, steps=50))
 
 
+def CNN_keras_VGG16():
+    train_dir, validation_dir, test_dir = clean_data()
+    validation_datagen = ImageDataGenerator(rescale=1. / 255)
+    test_datagen = ImageDataGenerator(rescale=1. / 255)
+    train_augmented_datagen = ImageDataGenerator(
+        rescale=1. / 255,
+        rotation_range=40,  # 随机旋转的角度范围
+        width_shift_range=0.2,  # 在水平方向上平移的范围
+        height_shift_range=0.2,  # 在垂直方向上平移的范围
+        shear_range=0.2,  # 随机错切变换的角度
+        zoom_range=0.2,  # 随机缩放的范围
+        horizontal_flip=True, )  # 随机将一半图像水平翻转
+
+    # Note that the validation data should not be augmented!
+    train_augmented_generator = train_augmented_datagen.flow_from_directory(
+        train_dir,
+        target_size=(150, 150),
+        batch_size=32,
+        class_mode='binary')
+
+    validation_generator = validation_datagen.flow_from_directory(
+        validation_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+    print("========================")
+
+    test_generator = test_datagen.flow_from_directory(
+        test_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+    from keras.src.applications.vgg16 import VGG16
+    conv_base = VGG16(weights='imagenet',  # 指定模型初始化的权重检查点
+                      include_top=False,  # 模型最后是否包含密集连接分类器，默认有1000个类别
+                      input_shape=(150, 150, 3))
+    conv_base.trainable = False
+    conv_base.summary()
+
+    model4 = Sequential()
+    # model4.add(Flatten(input_shape=conv_base.output_shape[1:]))
+
+    model4.add(conv_base)
+    model4.add( Flatten())
+    model4.add( Dense(256, activation='relu'))
+    model4.add( Dense(1, activation='sigmoid'))
+    model4.summary()
+
+    model = Model(
+        inputs=conv_base.input,
+        outputs=model4(conv_base.output))
+    model.summary()
+    model.compile(
+        loss='categorical_crossentropy',
+        optimizer=optimizers.Adam(learning_rate=0.0001),
+        metrics=['accuracy'])
+
+
+
+    #
+    #
+    #
+    # print('This is the number of trainable weights '
+    #       'before freezing the conv base:', len(model4.trainable_weights))
+    #
+    #
+    #
+    # print('This is the number of trainable weights '
+    #       'before freezing the conv base:', len(model4.trainable_weights))
+    #
+    #
+    model4.compile(loss='binary_crossentropy',
+                   optimizer=optimizers.RMSprop(learning_rate=2e-5),
+                   metrics=['acc'])
+
+    history4 = model4.fit(
+        train_augmented_generator,
+        steps_per_epoch=100,  # 3200个输入图片，增强
+        epochs=30,
+        validation_data=validation_generator,
+        validation_steps=30,
+        verbose=2)
+
+    print(model4.metrics_names)
+    print(model4.evaluate(test_generator, steps=50))
+
+
+
+def CNN_keras_VGG16_demo():
+    conv_base = VGG16(include_top=False,
+                      weights='imagenet',
+                      input_shape=(150, 150, 3))
+    conv_base.trainable = False  # 冻结参数，使之不被更新
+
+    model = Sequential()
+    model.add(conv_base)
+    model.add( Flatten())
+    model.add( Dense(256, activation='relu'))
+    model.add( Dense(1, activation='sigmoid'))
+    model.summary()
+
+
+
+
+
 if __name__ == '__main__':
     # create_seq_model()
     # LSTM_demo()
-    # CNN_keras_demo()
-    CNN_keras_demo2()
+    CNN_keras_demo()
+    # CNN_keras_VGG16()
