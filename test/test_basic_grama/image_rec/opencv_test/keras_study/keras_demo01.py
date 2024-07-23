@@ -443,7 +443,7 @@ def CNN_keras_demo():
     history = model1.fit(
         train_generator,  # 训练数据生成器
         steps_per_epoch=100,  # 每一个迭代需要读取100次生成器的数据
-        epochs=5,  # 迭代次数
+        epochs=30,  # 迭代次数
         validation_data=validation_generator,  # 验证数据生成器
 
         validation_steps=180)  # 需要读取50次才能加载全部的验证集数据
