@@ -329,14 +329,14 @@ def  clean_data():
             shutil.copyfile(src, dst)
 
         # Copy next 500 cat images to validation_cats_dir
-        fnames = ['cat.{}.jpg'.format(i) for i in range(4000, 5000)]
+        fnames = ['cat.{}.jpg'.format(i) for i in range(4000, 8000)]
         for fname in fnames:
             src = os.path.join(original_dataset_dir, fname)
             dst = os.path.join(validation_cats_dir, fname)
             shutil.copyfile(src, dst)
 
         # Copy next 500 cat images to test_cats_dir
-        fnames = ['cat.{}.jpg'.format(i) for i in range(5000, 5500)]
+        fnames = ['cat.{}.jpg'.format(i) for i in range(8000, 8500)]
         for fname in fnames:
             src = os.path.join(original_dataset_dir, fname)
             dst = os.path.join(test_cats_dir, fname)
@@ -350,14 +350,14 @@ def  clean_data():
             shutil.copyfile(src, dst)
 
         # Copy next 500 dog images to validation_dogs_dir
-        fnames = ['dog.{}.jpg'.format(i) for i in range(4000, 5000)]
+        fnames = ['dog.{}.jpg'.format(i) for i in range(4000, 8000)]
         for fname in fnames:
             src = os.path.join(original_dataset_dir, fname)
             dst = os.path.join(validation_dogs_dir, fname)
             shutil.copyfile(src, dst)
 
         # Copy next 500 dog images to test_dogs_dir
-        fnames = ['dog.{}.jpg'.format(i) for i in range(5000, 5500)]
+        fnames = ['dog.{}.jpg'.format(i) for i in range(8000, 8500)]
         for fname in fnames:
             src = os.path.join(original_dataset_dir, fname)
             dst = os.path.join(test_dogs_dir, fname)
@@ -391,6 +391,8 @@ def CNN_keras_demo():
         batch_size=20,
         class_mode='binary')
 
+    print("========================")
+
     test_generator = test_datagen.flow_from_directory(
         test_dir,
         target_size=(150, 150),
@@ -421,7 +423,9 @@ def CNN_keras_demo():
         steps_per_epoch=100,  # 每一个迭代需要读取100次生成器的数据
         epochs=30,  # 迭代次数
         validation_data=validation_generator,  # 验证数据生成器
-        validation_steps=50)  # 需要读取50次才能加载全部的验证集数据
+
+        validation_steps=150)  # 需要读取50次才能加载全部的验证集数据
+    # validation_steps 需要设置为epochs 的整数倍才行
     # loss的波动幅度有点大
     print(model1.metrics_names)
     print(model1.evaluate(test_generator, steps=50))
