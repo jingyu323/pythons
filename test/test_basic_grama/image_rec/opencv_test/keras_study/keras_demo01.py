@@ -371,17 +371,36 @@ def CNN_keras_demo():
     train_dir, validation_dir, test_dir = clean_data()
 
     # All images will be rescaled by 1./255
-    train_datagen = ImageDataGenerator(rescale=1. / 255)
+    # train_datagen = ImageDataGenerator(rescale=1. / 255)
     validation_datagen = ImageDataGenerator(rescale=1. / 255)
     test_datagen = ImageDataGenerator(rescale=1. / 255)
 
+    # 通过对ImageDataGenerator实例读取的图像执行多次随机变换不断的丰富训练样本
+    train_augmented_datagen = ImageDataGenerator(
+        rescale=1. / 255,
+        rotation_range=40,  # 随机旋转的角度范围
+        width_shift_range=0.2,  # 在水平方向上平移的范围
+        height_shift_range=0.2,  # 在垂直方向上平移的范围
+        shear_range=0.2,  # 随机错切变换的角度
+        zoom_range=0.2,  # 随机缩放的范围
+        horizontal_flip=True, )  # 随机将一半图像水平翻转
+
+    # Note that the validation data should not be augmented!
+    # train_augmented_generator = train_augmented_datagen.flow_from_directory(
+    #     train_dir,
+    #     target_size=(150, 150),
+    #     batch_size=32,
+    #     class_mode='binary')
+
+
+
     # 分批次的将数据按目录读取出来，ImageDataGenerator会一直取图片，直到break
-    train_generator = train_datagen.flow_from_directory(
+    train_generator = train_augmented_datagen.flow_from_directory(
         # This is the target directory
         train_dir,
         # All images will be resized to 150x150
         target_size=(150, 150),
-        batch_size=20,
+        batch_size=32,
         # Since we use binary_crossentropy loss, we need binary labels
         class_mode='binary')
 
@@ -424,16 +443,86 @@ def CNN_keras_demo():
         epochs=30,  # 迭代次数
         validation_data=validation_generator,  # 验证数据生成器
 
-        validation_steps=150)  # 需要读取50次才能加载全部的验证集数据
+        validation_steps=180)  # 需要读取50次才能加载全部的验证集数据
     # validation_steps 需要设置为epochs 的整数倍才行
     # loss的波动幅度有点大
     print(model1.metrics_names)
     print(model1.evaluate(test_generator, steps=50))
 
- 
+
+
+'''
+增加图片反转 
+增加随机丢失层
+
+'''
+def CNN_keras_demo2():
+    train_dir, validation_dir, test_dir = clean_data()
+    validation_datagen = ImageDataGenerator(rescale=1. / 255)
+    test_datagen = ImageDataGenerator(rescale=1. / 255)
+    train_augmented_datagen = ImageDataGenerator(
+        rescale=1. / 255,
+        rotation_range=40,  # 随机旋转的角度范围
+        width_shift_range=0.2,  # 在水平方向上平移的范围
+        height_shift_range=0.2,  # 在垂直方向上平移的范围
+        shear_range=0.2,  # 随机错切变换的角度
+        zoom_range=0.2,  # 随机缩放的范围
+        horizontal_flip=True, )  # 随机将一半图像水平翻转
+
+    # Note that the validation data should not be augmented!
+    train_augmented_generator = train_augmented_datagen.flow_from_directory(
+        train_dir,
+        target_size=(150, 150),
+        batch_size=32,
+        class_mode='binary')
+
+    validation_generator = validation_datagen.flow_from_directory(
+        validation_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+    print("========================")
+
+    test_generator = test_datagen.flow_from_directory(
+        test_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+    # 重新训练一个模型
+    model2 =  Sequential()
+    model2.add(Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
+    model2.add(MaxPooling2D((2, 2)))
+    model2.add(Conv2D(64, (3, 3), activation='relu'))
+    model2.add(MaxPooling2D((2, 2)))
+    model2.add(Conv2D(128, (3, 3), activation='relu'))
+    model2.add(MaxPooling2D((2, 2)))
+    model2.add(Conv2D(128, (3, 3), activation='relu'))
+    model2.add(MaxPooling2D((2, 2)))
+    model2.add(Flatten())
+    model2.add(Dropout(0.5))  # 新加了dropout层
+    model2.add(Dense(512, activation='relu'))
+    model2.add(Dense(1, activation='sigmoid'))
+    model2.summary()
+    model2.compile(loss='binary_crossentropy',
+                   optimizer=optimizers.RMSprop(learning_rate=1e-4),
+                   metrics=['acc'])
+
+    history2 = model2.fit(
+        train_augmented_generator,
+        steps_per_epoch=100,  # 每一批次读取100轮数据，总共是3200张图片
+        epochs=100,
+        validation_data=validation_generator,
+        validation_steps=50)
+
+    # loss的波动幅度有点大
+    print(model2.metrics_names)
+    print(model2.evaluate(test_generator, steps=50))
 
 
 if __name__ == '__main__':
     # create_seq_model()
     # LSTM_demo()
-    CNN_keras_demo()
+    # CNN_keras_demo()
+    CNN_keras_demo2()
