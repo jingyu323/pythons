@@ -15,6 +15,8 @@ from keras.src.optimizers import SGD
 from keras.src.utils import to_categorical
 from matplotlib import pyplot as plt
 
+from opencv_test.keras_study.common import plot_training
+
 
 def create_model():
     # 创建一个序列模型
@@ -631,20 +633,31 @@ def CNN_keras_VGG16():
 
 
 def CNN_keras_VGG16_demo():
-    conv_base = VGG16(include_top=False,
-                      weights='imagenet',
-                      input_shape=(150, 150, 3))
+    # conv_base = VGG16(include_top=False,
+    #                   weights='imagenet',
+    #                   input_shape=(150, 150, 3))
+
+    conv_base = keras.applications.VGG16(
+        include_top=False,
+        weights="imagenet",
+        input_tensor=None,
+        input_shape=(150, 150, 3),
+        pooling=None,
+        classifier_activation="softmax",
+    )
+
     conv_base.trainable = False  # 冻结参数，使之不被更新
     conv_base.summary()
     # 冻结
     conv_base.trainable = False
-    model = models.Sequential()
+    model = Sequential()
 
-    model.add(conv_base)
+    print(conv_base.input)
+    model.add(conv_base.input)
     model.add( layers.Flatten())
     model.add( Dense(256, activation='relu'))
     model.add( Dense(1, activation='sigmoid'))
-    # model.summary()
+    model.summary()
 
     train_dir, validation_dir, test_dir = clean_data()
     validation_datagen = ImageDataGenerator(rescale=1. / 255)
@@ -656,7 +669,7 @@ def CNN_keras_VGG16_demo():
         height_shift_range=0.2,  # 在垂直方向上平移的范围
         shear_range=0.2,  # 随机错切变换的角度
         zoom_range=0.2,  # 随机缩放的范围
-        horizontal_flip=True, )  # 随机将一半图像水平翻转
+        horizontal_flip=True)  # 随机将一半图像水平翻转
 
     # Note that the validation data should not be augmented!
     train_augmented_generator = train_augmented_datagen.flow_from_directory(
@@ -673,35 +686,6 @@ def CNN_keras_VGG16_demo():
 
     print("========================")
 
-    test_generator = test_datagen.flow_from_directory(
-        test_dir,
-        target_size=(150, 150),
-        batch_size=20,
-        class_mode='binary')
-
-    train_datagen = ImageDataGenerator(
-        rescale=1. / 255,
-        rotation_range=40,
-        width_shift_range=0.2,
-        height_shift_range=0.2,
-        shear_range=0.2,
-        zoom_range=0.2,
-        horizontal_flip=True,
-        fill_mode='nearest'
-    )
-    test_datagen = ImageDataGenerator(rescale=1. / 225)
-    train_generator = train_datagen.flow_from_directory(
-        train_dir,
-        target_size=(64, 64),
-        batch_size=80,
-        class_mode='binary')
-    validation_generator = test_datagen.flow_from_directory(
-        validation_dir,
-        target_size=(64, 64),
-        batch_size=50,
-        class_mode='binary')
-
-
     #
     model.compile(loss='binary_crossentropy',
                    optimizer=optimizers.RMSprop(learning_rate=2e-5),
@@ -712,8 +696,9 @@ def CNN_keras_VGG16_demo():
         steps_per_epoch=100,  # 3200个输入图片，增强
         epochs=30,
         validation_data=validation_generator,
-        validation_steps=30,
-        verbose=2)
+        validation_steps=30 )
+
+    plot_training(history4)
 
 
 
