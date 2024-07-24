@@ -586,7 +586,7 @@ def CNN_keras_VGG16():
     model4 = Sequential()
     # model4.add(Flatten(input_shape=conv_base.output_shape[1:]))
 
-    model4.add(conv_base)
+    model4.add(conv_base.input)
     model4.add( Flatten())
     model4.add( Dense(256, activation='relu'))
     model4.add( Dense(1, activation='sigmoid'))
@@ -648,8 +648,7 @@ def CNN_keras_VGG16_demo():
 
     conv_base.trainable = False  # 冻结参数，使之不被更新
     conv_base.summary()
-    # 冻结
-    conv_base.trainable = False
+
     model = Sequential()
 
     print(conv_base.input)
@@ -686,6 +685,19 @@ def CNN_keras_VGG16_demo():
 
     print("========================")
 
+    conv_base.trainable = True
+
+    set_trainable = False
+    for layer in conv_base.layers:
+        if layer.name == 'block5_conv1':
+            set_trainable = True
+        if set_trainable:
+            layer.trainable = True
+        else:
+            layer.trainable = False
+
+
+
     #
     model.compile(loss='binary_crossentropy',
                    optimizer=optimizers.RMSprop(learning_rate=2e-5),
@@ -694,11 +706,21 @@ def CNN_keras_VGG16_demo():
     history4 = model.fit(
         train_augmented_generator,
         steps_per_epoch=100,  # 3200个输入图片，增强
-        epochs=30,
+        epochs=60,
         validation_data=validation_generator,
         validation_steps=30 )
 
     plot_training(history4)
+
+    test_generator = test_datagen.flow_from_directory(
+        test_dir,
+        target_size=(150, 150),
+        batch_size=20,
+        class_mode='binary')
+
+
+    print(model.metrics_names)
+    print(model.evaluate(test_generator, steps=50))
 
 
 
