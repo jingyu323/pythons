@@ -24,6 +24,25 @@ class MyStack():
     def empty(self):
         return self.data.empty()
 
+    def  isvalid(self,s):
+        d = {"(": ")", "[": "]", "{": "}"}
+        stack = []
+
+        for char in s:
+            if char in d:
+                stack.append(char)
+            else:
+
+                print(stack[-1],"  ==== ===  ")
+                if stack and d[stack[-1]] == char :
+                    stack.pop()
+                else:
+                    return False
+        if stack:
+            return False
+        return True
+
+
 
 if __name__ == '__main__':
     stack = MyStack()
@@ -39,3 +58,6 @@ if __name__ == '__main__':
 
     while not stack.empty():
         print(stack.pop())
+
+    res = stack.isvalid("()[]{}")
+    print(res)
