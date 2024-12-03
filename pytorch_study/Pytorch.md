@@ -36,3 +36,32 @@ for epoch in range(2):
 
 
 ```
+
+(4)控制CPU与GPU模式的比较
+对于Pytorch，你必须显式地为每个torch张量和numpy变量启用GPU。这将使代码变得混乱，如果你在CPU和GPU之间来回移动以执行不同的操作，则很容易出错。
+```python
+#获取GPU设备
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+#传送网络到GPU
+net.to(device)
+
+# 传送输入和标签到GPU
+inputs, labels = data[0].to(device), data[1].to(device)
+
+JAVASCRIPT 复制 全屏
+
+```
+
+# 卷积
+```python
+#pytorch
+self.conv = Conv2d(in_channels, out_channels, kernel_size, stride, padding=padding, bias=bias)
+
+```
+
+# 反卷积
+```python
+#pytorch
+self.dconv = nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride, bias=bias)
+```

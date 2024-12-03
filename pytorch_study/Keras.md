@@ -13,3 +13,36 @@ history = model.fit_generator(
     epochs=10,
     validation_data=validation_generator)
 ```
+# (4)控制CPU与GPU模式的比较
+
+```python
+with tf.device('/cpu:0'):
+    y = apply_non_max_suppression(x)
+
+# 模型训练步骤
+
+```
+## 卷积
+padding：在原始图像的边缘用了像素填充
+```python
+#keras
+output = Conv2D(input.shape[-1] // reduction, kernel = (1,1), padding = "valid", use_bias = False)(output)
+```
+
+## 反卷积
+```python
+
+#keras
+output = Conv2DTranspose(out_channels, kernel_size, stride, use_bias=bias)(input)
+```
+
+## 上采样 
+自定义
+
+## 池化 
+
+## BatchNormalization 
+
+## 激活
+
+## 训练 
