@@ -6,6 +6,25 @@ Pytorch是一个深度学习框架(类似于TensorFlow)，由Facebook的人工�
 
 
 ## 特性
+核心特点
+动态计算图：PyTorch支持动态图机制，允许在运行时动态修改模型结构，非常适合实验和研究。
+强大的社区支持：PyTorch拥有丰富的文档和社区资源，适合开发者快速入门和进行复杂项目开发。
+GPU加速：支持GPU加速，提升模型训练速度。
+
+<div class="table-box"><table><thead><tr><th align="center">知识点</th><th align="center">描述</th></tr></thead><tbody><tr><td align="center">super()函数</td><td align="center">用于初始化继承自nn.Module的参数，实现子类与父类方法的关联。</td></tr><tr><td align="center">模型保存与加载</td><td align="center">支持整个网络加参数和仅参数两种保存形式，可以使用.pkl或.pth文件。</td></tr><tr><td align="center">卷积相关</td><td align="center">包括卷积核参数共享、局部连接、深度可分离卷积等概念。</td></tr><tr><td align="center">DataLoader</td><td align="center">用于数据加载，支持批量处理、随机打乱、自定义样本处理等。</td></tr><tr><td align="center">初始化方式</td><td align="center">卷积层和全连接层权重采用He-Uniform初始化，bias采用（-1，1）均匀分布。</td></tr></tbody></table></div>
+
+
+
+应用场景：
+研究环境中，尤其是需要反复修改模型结构的实验场景。
+计算机视觉、自然语言处理等领域。
+核心组件：
+
+torch：核心库，包含张量操作、数学函数等。
+torch.nn：神经网络模块，提供卷积层、全连接层等。
+torch.optim：优化器模块，提供SGD、Adam等优化算法。 
+
+
 
 ### 1.  
 
