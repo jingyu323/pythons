@@ -38,3 +38,22 @@ print("最大值位置：", max_index)
 row_means = arr.mean(axis=1)
 
 print("每行平均值：", row_means)
+
+# 计算数组标准差
+std_deviation = np.std(arr)
+print(std_deviation)
+
+# 计算数组累积和
+cumsum = np.cumsum(arr)
+print("计算数组累积和:",cumsum)
+
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6]])
+
+# 数组拼接
+concatenated_arr = np.concatenate((arr1, arr2), axis=0)
+print(concatenated_arr)
+
+# 数组分割
+split_arr = np.split(concatenated_arr, 2, axis=0)
+print(split_arr)
