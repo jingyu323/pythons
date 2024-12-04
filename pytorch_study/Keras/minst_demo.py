@@ -6,6 +6,8 @@ from keras.src.utils import to_categorical
 
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+print(x_train,y_train)
+print(x_test,y_test)
 x_train = x_train.reshape(-1, 28 * 28).astype('float32') / 255
 x_test = x_test.reshape(-1, 28 * 28).astype('float32') / 255
 y_train = to_categorical(y_train, 10)
@@ -22,8 +24,11 @@ model = Sequential([
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # 4. 训练模型
-model.fit(x_train, y_train, epochs=5, batch_size=32, verbose=1)
+model.fit(x_train, y_train, epochs=100, batch_size=32, verbose=1)
+model.summary()
 
 # 5. 评估模型
-loss, accuracy = model.evaluate(x_test, y_test, verbose=0)
+loss, accuracy = model.evaluate(x_test, y_test, verbose=1)
 print(f'Test accuracy: {accuracy:.4f}')
+
+model.predict(x_test)
