@@ -33,6 +33,18 @@ SGD的基本思想是通过**逐个样本或小批量样本来更新模型参数
 
 
 
+## softmax算法  多分类
+
+多选项问题使用
+
+categorical_crossentropy
+
+sparse_categorical_crossentropy   计算softmax 交叉熵
+
+## sigmoid算法 逻辑回归
+
+解决最终结果是true false的问题
+
 
 
 ## 目标检测经典模型算法
