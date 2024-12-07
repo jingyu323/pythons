@@ -4,6 +4,7 @@ from keras import Sequential, Input
 from keras.src import optimizers
 from keras.src.datasets import mnist
 from keras.src.layers import Dense, Flatten
+from keras.src.optimizers import SGD
 from keras.src.utils import to_categorical
 from matplotlib import pyplot as plt
 
@@ -58,6 +59,45 @@ def demo2():
     plt.plot(range(3000), history.history["loss"])
     plt.show()
 
+def demo3():
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    print("xshape", x_train.shape)
+    print(x_train)
+    # 从本地路径加载MNIST数据集
+    # local_mnist_path="../lib/mnist.npz"
+
+
+    #
+    # with np.load(local_mnist_path, allow_pickle=True) as data:
+    #     x_train, y_train = data['x_train'], data['y_train']
+    #     x_test, y_test = data['x_test'], data['y_test']
+    # # 对数据进行归一化处理
+
+    x_train = x_train.reshape(x_train.shape[0],-1)/255.0
+    x_test = x_test.reshape(x_test.shape[0],-1)/255.0
+    # x_train, x_test = x_train / 255.0, x_test / 255.0
+    # to onehot
+    y_train = to_categorical(y_train, 10)
+    y_test = to_categorical(y_test, 10)
+    # 创建784 个神经元 ,输出10 个神经元
+    model = Sequential()
+    model.add(Dense(10,bias_initializer='one', activation='softmax', input_shape=(28 * 28,)))
+
+#     定义优化器
+    sgd = SGD(learning_rate=0.2, decay=1e-6, momentum=0.9, nesterov=True)
+
+    # 模型编译
+    model.compile(optimizer=sgd, loss='mse', metrics=['accuracy']);
+    # 模型训练
+    model.fit(x_train, y_train, epochs=30,batch_size=32, verbose=1)
+#   模型评估
+    loss, accuracy = model.evaluate(x_test, y_test)
+    print("loss:", loss)
+    print("accuracy:", accuracy)
+
+
+
+
 
 if __name__ == '__main__':
-    demo2()
+    demo3()
