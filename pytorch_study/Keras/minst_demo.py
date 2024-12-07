@@ -84,10 +84,10 @@ def demo3():
     model.add(Dense(10,bias_initializer='one', activation='softmax', input_shape=(28 * 28,)))
 
 #     定义优化器
-    sgd = SGD(learning_rate=0.2, decay=1e-6, momentum=0.9, nesterov=True)
+    sgd = SGD(learning_rate=0.2,  nesterov=True)
 
-    # 模型编译
-    model.compile(optimizer=sgd, loss='mse', metrics=['accuracy']);
+    # 模型编译 使用交叉熵
+    model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy']);
     # 模型训练
     model.fit(x_train, y_train, epochs=30,batch_size=32, verbose=1)
 #   模型评估
