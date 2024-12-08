@@ -60,6 +60,12 @@ output = Conv2DTranspose(out_channels, kernel_size, stride, use_bias=bias)(input
 
 ## 池化 
 
+### 常用方式
+
+- max-pooling 
+- mean-pooling 
+- stochastic pooling 
+
 
 
 ## BatchNormalization 
@@ -229,4 +235,25 @@ RMSprop 是 adagrad 改进，不会出现学习率越来越低的问题，自己
 ### NAG
 
 ## CNN
-CNN 通过局部视野感受和权值共享减少了神经网络需要训练的参数个数
+并广泛于图像处理和NLP等领域的一种多层神经网络
+
+- CNN 通过局部视野感受和权值共享减少了神经网络需要训练的参数个数
+
+### 卷积核
+
+###  池化 
+
+####  常用方式
+
+- max-pooling 
+- mean-pooling 
+- stochastic pooling 
+
+#### 卷积padding
+
+- samp padding
+给平面外部补0，得到跟原来大小相同的平面
+- valid padding
+得到一个比原来平面小的平面
+
+
