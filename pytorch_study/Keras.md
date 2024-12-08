@@ -191,5 +191,9 @@ Softmax是一种常用的激活函数，主要用于多分类问题中，可以�
 
 - Early stopping
  一般的做法是记录目前为止最好的validdation accuracy 当连续10个epoch 没达到最佳accurancy时则可以认为accuracy不再提高了，因此便可以停止迭代
+- 正则化
+  - L1 正则
+  - L2 正则
+
 
 ### 欠拟合：增加网络容量来达到过拟合，多增加模型的层数
