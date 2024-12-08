@@ -11,8 +11,8 @@ def demo1():
     print(x_train)
 
 
-    x_train = x_train.reshape(x_train.shape[0], -1) / 255.0
-    x_test = x_test.reshape(x_test.shape[0], -1) / 255.0
+    x_train = x_train.reshape( -1,28,28,1) / 255.0
+    x_test = x_test.reshape(-1,28,28,1) / 255.0
     # x_train, x_test = x_train / 255.0, x_test / 255.0
     # to onehot
     y_train = to_categorical(y_train, 10)
@@ -31,7 +31,7 @@ def demo1():
 
     #     定义优化器
 
-    adam = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+    adam = Adam(learning_rate=0.0001)
 
     # 模型编译 使用交叉熵
     model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy']);
