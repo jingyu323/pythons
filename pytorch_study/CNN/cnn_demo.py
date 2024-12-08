@@ -2,7 +2,8 @@ from keras import Sequential
 from keras.src.datasets import mnist
 from keras.src.layers import Dense, Conv2D, MaxPooling2D, Flatten, Dropout, SimpleRNN
 from keras.src.optimizers import SGD, Adam
-from keras.src.utils import to_categorical
+from keras.src.utils import to_categorical, plot_model
+from matplotlib import pyplot as plt
 
 
 def demo1_CNN():
@@ -87,6 +88,13 @@ def demo2_ltsm():
     loss, accuracy = model.evaluate(x_train, y_train)
     print("train loss:", loss)
     print("train accuracy:", accuracy)
+
+    plot_model(model,to_file='model.png',show_shapes=True,show_layer_names=True,rankdir='TB')
+    plt.figure(figsize=(10,10))
+    img =plt.imread("model.png");
+    plt.imshow(img)
+    plt.axis('off')
+    plt.show()
 
 
 if __name__ == '__main__':
