@@ -98,6 +98,48 @@ def demo3():
 
 
 
+def demo4():
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    print("xshape", x_train.shape)
+    print(x_train)
+    # 从本地路径加载MNIST数据集
+    # local_mnist_path="../lib/mnist.npz"
+
+
+    #
+    # with np.load(local_mnist_path, allow_pickle=True) as data:
+    #     x_train, y_train = data['x_train'], data['y_train']
+    #     x_test, y_test = data['x_test'], data['y_test']
+    # # 对数据进行归一化处理
+
+    x_train = x_train.reshape(x_train.shape[0],-1)/255.0
+    x_test = x_test.reshape(x_test.shape[0],-1)/255.0
+    # x_train, x_test = x_train / 255.0, x_test / 255.0
+    # to onehot
+    y_train = to_categorical(y_train, 10)
+    y_test = to_categorical(y_test, 10)
+    # 创建784 个神经元 ,输出10 个神经元
+    model = Sequential()
+    model.add(Dense(200,bias_initializer='one', activation='tanh', input_shape=(28 * 28,)))
+    model.add(Dense(100,bias_initializer='one', activation='tanh'))
+    model.add(Dense(10,bias_initializer='one', activation='softmax'))
+
+#     定义优化器
+    sgd = SGD(learning_rate=0.2,  nesterov=True)
+
+    # 模型编译 使用交叉熵
+    model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy']);
+    # 模型训练
+    model.fit(x_train, y_train, epochs=30,batch_size=32, verbose=1)
+#   模型评估
+    loss, accuracy = model.evaluate(x_test, y_test)
+    print("test loss:", loss)
+    print("test accuracy:", accuracy)
+
+    loss, accuracy = model.evaluate(x_train, y_train)
+    print("train loss:", loss)
+    print("train accuracy:", accuracy)
+
 
 if __name__ == '__main__':
-    demo3()
+    demo4()
