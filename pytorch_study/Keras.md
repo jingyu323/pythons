@@ -104,7 +104,7 @@ Softmax是一种常用的激活函数，主要用于多分类问题中，可以�
 
 函数图像
 
-![](E:\study\git\pythons\pytorch_study\Keras\ReLU_res.png)
+![](.\Keras\ReLU_res.png)
 
 使用场景：ReLU激活函数广泛应用于深度学习模型中，尤其在卷积神经网络（CNN）中。它的主要优点是计算简单、能有效缓解梯度消失问题，并能够加速模型的训练。因此，在训练深度神经网络时，ReLU常常作为首选的激活函数。
 
@@ -135,7 +135,7 @@ Softmax是一种常用的激活函数，主要用于多分类问题中，可以�
 
 函数图像
 
-![](E:\study\git\pythons\pytorch_study\Keras\Sigmoid_res.png)
+![](.\Keras\Sigmoid_res.png)
 
 使用场景：
 
@@ -164,7 +164,7 @@ Softmax是一种常用的激活函数，主要用于多分类问题中，可以�
 
 函数图像
 
-![](E:\study\git\pythons\pytorch_study\Keras\Tanh_res.png)
+![](.\Keras\Tanh_res.png)
 
 使用场景：当需要一个比Sigmoid更陡峭的函数，或者在某些需要-1到1范围输出的特定应用中。
 
