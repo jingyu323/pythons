@@ -140,6 +140,9 @@ def demo4():
     print("train loss:", loss)
     print("train accuracy:", accuracy)
 
+def demo5():
+    pass
+
 
 if __name__ == '__main__':
-    demo4()
+    demo5()
