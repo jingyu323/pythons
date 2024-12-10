@@ -97,19 +97,8 @@ def demo3():
     # 显示图表
     plt.show()
 
-def demo4():
-    category_names = ['Strongly disagree', 'Disagree',
-                      'Neither agree nor disagree', 'Agree', 'Strongly agree']
-    results = {
-        'Question 1': [10, 15, 17, 32, 26],
-        'Question 2': [26, 22, 29, 10, 13],
-        'Question 3': [35, 37, 7, 2, 19],
-        'Question 4': [32, 11, 9, 15, 33],
-        'Question 5': [21, 29, 5, 5, 40],
-        'Question 6': [8, 19, 5, 30, 38]
-    }
 
-    def survey(results, category_names):
+def survey(results, category_names):
         """
         Parameters
         ----------
@@ -126,9 +115,11 @@ def demo4():
         category_colors = plt.colormaps['RdYlGn'](
             np.linspace(0.15, 0.85, data.shape[1]))
 
-        print(category_colors)
+        print(data)
 
         fig, ax = plt.subplots(figsize=(9.2, 5))
+
+        print(fig,ax)
         ax.invert_yaxis()
         ax.xaxis.set_visible(False)
         ax.set_xlim(0, np.sum(data, axis=1).max())
@@ -136,7 +127,8 @@ def demo4():
         for i, (colname, color) in enumerate(zip(category_names, category_colors)):
             widths = data[:, i]
             starts = data_cum[:, i] - widths
-            rects = ax.barh(labels, widths, left=starts, height=0.5,
+            print(starts,widths)
+            rects = ax.barh(labels, widths, left=starts, height=0.6,
                             label=colname, color=color)
 
             r, g, b, _ = color
@@ -146,6 +138,18 @@ def demo4():
                   loc='lower left', fontsize='small')
 
         return fig, ax
+def demo4():
+    category_names = ['Strongly disagree', 'Disagree',
+                      'Neither agree nor disagree', 'Agree', 'Strongly agree']
+    results = {
+        'Question 1': [10, 15, 17, 32, 26],
+        'Question 2': [26, 22, 29, 10, 13],
+        'Question 3': [35, 37, 7, 2, 19],
+        'Question 4': [32, 11, 9, 15, 33],
+        'Question 5': [21, 29, 5, 5, 40],
+        'Question 6': [8, 19, 5, 30, 38]
+    }
+
 
     survey(results, category_names)
     plt.show()
