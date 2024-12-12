@@ -1,8 +1,16 @@
+from keras import Sequential
 from keras.src.applications.vgg16 import VGG16
+from keras.src.layers import Flatten, Dense, Dropout
 from keras_preprocessing.image import ImageDataGenerator
 
+"""
+训练方法1：bottleneck
 
-def demo1():
+训练方法2：Finetune
+
+"""
+
+def demo1_bottleneck():
     model = VGG16(weights='imagenet', include_top=True)
     model.summary()
 
@@ -32,6 +40,17 @@ def demo1():
     )
 
 
+def demo_Finetune():
+    vgg16_model = VGG16(weights='imagenet', include_top=False,input_shape=(150,150,3))
+    vgg16_model.summary()
+    top_mmodel = Sequential()
+    top_mmodel.add(Flatten(input_shape=vgg16_model.output_shape[1:]))
+    top_mmodel.add(Dense(256, activation='relu'))
+    top_mmodel.add(Dropout(0.5))
+    top_mmodel.add(Dense(2, activation='softmax'))
+
+    
+
 
 if __name__ == '__main__':
-    demo1();
+    demo_Finetune();
