@@ -15,6 +15,10 @@
 import re
 import numpy as np
 import pandas as pd
+from keras import Input, Model
+from keras.src.layers import Embedding, Bidirectional, LSTM, TimeDistributed, Dense
+from keras.src.saving import load_model
+from keras.src.utils import to_categorical
 
 # 
 text = open('msr_train_10.txt').read()
@@ -127,7 +131,6 @@ chars
 # In[14]:
 
 #生成适合模型输入的格式
-from keras.utils import np_utils
 
 # 定义标签所对应的编号
 tag = pd.Series({'s':0, 'b':1, 'm':2, 'e':3, 'x':4})
@@ -143,7 +146,7 @@ def data_helper(x):
     return np.array(x)     
 
 def label_helper(x):
-    x = list(map(lambda y:np_utils.to_categorical(y,5), tag[x].reshape((-1,1))))
+    x = list(map(lambda y:to_categorical(y,5), tag[x].reshape((-1,1))))
     x = x + [np.array([[0,0,0,0,1]])]*(maxlen-len(x))
     return np.array(x) 
     
@@ -176,10 +179,6 @@ d['y'][0]
 
 # In[2]:
 
-# 设计模型
-from keras.layers import Dense, Embedding, LSTM, TimeDistributed, Input, Bidirectional
-from keras.models import Model
-from keras.models import load_model
 
 
 sequence = Input(shape=(maxlen,), dtype='int32')
@@ -267,7 +266,6 @@ chars[:] = range(1, len(chars)+1)
 
 # In[6]:
 
-from keras.models import load_model
 
 print("load model")
 model = load_model('seq2seq.h5')

@@ -6,13 +6,10 @@
 import pandas as pd 
 import numpy as np 
 import jieba # pip install jieba
-
-from keras.layers import Dense, Input, Flatten, Dropout
-from keras.layers import Conv1D, MaxPooling1D, Embedding, concatenate
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
-from keras.models import Model
-
+from keras import Input, Model
+from keras.src.layers import Embedding, Flatten, concatenate, Dense, MaxPooling1D, Conv1D, Dropout
+from keras.src.legacy.preprocessing.text import Tokenizer
+from keras.src.utils import pad_sequences
 
 # In[2]:
 

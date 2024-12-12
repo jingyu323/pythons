@@ -32,14 +32,16 @@
 # In[1]:
 
 import numpy as np
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Activation, Flatten, Reshape
-from keras.layers import Conv2D, Conv2DTranspose, UpSampling2D
-from keras.layers import LeakyReLU, Dropout
-from keras.layers import BatchNormalization
-from keras.optimizers import RMSprop
 import matplotlib.pyplot as plt
+
+from keras import Input, Model, Sequential
+from keras.src.datasets import mnist
+from keras.src.layers import Embedding, Bidirectional, LSTM, TimeDistributed, Dense, Conv2D, LeakyReLU, Dropout, \
+    Flatten, Activation, BatchNormalization, Reshape, UpSampling2D, Conv2DTranspose
+from keras.src.optimizers import RMSprop
+from keras.src.saving import load_model
+from keras.src.utils import to_categorical
+
 
 class DCGAN(object):
     def __init__(self, img_rows=28, img_cols=28, channel=1):
