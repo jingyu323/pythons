@@ -1,7 +1,4 @@
-
 # coding: utf-8
-
-# In[1]:
 
 import pandas as pd 
 import numpy as np 
@@ -11,19 +8,11 @@ from keras.src.layers import Embedding, Flatten, concatenate, Dense, MaxPooling1
 from keras.src.legacy.preprocessing.text import Tokenizer
 from keras.src.utils import pad_sequences
 
-# In[2]:
 
 # 读入数据
-neg=pd.read_excel('data/neg.xls',header=None)
-pos=pd.read_excel('data/pos.xls',header=None)
+neg=pd.read_excel('data/neg.xls',header=None).astype('str')
+pos=pd.read_excel('data/pos.xls',header=None).astype('str')
 
-
-# In[3]:
-
-neg[:5]
-
-
-# In[4]:
 
 #合并语料
 pn = pd.concat([pos,neg],ignore_index=True) 
@@ -34,43 +23,22 @@ poslen = len(pos)
 print(poslen)
 
 
-# In[5]:
-
 #定义分词函数
 cw = lambda x: list(jieba.cut(x))
 pn['words'] = pn[0].apply(cw)
 
-
-# In[19]:
-
-pn
-
-
-# In[6]:
-
 # 一行数据最多的词汇数
 max_document_length = max([len(x) for x in pn['words']])
-max_document_length
 
-
-# In[7]:
-
+print(max_document_length)
 # 设置一个评论最多1000个词
 max_document_length = 1000
 
-
-# In[8]:
-
 texts = [' '.join(x) for x in pn['words']]
-
-
-# In[9]:
-
 # 查看一条评论
-texts[-2]
+print(texts[-2])
 
 
-# In[10]:
 
 # 实例化分词器，设置字典中最大词汇数为30000
 tokenizer = Tokenizer(num_words=30000)
@@ -83,19 +51,13 @@ sequences = pad_sequences(sequences, maxlen=1000, padding='post')
 sequences = np.array(sequences)
 
 
-# In[11]:
-
 # 词对应编号的字典
 dict_text = tokenizer.word_index
-dict_text['也']
+print(dict_text['也'])
 
 
-# In[12]:
-
-sequences[-2]
 
 
-# In[13]:
 
 # 定义标签
 positive_labels = [[0, 1] for _ in range(poslen)]
@@ -113,8 +75,6 @@ test_sample_index = -1 * int(0.1 * float(len(y)))
 x_train, x_test = x_shuffled[:test_sample_index], x_shuffled[test_sample_index:]
 y_train, y_test = y_shuffled[:test_sample_index], y_shuffled[test_sample_index:]
 
-
-# In[14]:
 
 # 定义函数式模型
 # 模型输入
@@ -164,8 +124,6 @@ model = Model(sequence_input, preds)
 model.summary()
 
 
-# In[15]:
-
 # 训练模型
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
@@ -176,8 +134,6 @@ model.fit(x_train, y_train,
           epochs=5,
           validation_data=(x_test, y_test))
 
-
-# In[21]:
 
 # 预测
 def predict(text):
@@ -199,10 +155,7 @@ def predict(text):
         print("positive comment")
     else:
         print("negative comment")
-    
 
-
-# In[23]:
 
 predict("东西质量不错，下次还会再来买")
 
@@ -210,7 +163,6 @@ predict("东西质量不错，下次还会再来买")
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center> 
 
-# In[ ]:
 
 
 
