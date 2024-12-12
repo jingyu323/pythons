@@ -12,7 +12,6 @@ from keras.src.utils import to_categorical
 
 # 数据处理
 
-# In[ ]:
 
 # 载入数据
 (x_train,y_train),(x_test,y_test) = mnist.load_data()
@@ -26,7 +25,6 @@ y_test =  to_categorical(y_test,num_classes=10)
 
 # 序贯（Sequential）模型
 
-# In[ ]:
 
 # 定义序贯模型
 model = Sequential()
@@ -68,8 +66,6 @@ model.add(Dense(10,activation='softmax'))
 
 # 函数式（Functional）模型
 
-# In[ ]:
-
 inputs = Input(shape=(28,28,1))
 x = Conv2D(filters=32, kernel_size=5, padding='same', activation='relu')(inputs)
 x = MaxPooling2D(pool_size = 2)(x)
@@ -84,7 +80,6 @@ model = Model(inputs=inputs, outputs=predictions)
 
 # 训练模型
 
-# In[ ]:
 
 # 定义优化器
 adam = Adam(lr=1e-4)
@@ -105,7 +100,6 @@ print('test accuracy',accuracy)
 # Inception:
 # <center><img src="inception.jpg" alt="FAO" width="500"></center> 
 
-# In[ ]:
 
 input_img = Input(shape=(256, 256, 3))
 
@@ -124,7 +118,6 @@ output =  concatenate([tower_1, tower_2, tower_3], axis=1)
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center> 
 
-# In[ ]:
 
 
 
