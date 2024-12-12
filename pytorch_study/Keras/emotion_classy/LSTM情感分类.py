@@ -7,18 +7,11 @@ import pandas as pd
 import jieba # pip install jieba
 # coding: utf-8
 
-# In[22]:
-
-
-
-# In[3]:
 
 # 读入数据
 neg=pd.read_excel('data/neg.xls',header=None)
 pos=pd.read_excel('data/pos.xls',header=None)
 
-
-# In[4]:
 
 #合并语料
 pn = pd.concat([pos,neg],ignore_index=True) 
@@ -74,19 +67,9 @@ sequences = pad_sequences(sequences, maxlen=1000)
 sequences = np.array(sequences)
 
 
-# In[44]:
-
 # 词对应编号的字典
 dict_text = tokenizer.word_index
 dict_text['也']
-
-
-# In[45]:
-
-sequences[-2]
-
-
-# In[46]:
 
 # 定义标签
 positive_labels = [[0, 1] for _ in range(poslen)]
@@ -105,7 +88,6 @@ x_train, x_test = x_shuffled[:test_sample_index], x_shuffled[test_sample_index:]
 y_train, y_test = y_shuffled[:test_sample_index], y_shuffled[test_sample_index:]
 
 
-# In[47]:
 # 定义函数式模型
 # 模型输入
 sequence_input = Input(shape=(1000,))
@@ -147,8 +129,6 @@ preds = Dense(2, activation='softmax')(lstm1)
 model = Model(sequence_input, preds)
 
 
-# In[48]:
-
 # 训练模型
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
@@ -159,8 +139,6 @@ model.fit(x_train, y_train,
           epochs=5,
           validation_data=(x_test, y_test))
 
-
-# In[49]:
 
 # 预测
 def predict(text):
@@ -182,18 +160,12 @@ def predict(text):
         print("positive comment")
     else:
         print("negative comment")
-    
-
-
-# In[39]:
 
 predict("东西质量不错，下次还会再来买")
 
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
-# <center><img src="wx.png" alt="FAO" width="300"></center> 
-
-# In[ ]:
+# <center><img src="wx.png" alt="FAO" width="300"></center>
 
 
 
