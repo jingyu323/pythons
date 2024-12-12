@@ -9,9 +9,6 @@
 # 4.中文分词  
 # ......
 
-# In[1]:
-
-
 import re
 import numpy as np
 import pandas as pd
@@ -25,19 +22,11 @@ text = open('msr_train_10.txt').read()
 text = text.split('\n')
 
 
-# In[2]:
-
-len(text)
-
-
-# In[3]:
 
 # {B:begin, M:middle, E:end, S:single}，分别代表每个状态代表的是该字在词语中的位置，
 # B代表该字是词语中的起始字，M代表是词语中的中间字，E代表是词语中的结束字，S则代表是单字成词
 text
 
-
-# In[4]:
 
 # 设置参数
 # 词向量长度
@@ -52,17 +41,7 @@ text = u''.join( text)
 text = re.split(u'[，。！？、]/[bems]', text)
 
 
-# In[5]:
 
-len(text)
-
-
-# In[6]:
-
-text
-
-
-# In[7]:
 
 # 训练集数据
 data = []
@@ -84,13 +63,8 @@ for s in text:
         label.append(d[1])
 
 
-# In[8]:
-
 test = re.findall('(.)/(.)', '你/s  只/b  有/e  把/s  事/b  情/e  做/b  好/e')
-test
 
-
-# In[9]:
 
 # 定义一个dataframe存放数据和标签
 d = pd.DataFrame(index=range(len(data)))
@@ -102,13 +76,6 @@ d = d[d['data'].apply(len) <= maxlen]
 d.index = range(len(d))
 
 
-# In[10]:
-
-d
-
-
-# In[11]:
-
 #统计所有字，给每个字编号
 chars = [] 
 for i in data:
@@ -117,18 +84,12 @@ for i in data:
 chars = pd.Series(chars).value_counts()
 
 
-# In[12]:
 
-chars
-
-
-# In[13]:
 
 chars[:] = range(1, len(chars)+1)
 chars
 
 
-# In[14]:
 
 #生成适合模型输入的格式
 
@@ -154,30 +115,10 @@ d['x'] = d['data'].apply(data_helper)
 d['y'] = d['label'].apply(label_helper)    
 
 
-# In[15]:
-
-d['data'][0]
-
-
-# In[16]:
-
-d['x'][0]
-
-
-# In[17]:
-
-d['label'][0]
-
-
-# In[18]:
-
-d['y'][0]
 
 
 # <center><img src="lstm1.png" alt="FAO" width="500"></center> 
 # <center><img src="lstm2.png" alt="FAO" width="500"></center> 
-
-# In[2]:
 
 
 
@@ -203,14 +144,12 @@ print("load model")
 model = load_model('seq2seq.h5')
 
 
-# In[20]:
 
 model.summary()
 
 
 # # 做预测
 
-# In[5]:
 
 import re
 import numpy as np
@@ -264,14 +203,10 @@ chars = pd.Series(chars).value_counts()
 chars[:] = range(1, len(chars)+1)
 
 
-# In[6]:
-
 
 print("load model")
 model = load_model('seq2seq.h5')
 
-
-# In[7]:
 
 # 统计状态转移
 dict_label = {}
@@ -282,7 +217,6 @@ for label in d['label']:
 print(dict_label)
 
 
-# In[8]:
 
 # 计算状态转移总次数
 sum_num = 0
@@ -290,8 +224,6 @@ for value in dict_label.values():
     sum_num = sum_num + value
 sum_num
 
-
-# In[9]:
 
 # 计算状态转移概率
 p_ss = dict_label['ss']/sum_num
@@ -304,7 +236,6 @@ p_es = dict_label['es']/sum_num
 p_eb = dict_label['eb']/sum_num
 
 
-# In[10]:
 
 # 维特比算法，维特比算法是一种动态规划算法用于寻找最有可能产生观测事件序列的-维特比路径
 
