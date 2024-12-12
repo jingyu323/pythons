@@ -2,29 +2,28 @@
 # coding: utf-8
 
 # In[1]:
-
-from keras.models import Sequential
-from keras.layers import Convolution2D, MaxPooling2D
-from keras.layers import Activation, Dropout, Flatten, Dense
-from keras.optimizers import Adam
-from keras.preprocessing.image import ImageDataGenerator
+ 
 import os
 
+from keras import Sequential
+from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
+from keras.src.optimizers import Adam
 
 # In[2]:
 
 # 定义模型
 model = Sequential()
-model.add(Convolution2D(input_shape=(150,150,3), filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
-model.add(Convolution2D(filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(input_shape=(150,150,3), filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
 
-model.add(Convolution2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
-model.add(Convolution2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
 
-model.add(Convolution2D(filters=128, kernel_size=3, strides=1, padding='same', activation = 'relu'))
-model.add(Convolution2D(filters=128, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(filters=128, kernel_size=3, strides=1, padding='same', activation = 'relu'))
+model.add(Conv2D(filters=128, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
 
 model.add(Flatten())
