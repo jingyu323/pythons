@@ -57,11 +57,14 @@ sequences = np.array(sequences)
 # 词对应编号的字典
 dict_text = tokenizer.word_index
 dict_text['也']
+print(dict_text)
 
 # 定义标签
 positive_labels = [[0, 1] for _ in range(poslen)]
 negative_labels = [[1, 0] for _ in range(neglen)]
 y = np.concatenate([positive_labels, negative_labels], 0)
+
+
 
 # 打乱数据
 np.random.seed(10)

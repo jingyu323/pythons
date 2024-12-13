@@ -16,12 +16,14 @@ sequences = tokenizer.texts_to_sequences(texts)
 print("sequences=",sequences)
 print(tokenizer.word_index)
 
-
-
 max_sequence_length = max([len(seq) for seq in sequences])
+print(max_sequence_length)
 padded_sequences = pad_sequences(sequences, maxlen=max_sequence_length)
 padded_sequences = np.array(padded_sequences)
 
+# 把序列设定为1000的长度，超过1000的部分舍弃，不到1000则补0
+
+sequences = np.array(sequences)
 
 
 print(max_sequence_length)
