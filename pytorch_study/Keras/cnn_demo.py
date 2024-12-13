@@ -134,7 +134,5 @@ model.fit(
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center>
 
-# In[ ]:
-
 
 
