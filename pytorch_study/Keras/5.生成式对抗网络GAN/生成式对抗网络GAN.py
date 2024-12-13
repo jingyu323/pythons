@@ -139,7 +139,7 @@ class DCGAN(object):
         if self.DM:
             return self.DM
         # 定义优化器
-        optimizer = RMSprop(lr=0.0002, decay=6e-8)
+        optimizer = RMSprop(learning_rate=0.0002, decay=6e-8)
         # 构建模型
         self.DM = Sequential()
         self.DM.add(self.discriminator())
@@ -151,7 +151,7 @@ class DCGAN(object):
         if self.AM:
             return self.AM
         # 定义优化器
-        optimizer = RMSprop(lr=0.0001, decay=3e-8)
+        optimizer = RMSprop(learning_rate=0.0001, decay=3e-8)
         # 构建模型
         self.AM = Sequential()
         # 生成器
