@@ -1,8 +1,6 @@
 
 # coding: utf-8
 
-# In[1]:
-
 
 import os
 import tensorflow as tf
@@ -16,14 +14,14 @@ from keras.src.optimizers import Adam
 from matplotlib import pyplot as plt
 from torch.utils.data import Dataset
 
-# In[2]:
 
 # 定义模型
 model = Sequential()
+# 输入层
 model.add(Conv2D(input_shape=(150,150,3), filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(Conv2D(filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
-
+# 为啥要两个卷积层？为啥是64
 model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
@@ -95,14 +93,10 @@ test_generator = test_datagen.flow_from_directory(
 
 
 
-# In[5]:
-
 # 统计文件个数
 totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas/train/train')])
-totalFileCount
+print(totalFileCount)
 
-
-# In[6]:
 
 
 dataset = tf.data.Dataset.from_generator(
