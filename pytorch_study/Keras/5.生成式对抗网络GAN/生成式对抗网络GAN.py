@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # ### GAN介绍
@@ -29,7 +28,6 @@
 # 4.超分辨率
 # <center><img src="images/GAN4.jpg" alt="FAO" width="500"></center>
 
-# In[1]:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -270,27 +268,20 @@ mnist_dcgan = MNIST_DCGAN()
 mnist_dcgan.train(train_steps=10000, batch_size=256, save_interval=500)
 
 
-# In[10]:
 
-mnist_dcgan.plot_images(fake=True)
+# mnist_dcgan.plot_images(fake=True)
 
 
-# In[9]:
+
 
 mnist_dcgan.plot_images(fake=False)
 
-
-# In[12]:
 
 mnist_dcgan.generator.save('generator.h5')
 mnist_dcgan.discriminator.save('discriminator.h5')
 mnist_dcgan.adversarial.save('adversarial.h5')
 
 
-# <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
-# <center><img src="wx.png" alt="FAO" width="300"></center> 
-
-# In[ ]:
 
 
 
