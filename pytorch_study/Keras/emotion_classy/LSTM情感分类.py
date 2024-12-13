@@ -9,8 +9,8 @@ import jieba # pip install jieba
 
 
 # 读入数据
-neg=pd.read_excel('data/neg.xls',header=None)
-pos=pd.read_excel('data/pos.xls',header=None)
+neg=pd.read_excel('data/neg.xls',header=None).astype(str)
+pos=pd.read_excel('data/pos.xls',header=None).astype(str)
 
 
 #合并语料
@@ -19,42 +19,29 @@ pn = pd.concat([pos,neg],ignore_index=True)
 neglen = len(neg)
 print(neglen)
 poslen = len(pos) 
-print(poslen)
 
-
-# In[5]:
 
 #定义分词函数
 cw = lambda x: list(jieba.cut(x))
 pn['words'] = pn[0].apply(cw)
 
 
-# In[6]:
-
-pn
-
-
-# In[7]:
-
 # 一行数据最多的词汇数
 max_document_length = max([len(x) for x in pn['words']])
-max_document_length
 
 
-# In[8]:
+
 
 # 设置一个评论最多1000个词
 max_document_length = 1000
 
 
-# In[10]:
 
 texts = [' '.join(x) for x in pn['words']]
 # 查看一条评论
 texts[-2]
 
 
-# In[43]:
 
 # 实例化分词器，设置字典中最大词汇数为30000
 tokenizer = Tokenizer(num_words=30000)
