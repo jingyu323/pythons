@@ -157,7 +157,7 @@ def predict(text):
         print("negative comment")
 
 
-predict("东西质量不错，下次还会再来买")
+predict("东西质量不错")
 
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
