@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
- 
 import os
 
 from keras import Sequential
@@ -10,7 +5,8 @@ from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import Adam
 
-# In[2]:
+# coding: utf-8
+
 
 # 定义模型
 model = Sequential()
@@ -32,7 +28,7 @@ model.add(Dropout(0.5))
 model.add(Dense(2,activation = 'softmax'))
 
 # 定义优化器
-adam = Adam(lr=1e-4)
+adam = Adam(learning_rate=1e-4)
 
 # 定义优化器，loss function，训练过程中计算准确率
 model.compile(optimizer=adam,loss='categorical_crossentropy',metrics=['accuracy'])
@@ -40,7 +36,6 @@ model.compile(optimizer=adam,loss='categorical_crossentropy',metrics=['accuracy'
 model.summary()
 
 
-# In[3]:
 
 # 训练集数据生成
 train_datagen = ImageDataGenerator(
@@ -67,7 +62,6 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 # * save_format："png"或"jpeg"之一，指定保存图片的数据格式,默认"jpeg"  
 # * flollow_links: 是否访问子文件夹中的软链接  
 
-# In[4]:
 
 batch_size = 32
 # 生成训练数据
@@ -85,14 +79,11 @@ test_generator = test_datagen.flow_from_directory(
         )
 
 
-# In[5]:
-
 # 统计文件个数
 totalFileCount = sum([len(files) for root, dirs, files in os.walk('image/train')])
-totalFileCount 
+print(totalFileCount)
 
 
-# In[6]:
 
 model.fit_generator(
         train_generator,
@@ -109,7 +100,7 @@ model.save('CNN1.h5')
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center> 
 
-# In[ ]:
+
 
 
 
