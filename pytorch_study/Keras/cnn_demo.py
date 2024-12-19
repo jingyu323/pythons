@@ -122,7 +122,7 @@ model.fit(
         )
 
 # 保存模型
-# fmodel.save('CNN1.h5')
+model.save('CNN1.h5')
 
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>

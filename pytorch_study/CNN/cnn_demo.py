@@ -72,6 +72,8 @@ def demo2_ltsm():
     model.add(Dense(10, activation='softmax'))
 
 
+
+
     #     定义优化器
 
     adam = Adam(learning_rate=0.0001)
