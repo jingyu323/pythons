@@ -4,6 +4,7 @@ from keras import backend as K, Sequential
 from keras.src.initializers import TruncatedNormal
 from keras.src.layers import Conv2D, Activation, MaxPooling2D, Flatten, Dense
 from keras.src.optimizers import SGD
+from keras.src.utils import plot_model
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
@@ -83,7 +84,7 @@ data = []
 labels = []
 
 # 拿到图像数据路径，方便后续读取
-imagePaths = sorted(list(list_images('./dataset')))
+imagePaths = sorted(list(list_images('E:/data/kreas/train/tmp')))
 random.seed(42)
 random.shuffle(imagePaths)
 
@@ -130,10 +131,11 @@ lr_schedule = keras.optimizers.schedules.ExponentialDecay(
     initial_learning_rate=INIT_LR,
     decay_steps=10,
     decay_rate=0.98)
-opt = SGD(lr=lr_schedule)  # 一开始的权重参数较好，可以把学习参数设置的较大，后续权重参数变差，学习参数也设置较低
+opt = SGD(learning_rate=lr_schedule)  # 一开始的权重参数较好，可以把学习参数设置的较大，后续权重参数变差，学习参数也设置较低
 # one-hot编码用loss="CategoricalCrossentropy" 数组编码用loss="SparseCategoricalCrossentropy"
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
+# plot_model(model)
 # 训练网络模型
 """
 H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
