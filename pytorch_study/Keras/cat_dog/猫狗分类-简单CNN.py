@@ -1,9 +1,10 @@
 import os
 
-from keras import Sequential
+import numpy as np
+from keras import Sequential, Model
 from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
-from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import Adam
+from keras_core.src.legacy.preprocessing.image import ImageDataGenerator
 
 # coding: utf-8
 
@@ -44,6 +45,22 @@ train_datagen = ImageDataGenerator(
         zoom_range=0.2,
         horizontal_flip=True)
 
+
+datagen = ImageDataGenerator(
+    rotation_range=40,
+rescale=1./255,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest'
+)
+
+
+
+
 # 测试集数据处理
 test_datagen = ImageDataGenerator(rescale=1./255)
 
@@ -65,27 +82,36 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 
 batch_size = 32
 # 生成训练数据
-train_generator = train_datagen.flow_from_directory(
-        'image/train',  # 训练数据路径
+train_generator = datagen.flow_from_directory(
+        'E:/data/kreas/Kaggle/cat-dog-small/train',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
+class_mode='categorical',
         batch_size=batch_size # 批次大小
         ) 
-
+print(train_generator)
 # 测试数据
 test_generator = test_datagen.flow_from_directory(
-        'image/test',  # 训练数据路径
+        'E:/data/kreas/Kaggle/cat-dog-small/test',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
+class_mode='categorical',
         batch_size=batch_size # 批次大小
         )
 
 
 # 统计文件个数
-totalFileCount = sum([len(files) for root, dirs, files in os.walk('image/train')])
+totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas/Kaggle/cat-dog-small/train')])
 print(totalFileCount)
+# for X_batch, y_batch in train_generator:
+#
+#     print(X_batch.shape,y_batch.shape)
 
 
+bottleneck_features_test = Model.predict(train_generator, 30)
 
-model.fit_generator(
+
+print(bottleneck_features_test)
+
+model.fit (
         train_generator,
         steps_per_epoch=totalFileCount/batch_size,
         epochs=50,
