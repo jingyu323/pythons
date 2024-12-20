@@ -11,8 +11,6 @@ from keras.src.layers.core.dense import Dense
 from keras.src.layers.regularization.dropout import Dropout
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import Adam
-from matplotlib import pyplot as plt
-from torch.utils.data import Dataset
 
 
 # 定义模型
@@ -44,8 +42,6 @@ model.compile(optimizer=adam,loss='categorical_crossentropy',metrics=['accuracy'
 model.summary()
 
 
-# In[3]:
-
 # 训练集数据生成
 train_datagen = ImageDataGenerator(
         rescale=1./255,
@@ -71,7 +67,6 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 # * save_format："png"或"jpeg"之一，指定保存图片的数据格式,默认"jpeg"
 # * flollow_links: 是否访问子文件夹中的软链接
 
-# In[4]:
 
 batch_size = 32
 # 生成训练数据
@@ -98,6 +93,10 @@ totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas
 print(totalFileCount)
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 dataset = tf.data.Dataset.from_generator(
     train_generator,
@@ -128,5 +127,9 @@ model.save('CNN1.h5')
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 
