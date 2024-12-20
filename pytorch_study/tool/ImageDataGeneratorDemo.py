@@ -14,9 +14,6 @@ def demo():
 
     # 设置验证图像的路径
     validation_dir = 'E:/data/kreas/Kaggle/cat-dog-small/test'
-
-
-
     # 使用flow_from_directory方法加载训练图像
     train_generator = datagen.flow_from_directory(
         train_dir,
