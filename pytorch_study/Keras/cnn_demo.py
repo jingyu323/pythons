@@ -15,10 +15,11 @@ from keras.src.optimizers import Adam
 
 # 定义模型
 model = Sequential()
+# 输入层
 model.add(Conv2D(input_shape=(150,150,3), filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(Conv2D(filters=32, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
-
+# 为啥要两个卷积层？为啥是64
 model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(Conv2D(filters=64, kernel_size=3, strides=1, padding='same', activation = 'relu'))
 model.add(MaxPooling2D(pool_size=2, strides=2, padding='valid'))
@@ -89,10 +90,13 @@ test_generator = test_datagen.flow_from_directory(
 
 # 统计文件个数
 totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas/train/train')])
-totalFileCount
+print(totalFileCount)
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 dataset = tf.data.Dataset.from_generator(
     train_generator,
@@ -117,12 +121,15 @@ model.fit(
         )
 
 # 保存模型
-# fmodel.save('CNN1.h5')
+model.save('CNN1.h5')
 
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 
