@@ -60,7 +60,7 @@ validation_generator = test_datagen.flow_from_directory(
 
 # 创建 tf.data.Dataset 对象
 dataset = tf.data.Dataset.from_generator(
-    train_generator,
+   train_generator,
     output_signature=(
         tf.TensorSpec(shape=(64,64), dtype=tf.float32),
         tf.TensorSpec(shape=(), dtype=tf.int32)
@@ -72,7 +72,7 @@ dataset = dataset.shuffle(buffer_size=1024).batch(20)
 
 
 history = model.fit(
-      dataset,
+    x=train_generator,
       steps_per_epoch=100,  # 2000 images = batch_size * steps
       epochs=20,
       validation_data=validation_generator,
