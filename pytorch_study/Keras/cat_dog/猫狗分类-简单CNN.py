@@ -106,7 +106,7 @@ print(totalFileCount)
 model.fit(
         train_generator,
         steps_per_epoch=int(totalFileCount/batch_size),
-        epochs=50,
+        epochs=10,
         validation_data=test_generator,
         validation_steps=int(1000/batch_size),
         )
