@@ -283,3 +283,6 @@ RMSprop 是 adagrad 改进，不会出现学习率越来越低的问题，自己
 
 
 pip install tensorflow-directml-plugin
+
+
+pip install -U tensorflow-gpu==2.10.0
