@@ -4,7 +4,10 @@ import numpy as np
 from keras import Sequential, Model
 from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
 from keras.src.optimizers import Adam
-from keras_core.src.legacy.preprocessing.image import ImageDataGenerator
+
+
+from keras_preprocessing.image import ImageDataGenerator
+
 
 # coding: utf-8
 
@@ -39,19 +42,11 @@ model.summary()
 
 
 # 训练集数据生成
-train_datagen = ImageDataGenerator(
-        rescale=1./255,
-        shear_range=0.2,
-        zoom_range=0.2,
-        horizontal_flip=True)
-
-
 datagen = ImageDataGenerator(
     rotation_range=40,
-rescale=1./255,
+    rescale=1./255,
     width_shift_range=0.2,
     height_shift_range=0.2,
-
     shear_range=0.2,
     zoom_range=0.2,
     horizontal_flip=True,
@@ -85,15 +80,15 @@ batch_size = 32
 train_generator = datagen.flow_from_directory(
         'E:/data/kreas/Kaggle/cat-dog-small/train',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
-class_mode='categorical',
+        class_mode='categorical',
         batch_size=batch_size # 批次大小
-        ) 
+        )
 print(train_generator)
 # 测试数据
 test_generator = test_datagen.flow_from_directory(
         'E:/data/kreas/Kaggle/cat-dog-small/test',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
-class_mode='categorical',
+        class_mode='categorical',
         batch_size=batch_size # 批次大小
         )
 
@@ -106,22 +101,22 @@ print(totalFileCount)
 #     print(X_batch.shape,y_batch.shape)
 
 
-bottleneck_features_test = Model.predict(train_generator, 30)
 
 
-print(bottleneck_features_test)
-
-model.fit (
+model.fit(
         train_generator,
-        steps_per_epoch=totalFileCount/batch_size,
+        steps_per_epoch=int(totalFileCount/batch_size),
         epochs=50,
         validation_data=test_generator,
-        validation_steps=1000/batch_size,
+        validation_steps=int(1000/batch_size),
         )
 
 # 保存模型
 model.save('CNN1.h5')
+bottleneck_features_test = Model.predict(train_generator, 30)
 
+
+print(bottleneck_features_test)
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center> 
