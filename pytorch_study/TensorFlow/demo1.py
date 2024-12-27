@@ -1,12 +1,18 @@
 # 1. 准备数据
 
 import numpy as np
+ 
 
 import tensorflow as tf
 import os
 
 from keras import Sequential, models
 from keras.src.layers import Dense
+ 
+import tensorflow as tf
+from keras import Sequential 
+
+from tensorflow.python.keras import models 
 
 
 def demo():
