@@ -279,3 +279,7 @@ RMSprop 是 adagrad 改进，不会出现学习率越来越低的问题，自己
 # 需要解决的问题：
 
 1. fit 和 fit_generator  互相转换的问题
+版本合适根本不需要转换 image genrator 直接能使用
+
+
+pip install tensorflow-directml-plugin
