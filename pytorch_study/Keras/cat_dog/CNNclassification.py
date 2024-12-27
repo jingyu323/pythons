@@ -1,27 +1,28 @@
 import os
 
 import numpy as np
-from keras_core import Sequential
-from keras_core.src.layers import Conv2D, Flatten, Dense, Dropout
-from keras_core.src.legacy.preprocessing.image import ImageDataGenerator
-from keras_core.src.optimizers import Adam
+from keras import Sequential
+from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.src.optimizers import Adam
+
+from keras_preprocessing.image import ImageDataGenerator
+
 from matplotlib import pyplot as plt
-from tf_keras.src.layers import MaxPool2D
 
 # 定义模型
 # 将输入数据大小改为150*150*3再加入模型
 model = Sequential()
 model.add(Conv2D(input_shape=(150, 150, 3), filters=32, kernel_size=3, padding='same', activation='relu'))
 model.add(Conv2D(filters=32, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=2, strides=2))
+model.add(MaxPooling2D(pool_size=2, strides=2))
 
 model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
 model.add(Conv2D(filters=64, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=2, strides=2))
+model.add(MaxPooling2D(pool_size=2, strides=2))
 
 model.add(Conv2D(filters=128, kernel_size=3, padding='same', activation='relu'))
 model.add(Conv2D(filters=128, kernel_size=3, padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=2, strides=2))
+model.add(MaxPooling2D(pool_size=2, strides=2))
 
 # 卷积池化完原始图像是一个二维的特征图
 model.add(Flatten())  # 把二维数据转换为一维
@@ -51,8 +52,8 @@ test_datagen = ImageDataGenerator(
 
 batch = 32  # 每次训练传入32张照片
 base_dir = 'E:/data/kreas/Kaggle/cat-dog-small/'
-train_dir = os.path.join(base_dir, 'train/cats')
-test_dir = os.path.join(base_dir, 'test/cats')
+train_dir = os.path.join(base_dir, 'train')
+test_dir = os.path.join(base_dir, 'test')
 
 # 生成训练数据
 train_generator = train_datagen.flow_from_directory(
@@ -71,4 +72,4 @@ print(train_generator.class_indices)
 
 # 定义训练模型
 # 传入生成的训练数据、每张图片训练1次，验证数据为生成的测试数据
-model.fit_generator(train_generator, epochs=1, validation_data=test_generator)
+model.fit(train_generator, epochs=1, validation_data=test_generator)

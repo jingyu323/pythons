@@ -3,8 +3,8 @@
 import numpy as np
 import tensorflow as tf
 from keras import Sequential
+from keras_core.src.layers import Dense
 
-from tensorflow.keras.layers import Dense
 from tensorflow.python.keras import models
 
 
