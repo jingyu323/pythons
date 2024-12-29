@@ -131,7 +131,7 @@ Softmax是一种常用的激活函数，主要用于多分类问题中，可以�
 
 简介：Sigmoid函数是一种常用的非线性函数，可以将任何实数映射到0到1之间。它通常用于将不归一化的预测值转换为概率分布。
 
-![](E:\study\git\pythons\pytorch_study\Keras\Sigmoid.jpg)
+![](.\Keras\Sigmoid.jpg)
 
 函数图像
 
