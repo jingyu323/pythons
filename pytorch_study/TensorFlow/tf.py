@@ -27,8 +27,3 @@ tf.debugging.set_log_device_placement(True)
 
 # 如果想要在所有 GPU 中指定只使用第一个 GPU，那么需要添加以下语句。
 
-tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
-# 设置 GPU 显存为固定使用量
-tf.config.experimental.set_virtual_device_configuration(
-    gpus[0],
-    [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024)])
