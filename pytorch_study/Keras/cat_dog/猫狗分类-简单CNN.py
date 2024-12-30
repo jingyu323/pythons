@@ -113,7 +113,7 @@ model.fit(
 
 # 保存模型
 model.save('CNN1.keras')
-bottleneck_features_test = Model.predict(test_generator, 30)
+bottleneck_features_test = model.predict(test_generator, 30)
 
 
 print(bottleneck_features_test)
