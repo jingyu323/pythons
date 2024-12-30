@@ -4,7 +4,7 @@ import numpy as np
 from keras import Sequential, Model
 from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
 from keras.src.optimizers import Adam
-
+from keras.src.saving import load_model
 
 from keras_preprocessing.image import ImageDataGenerator
 
@@ -102,21 +102,29 @@ print(totalFileCount)
 
 
 
+if os.path.exists("CNN1.keras"):
+    model = load_model('CNN1.keras')
+    print("CNN1.keras  exists")
 
-model.fit(
-        train_generator,
-        steps_per_epoch=int(totalFileCount/batch_size),
-        epochs=5,
-        validation_data=test_generator,
-        validation_steps=int(1000/batch_size),
-        )
+else:
+    model.fit(
+            train_generator,
+            steps_per_epoch=int(totalFileCount/batch_size),
+            epochs=5,
+            validation_data=test_generator,
+            validation_steps=int(1000/batch_size),
+            )
+    # 保存模型
+    model.save('CNN1.keras')
 
-# 保存模型
-model.save('CNN1.keras')
+
 bottleneck_features_test = model.predict(test_generator, 30)
 
 
 print(bottleneck_features_test)
+test_loss, test_acc = model.evaluate(test_generator )
+
+print(test_loss,test_acc)
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center> 
