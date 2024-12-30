@@ -106,14 +106,14 @@ print(totalFileCount)
 model.fit(
         train_generator,
         steps_per_epoch=int(totalFileCount/batch_size),
-        epochs=10,
+        epochs=5,
         validation_data=test_generator,
         validation_steps=int(1000/batch_size),
         )
 
 # 保存模型
-model.save('CNN1.h5')
-bottleneck_features_test = Model.predict(train_generator, 30)
+model.save('CNN1.keras')
+bottleneck_features_test = Model.predict(test_generator, 30)
 
 
 print(bottleneck_features_test)

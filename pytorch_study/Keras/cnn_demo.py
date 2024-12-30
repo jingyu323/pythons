@@ -93,10 +93,6 @@ totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas
 print(totalFileCount)
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 dataset = tf.data.Dataset.from_generator(
     train_generator,
@@ -126,10 +122,5 @@ model.save('CNN1.h5')
 
 # <h3 align = "center">欢迎大家关注我的公众号，或者加我的微信与我交流。</h3>
 # <center><img src="wx.png" alt="FAO" width="300"></center>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 295d10d5942556dca7d901b18f57586bb61c67ac
 
 
