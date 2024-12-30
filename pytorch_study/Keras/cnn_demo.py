@@ -6,12 +6,11 @@ import os
 import tensorflow as tf
 import numpy as np
 from keras import Sequential, Model
-from keras.src.layers import Conv2D, Flatten, MaxPooling2D
-from keras.src.layers.core.dense import Dense
-from keras.src.layers.regularization.dropout import Dropout
-from keras.src.legacy.preprocessing.image import ImageDataGenerator
-from keras.src.optimizers import Adam
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.optimizers import Adam
 
+from PIL import Image
+from keras.preprocessing.image import ImageDataGenerator
 
 # 定义模型
 model = Sequential()
@@ -71,49 +70,30 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 batch_size = 32
 # 生成训练数据
 train_generator = train_datagen.flow_from_directory(
-        'E:/data/kreas/train/train',  # 训练数据路径
+        'E:/data/PetImages/train',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
         batch_size=batch_size # 批次大小
         )
 
 # 测试数据
 test_generator = test_datagen.flow_from_directory(
-        'E:/data/kreas/test1',  # 训练数据路径
+        'E:/data/PetImages/test',  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
         batch_size=batch_size # 批次大小
         )
 
 
-
-
-
-
 # 统计文件个数
-totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas/train/train')])
+totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/PetImages/test')])
 print(totalFileCount)
 
 
-
-dataset = tf.data.Dataset.from_generator(
-    train_generator,
-    output_signature=(
-        tf.TensorSpec(shape=(150, 150), dtype=tf.float32),
-        tf.TensorSpec(shape=(), dtype=tf.int32)
-    )
-)
-
-# 批处理和数据打乱
-dataset = dataset.shuffle(buffer_size=1024).batch(32)
-# 批处理和数据打乱
-
-
-
 model.fit(
-        dataset,
-        steps_per_epoch=totalFileCount/batch_size,
+        train_generator,
+        steps_per_epoch=int(totalFileCount/batch_size),
         epochs=50,
         validation_data=test_generator,
-        validation_steps=1000/batch_size,
+        validation_steps=int(1000/batch_size),
         )
 
 # 保存模型
