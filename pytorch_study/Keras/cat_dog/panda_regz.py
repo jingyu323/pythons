@@ -9,7 +9,6 @@ from keras import initializers#初始化权重参数
 from keras import regularizers#正则化
 import matplotlib.pyplot as plt
 import numpy as np
-import argparse
 import random
 import pickle
 import cv2
@@ -19,24 +18,12 @@ from Keras.cat_dog import utils_paths
 
 #--dataset --model --label-bin --plot
 # 输入参数
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=True,
-	help="path to input dataset of images")
-ap.add_argument("-m", "--model", required=True,
-	help="path to output trained model")
-ap.add_argument("-l", "--label-bin", required=True,
-	help="path to output label binarizer")
-ap.add_argument("-p", "--plot", required=True,
-	help="path to output accuracy/loss plot")
-args = vars(ap.parse_args())
-
-
 print("[INFO] 开始读取数据")
 data = []
 labels = []
 
 # 拿到图像数据路径，方便后续读取
-imagePaths = sorted(list(utils_paths.list_images(args["dataset"])))
+imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/")))
 random.seed(42)
 random.shuffle(imagePaths)
 
@@ -83,7 +70,7 @@ EPOCHS = 200
 # 给定损失函数和评估方法
 print("[INFO] 准备训练网络...")
 opt = SGD(learning_rate=INIT_LR)
-model.compile(loss="categorical\_crossentropy", optimizer=opt,
+model.compile(loss="categorical_crossentropy", optimizer=opt,
 	metrics=["accuracy"])
 
 # 训练网络模型
@@ -102,18 +89,18 @@ plt.style.use("ggplot")
 plt.figure()
 #plt.plot(N[150:], H.history["loss"][150:], label="train\_loss")
 #plt.plot(N[150:], H.history["val\_loss"][150:], label="val\_loss")
-plt.plot(N[150:], H.history["accuracy"][150:], label="train\_acc")
-plt.plot(N[150:], H.history["val\_accuracy"][150:], label="val\_acc")
+plt.plot(N[150:], H.history["accuracy"][150:], label="train_acc")
+plt.plot(N[150:], H.history["val_accuracy"][150:], label="val_acc")
 plt.title("Training Loss and Accuracy (Simple NN)")
 plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend()
-plt.savefig(args["plot"])
+plt.savefig("cat_train ")
 
 # 保存模型到本地
 print("[INFO] 正在保存模型")
-model.save(args["model"])
-f = open(args["label\_bin"], "wb")
+model.save("cat_train.h5")
+f = open( "label_bin", "wb")
 f.write(pickle.dumps(lb))
 f.close()
 
