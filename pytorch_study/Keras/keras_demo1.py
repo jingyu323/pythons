@@ -3,7 +3,7 @@ import numpy
 from keras import Sequential
 from keras.src.datasets import mnist
 from keras.src.layers import Dense, Activation, Dropout
-from keras.src.legacy import layers
+
 
 import numpy as np
 from keras.src.optimizers import SGD

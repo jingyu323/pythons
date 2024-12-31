@@ -18,3 +18,4 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
 
 print(X_train)
 print(X_test)
+
