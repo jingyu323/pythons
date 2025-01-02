@@ -23,7 +23,7 @@ data = []
 labels = []
 
 # 拿到图像数据路径，方便后续读取
-imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/")))
+imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/train")))
 random.seed(42)
 random.shuffle(imagePaths)
 
@@ -72,8 +72,11 @@ print("[INFO] 准备训练网络...")
 opt = SGD(learning_rate=INIT_LR)
 model.compile(loss="categorical_crossentropy", optimizer=opt,
 	metrics=["accuracy"])
-
+model.summary()
 # 训练网络模型
+
+print(trainX.shape, trainY.shape)
+print(testX.shape, testY.shape)
 H = model.fit(trainX, trainY, validation_data=(testX, testY),
 	epochs=EPOCHS, batch_size=32)
 
