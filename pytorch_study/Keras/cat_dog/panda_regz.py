@@ -26,21 +26,23 @@ labels = []
 imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/train")))
 random.seed(42)
 random.shuffle(imagePaths)
-
 # 遍历读取数据
 for imagePath in imagePaths:
-	# 读取图像数据，由于使用神经网络，需要给定成一维
+	# 读取图像数据，由于使用神经网络，需要输入数据给定成一维
 	image = cv2.imread(imagePath)
+	# 而最初获取的图像数据是三维的，则需要将三维数据进行拉长
 	image = cv2.resize(image, (32, 32)).flatten()
 	data.append(image)
 
-	# 读取标签
+	# 读取标签，通过读取数据存储位置文件夹来判断图片标签
 	label = imagePath.split(os.path.sep)[-2]
 	labels.append(label)
 
-# scale图像数据
+# scale图像数据，归一化
 data = np.array(data, dtype="float") / 255.0
 labels = np.array(labels)
+
+
 
 # 数据集切分
 (trainX, testX, trainY, testY) = train_test_split(data,
@@ -53,15 +55,16 @@ testY = lb.transform(testY)
 
 # 网络模型结构：3072-512-256-3
 model = Sequential()
-# kernel\_regularizer=regularizers.l2(0.01)
-# keras.initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None)
-# initializers.random\_normal
-# #model.add(Dropout(0.8))
+
+
+#
 model.add(Dense(512, input_shape=(3072,), activation="relu" ,kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
 model.add(Dense(256, activation="relu",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
 model.add(Dense(len(lb.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
+
+
 
 # 初始化参数
 INIT_LR = 0.001
