@@ -1,3 +1,4 @@
+import keras
 from keras_core import Sequential
 from keras_core.src.layers import Dense, Dropout
 from keras_core.src.optimizers import SGD
@@ -14,6 +15,8 @@ import random
 import pickle
 import cv2
 import os
+from sklearn import preprocessing
+from keras.src.utils import to_categorical, plot_model
 
 from Keras.cat_dog import utils_paths
 
@@ -53,19 +56,27 @@ labels = np.array(labels)
 lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
-
-
+# le = preprocessing.LabelEncoder()
+# trainY = le.fit_transform(trainY)
+# testY = le.transform(testY)
+# 将分类识别结果进行 数组类型的二进制 类别向量转换为二进制
+trainY=to_categorical(trainY)
+testY=to_categorical(testY)
+print(trainY)
+print(trainY.shape)
 
 # 网络模型结构：3072-512-256-3
 model = Sequential()
 
+
+print(len(le.classes_))
 
 #
 model.add(Dense(512, input_shape=(3072,), activation="relu" ,kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
 model.add(Dense(256, activation="relu",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
-model.add(Dense(len(lb.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
+model.add(Dense(len(le.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 
 
 
@@ -96,8 +107,6 @@ print(classification_report(testY.argmax(axis=1),
 N = np.arange(0, EPOCHS)
 plt.style.use("ggplot")
 plt.figure()
-#plt.plot(N[150:], H.history["loss"][150:], label="train\_loss")
-#plt.plot(N[150:], H.history["val\_loss"][150:], label="val\_loss")
 plt.plot(N[150:], H.history["accuracy"][150:], label="train_acc")
 plt.plot(N[150:], H.history["val_accuracy"][150:], label="val_acc")
 plt.title("Training Loss and Accuracy (Simple NN)")
