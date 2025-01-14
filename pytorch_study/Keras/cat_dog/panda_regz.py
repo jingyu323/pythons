@@ -69,20 +69,20 @@ print(trainY.shape)
 model = Sequential()
 
 
-print(len(le.classes_))
+print(len(lb.classes_))
 
 #
 model.add(Dense(512, input_shape=(3072,), activation="relu" ,kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
 model.add(Dense(256, activation="relu",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
-model.add(Dense(len(le.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
+model.add(Dense(len(lb.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 
 
 
 # 初始化参数
 INIT_LR = 0.001
-EPOCHS = 200
+EPOCHS = 30
 
 # 给定损失函数和评估方法
 print("[INFO] 准备训练网络...")
@@ -117,7 +117,7 @@ plt.savefig("cat_train ")
 
 # 保存模型到本地
 print("[INFO] 正在保存模型")
-model.save("cat_train.h5")
+model.save("cat_train.keras")
 f = open( "label_bin", "wb")
 f.write(pickle.dumps(lb))
 f.close()
