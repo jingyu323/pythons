@@ -4,7 +4,8 @@ from keras_core.src.optimizers import SGD
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report#综合结果对比
-
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 from keras import initializers#初始化权重参数
 from keras import regularizers#正则化
 import matplotlib.pyplot as plt
@@ -52,6 +53,8 @@ labels = np.array(labels)
 lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
+
+
 
 # 网络模型结构：3072-512-256-3
 model = Sequential()

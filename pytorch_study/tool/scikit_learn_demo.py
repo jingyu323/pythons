@@ -1,12 +1,15 @@
+import os
+
+import cv2
 import torch
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-
+import random
 from torch.utils.data import TensorDataset, DataLoader
-
+import numpy as np
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import OneHotEncoder
-
+from Keras.cat_dog import utils_paths
 def  irs():
     # 加载Iris数据集
     iris = datasets.load_iris()
@@ -54,6 +57,45 @@ def transform():
     print("Encoded trainY Data:\n", trainY)
     print("Encoded testY Data:\n", testY)
 
+
+def transform2():
+    # --dataset --model --label-bin --plot
+    # 输入参数
+    print("[INFO] 开始读取数据")
+    data = []
+    labels = []
+
+    # 拿到图像数据路径，方便后续读取
+    imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/train")))
+    random.seed(42)
+    random.shuffle(imagePaths)
+    # 遍历读取数据
+    for imagePath in imagePaths:
+        # 读取图像数据，由于使用神经网络，需要输入数据给定成一维
+        image = cv2.imread(imagePath)
+        # 而最初获取的图像数据是三维的，则需要将三维数据进行拉长
+        image = cv2.resize(image, (32, 32)).flatten()
+        data.append(image)
+
+        # 读取标签，通过读取数据存储位置文件夹来判断图片标签
+        label = imagePath.split(os.path.sep)[-2]
+        labels.append(label)
+
+    # scale图像数据，归一化
+    data = np.array(data, dtype="float") / 255.0
+    labels = np.array(labels)
+
+    # 数据集切分
+    (trainX, testX, trainY, testY) = train_test_split(data,
+                                                      labels, test_size=0.25, random_state=42)
+
+    # 转换标签，one-hot格式
+    lb = LabelBinarizer()
+    trainY = lb.fit_transform(trainY)
+    testY = lb.transform(testY)
+
+    print(trainX,trainY,testX,testY)
+
 if __name__ == '__main__':
-    transform()
+    transform2()
 
