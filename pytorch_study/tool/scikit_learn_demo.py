@@ -96,6 +96,21 @@ def transform2():
 
     print(trainX,trainY,testX,testY)
 
+def convert_to_one_hot(labels, num_classes):
+    #计算向量有多少行
+    num_labels = len(labels)
+    #生成值全为0的独热编码的矩阵
+    labels_one_hot = np.zeros((num_labels, num_classes))
+    #计算向量中每个类别值在最终生成的矩阵“压扁”后的向量里的位置
+    index_offset = np.arange(num_labels) * num_classes
+    #遍历矩阵，为每个类别的位置填充1
+    labels_one_hot.flat[index_offset + labels] = 1
+    return labels_one_hot
+def catlog():
+    b = [2, 4, 6, 8, 6, 2, 3, 7]
+    print(convert_to_one_hot(b, 9))
+
+
 if __name__ == '__main__':
-    transform2()
+    catlog()
 
