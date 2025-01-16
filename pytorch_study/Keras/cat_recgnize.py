@@ -25,6 +25,7 @@ def  demo_cnn():
     model.add(Flatten())
     model.add(Dense(64, activation="relu"))
     model.add(Dropout(0.5))
+    #进行分类
     model.add(Dense(2, activation="softmax"))
 
     # 定义优化器
@@ -68,19 +69,15 @@ def  demo_cnn():
         [len(files) for root, dirs, files in os.walk("E:/data/kreas/train/train")])
     totalFileCount_test = sum([len(files) for root, dirs, files in os.walk("E:/data/kreas/test1")])
     model.fit(
-        x=train_generator,
+        train_generator,
         steps_per_epoch=totalFileCount_train / batch_size,
         epochs=50,
         validation_data=test_generator,
         validation_steps=1000 / batch_size
     )
 
-
-
     # 保存模型
-    # model.save("CNN1.h5")
-
-
+    model.save("CNN1.keras")
 
 
 if __name__ == '__main__':

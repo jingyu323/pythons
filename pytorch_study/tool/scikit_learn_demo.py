@@ -1,6 +1,7 @@
 import os
 
 import cv2
+import numpy
 import torch
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
@@ -10,6 +11,11 @@ import numpy as np
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import OneHotEncoder
 from Keras.cat_dog import utils_paths
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.preprocessing import  OneHotEncoder
 def  irs():
     # 加载Iris数据集
     iris = datasets.load_iris()
@@ -109,8 +115,59 @@ def convert_to_one_hot(labels, num_classes):
 def catlog():
     b = [2, 4, 6, 8, 6, 2, 3, 7]
     print(convert_to_one_hot(b, 9))
+    #
+    # testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
+    #                          'salary': [4, 5, 1, 1]})
+    #
+    # OneHotEncoder( ).fit_transform(testdata.age)  # testdata.age 这里与 testdata[['age']]等价
+    #
+    # a1 = OneHotEncoder( ).fit_transform(testdata[['age']])
+    # a2 = OneHotEncoder( ).fit_transform(testdata[['salary']])
+    # final_output = numpy.hstack((a1, a2))
+    # print(final_output)
+
+def onehot_demo():
+    encoder = OneHotEncoder()
+    encoder.fit([
+        [0, 2, 1, 12],
+        [2, 3, 5, 3],
+        [1, 3, 2, 12],
+        [1, 2, 4, 3]
+    ])
+    encoded_vector = encoder.transform([[2, 3, 5, 3]]).toarray()
+    print("\n Encoded vector =", encoded_vector)
+
+    encoder = OneHotEncoder(handle_unknown='ignore')
+    encoder.fit([['体育', '军事'],
+                 ['计科', '开心'],
+                 ['娱乐', '军事']])
+    encoded_vector = encoder.transform([['计科', '开心']]).toarray()
+    print(encoder.inverse_transform([[0, 0, 1, 0, 1]]))
+
+    print("\n Encoded vector =", encoded_vector)
+
+
+    # df = pd.DataFrame({
+    #     "A": ['男', '男', '女', '女', '其它'],
+    #     "B": [100, 200, 300, 400, 500]
+    # })
+    # # OneHotEncoder中的sparse参数被设置为了False，它可以控制转换后的稠密性，即是否产生稀疏矩阵。
+    # encoder = OneHotEncoder(handle_unknown='ignore')
+    # gender_encoded = encoder.transform(df['A'].values.reshape(-1, 1)).toarray()
+    # print(gender_encoded)
+    # df.assign(oneencode=gender_encoded )
+
+def one_hot():
+    encoder = OneHotEncoder(handle_unknown='ignore')
+    encoder.fit([['体育', '军事'],
+                 ['计科', '开心'],
+                 ['娱乐', '军事']])
+    encoded_vector = encoder.transform([['计科', '难过']]).toarray()
+    print("\n Encoded vector =", encoded_vector)
+    print(encoder.categories_)
 
 
 if __name__ == '__main__':
-    catlog()
+    # onehot_demo()
+    one_hot()
 
