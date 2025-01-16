@@ -3,6 +3,7 @@ import os
 import cv2
 import numpy
 import torch
+from pandas import Series
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 import random
@@ -115,16 +116,30 @@ def convert_to_one_hot(labels, num_classes):
 def catlog():
     b = [2, 4, 6, 8, 6, 2, 3, 7]
     print(convert_to_one_hot(b, 9))
-    #
+
     # testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
     #                          'salary': [4, 5, 1, 1]})
     #
-    # OneHotEncoder( ).fit_transform(testdata.age)  # testdata.age 这里与 testdata[['age']]等价
-    #
-    # a1 = OneHotEncoder( ).fit_transform(testdata[['age']])
-    # a2 = OneHotEncoder( ).fit_transform(testdata[['salary']])
+    # print(testdata.age)
+    # print(testdata.salary)
+
+    # OneHotEncoder( handle_unknown='ignore').fit_transform( testdata.age)  # testdata.age 这里与 testdata[['age']]等价
+
+    # a1 = OneHotEncoder( ).fit_transform(pd.Series(testdata[['age']]))
+    # a2 = OneHotEncoder( ).fit_transform(pd.Series(testdata[['salary']]))
     # final_output = numpy.hstack((a1, a2))
     # print(final_output)
+
+    data = {'degree': ['master', 'master', 'PHD'], 'grade': ['A', 'B', 'C']}
+    df = pd.DataFrame(data)
+
+    enc = OneHotEncoder()
+    enc.fit(df)
+    print(enc.categories_)
+    print( enc.get_feature_names_out())
+    print( enc.feature_names_in_)
+    print( enc._check_feature_names( ))
+
 
 def onehot_demo():
     encoder = OneHotEncoder()
@@ -169,5 +184,6 @@ def one_hot():
 
 if __name__ == '__main__':
     # onehot_demo()
-    one_hot()
+    # one_hot()
+    catlog()
 
