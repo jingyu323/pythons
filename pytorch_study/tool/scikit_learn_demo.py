@@ -16,8 +16,10 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
-from sklearn.preprocessing import  OneHotEncoder
-def  irs():
+from sklearn.preprocessing import OneHotEncoder
+
+
+def irs():
     # 加载Iris数据集
     iris = datasets.load_iris()
     X = iris.data
@@ -33,6 +35,7 @@ def  irs():
 
     print(X_train)
     print(X_test)
+
 
 def transform():
     # 创建转换器实例
@@ -55,7 +58,7 @@ def transform():
     print("Encoded Test Data:\n", encoded_test)
 
     train_data2 = ['low', 'medium', 'high']
-    test_data = ['medium',  'high', 'income']
+    test_data = ['medium', 'high', 'income']
 
     lb = LabelBinarizer()
     trainY = lb.fit_transform(train_data2)
@@ -101,7 +104,8 @@ def transform2():
     trainY = lb.fit_transform(trainY)
     testY = lb.transform(testY)
 
-    print(trainX,trainY,testX,testY)
+    print(trainX, trainY, testX, testY)
+
 
 def convert_to_one_hot(labels, num_classes):
     #计算向量有多少行
@@ -113,32 +117,49 @@ def convert_to_one_hot(labels, num_classes):
     #遍历矩阵，为每个类别的位置填充1
     labels_one_hot.flat[index_offset + labels] = 1
     return labels_one_hot
+
+
 def catlog():
     b = [2, 4, 6, 8, 6, 2, 3, 7]
     print(convert_to_one_hot(b, 9))
-
-    # testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
-    #                          'salary': [4, 5, 1, 1]})
     #
-    # print(testdata.age)
-    # print(testdata.salary)
-
-    # OneHotEncoder( handle_unknown='ignore').fit_transform( testdata.age)  # testdata.age 这里与 testdata[['age']]等价
-
-    # a1 = OneHotEncoder( ).fit_transform(pd.Series(testdata[['age']]))
-    # a2 = OneHotEncoder( ).fit_transform(pd.Series(testdata[['salary']]))
-    # final_output = numpy.hstack((a1, a2))
-    # print(final_output)
+    # df = pd.DataFrame({
+    #     "A": ['男', '男', '女', '女', '其它'],
+    #     "B": [100, 200, 300, 400, 500]
+    # })
+    # # OneHotEncoder中的sparse参数被设置为了False，它可以控制转换后的稠密性，即是否产生稀疏矩阵。
+    # encoder = OneHotEncoder(handle_unknown='ignore')
+    # gender_encoded = encoder.fit(df )
+    # df.assign(oneencode=gender_encoded )
 
     data = {'degree': ['master', 'master', 'PHD'], 'grade': ['A', 'B', 'C']}
     df = pd.DataFrame(data)
 
-    enc = OneHotEncoder()
-    enc.fit(df)
-    print(enc.categories_)
-    print( enc.get_feature_names_out())
-    print( enc.feature_names_in_)
-    print( enc._check_feature_names( ))
+    # 创建OneHotEncoder对象并拟合数据
+    encoder = OneHotEncoder(handle_unknown='ignore')
+    encoder.fit(df)
+
+    # 转换数据并查看结果
+    one_hot_encoded_data = encoder.transform(df)
+    print(one_hot_encoded_data)
+
+    data = np.array([
+        ['cat', 'small', 'black'],
+        ['dog', 'large', 'brown'],
+        ['mouse', 'small', 'white'],
+        ['cat', 'large', 'white'],
+        ['dog', 'small', 'black']
+    ])
+
+    encoder = OneHotEncoder()
+    encoded_data = encoder.fit_transform(data).toarray()
+    print(encoded_data)
+    print(encoder.get_feature_names_out())
+
+    #
+    # print(testdata.age)
+    # print(testdata.salary)
+    #
 
 
 def onehot_demo():
@@ -161,7 +182,6 @@ def onehot_demo():
 
     print("\n Encoded vector =", encoded_vector)
 
-
     # df = pd.DataFrame({
     #     "A": ['男', '男', '女', '女', '其它'],
     #     "B": [100, 200, 300, 400, 500]
@@ -171,6 +191,7 @@ def onehot_demo():
     # gender_encoded = encoder.transform(df['A'].values.reshape(-1, 1)).toarray()
     # print(gender_encoded)
     # df.assign(oneencode=gender_encoded )
+
 
 def one_hot():
     encoder = OneHotEncoder(handle_unknown='ignore')
@@ -182,8 +203,68 @@ def one_hot():
     print(encoder.categories_)
 
 
+def onehot_demo2():
+    data = {'degree': ['master', 'master', 'PHD'], 'grade': ['A', 'B', 'C']}
+    df = pd.DataFrame(data)
+    enc3 = OneHotEncoder(handle_unknown='ignore')
+    enc3.fit(df)
+
+    print(enc3.categories_)
+    print(enc3.get_feature_names_out())
+    print(enc3.feature_names_in_)
+    print("=================")
+    da1 = {'degree': ['master'], 'grade': ['C']}
+    dd1 = pd.DataFrame(da1)
+    print("dd1===", enc3.transform(dd1).toarray())
+
+    print(enc3.transform(df).toarray())
+    # 特征值混合
+    da2 = {'degree': ['C'], 'grade': ['C']}
+    dd2 = pd.DataFrame(da2)
+    # print("dd2===", enc3.transform(dd2).toarray())
+    # Found unknown categories ['C'] in column 0 during transform
+
+    # 新的特征
+    da3 = {'height': ['master'], 'weather': ['C']}
+    da3 = pd.DataFrame(da3)
+    # print("da3===", enc3.transform(da3).toarray())
+    # 正常输出：[[0. 1. 0. 0. 1.]]
+
+    # 然而
+    da4 = {'height': ['C'], 'weather': ['C']}
+    da4 = pd.DataFrame(da4)
+    # print("da4===", enc3.transform(da4).toarray())
+    # Found unknown categories ['C'] in column 0 during transform
+    # 同前面第二个错误
+
+
+def onehot_demo3():
+    testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
+                             'salary': [4, 5, 1, 1]})
+
+    s = OneHotEncoder(handle_unknown='ignore').fit(testdata)  # testdata.age 这里与 testdata[['age']]等价
+
+    print(s.transform(testdata).toarray())
+
+    a1 = OneHotEncoder().fit_transform(testdata[['age']])
+    a2 = OneHotEncoder().fit_transform(testdata[['salary']])
+    print(a1)
+    final_output = numpy.hstack((a1, a2))
+    print(final_output)
+
+    data = {'degree': ['master', 'master', 'PHD'], 'grade': ['A', 'B', 'C']}
+    df = pd.DataFrame(data)
+
+    enc = OneHotEncoder()
+    enc.fit(df)
+    print(enc.categories_)
+    print(enc.get_feature_names_out())
+    print(enc.feature_names_in_)
+    print(enc.transform(df))
+    print(enc.transform(df).toarray())
+
+
 if __name__ == '__main__':
     # onehot_demo()
     # one_hot()
-    catlog()
-
+    onehot_demo3()
