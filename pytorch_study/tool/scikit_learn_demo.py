@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 import random
 from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
-from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import LabelBinarizer, label_binarize
 from sklearn.preprocessing import OneHotEncoder
 from Keras.cat_dog import utils_paths
 import pandas as pd
@@ -17,6 +17,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.preprocessing import OneHotEncoder
+
+from sklearn.preprocessing import LabelEncoder, LabelBinarizer, OneHotEncoder
 
 
 def irs():
@@ -108,13 +110,13 @@ def transform2():
 
 
 def convert_to_one_hot(labels, num_classes):
-    #计算向量有多少行
+    # 计算向量有多少行
     num_labels = len(labels)
-    #生成值全为0的独热编码的矩阵
+    # 生成值全为0的独热编码的矩阵
     labels_one_hot = np.zeros((num_labels, num_classes))
-    #计算向量中每个类别值在最终生成的矩阵“压扁”后的向量里的位置
+    # 计算向量中每个类别值在最终生成的矩阵“压扁”后的向量里的位置
     index_offset = np.arange(num_labels) * num_classes
-    #遍历矩阵，为每个类别的位置填充1
+    # 遍历矩阵，为每个类别的位置填充1
     labels_one_hot.flat[index_offset + labels] = 1
     return labels_one_hot
 
@@ -251,7 +253,7 @@ def onehot_demo3():
     print(a1.toarray())
     print(a2.toarray())
     final_output = numpy.hstack((a1.toarray(), a2.toarray()))
-    print("final_output=",final_output)
+    print("final_output=", final_output)
 
     # s2 = OneHotEncoder(handle_unknown='ignore').fit_transform(testdata)  # testdata.age 这里与 testdata[['age']]等价
     # print(s2.transform(testdata).toarray())
@@ -270,7 +272,84 @@ def onehot_demo4():
     print(enc.transform(df).toarray())
 
 
+"""
+特征标签编码：
+LabelEncoder 是 scikit-learn  用于将类别变量（例如字符串标签或离散的整数标签）转换为整数
+OrdinalEncoder：使用序数编码方案对分类特征进行编码。
+OneHotEncoder：将分类特征编码为独热数字数组
+LabelEncoder：将类型变量转换为数值组成的数组。
+
+LabelBinerizer：将标签二值化为一对多的形式。不限定类别数量，取输入标签的类别
+
+label_binarize：将标签二值化为一对多的形式。限定类别数量。如果某类别在所有标签中均未出现，则对应未知为0
+
+在标签数量一致的情况下，LabelBinerizer 和 label_binarize 的结果是一样的。如果已知标签数量，但是输入的标签样本不全，那么最好使用label_binarize，若使用 LabelBinerizer，则未在标签样本中出现的标签值会不被识别
+ 
+"""
+
+
+def lab_demo():
+    test_data = np.array(["a", "b", "c", "d", "a"])
+    # 一个一维数组
+    print(LabelEncoder().fit_transform(test_data))
+    # 直接产生一个
+    print(LabelBinarizer().fit_transform(test_data))
+
+    print(OneHotEncoder().fit_transform(test_data.reshape(-1, 1)))  # 输出是一个SciPy稀疏矩阵
+    print(OneHotEncoder().fit_transform(test_data.reshape(-1, 1)).toarray())  # 转换成一个密集的NumPy数组
+
+    data = ['小猫', '小猫', '小狗', '小狗', '兔子', '兔子']
+    # LabelEncoder 可用于规范化标签。
+    le = LabelEncoder()
+    encoded_data = le.fit_transform(data)
+    print(encoded_data)  # 输出：[0, 0, 1, 1, 2, 2]
+
+    print(le.inverse_transform([0, 1, 2]))
+
+    le.fit([1, 2, 2, 6])
+    print(le.classes_)
+    print("================")
+    print(le.transform([1, 1, 2, 6]))
+    # 它还可用于将非数字标签（只要它们是可散列和可比较的）转换为数字标签
+    le1 = LabelEncoder()
+    le1.fit(["paris", "paris", "tokyo", "amsterdam"])
+    print(le1.classes_)
+    print(le1.transform(["tokyo", "tokyo", "paris"]))
+    print(list(le1.inverse_transform([2, 2, 1])))
+
+    testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
+                             'salary': [4, 5, 1, 1]})
+
+    a1 = OneHotEncoder(handle_unknown="ignore").fit(testdata)
+
+    data1 = a1.transform(testdata)
+    print(data1.toarray())
+
+    # 只能处理数组，数组进行分类
+    a1 = OneHotEncoder().fit_transform(testdata[['age']])
+    a2 = OneHotEncoder().fit_transform(testdata[['salary']])
+
+    print("================ age")
+    print(a1.toarray())
+
+    print("================ salary")
+    print(a2.toarray())
+
+    final_output = numpy.hstack((a1.toarray(), a2.toarray()))
+    print("final_output=", final_output)
+
+
+def demo_lib():
+    le = LabelEncoder()
+    y = ["paris", "paris", "tokyo", "amsterdam"]
+    y_le = le.fit_transform(y)
+    print('=========y_le is========= ')
+    print(y_le)
+    print('=========classes is========= ')
+    print(list(le.classes_))
+
+
 if __name__ == '__main__':
     # onehot_demo()
     # one_hot()
-    onehot_demo3()
+    demo_lib()
