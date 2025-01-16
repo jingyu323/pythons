@@ -348,6 +348,16 @@ def demo_lib():
     print('=========classes is========= ')
     print(list(le.classes_))
 
+    array = label_binarize([1, 6], classes=[1, 2, 4, 6])
+
+    print('=========array is========= ')
+    print(array)
+
+    array1 = label_binarize([1, 6], classes=[1, 6, 4, 2])
+
+    print('=========array1 is========= ')
+    print(array1)
+
 
 if __name__ == '__main__':
     # onehot_demo()
