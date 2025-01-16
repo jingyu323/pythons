@@ -241,17 +241,18 @@ def onehot_demo2():
 def onehot_demo3():
     testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
                              'salary': [4, 5, 1, 1]})
-
     s = OneHotEncoder(handle_unknown='ignore').fit(testdata)  # testdata.age 这里与 testdata[['age']]等价
-
     print(s.transform(testdata).toarray())
 
     a1 = OneHotEncoder().fit_transform(testdata[['age']])
     a2 = OneHotEncoder().fit_transform(testdata[['salary']])
-    print(a1)
-    final_output = numpy.hstack((a1, a2))
-    print(final_output)
+    print(a1.toarray())
+    print(a2.toarray())
+    final_output = numpy.hstack((a1.toarray(), a2.toarray()))
+    print("final_output=",final_output)
 
+
+def onehot_demo4():
     data = {'degree': ['master', 'master', 'PHD'], 'grade': ['A', 'B', 'C']}
     df = pd.DataFrame(data)
 
