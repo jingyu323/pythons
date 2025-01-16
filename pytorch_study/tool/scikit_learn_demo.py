@@ -241,15 +241,20 @@ def onehot_demo2():
 def onehot_demo3():
     testdata = pd.DataFrame({'pet': ['cat', 'dog', 'dog', 'fish'], 'age': [4, 6, 3, 3],
                              'salary': [4, 5, 1, 1]})
+    # fit 可以对字典对象进行处理在进行transform，只能分开进行
     s = OneHotEncoder(handle_unknown='ignore').fit(testdata)  # testdata.age 这里与 testdata[['age']]等价
     print(s.transform(testdata).toarray())
 
+    # 只能处理数组，数组进行分类
     a1 = OneHotEncoder().fit_transform(testdata[['age']])
     a2 = OneHotEncoder().fit_transform(testdata[['salary']])
     print(a1.toarray())
     print(a2.toarray())
     final_output = numpy.hstack((a1.toarray(), a2.toarray()))
     print("final_output=",final_output)
+
+    # s2 = OneHotEncoder(handle_unknown='ignore').fit_transform(testdata)  # testdata.age 这里与 testdata[['age']]等价
+    # print(s2.transform(testdata).toarray())
 
 
 def onehot_demo4():
