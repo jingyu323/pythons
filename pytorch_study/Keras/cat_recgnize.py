@@ -7,6 +7,7 @@ from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import Adam
 import matplotlib.pyplot as plt
 from keras.src.saving import load_model
+from keras_preprocessing.image import load_img, img_to_array
 
 
 def demo_cnn():
@@ -111,7 +112,6 @@ def demo_cnn():
     plt.figure(figsize=(18, 3))
     plt.subtitle("预测结果显示")
 
-    # predictions = model.predict(img_array)
     # for images, labels in val_ds.take(1):
     #     for i in range(8):
     #         ax = plt.subplot(2, 4, i + 1)
