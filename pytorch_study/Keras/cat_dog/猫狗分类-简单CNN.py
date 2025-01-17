@@ -211,5 +211,45 @@ def batch_pre_grace():
     plt.show()
 
 
+def batche_grace():
+    # 创建一个3x2的子图布局，并设置图形大小
+    fig, axs = plt.subplots(5, 5, figsize=(12, 10))
+    image_path = "E:/data/kreas/Kaggle/cat-dog-small/predict/"
+    images = os.listdir(image_path)
+    print(images)
+    print(len(images))
+    # 在每个子图中绘制一些数据
+    index = 0
+    model = load_model('CNN1.keras')
+    drawImg = True
+    for i in range(5):
+        if not drawImg:
+            break
+        if index > 13:
+            break
+        for j in range(5):
+            if not drawImg:
+                break
+            print("index===", index)
+            file_path = os.path.join(image_path, images[index])
+            img_ori = load_img(file_path, target_size=(150, 150, 3))
+            img = img_to_array(img_ori)
+            img = img.astype('float32') / 255
+            img = img.reshape(1, 150, 150, 3)
+            result1 = model.predict(img)
+            result = (result1 > 0.5).astype(int)
+
+            axs[i, j].imshow(img_ori)
+            axs[i, j].set_title(f'预测为：狗狗' if result[0][1] == 1 else '预测为：猫咪')
+            index = index + 1
+            if index > 13:
+                drawImg = False
+                break
+            print("index", index)
+
+    plt.tight_layout()
+    plt.show()
+
+
 if __name__ == '__main__':
-    batch_pre_grace()
+    batche_grace()
