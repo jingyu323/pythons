@@ -7,10 +7,10 @@ from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.src.optimizers import Adam
 
 
-def  demo_cnn():
+def demo_cnn():
     model = Sequential()
     model.add(Conv2D(input_shape=(150, 150, 3), filters=32, kernel_size=3, strides=1, padding="same",
-                            activation="relu"))
+                     activation="relu"))
     model.add(Conv2D(filters=32, kernel_size=3, strides=1, padding="same", activation="relu"))
     model.add(MaxPooling2D(pool_size=2, strides=2, padding="valid"))
 
@@ -25,7 +25,7 @@ def  demo_cnn():
     model.add(Flatten())
     model.add(Dense(64, activation="relu"))
     model.add(Dropout(0.5))
-    #进行分类
+    # 进行分类
     model.add(Dense(2, activation="softmax"))
 
     # 定义优化器
@@ -53,27 +53,27 @@ def  demo_cnn():
     batch_size = 32
     # 生成训练数据
     train_generator = train_datagen.flow_from_directory(
-        "E:/data/kreas/train/train",  # 训练数据路径
+        "E:/data/kreas/Kaggle/cat-dog-small/train",  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
         batch_size=batch_size  # 批次大小
     )
     # 测试数据
     test_generator = test_datagen.flow_from_directory(
-        "E:/data/kreas/test1",  # 训练数据路径
+        "E:/data/kreas/Kaggle/cat-dog-small/test",  # 训练数据路径
         target_size=(150, 150),  # 设置图片大小
         batch_size=batch_size  # 批次大小
     )
 
     # 统计文件个数
     totalFileCount_train = sum(
-        [len(files) for root, dirs, files in os.walk("E:/data/kreas/train/train")])
-    totalFileCount_test = sum([len(files) for root, dirs, files in os.walk("E:/data/kreas/test1")])
+        [len(files) for root, dirs, files in os.walk("E:/data/kreas/Kaggle/cat-dog-small/train")])
+    totalFileCount_test = sum([len(files) for root, dirs, files in os.walk("E:/data/kreas/Kaggle/cat-dog-small/test")])
     model.fit(
         train_generator,
-        steps_per_epoch=totalFileCount_train / batch_size,
+        steps_per_epoch=int(totalFileCount_train / batch_size),
         epochs=50,
         validation_data=test_generator,
-        validation_steps=1000 / batch_size
+        validation_steps=int(1000 / batch_size)
     )
 
     # 保存模型
@@ -81,5 +81,4 @@ def  demo_cnn():
 
 
 if __name__ == '__main__':
-
     demo_cnn();
