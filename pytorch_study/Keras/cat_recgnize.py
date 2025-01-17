@@ -5,6 +5,8 @@ from keras.src.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 
 from keras.src.optimizers import Adam
+import matplotlib.pyplot as plt
+from keras.src.saving import load_model
 
 
 def demo_cnn():
@@ -68,16 +70,63 @@ def demo_cnn():
     totalFileCount_train = sum(
         [len(files) for root, dirs, files in os.walk("E:/data/kreas/Kaggle/cat-dog-small/train")])
     totalFileCount_test = sum([len(files) for root, dirs, files in os.walk("E:/data/kreas/Kaggle/cat-dog-small/test")])
-    model.fit(
-        train_generator,
-        steps_per_epoch=int(totalFileCount_train / batch_size),
-        epochs=50,
-        validation_data=test_generator,
-        validation_steps=int(1000 / batch_size)
-    )
+    if os.path.exists("CNN1.keras"):
+        model = load_model('CNN1.keras')
+        print("CNN1.keras  exists")
 
-    # 保存模型
-    model.save("CNN1.keras")
+    else:
+
+        history = model.fit(
+            train_generator,
+            steps_per_epoch=int(totalFileCount_train / batch_size),
+            epochs=50,
+            validation_data=test_generator,
+            validation_steps=int(1000 / batch_size)
+        )
+
+        # 保存模型
+        model.save("CNN1.keras")
+
+        acc = history.history['acc']
+        val_acc = history.history['val_acc']
+        loss = history.history['loss']
+        val_loss = history.history['val_loss']
+
+        epochs = range(len(acc))
+
+        plt.plot(epochs, acc, 'bo', label='Training acc')
+        plt.plot(epochs, val_acc, 'b', label='Validation acc')
+        plt.title('Training and validation accuracy')
+        plt.legend()
+
+        plt.figure()
+
+        plt.plot(epochs, loss, 'bo', label='Training loss')
+        plt.plot(epochs, val_loss, 'b', label='Validation loss')
+        plt.title('Training and validation loss')
+        plt.legend()
+
+        plt.show()
+
+    plt.figure(figsize=(18, 3))
+    plt.subtitle("预测结果显示")
+
+    predictions = model.predict(img_array)
+    # for images, labels in val_ds.take(1):
+    #     for i in range(8):
+    #         ax = plt.subplot(2, 4, i + 1)
+    #
+    #         # 显示图片
+    #         ax.imshow(images[i].numpy())
+    #
+    #         # 需要给图片增加一个维度
+    #         img_array = tf.expand_dims(images[i], 0)
+    #
+    #         # 使用模型预测图片中的人物
+    #         predictions = model.predict(img_array)
+    #         plt.title(class_names[np.argmax(predictions)])
+    #
+    #         plt.axis("off")
 
 
 if __name__ == '__main__':
