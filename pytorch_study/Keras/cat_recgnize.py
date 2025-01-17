@@ -111,7 +111,7 @@ def demo_cnn():
     plt.figure(figsize=(18, 3))
     plt.subtitle("预测结果显示")
 
-    predictions = model.predict(img_array)
+    # predictions = model.predict(img_array)
     # for images, labels in val_ds.take(1):
     #     for i in range(8):
     #         ax = plt.subplot(2, 4, i + 1)
