@@ -152,7 +152,7 @@ def batch_pre():
     mlp.rcParams['axes.unicode_minus'] = False
     model = load_model('CNN1.keras')
     a = [i for i in range(1, 10)]
-    fig = plt.figure(figsize=(10, 10))
+    fig = plt.figure(figsize=(15, 15))
     image_path = "E:/data/kreas/Kaggle/cat-dog-small/predict/"
     index = 1
     for image in os.listdir(image_path):
@@ -166,15 +166,50 @@ def batch_pre():
         result = (result1 > 0.5).astype(int)
         print(result)
         img_ori = load_img(file_path, target_size=(250, 250))
-        plt.subplot(3, 3, index)
+        plt.subplot(5, 5, index)
         plt.imshow(img_ori)
         plt.title('预测为：狗狗' if result[0][1] == 1 else '预测为：猫咪')
         index = index + 1
-        if index > 9:
+        if index > 25:
             break
+    # plt.tight_layout()
+    fig.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, wspace=0.4, hspace=0.4)
+    plt.show()
+
+
+def batch_pre_grace():
+    font2 = {'family': 'SimHei',
+             'weight': 'normal',
+             'size': 20,
+             }
+    mlp.rcParams['font.family'] = 'SimHei'
+    mlp.rcParams['axes.unicode_minus'] = False
+    model = load_model('CNN1.keras')
+    a = [i for i in range(1, 10)]
+    fig = plt.figure(figsize=(35, 35))
+    image_path = "E:/data/kreas/Kaggle/cat-dog-small/predict/"
+    index = 1
+    for image in os.listdir(image_path):
+        print(image)
+        file_path = os.path.join(image_path, image)
+        img_ori = load_img(file_path, target_size=(150, 150, 3))
+        img = img_to_array(img_ori)
+        img = img.astype('float32') / 255
+        img = img.reshape(1, 150, 150, 3)
+        result1 = model.predict(img)
+        result = (result1 > 0.5).astype(int)
+        print(result)
+        img_ori = load_img(file_path, target_size=(250, 250))
+        plt.subplot(5, 5, index)
+        plt.imshow(img_ori)
+        plt.title('预测为：狗狗' if result[0][1] == 1 else '预测为：猫咪')
+        index = index + 1
+        if index > 25:
+            break
+    # plt.tight_layout()
+    fig.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, wspace=0.4, hspace=0.4)
     plt.show()
 
 
 if __name__ == '__main__':
-    predict()
-    batch_pre()
+    batch_pre_grace()
