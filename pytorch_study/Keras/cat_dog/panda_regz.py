@@ -1,59 +1,52 @@
+import keras
 from keras_core import Sequential
 from keras_core.src.layers import Dense, Dropout
 from keras_core.src.optimizers import SGD
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report#综合结果对比
-
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 from keras import initializers#初始化权重参数
 from keras import regularizers#正则化
 import matplotlib.pyplot as plt
 import numpy as np
-import argparse
 import random
 import pickle
 import cv2
 import os
+from sklearn import preprocessing
+from keras.src.utils import to_categorical, plot_model
 
 from Keras.cat_dog import utils_paths
 
 #--dataset --model --label-bin --plot
 # 输入参数
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=True,
-	help="path to input dataset of images")
-ap.add_argument("-m", "--model", required=True,
-	help="path to output trained model")
-ap.add_argument("-l", "--label-bin", required=True,
-	help="path to output label binarizer")
-ap.add_argument("-p", "--plot", required=True,
-	help="path to output accuracy/loss plot")
-args = vars(ap.parse_args())
-
-
 print("[INFO] 开始读取数据")
 data = []
 labels = []
 
 # 拿到图像数据路径，方便后续读取
-imagePaths = sorted(list(utils_paths.list_images(args["dataset"])))
+imagePaths = sorted(list(utils_paths.list_images("E:/data/kreas/Kaggle/cat-dog-small/train")))
 random.seed(42)
 random.shuffle(imagePaths)
-
 # 遍历读取数据
 for imagePath in imagePaths:
-	# 读取图像数据，由于使用神经网络，需要给定成一维
+	# 读取图像数据，由于使用神经网络，需要输入数据给定成一维
 	image = cv2.imread(imagePath)
+	# 而最初获取的图像数据是三维的，则需要将三维数据进行拉长
 	image = cv2.resize(image, (32, 32)).flatten()
 	data.append(image)
 
-	# 读取标签
+	# 读取标签，通过读取数据存储位置文件夹来判断图片标签
 	label = imagePath.split(os.path.sep)[-2]
 	labels.append(label)
 
-# scale图像数据
+# scale图像数据，归一化
 data = np.array(data, dtype="float") / 255.0
 labels = np.array(labels)
+
+
 
 # 数据集切分
 (trainX, testX, trainY, testY) = train_test_split(data,
@@ -63,30 +56,44 @@ labels = np.array(labels)
 lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.transform(testY)
+# le = preprocessing.LabelEncoder()
+# trainY = le.fit_transform(trainY)
+# testY = le.transform(testY)
+# 将分类识别结果进行 数组类型的二进制 类别向量转换为二进制
+trainY=to_categorical(trainY)
+testY=to_categorical(testY)
+print(trainY)
+print(trainY.shape)
 
 # 网络模型结构：3072-512-256-3
 model = Sequential()
-# kernel\_regularizer=regularizers.l2(0.01)
-# keras.initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None)
-# initializers.random\_normal
-# #model.add(Dropout(0.8))
+
+
+print(len(2))
+
+#
 model.add(Dense(512, input_shape=(3072,), activation="relu" ,kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
 model.add(Dense(256, activation="relu",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
 model.add(Dropout(0.5))
-model.add(Dense(len(lb.classes_), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
+model.add(Dense(len(2), activation="softmax",kernel_initializer = initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None),kernel_regularizer=regularizers.l2(0.01)))
+
+
 
 # 初始化参数
 INIT_LR = 0.001
-EPOCHS = 200
+EPOCHS = 30
 
 # 给定损失函数和评估方法
 print("[INFO] 准备训练网络...")
 opt = SGD(learning_rate=INIT_LR)
-model.compile(loss="categorical\_crossentropy", optimizer=opt,
+model.compile(loss="categorical_crossentropy", optimizer=opt,
 	metrics=["accuracy"])
-
+model.summary()
 # 训练网络模型
+
+print(trainX.shape, trainY.shape)
+print(testX.shape, testY.shape)
 H = model.fit(trainX, trainY, validation_data=(testX, testY),
 	epochs=EPOCHS, batch_size=32)
 
@@ -100,20 +107,18 @@ print(classification_report(testY.argmax(axis=1),
 N = np.arange(0, EPOCHS)
 plt.style.use("ggplot")
 plt.figure()
-#plt.plot(N[150:], H.history["loss"][150:], label="train\_loss")
-#plt.plot(N[150:], H.history["val\_loss"][150:], label="val\_loss")
-plt.plot(N[150:], H.history["accuracy"][150:], label="train\_acc")
-plt.plot(N[150:], H.history["val\_accuracy"][150:], label="val\_acc")
+plt.plot(N[150:], H.history["accuracy"][150:], label="train_acc")
+plt.plot(N[150:], H.history["val_accuracy"][150:], label="val_acc")
 plt.title("Training Loss and Accuracy (Simple NN)")
 plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend()
-plt.savefig(args["plot"])
+plt.savefig("cat_train ")
 
 # 保存模型到本地
 print("[INFO] 正在保存模型")
-model.save(args["model"])
-f = open(args["label\_bin"], "wb")
+model.save("cat_train.keras")
+f = open( "label_bin", "wb")
 f.write(pickle.dumps(lb))
 f.close()
 
