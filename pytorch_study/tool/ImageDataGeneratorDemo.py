@@ -58,7 +58,7 @@ def image_vertical_flip():
     vertical_flipped = img.transpose(method=Image.FLIP_TOP_BOTTOM)
 
     # 保存翻转后的图像
-    vertical_flipped.save('vertical_flipped_image.jpg')
+    vertical_flipped.save('vertical_flipped_image.png')
 
     # 显示翻转后的图像 (可选)
     vertical_flipped.show()
