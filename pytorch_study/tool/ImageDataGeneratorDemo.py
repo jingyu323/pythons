@@ -41,7 +41,7 @@ def demo():
 
 # 图片水平反转
 def image_change():
-    image_path = 'bird.png'
+    image_path = 'bare.png'
     img = Image.open(image_path)
     horizontal_flipped = img.transpose(method=Image.FLIP_LEFT_RIGHT)
     horizontal_flipped.show()
@@ -51,7 +51,7 @@ def image_change():
 
 
 def image_vertical_flip():
-    image_path = 'bird.png'
+    image_path = 'bare.png'
     img = Image.open(image_path)
 
     # 垂直翻转
@@ -65,4 +65,4 @@ def image_vertical_flip():
 
 
 if __name__ == '__main__':
-    image_vertical_flip()
+    image_change()

@@ -74,7 +74,7 @@ output = Conv2DTranspose(out_channels, kernel_size, stride, use_bias=bias)(input
 
 ## 激活激活函数
 
-#### Softmax
+#### Softmax 分类器
 
 Softmax是一种常用的激活函数，主要用于多分类问题中，可以将输入的神经元转化为概率分布。它的主要特点是输出值范围在0-1之间，且所有输出值的总和为1。
 
@@ -277,6 +277,22 @@ RMSprop 是 adagrad 改进，不会出现学习率越来越低的问题，自己
 
 
 
+
+
+**CNN卷积神经网络。**
+
+ Alexnet
+
+vgg，
+
+resnet 
+
+
+
+
+
+
+
 # 工具方法
 
 ## 1.数据初始化
@@ -303,6 +319,10 @@ pip install tensorflow-directml-plugin
 pip install -U tensorflow-gpu==2.10.0
 
 
+
+
+
+# 练习项目：
 
 
 
