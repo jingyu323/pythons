@@ -44,6 +44,8 @@ im3 = Image.open('./image/superman/003super.png')
 img_path = './image/superman/*'
 in_path = './image/'
 out_path = './output/'
+
+
 def print_result(path):
     name_list = glob.glob(path)
     fig = plt.figure(figsize=(10, 6))
@@ -53,23 +55,18 @@ def print_result(path):
         plt.imshow(img)
     plt.show()
     print("fig=", fig)
-def demo():
 
-    plt.figure(num=1,figsize=(1,1))
+
+def demo():
+    plt.figure(num=1, figsize=(1, 1))
     x = [1, 2, 3, 4, 5]
     y = [2, 4, 6, 8, 10]
     plt.plot(x, y)
     plt.show()
 
-
-
     name_list = glob.glob(img_path)
-    print("name_list=",name_list)
+    print("name_list=", name_list)
     print_result(img_path)
-
-
-
-
 
     datagen = ImageDataGenerator()
 
@@ -91,12 +88,12 @@ def demo():
     print(gen_data.labels)
 
     print(type(gen_data))
-    #返
+    # 返
     # 生成图片
     # for i in range(3):
-        # gen_data.next()
+    # gen_data.next()
 
-    print_result(out_path+'resize/*')
+    print_result(out_path + 'resize/*')
 
 
 """
@@ -111,26 +108,31 @@ def demo():
 生成并处理三个图像，由于设置了 save_to_dir，这些图像将被保存。
 打印三个图像 
 """
-def demo3():
 
-    datagen =  ImageDataGenerator(rotation_range=45)
+
+def demo3():
+    datagen = ImageDataGenerator(rotation_range=45)
     gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
-    gen_data = datagen.flow_from_directory(in_path, batch_size=1, shuffle=False, save_to_dir=out_path + 'rotation_range',
+    gen_data = datagen.flow_from_directory(in_path, batch_size=1, shuffle=False,
+                                           save_to_dir=out_path + 'rotation_range',
                                            save_prefix='gen', target_size=(224, 224))
     for i in range(3):
         gen_data.next()
     print_result(out_path + 'rotation_range/*')
 
+
 """
 与3中不同的是，这段代码是进行平移变换进行数据增强，指定了平移变换的参数，width_shift_range=0.3，height_shift_range=0.3，
 这两个参数分别表示会在水平方向和垂直方向±30%的范围内随机移动
 """
+
+
 def demo4():
-    datagen =  ImageDataGenerator(width_shift_range=0.3, height_shift_range=0.3)
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(width_shift_range=0.3, height_shift_range=0.3)
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -145,9 +147,11 @@ def demo4():
 这里指定缩放参数来进行缩放数据增强
 打印结果：
 """
+
+
 def demo5():
-    datagen =  ImageDataGenerator(zoom_range=0.5)
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(zoom_range=0.5)
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -171,10 +175,11 @@ def demo6():
         gen_data.next()
     print_result(out_path + 'channel/*')
 
+
 # 这里指定水平翻转参数来进行水平翻转数据增强
 def demo7():
-    datagen =  ImageDataGenerator(horizontal_flip=True)
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(horizontal_flip=True)
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -188,8 +193,8 @@ def demo7():
 # 这里指定rescale重新缩放参数来进行rescale重新缩放数据增强
 # 通常用于归一化图像数据。将图像像素值从 [0, 255] 缩放到 [0, 1] 范围，有助于模型的训练
 def demo8():
-    datagen =  ImageDataGenerator(rescale=1 / 255)
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(rescale=1 / 255)
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -199,13 +204,16 @@ def demo8():
         gen_data.next()
     print_result(out_path + 'rescale/*')
 
+
 """
 fill_mode='wrap'：当应用几何变换后，图像中可能会出现一些新的空白区域。fill_mode 定义了如何填充这些空白区域。在这种情况下，使用 'wrap' 模式，意味着空白区域将用图像边缘的像素“包裹”填充。
 zoom_range=[4, 4]：这设置了图像缩放的范围。在这里，它被设置为在 4 倍范围内进行随机缩放。由于最小和最大缩放因子相同，这将导致所有图像都被放大 4 倍
 """
+
+
 def demo9():
-    datagen =  ImageDataGenerator(fill_mode='wrap', zoom_range=[4, 4])
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(fill_mode='wrap', zoom_range=[4, 4])
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -223,9 +231,11 @@ def demo9():
 ‘wrap’: abcdabcd|abcd|abcdabcd
 
 """
+
+
 def demo10():
-    datagen =  ImageDataGenerator(fill_mode='constant', zoom_range=[3, 3])
-    gen =  ImageDataGenerator()
+    datagen = ImageDataGenerator(fill_mode='constant', zoom_range=[3, 3])
+    gen = ImageDataGenerator()
     data = gen.flow_from_directory(in_path, batch_size=1, class_mode=None, shuffle=True, target_size=(224, 224))
     np_data = np.concatenate([data.next() for i in range(data.n)])
     datagen.fit(np_data)
@@ -235,5 +245,6 @@ def demo10():
         gen_data.next()
     print_result(out_path + 'fill_mode/*')
 
+
 if __name__ == '__main__':
-    demo9()
+    demo()

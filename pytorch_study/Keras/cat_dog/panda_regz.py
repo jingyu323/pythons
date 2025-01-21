@@ -108,13 +108,13 @@ print(classification_report(testY.argmax(axis=1),
 N = np.arange(0, EPOCHS)
 plt.style.use("ggplot")
 plt.figure()
-plt.plot(N[150:], H.history["accuracy"][150:], label="train_acc")
-plt.plot(N[150:], H.history["val_accuracy"][150:], label="val_acc")
+plt.plot(N[:], H.history["accuracy"][:], label="train_acc")
+plt.plot(N[:], H.history["val_accuracy"][:], label="val_acc")
 plt.title("Training Loss and Accuracy (Simple NN)")
 plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend()
-plt.savefig("cat_train ")
+plt.savefig("cat_train")
 
 # 保存模型到本地
 print("[INFO] 正在保存模型")
