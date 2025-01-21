@@ -2,6 +2,7 @@ import argparse
 import pickle
 import cv2
 from keras.src.saving import load_model
+from keras.src.utils import load_img, img_to_array
 
 # --image images/dog.jpg --model output/simple/_nn.model --label-bin output/simple/_nn/_lb.pickle --width 32 --height 32 --flatten 1
 # --image images/dog.jpg --model output/_cnn/vggnet.model --label-bin output/_cnn/vggnet/_lb.pickle --width 64 --height 64
@@ -24,7 +25,7 @@ flatten = 1
 # 加载测试数据并进行相同预处理操作
 image = cv2.imread("E:/data/kreas/Kaggle/cat-dog-small/train/pandas/panda_00004.jpg")
 output = image.copy()
-image = cv2.resize(image, (32, 64))
+image = cv2.resize(image, (32, 32))
 
 # scale the pixel values to [0, 1]
 image = image.astype("float") / 255.0
@@ -36,18 +37,30 @@ if flatten > 0:
 else:
     image = image.reshape((1, image.shape[0], image.shape[1],
                            image.shape[2]))
+
+image_path = "E:/data/kreas/Kaggle/cat-dog-small/train/pandas/panda_00004.jpg"
+
+print("================")
+pic_dog = load_img(image_path, target_size=(32, 32, 3))
+pic_dog = img_to_array(pic_dog)
+# pic_dog = pic_dog / 255
+# pic_dog = pic_dog.reshape(1, 150, 150, 3)
+
+pic_dog = pic_dog.flatten()
+pic_dog = pic_dog.reshape((1, pic_dog.shape[0]))
 # 读取模型和标签
 print("[INFO] loading network and label binarizer...")
 model = load_model("cat_train.keras")
 lb = pickle.loads(open("label_bin", "rb").read())
 
 # 预测
-preds = model.predict(image)
+preds = model.predict(pic_dog)
 
 i = preds.argmax(axis=1)[0]
 label = lb.classes_[i]
 
 text = "{}: {:.2f}%".format(label, preds[0][i] * 100)
+print(text)
 cv2.putText(output, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7,
             (0, 0, 255), 2)
 
