@@ -25,18 +25,18 @@ flatten = 1
 # 加载测试数据并进行相同预处理操作
 image = cv2.imread("E:/data/kreas/Kaggle/cat-dog-small/train/pandas/panda_00004.jpg")
 output = image.copy()
-image = cv2.resize(image, (32, 32))
-
-# scale the pixel values to [0, 1]
-image = image.astype("float") / 255.0
+# image = cv2.resize(image, (32, 32))
+#
+# # scale the pixel values to [0, 1]
+# image = image.astype("float") / 255.0
 # 是否要对图像就行拉平操作
-if flatten > 0:
-    image = image.flatten()
-    image = image.reshape((1, image.shape[0]))
-# CNN的时候需要原始图像
-else:
-    image = image.reshape((1, image.shape[0], image.shape[1],
-                           image.shape[2]))
+# if flatten > 0:
+#     image = image.flatten()
+#     image = image.reshape((1, image.shape[0]))
+# # CNN的时候需要原始图像
+# else:
+#     image = image.reshape((1, image.shape[0], image.shape[1],
+#                            image.shape[2]))
 
 image_path = "E:/data/kreas/Kaggle/cat-dog-small/train/pandas/panda_00004.jpg"
 
@@ -48,13 +48,21 @@ pic_dog = img_to_array(pic_dog)
 
 pic_dog = pic_dog.flatten()
 pic_dog = pic_dog.reshape((1, pic_dog.shape[0]))
+
+image = cv2.imread(image_path)
+
+# 而最初获取的图像数据是三维的，则需要将三维数据进行拉长
+image1 = cv2.resize(image, (32, 32)).flatten()
+data = []
+data.append(image1)
 # 读取模型和标签
 print("[INFO] loading network and label binarizer...")
 model = load_model("cat_train.keras")
 lb = pickle.loads(open("label_bin", "rb").read())
 
+image1 = image1.reshape((1, image1.shape[0]))
 # 预测
-preds = model.predict(pic_dog)
+preds = model.predict(data)
 
 i = preds.argmax(axis=1)[0]
 label = lb.classes_[i]
