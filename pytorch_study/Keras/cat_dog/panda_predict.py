@@ -54,13 +54,14 @@ image = cv2.imread(image_path)
 # 而最初获取的图像数据是三维的，则需要将三维数据进行拉长
 image1 = cv2.resize(image, (32, 32)).flatten()
 data = []
-data.append(image1)
+
 # 读取模型和标签
 print("[INFO] loading network and label binarizer...")
 model = load_model("cat_train.keras")
 lb = pickle.loads(open("label_bin", "rb").read())
 
 image1 = image1.reshape((1, image1.shape[0]))
+data.append(image1)
 # 预测
 preds = model.predict(data)
 

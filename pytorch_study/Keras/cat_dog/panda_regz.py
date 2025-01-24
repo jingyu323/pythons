@@ -17,7 +17,7 @@ import cv2
 import os
 from sklearn import preprocessing
 from keras.src.utils import to_categorical, plot_model
-
+#  卷积神经网络
 from Keras.cat_dog import utils_paths
 
 # --dataset --model --label-bin --plot
@@ -115,6 +115,20 @@ plt.xlabel("Epoch #")
 plt.ylabel("Loss/Accuracy")
 plt.legend()
 plt.savefig("cat_train")
+
+# 调试完成后，绘制结果曲线
+N = np.arange(0, EPOCHS)
+plt.style.use("ggplot")
+plt.figure()
+plt.plot(N, H.history["loss"], label="train_loss")
+plt.plot(N, H.history["val_loss"], label="val_loss")
+plt.plot(N, H.history["accuracy"], label="train_acc")
+plt.plot(N, H.history["val_accuracy"], label="val_acc")
+plt.title("Training Loss and Accuracy (Simple NN)")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss/Accuracy")
+plt.legend()
+plt.savefig('./output/simple_nn_plot.png')  # 参数为保存的路径
 
 # 保存模型到本地
 print("[INFO] 正在保存模型")

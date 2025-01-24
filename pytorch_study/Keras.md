@@ -283,7 +283,7 @@ RMSprop 是 adagrad 改进，不会出现学习率越来越低的问题，自己
 
  Alexnet
 
-vgg，
+vgg， 识别别图像
 
 resnet 
 
