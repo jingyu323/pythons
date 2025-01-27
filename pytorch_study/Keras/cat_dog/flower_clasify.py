@@ -99,4 +99,4 @@ def demo3():
     print(res)
 if __name__ == '__main__':
 
-    demo2()
+    demo3()
