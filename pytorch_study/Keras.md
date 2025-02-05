@@ -27,7 +27,7 @@ Keras 帮我们把这些“指令”组织起来，让电脑更容易学习。 �
 
 # 训练模型
 ```
-history = model.fit_generator(
+history = model.fit(
     generator=train_generator,
     epochs=10,
     validation_data=validation_generator)
@@ -334,7 +334,7 @@ resnet
 
 
 
-# 需要解决的问题：
+## 需要解决的问题：
 
 1. fit 和 fit_generator  互相转换的问题
 版本合适根本不需要转换 image genrator 直接能使用
@@ -349,9 +349,23 @@ pip install -U tensorflow-gpu==2.10.0
 
 
 
-# 练习项目：
+## 练习项目：
 
 
+
+ 
+
+## 现在需要确定的问题：
+
+1.如何确定一个模型？ 用什么方法
+
+
+
+
+
+## Keras 资料：
+
+https://blog.csdn.net/LOVEmy134611/article/details/120581084
 
 
 
