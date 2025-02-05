@@ -3,12 +3,152 @@ import numpy as np
 import pandas as pd
 from keras.src.saving import load_model
 
+# 根据符号断句
+cuts = re.compile(u'([\da-zA-Z ]+)|[。，、？！\.\?,!]')
+# 设置最长的一句话为32个字
+maxlen = 32
+
+
+def cut_word(s):
+    result = []
+    # 指针设置为0
+    j = 0
+    # 根据符号断句
+    for i in cuts.finditer(s):
+        # 对符号前的部分分词
+        result.extend(predict(s[j:i.start()]))
+        # 加入符号
+        result.append(s[i.start():i.end()])
+        # 移动指针到符号后面
+        j = i.end()
+    # 对最后的部分进行分词
+    result.extend(predict(s[j:]))
+    return result
+
+
+def get_data(s):
+    s = re.findall('(.)/(.)', s)
+    if s:
+        s = np.array(s)
+        # 返回数据和标签，0为数据，1为标签
+        return list(s[:, 0]), list(s[:, 1])
+
+
+def predict2(sentence):
+    # 使用全数据
+    text = open('msr_train.txt', encoding='gbk').read()
+    text = text.split('\n')
+    print(text)
+
+    # 根据符号分句
+    text = u''.join(text)
+    text = re.split(u'[，。！？、]/[bems]', text)
+
+    # 训练集数据
+    data = []
+    # 标签
+    label = []
+
+    # 得到所有的数据和标签
+
+    for s in text:
+        d = get_data(s)
+        if d:
+            data.append(d[0])
+            label.append(d[1])
+
+    # 定义一个dataframe存放数据和标签
+    d = pd.DataFrame(index=range(len(data)))
+    d['data'] = data
+    d['label'] = label
+    # 提取data长度小于等于maxlen的数据
+    d = d[d['data'].apply(len) <= maxlen]
+    # 重新排列index
+    d.index = range(len(d))
+
+    for s in text:
+        d = get_data(s)
+        if d:
+            data.append(d[0])
+            label.append(d[1])
+
+    # 定义一个dataframe存放数据和标签
+    d = pd.DataFrame(index=range(len(data)))
+    d['data'] = data
+    d['label'] = label
+    # 提取data长度小于等于maxlen的数据
+    d = d[d['data'].apply(len) <= maxlen]
+    # 重新排列index
+    d.index = range(len(d))
+
+    # 统计所有字，给每个字编号
+    chars = []
+    for i in data:
+        chars.extend(i)
+
+    chars = pd.Series(chars).value_counts()
+    chars[:] = range(1, len(chars) + 1)
+
+    print("load model")
+    model = load_model('seq2seq.keras')
+    # 如果句子大于最大长度，只取maxlen个词
+    if len(sentence) > maxlen:
+        sentence = sentence[:maxlen]
+
+    # 预测结果，先把句子变成编号的形式，如果出现生僻字就填充0，然后给句子补0直到maxlen的长度。预测得到的结果只保留跟句子有效数据相同的长度
+    result = \
+        model.predict(
+            np.array([list(chars[list(sentence)].fillna(0).astype(int)) + [0] * (maxlen - len(sentence))]))[
+            0][:len(sentence)]
+
+    # 存放最终结果
+    y = []
+    # 存放临时概率值
+    prob = []
+    # 计算最大转移概率
+    # 首先计算第1个字和第2个字,统计16种情况的概率
+    # result[0][j]第1个词的标签概率
+    # result[1][k]第2个词的标签概率
+    # transfer[j][k]对应的转移概率矩阵的概率
+    for j in range(4):
+        for k in range(4):
+            # 第1个词为标签j的概率*第2个词为标签k的概率*jk的转移概率
+            prob.append(result[0][j] * result[1][k] * transfer[j][k])
+
+    # 计算前一个词的的标签
+    word1 = np.argmax(prob) // 4
+    # 计算后一个词的标签
+    word2 = np.argmax(prob) % 4
+    # 保存结果
+    y.append(word1)
+    y.append(word2)
+    # 从第2个字开始
+    for i in range(1, len(sentence) - 1):
+        # 存放临时概率值
+        prob = []
+        # 计算前一个字和后一个字的所有转移概率
+        for j in range(4):
+            # 前一个字的标签已知为word2
+            prob.append(result[i][word2] * result[i + 1][j] * transfer[word2][j])
+        # 计算后一个字的标签
+        word2 = np.argmax(prob) % 4
+        # 保存结果
+        y.append(word2)
+
+    # 分词
+    words = []
+    for i in range(len(sentence)):
+        # 如果标签为s或b，append到结果的list中
+        if y[i] in [0, 1]:
+            words.append(sentence[i])
+        else:
+            # 如果标签为m或e，在list最后一个元素中追加内容
+            words[-1] += sentence[i]
+    return words
+
 
 def predict():
     # # 做预测
-
-    # 设置最长的一句话为32个字
-    maxlen = 32
 
     # 使用全数据
     text = open('msr_train.txt', encoding='gbk').read()
@@ -25,12 +165,6 @@ def predict():
     label = []
 
     # 得到所有的数据和标签
-    def get_data(s):
-        s = re.findall('(.)/(.)', s)
-        if s:
-            s = np.array(s)
-            # 返回数据和标签，0为数据，1为标签
-            return list(s[:, 0]), list(s[:, 1])
 
     for s in text:
         d = get_data(s)
@@ -115,83 +249,9 @@ def predict():
     #             [0,0,1,1],
     #             [1,1,0,0]]
 
-    # 根据符号断句
-    cuts = re.compile(u'([\da-zA-Z ]+)|[。，、？！\.\?,!]')
-
     # 预测分词
-    def predict(sentence):
-
-        # 如果句子大于最大长度，只取maxlen个词
-        if len(sentence) > maxlen:
-            sentence = sentence[:maxlen]
-
-        # 预测结果，先把句子变成编号的形式，如果出现生僻字就填充0，然后给句子补0直到maxlen的长度。预测得到的结果只保留跟句子有效数据相同的长度
-        result = \
-            model.predict(
-                np.array([list(chars[list(sentence)].fillna(0).astype(int)) + [0] * (maxlen - len(sentence))]))[
-                0][:len(sentence)]
-
-        # 存放最终结果
-        y = []
-        # 存放临时概率值
-        prob = []
-        # 计算最大转移概率
-        # 首先计算第1个字和第2个字,统计16种情况的概率
-        # result[0][j]第1个词的标签概率
-        # result[1][k]第2个词的标签概率
-        # transfer[j][k]对应的转移概率矩阵的概率
-        for j in range(4):
-            for k in range(4):
-                # 第1个词为标签j的概率*第2个词为标签k的概率*jk的转移概率
-                prob.append(result[0][j] * result[1][k] * transfer[j][k])
-
-        # 计算前一个词的的标签
-        word1 = np.argmax(prob) // 4
-        # 计算后一个词的标签
-        word2 = np.argmax(prob) % 4
-        # 保存结果
-        y.append(word1)
-        y.append(word2)
-        # 从第2个字开始
-        for i in range(1, len(sentence) - 1):
-            # 存放临时概率值
-            prob = []
-            # 计算前一个字和后一个字的所有转移概率
-            for j in range(4):
-                # 前一个字的标签已知为word2
-                prob.append(result[i][word2] * result[i + 1][j] * transfer[word2][j])
-            # 计算后一个字的标签
-            word2 = np.argmax(prob) % 4
-            # 保存结果
-            y.append(word2)
-
-        # 分词
-        words = []
-        for i in range(len(sentence)):
-            # 如果标签为s或b，append到结果的list中
-            if y[i] in [0, 1]:
-                words.append(sentence[i])
-            else:
-                # 如果标签为m或e，在list最后一个元素中追加内容
-                words[-1] += sentence[i]
-        return words
 
     # 分句
-    def cut_word(s):
-        result = []
-        # 指针设置为0
-        j = 0
-        # 根据符号断句
-        for i in cuts.finditer(s):
-            # 对符号前的部分分词
-            result.extend(predict(s[j:i.start()]))
-            # 加入符号
-            result.append(s[i.start():i.end()])
-            # 移动指针到符号后面
-            j = i.end()
-        # 对最后的部分进行分词
-        result.extend(predict(s[j:]))
-        return result
 
     cut_word('基于seq2seq的中文分词器')
 
