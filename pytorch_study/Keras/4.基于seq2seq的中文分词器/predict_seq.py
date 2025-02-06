@@ -13,10 +13,11 @@ def predict():
     # 使用全数据
     text = open('msr_train.txt', encoding='gbk').read()
     text = text.split('\n')
-   
+
     # 根据符号分句
     text = u''.join(text)
     text = re.split(u'[，。！？、]/[bems]', text)
+    print(len(text))
 
     # 训练集数据
     data = []
