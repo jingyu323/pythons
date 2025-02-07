@@ -122,7 +122,7 @@ def demo():
     model.save('seq2seq.keras')
 
 
-demo()
+# demo()
 
 maxlen = 32
 
@@ -306,10 +306,15 @@ def cut_word(s):
 
 if __name__ == '__main__':
     cut_word('基于seq2seq的中文分词器')
-    # cut_word('人们常说生活是一部教科书')
+    res = cut_word('人们常说生活是一部教科书')
+
+    print("res ====  ", res)
     #
     # cut_word('广义相对论是描写物质间引力相互作用的理论')
     #
-    # cut_word('我爱北京天安门，天安门上太阳升')
-    # model.predict(
-    #     np.array([list(chars[list('今天天气很好')].fillna(0).astype(int)) + [0] * (maxlen - len('今天天气很好'))]))[0]
+    rssss = cut_word('我爱北京天安门，天安门上太阳升')
+    res2 = model.predict(
+        np.array([list(chars[list('今天天气很好')].fillna(0).astype(int)) + [0] * (maxlen - len('今天天气很好'))]))
+
+    print(res2)
+    print(rssss)

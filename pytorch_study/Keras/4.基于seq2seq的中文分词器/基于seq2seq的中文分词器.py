@@ -116,7 +116,7 @@ sequence = Input(shape=(maxlen,), dtype='int32')
 embedded = Embedding(len(chars) + 1, word_size, input_length=maxlen, mask_zero=True)(sequence)
 # 双向RNN包装器
 blstm = Bidirectional(LSTM(64, return_sequences=True), merge_mode='sum')(embedded)
-# 该包装器可以把一个层应用到输入的每一个时间步上
+# 该包到输入的每装器可以把一个层应用一个时间步上
 output = TimeDistributed(Dense(5, activation='softmax'))(blstm)
 # 定义模型输出输出
 model = Model(inputs=sequence, outputs=output)
