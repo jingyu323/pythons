@@ -2,6 +2,8 @@ import re
 
 import numpy as np
 import pandas as pd
+from keras import Input, Model
+from keras.src.layers import Embedding, Bidirectional, TimeDistributed, Dense, LSTM
 from keras_core.src.utils import to_categorical
 
 
@@ -49,7 +51,7 @@ def demo():
             label.append(d[1])
 
     test = re.findall('(.)/(.)', '你/s  只/b  有/e  把/s  事/b  情/e  做/b  好/e')
-    print(test)
+    print("test12========", test)
 
     # 定义一个dataframe存放数据和标签
     d = pd.DataFrame(index=range(len(data)))
@@ -85,7 +87,7 @@ def demo():
         return np.array(x)
 
     def label_helper(x):
-        x = list(map(lambda y: to_categorical(y, 5), tag[x].reshape((-1, 1))))
+        x = list(map(lambda y: to_categorical(y, 5), tag[x].values.reshape((-1, 1))))
         x = x + [np.array([[0, 0, 0, 0, 1]])] * (maxlen - len(x))
         return np.array(x)
 
@@ -94,7 +96,24 @@ def demo():
     print(d['data'][0])
     print(d['x'][0])
     print(d['label'][0])
-    print(d['y'][0])
+    print(d)
+
+    sequence = Input(shape=(maxlen,), dtype='int32')
+    # 词汇数，词向量长度，输入的序列长度，是否忽略0值
+    embedded = Embedding(len(chars) + 1, word_size, input_length=maxlen, mask_zero=True)(sequence)
+    # 双向RNN包装器
+    blstm = Bidirectional(LSTM(64, return_sequences=True), merge_mode='sum')(embedded)
+    # 该包装器可以把一个层应用到输入的每一个时间步上
+    output = TimeDistributed(Dense(5, activation='softmax'))(blstm)
+    # 定义模型输出输出
+    model = Model(inputs=sequence, outputs=output)
+    # 定义代价函数，优化器
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'], run_eagerly=True)
+    model.summary()
+    # print(np.array(list(d['x'])).shape)
+    # print(np.array(list(d['y'])).reshape((-1,maxlen,5)).shape)
+    model.fit(np.array(list(d['x'])), np.array(list(d['y'])).reshape((-1, maxlen, 5)), batch_size=batch_size, epochs=20)
+    # model.save('seq2seq.h5')
 
 
 if __name__ == '__main__':
