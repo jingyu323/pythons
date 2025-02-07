@@ -5,6 +5,7 @@ import pandas as pd
 from keras import Input, Model
 from keras.src.layers import Embedding, Bidirectional, TimeDistributed, Dense, LSTM
 from keras_core.src.utils import to_categorical
+from keras.src.saving import load_model
 
 
 def demo():
@@ -116,5 +117,59 @@ def demo():
     # model.save('seq2seq.h5')
 
 
+def demo_predic():
+    # 设置最长的一句话为32个字
+    maxlen = 32
+
+    # 使用全数据
+    text = open('msr_train.txt', encoding='gbk').read()
+    text = text.split('\n')
+
+    # 根据符号分句
+    text = u''.join(text)
+    text = re.split(u'[，。！？、]/[bems]', text)
+
+    # 训练集数据
+    data = []
+    # 标签
+    label = []
+
+    # 得到所有的数据和标签
+    def get_data(s):
+        s = re.findall('(.)/(.)', s)
+        if s:
+            s = np.array(s)
+            # 返回数据和标签，0为数据，1为标签
+            return list(s[:, 0]), list(s[:, 1])
+
+    for s in text:
+        d = get_data(s)
+        if d:
+            data.append(d[0])
+            label.append(d[1])
+
+    # 定义一个dataframe存放数据和标签
+    d = pd.DataFrame(index=range(len(data)))
+    d['data'] = data
+    d['label'] = label
+    # 提取data长度小于等于maxlen的数据
+    d = d[d['data'].apply(len) <= maxlen]
+    # 重新排列index
+    d.index = range(len(d))
+
+    # 统计所有字，给每个字编号
+    chars = []
+    for i in data:
+        chars.extend(i)
+
+    chars = pd.Series(chars).value_counts()
+    chars[:] = range(1, len(chars) + 1)
+
+    print("load model")
+    model = load_model('seq2seq.keras')
+
+    model.summary()
+
+
 if __name__ == '__main__':
-    demo()
+    demo_predic()
