@@ -17,6 +17,37 @@ import numpy as np
 
 
 def gen_model():
+    # 训练集数据生成
+    datagen = ImageDataGenerator(
+        rotation_range=40,
+        rescale=1. / 255,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode='nearest'
+    )
+
+    # 测试集数据处理
+    test_datagen = ImageDataGenerator(rescale=1. / 255)
+    batch_size = 32
+    # 生成训练数据
+    train_generator = datagen.flow_from_directory(
+        'E:/data/kreas/Kaggle/cat-dog-small/train',  # 训练数据路径
+        target_size=(150, 150),  # 设置图片大小
+        class_mode='categorical',
+        batch_size=batch_size  # 批次大小
+    )
+    print(len(train_generator.class_indices))
+    # 测试数据
+    test_generator = test_datagen.flow_from_directory(
+        'E:/data/kreas/Kaggle/cat-dog-small/test',  # 训练数据路径
+        target_size=(150, 150),  # 设置图片大小
+        class_mode='categorical',
+        batch_size=batch_size  # 批次大小
+    )
+
     # 定义模型
     model = Sequential()
     model.add(
@@ -35,7 +66,7 @@ def gen_model():
     model.add(Flatten())
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(2, activation='softmax'))
+    model.add(Dense(len(train_generator.class_indices), activation='softmax'))
 
     # 定义优化器
     adam = Adam(learning_rate=1e-4)
@@ -44,21 +75,6 @@ def gen_model():
     model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy'])
 
     model.summary()
-
-    # 训练集数据生成
-    datagen = ImageDataGenerator(
-        rotation_range=40,
-        rescale=1. / 255,
-        width_shift_range=0.2,
-        height_shift_range=0.2,
-        shear_range=0.2,
-        zoom_range=0.2,
-        horizontal_flip=True,
-        fill_mode='nearest'
-    )
-
-    # 测试集数据处理
-    test_datagen = ImageDataGenerator(rescale=1. / 255)
 
     # flow_from_directory:
     # * directory: 目标文件夹路径,对于每一个类,该文件夹都要包含一个子文件夹.子文件夹中任何JPG、PNG、BNP、PPM的图片都会被生成器使用.详情请查看此脚本
@@ -73,23 +89,6 @@ def gen_model():
     # * save_prefix：字符串，保存提升后图片时使用的前缀, 仅当设置了save_to_dir时生效
     # * save_format："png"或"jpeg"之一，指定保存图片的数据格式,默认"jpeg"
     # * flollow_links: 是否访问子文件夹中的软链接
-
-    batch_size = 32
-    # 生成训练数据
-    train_generator = datagen.flow_from_directory(
-        'E:/data/kreas/Kaggle/cat-dog-small/train',  # 训练数据路径
-        target_size=(150, 150),  # 设置图片大小
-        class_mode='categorical',
-        batch_size=batch_size  # 批次大小
-    )
-    print(train_generator)
-    # 测试数据
-    test_generator = test_datagen.flow_from_directory(
-        'E:/data/kreas/Kaggle/cat-dog-small/test',  # 训练数据路径
-        target_size=(150, 150),  # 设置图片大小
-        class_mode='categorical',
-        batch_size=batch_size  # 批次大小
-    )
 
     # 统计文件个数
     totalFileCount = sum([len(files) for root, dirs, files in os.walk('E:/data/kreas/Kaggle/cat-dog-small/train')])
@@ -152,7 +151,7 @@ def batch_pre():
     mlp.rcParams['axes.unicode_minus'] = False
     model = load_model('CNN1.keras')
     a = [i for i in range(1, 10)]
-    fig = plt.figure(figsize=(15, 15))
+    fig = plt.figure(figsize=(35, 35))
     image_path = "E:/data/kreas/Kaggle/cat-dog-small/predict/"
     index = 1
     for image in os.listdir(image_path):
@@ -213,7 +212,9 @@ def batch_pre_grace():
 
 def batche_grace():
     # 创建一个3x2的子图布局，并设置图形大小
-    fig, axs = plt.subplots(5, 5, figsize=(12, 10))
+    fig, axs = plt.subplots(5, 5, figsize=(32, 30))
+
+    # plt.subplots_adjust(wspace=2.4, hspace=2.4)
     image_path = "E:/data/kreas/Kaggle/cat-dog-small/predict/"
     images = os.listdir(image_path)
     print(images)
@@ -223,10 +224,7 @@ def batche_grace():
     model = load_model('CNN1.keras')
     drawImg = True
     for i in range(5):
-        if not drawImg:
-            break
-        if index > 13:
-            break
+
         for j in range(5):
             if not drawImg:
                 break
@@ -240,14 +238,17 @@ def batche_grace():
             result = (result1 > 0.5).astype(int)
 
             axs[i, j].imshow(img_ori)
-            axs[i, j].set_title(f'预测为：狗狗' if result[0][1] == 1 else '预测为：猫咪')
+            title = "猫咪"
+            if result[0][1] == 1:
+                title = "狗狗"
+            if result[0][2] == 1:
+                title = "熊猫"
+            axs[i, j].set_title(f'预测为：' + title)
             index = index + 1
-            if index > 13:
-                drawImg = False
-                break
+
             print("index", index)
 
-    plt.tight_layout()
+    plt.tight_layout(pad=0.5, w_pad=0, h_pad=18)
     plt.show()
 
 
