@@ -30,7 +30,7 @@ with sync_playwright() as p:
         print(rendered_html)
 
         # 提取数据
-        element = page.query_selector("div.dynamic-content")
+        element = page.query_selector("section.a-plate-stock-list")
         if element:
             print(element.inner_text())
         else:
