@@ -44,10 +44,6 @@ class StockAnalyzer:
                 for div in divs:
                     print(div)
 
-
-
-
-
             return response.json()
         except requests.exceptions.RequestException as e:
             print(f"数据获取失败: {e}")

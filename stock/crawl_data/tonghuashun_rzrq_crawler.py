@@ -1,3 +1,5 @@
+from operator import indexOf
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -31,28 +33,36 @@ class RZRQCrawler:
                 # print(response.text)
                 soup = BeautifulSoup(response.text, 'lxml')
 
+                tdiv = soup.find('div', attrs={'class': 'page-table'})
+
                 # 查找数据表格
-                table = soup.find('table', attrs={'class': 'm-table'})
-                tables = soup.find_all('table')
-                for table in tables:
-                    print(table)
+                table = tdiv.find('table', attrs={'class': 'm-table'})
+
+                # tables = tdiv.find_all('table')
+                # for table in tables:
+                #     print(table)
 
                 # print(table)
 
                 data_list = []
                 if table:
-                    rows = table.find_all('tr')[1:]  # 跳过表头
+                    tbody = table.find('tbody') # 跳过表头
+                    rows = tbody.find_all('tr') # 跳过表头
                     for row in rows:
                         cols = row.find_all('td')
                         if len(cols) > 0:
                             stock_data = {
-                                '股票代码': cols[0].text.strip(),
-                                '股票名称': cols[1].text.strip(),
-                                '融资余额': cols[2].text.strip(),
-                                '融资买入额': cols[3].text.strip(),
-                                '融券余额': cols[4].text.strip(),
-                                '融券卖出量': cols[5].text.strip(),
-                                '融资融券余额': cols[6].text.strip()
+                                '股票代码': cols[1].text.strip(),
+                                '股票名称': cols[2].text.strip(),
+                                '融资余额':   cols[3].text.strip().replace("亿","")  if  "亿" in cols[3].text.strip() else cols[3].text.strip().replace("万",""),
+                                '融资买入额':  cols[4].text.strip().replace("亿","")  if  "亿" in cols[4].text.strip() else cols[4].text.strip().replace("万",""),
+                                '融资偿还额':   cols[5].text.strip().replace("亿","")  if  "亿" in cols[5].text.strip() else cols[5].text.strip().replace("万",""),
+                                '融资净买入额':  cols[6].text.strip().replace("亿","")  if  "亿" in cols[6].text.strip() else cols[6].text.strip().replace("万",""),
+                                '融券余额': cols[7].text.strip() ,
+                                '融券卖出量': cols[8].text.strip() ,
+                                '融券净买入': cols[9].text.strip() ,
+                                '融券净卖出': cols[10].text.strip() ,
+                                '融资融券余额':  cols[11].text.strip().replace("亿","")  if  "亿" in cols[11].text.strip() else cols[11].text.strip().replace("万","")
                             }
                             data_list.append(stock_data)
 
@@ -83,14 +93,19 @@ class RZRQCrawler:
                             cols = row.find_all('td')
                             if len(cols) > 0:
                                 stock_data = {
-                                    '股票代码': cols[0].text.strip(),
-                                    '股票名称': cols[1].text.strip(),
-                                    '融资余额': cols[2].text.strip(),
-                                    '融资买入额': cols[3].text.strip(),
-                                    '融券余额': cols[4].text.strip(),
-                                    '融券卖出量': cols[5].text.strip(),
-                                    '融资融券余额': cols[6].text.strip()
+                                    '股票代码': cols[1].text.strip(),
+                                    '股票名称': cols[2].text.strip(),
+                                    '融资余额': cols[3].text.strip(),
+                                    '融资买入额': cols[4].text.strip(),
+                                    '融资偿还额': cols[5].text.strip(),
+                                    '融资净买入额': cols[6].text.strip(),
+                                    '融券余额': cols[7].text.strip(),
+                                    '融券卖出量': cols[8].text.strip(),
+                                    '融券净买入': cols[9].text.strip(),
+                                    '融券净卖出': cols[10].text.strip(),
+                                    '融资融券余额': cols[11].text.strip()
                                 }
+
                                 all_data.append(stock_data)
 
                 time.sleep(1)  # 添加延时避免被封
@@ -120,6 +135,8 @@ class RZRQCrawler:
         """数据分析"""
         if df is None or df.empty:
             return None
+
+        print(df)
 
         # 融资余额排名前十
         top_10_rz = df.nlargest(10, '融资余额')

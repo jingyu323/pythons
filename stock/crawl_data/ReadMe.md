@@ -17,3 +17,7 @@ element = wait.until(EC.presence_of_element_located((By.ID, 'some_id'))
 
 
 html.parse 解析不出来数据 用lxml 就能获取数据
+
+python 中没有三目运算符 可以使用如下等式代替
+ 
+max_value = a if a > b else b
