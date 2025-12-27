@@ -25,20 +25,23 @@ class RZRQCrawler:
         """爬取融资融券数据"""
         try:
             response = requests.get(self.base_url, headers=self.headers, timeout=10)
-            response.encoding = 'utf-8'
+            response.encoding = 'gbk'
 
             if response.status_code == 200:
-                soup = BeautifulSoup(response.text, 'html.parser')
+                # print(response.text)
+                soup = BeautifulSoup(response.text, 'lxml')
 
                 # 查找数据表格
-                table = soup.find('section', {'class': 'a-plate-stock-list'})
+                table = soup.find('table', attrs={'class': 'm-table'})
+                tables = soup.find_all('table')
+                for table in tables:
+                    print(table)
 
-                print(table)
+                # print(table)
 
                 data_list = []
                 if table:
                     rows = table.find_all('tr')[1:]  # 跳过表头
-
                     for row in rows:
                         cols = row.find_all('td')
                         if len(cols) > 0:

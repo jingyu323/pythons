@@ -14,3 +14,6 @@ element = wait.until(EC.presence_of_element_located((By.ID, 'some_id'))
 | **Selenium**      | 需要兼容多种浏览器       | 慢       | 中等       |
 | **Playwright**    | 高性能、现代浏览器自动化 | 快       | 低         |
 | **Pyppeteer**     | 直接控制Chrome           | 快       | 中高       |
+
+
+html.parse 解析不出来数据 用lxml 就能获取数据
