@@ -135,11 +135,10 @@ class RZRQCrawler:
         """数据分析"""
         if df is None or df.empty:
             return None
-
-        print(df)
-
         # 融资余额排名前十
         top_10_rz = df.nlargest(10, '融资余额')
+        print(top_10_rz)
+        print("====")
 
         # 融券余额排名前十
         top_10_rq = df.nlargest(10, '融券余额')

@@ -1,12 +1,15 @@
 
 
 import json
+
+import pandas
 import pandas as pd
 import requests
+from bs4 import BeautifulSoup
 
 
 def get_data():
-    url = 'https://applhb.longhuvip.com/w1/api/index.php'
+    url = 'http://data.10jqka.com.cn/market/longhu/'
     headers = {
         'user-agent':'Mozilla/5.0(Linux; Android 7.1.2; SM-G955N Build/NRD90M.G955NKSU1AQDC; wv)'
     }
@@ -25,37 +28,45 @@ def get_data():
         'Time': 0,
     }
     # 发送POST请求
-    response = requests.post(url, params=params, headers=headers)
+    response = requests.get(url, params=params, headers=headers)
     # 将编码设置为当前编码
     response.encoding = response.apparent_encoding
     # 解析JSON数据
-    data = json.loads(response.text)
-    # 获取买入营业部、卖出营业部和风口概念等数据
-    BIcon = data.get('BIcon')
-    SIcon = data.get('SIcon')
-    fkgn = data.get('fkgn')
-    lb = data.get('lb')
-    all_data = pd.DataFrame()
-    # 遍历股票列表，提取数据
-    for item in data.get('list'):
-        ID = item.get('ID')
-        item_data = [
-            ID,
-            item.get('Name'),
-            item.get('IncreaseAmount'),
-            item.get('BuyIn'),
-            item.get('JoinNum'),
-            ','.join(BIcon.get(ID, [])),
-            ','.join(SIcon.get(ID, [])),
-            ','.join(fkgn.get(ID, {}).values()),
-            lb.get(ID),
-        ]
 
-        # 将数据转换成DataFrame类型
-        data = pd.DataFrame(item_data).T
-        dict = {0:'股票代码', 1:'股票名称', 2:'涨幅', 3:'净买入', 4:'关联数', 5:'买入营业部', 6:'卖出营业部', 7:'风口概念', 8:'连板数'}
-        data.rename(columns=dict, inplace=True)
-        all_data = all_data.append(data, ignore_index=True)
+    soup = BeautifulSoup(response.text, 'lxml')
+
+    page_table = soup.find('div', attrs={'class': 'page-table'})
+    div_wrap = page_table.find('div', attrs={'class': 'twrap'})
+    table = div_wrap.find('table', attrs={'class': 'm-table'})
+    all_data = pd.DataFrame()
+
+    if table:
+        tbody = table.find('tbody')  # 跳过表头
+        rows = tbody.find_all('tr')  # 跳过表头
+        for row in rows:
+            cols = row.find_all('td')
+            if len(cols) > 0:
+                stock_data = [
+                     cols[1].text.strip(),
+                     cols[2].text.strip(),
+                     cols[4].text.strip(),
+                     cols[5].text.strip(),
+                    0,
+                    "B",
+                    "s",
+                    "t",
+                    cols[0].text.strip(),
+                    cols[3].text.strip(),
+
+                ]
+                data = pd.DataFrame(stock_data).T
+                dict = {0: '股票代码', 1: '股票名称', 2: '涨幅', 3: '净买入', 4: '关联数', 5: '买入营业部', 6: '卖出营业部',
+                        7: '风口概念', 8: '连板数', 9: '现价'}
+                # dict = {0: '股票代码', 1: '股票名称'}
+                data.rename(columns=dict, inplace=True)
+                all_data = pandas.concat([all_data,data], axis=0)
+
+    return all_data
     # 返回DataFrame类型数据
 
 
