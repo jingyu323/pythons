@@ -23,6 +23,7 @@ def roate_axi():
 
     # 在jupyter notebook中渲染图表
     bar.render_notebook()
+    bar.render("roate_axi.html")
 
 if __name__ == "__main__" :
     roate_axi()
