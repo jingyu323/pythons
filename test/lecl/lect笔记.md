@@ -12,3 +12,7 @@ LCEL 构建的链，打开追踪后，每一次请求会生成一条完整 Trace
 2. 官方中文文档：https://python.langchain.ac.cn/docs/concepts/lcel/LangChain
 3. LCEL 速查表（最常用）：https://python.langchain.ac.cn/docs/how_to/lcel_cheatsheet/LangChain
 4. Agent 文档：https://python.langchain.com/docs/modules/agents/Langchain
+## runtime 
+- context  
+- state agent 保存agent运行时产生的动态数据
+- Store 存储夸会话的数据
